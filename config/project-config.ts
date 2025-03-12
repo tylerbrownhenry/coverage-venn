@@ -23,6 +23,18 @@ export const projectConfigs: Record<string, ProjectConfig> = {
     "excludeTestPatterns": [],
     "customMappings": {},
     "confidenceThreshold": 0.6
+  },
+  "testApp": {
+    "excludeTestPatterns": [],
+    "customMappings": {
+      "src/components/Counter.tsx": [
+        "src/__tests__/Counter.test.tsx"
+      ],
+      "src/App.tsx": [
+        "src/__tests__/Counter.test.tsx"
+      ]
+    },
+    "confidenceThreshold": 0.6
   }
 };
 

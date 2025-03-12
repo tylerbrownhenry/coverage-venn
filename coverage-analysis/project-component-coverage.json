@@ -1,6 +1,6 @@
 [
   {
-    "path": "/Users/tylerhenry/Documents/GitHub/jogger/jogger/frontend/src/App.tsx",
+    "path": "/Users/tylerhenry/Documents/GitHub/testApp/src/App.tsx",
     "coverage": 25,
     "statements": 0,
     "branches": 100,
@@ -8,34 +8,10 @@
     "lines": 0
   },
   {
-    "path": "/Users/tylerhenry/Documents/GitHub/jogger/jogger/frontend/src/components/machine/JogControls.tsx",
-    "coverage": 0,
-    "statements": 0,
-    "branches": 0,
-    "functions": 0,
-    "lines": 0
-  },
-  {
-    "path": "/Users/tylerhenry/Documents/GitHub/jogger/jogger/frontend/src/components/model/ModelViewer.tsx",
-    "coverage": 0,
-    "statements": 0,
-    "branches": 0,
-    "functions": 0,
-    "lines": 0
-  },
-  {
-    "path": "/Users/tylerhenry/Documents/GitHub/jogger/jogger/frontend/src/contexts/MachineContext.tsx",
-    "coverage": 0,
-    "statements": 0,
-    "branches": 0,
-    "functions": 0,
-    "lines": 0
-  },
-  {
-    "path": "/Users/tylerhenry/Documents/GitHub/jogger/jogger/frontend/src/utils/gcode-parser.tsx",
-    "coverage": 93.39750000000001,
-    "statements": 90.62,
-    "branches": 82.97,
+    "path": "/Users/tylerhenry/Documents/GitHub/testApp/src/components/Counter.tsx",
+    "coverage": 100,
+    "statements": 100,
+    "branches": 100,
     "functions": 100,
     "lines": 100
   }
