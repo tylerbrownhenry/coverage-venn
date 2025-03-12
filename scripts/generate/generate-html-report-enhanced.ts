@@ -1301,17 +1301,21 @@ function generateHTML(components: ComponentWithTests[]): string {
       const container = document.getElementById(containerId);
       if (!container) return;
       
-      const lineElement = container.querySelector(\`[id="line-\${lineNumber}"]\`);
+      // Fix the selector string format to avoid TypeScript errors
+      const lineSelector = 'line-' + lineNumber;
+      const lineElement = container.querySelector('[id="' + lineSelector + '"]');
       if (!lineElement) return;
       
-      // Scroll the element into view
-      container.scrollTop = lineElement.offsetTop - container.offsetTop - 50;
+      // Improved scroll calculation with better positioning
+      // Add a small offset to ensure the line is fully visible with some context above it
+      const offset = 20; // Smaller offset for better positioning
+      container.scrollTop = lineElement.offsetTop - container.offsetTop - offset;
       
-      // Add a temporary highlight
+      // Add a temporary highlight that lasts longer
       lineElement.classList.add('scrolled-to');
       setTimeout(() => {
         lineElement.classList.remove('scrolled-to');
-      }, 2000);
+      }, 3000); // Longer highlight duration (3 seconds)
     }
     
     // Call syntax highlighting when the page loads
@@ -1817,57 +1821,163 @@ function findTestsInContent(content: string, componentName: string): { name: str
     }
   }
   
-  // Simple pattern matching for Jest/React Testing Library style tests
+  // Track describe blocks to handle nested tests
+  const describeBlocks: { 
+    name: string;
+    startLine: number;
+    endLine: number | null;
+    matches: boolean;
+  }[] = [];
+  
+  // First pass: identify describe blocks and their matching status
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
     const lineLower = line.toLowerCase();
     
-    // Look for test or describe blocks
-    const testMatch = line.match(/\s*(test|it|describe)\s*\(\s*['"](.+?)['"]/);
-    if (testMatch) {
-      const testType = testMatch[1]; // 'test', 'it', or 'describe'
-      const testName = testMatch[2];
-      const testNameLower = testName.toLowerCase();
+    // Look for describe blocks
+    const describeMatch = line.match(/\s*(describe)\s*\(\s*['"](.+?)['"]/);
+    if (describeMatch) {
+      const blockName = describeMatch[2];
+      const blockNameLower = blockName.toLowerCase();
       
-      console.log(`Found test: "${testName}" (${testType}) at line ${i+1}`);
+      // Check if this describe block matches our component
+      let blockMatches = false;
       
-      // Check for a match using our variants
-      let isMatch = false;
-      let matchReason = '';
-      
-      // Check if testName contains component name
+      // Check if block name contains component name
       for (const variant of compNameVariants) {
-        if (testNameLower.includes(variant)) {
-          isMatch = true;
-          matchReason = `test name contains "${variant}"`;
+        if (blockNameLower.includes(variant)) {
+          blockMatches = true;
+          console.log(`Describe block "${blockName}" matches component "${componentName}" (contains "${variant}")`);
           break;
         }
       }
       
-      // Check if line contains the component name
-      if (!isMatch) {
+      // If not matched by name, check if the line contains the component name
+      if (!blockMatches) {
         for (const variant of compNameVariants) {
           if (lineLower.includes(variant)) {
-            isMatch = true;
-            matchReason = `line contains "${variant}"`;
+            blockMatches = true;
+            console.log(`Describe block line for "${blockName}" contains component reference "${variant}"`);
             break;
           }
         }
       }
       
-      // Search ahead for component import or reference in the next few lines
-      if (!isMatch && i < lines.length - 10) {
-        // Look ahead up to 10 lines
+      // If still not matched, look ahead for component references
+      if (!blockMatches && i < lines.length - 10) {
         for (let j = i + 1; j < Math.min(i + 10, lines.length); j++) {
           const lookAheadLine = lines[j].toLowerCase();
           for (const variant of compNameVariants) {
             if (lookAheadLine.includes(variant)) {
-              isMatch = true;
-              matchReason = `referenced within next ${j-i} lines with "${variant}"`;
+              blockMatches = true;
+              console.log(`Describe block "${blockName}" has component reference "${variant}" within next ${j-i} lines`);
               break;
             }
           }
-          if (isMatch) break;
+          if (blockMatches) break;
+        }
+      }
+      
+      // Add this describe block to our tracking list
+      describeBlocks.push({
+        name: blockName,
+        startLine: i,
+        endLine: null, // Will be set later when we find the closing brace
+        matches: blockMatches
+      });
+    }
+    
+    // Check for closing braces to determine describe block endings
+    if (line.trim() === '}' && describeBlocks.length > 0) {
+      // Find the innermost describe block without an end line
+      for (let j = describeBlocks.length - 1; j >= 0; j--) {
+        if (describeBlocks[j].endLine === null) {
+          describeBlocks[j].endLine = i;
+          break;
+        }
+      }
+    }
+  }
+  
+  // Set any remaining blocks to end at the end of the file
+  for (let block of describeBlocks) {
+    if (block.endLine === null) {
+      block.endLine = lines.length - 1;
+    }
+  }
+  
+  // Second pass: find test blocks and check if they're within matching describe blocks
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    const lineLower = line.toLowerCase();
+    
+    // Skip if this is a describe line (already processed)
+    if (line.match(/\s*(describe)\s*\(\s*['"](.+?)['"]/)) {
+      continue;
+    }
+    
+    // Look for test or it blocks
+    const testMatch = line.match(/\s*(test|it)\s*\(\s*['"](.+?)['"]/);
+    if (testMatch) {
+      const testType = testMatch[1]; // 'test' or 'it'
+      const testName = testMatch[2];
+      const testNameLower = testName.toLowerCase();
+      
+      console.log(`Found test: "${testName}" (${testType}) at line ${i+1}`);
+      
+      // Check if this test is within a matching describe block
+      let isWithinMatchingDescribe = false;
+      let matchingDescribeName = '';
+      
+      for (const block of describeBlocks) {
+        if (block.matches && i >= block.startLine && i <= block.endLine!) {
+          isWithinMatchingDescribe = true;
+          matchingDescribeName = block.name;
+          break;
+        }
+      }
+      
+      // Check for a direct match using our variants
+      let isMatch = isWithinMatchingDescribe;
+      let matchReason = isWithinMatchingDescribe ? 
+        `within matching describe block "${matchingDescribeName}"` : '';
+      
+      // If not already matched, check directly
+      if (!isMatch) {
+        // Check if testName contains component name
+        for (const variant of compNameVariants) {
+          if (testNameLower.includes(variant)) {
+            isMatch = true;
+            matchReason = `test name contains "${variant}"`;
+            break;
+          }
+        }
+        
+        // Check if line contains the component name
+        if (!isMatch) {
+          for (const variant of compNameVariants) {
+            if (lineLower.includes(variant)) {
+              isMatch = true;
+              matchReason = `line contains "${variant}"`;
+              break;
+            }
+          }
+        }
+        
+        // Search ahead for component import or reference in the next few lines
+        if (!isMatch && i < lines.length - 10) {
+          // Look ahead up to 10 lines
+          for (let j = i + 1; j < Math.min(i + 10, lines.length); j++) {
+            const lookAheadLine = lines[j].toLowerCase();
+            for (const variant of compNameVariants) {
+              if (lookAheadLine.includes(variant)) {
+                isMatch = true;
+                matchReason = `referenced within next ${j-i} lines with "${variant}"`;
+                break;
+              }
+            }
+            if (isMatch) break;
+          }
         }
       }
       
@@ -1875,24 +1985,55 @@ function findTestsInContent(content: string, componentName: string): { name: str
       if (isMatch) {
         console.log(`✓ Match found for "${componentName}": "${testName}" (${matchReason})`);
         
-        // Find the end of this test block (simplistic approach)
+        // Improved method to find the end of this test block
         let blockDepth = 1;
         let endLine = i;
+        let foundEndingBrace = false;
         
         for (let j = i + 1; j < lines.length; j++) {
-          blockDepth += (lines[j].match(/\{/g) || []).length;
-          blockDepth -= (lines[j].match(/\}/g) || []).length;
+          // Count opening and closing braces
+          const openBraces = (lines[j].match(/\{/g) || []).length;
+          const closeBraces = (lines[j].match(/\}/g) || []).length;
+          
+          blockDepth += openBraces;
+          blockDepth -= closeBraces;
           
           if (blockDepth <= 0) {
             endLine = j;
+            foundEndingBrace = true;
             break;
           }
         }
         
+        // If we couldn't find the ending brace, use a fallback approach
+        // This helps with the last test in a file
+        if (!foundEndingBrace) {
+          console.log(`Could not find ending brace for test "${testName}". Looking for next test or end of file.`);
+          // Look for the next test as a boundary or use the end of file
+          let nextTestIndex = -1;
+          for (let j = i + 1; j < lines.length; j++) {
+            if (lines[j].match(/\s*(test|it|describe)\s*\(\s*['"](.+?)['"]/)) {
+              nextTestIndex = j - 1;
+              break;
+            }
+          }
+          
+          // If we didn't find another test, use the end of the file
+          if (nextTestIndex === -1) {
+            nextTestIndex = lines.length - 1;
+            console.log(`No more tests found. Using end of file (line ${nextTestIndex + 1}) as test boundary.`);
+          } else {
+            console.log(`Found next test at line ${nextTestIndex + 1}. Using previous line as test boundary.`);
+          }
+          
+          endLine = nextTestIndex;
+        }
+        
+        // Store results with ONE-INDEXED line numbers (not zero-indexed)
         results.push({
           name: testName,
-          lineStart: i,
-          lineEnd: endLine
+          lineStart: i + 1, // Convert to 1-indexed line number
+          lineEnd: endLine + 1 // Convert to 1-indexed line number
         });
       } else {
         console.log(`✗ No match for "${componentName}" in test: "${testName}"`);
