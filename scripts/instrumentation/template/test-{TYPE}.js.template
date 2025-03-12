@@ -1,0 +1,112 @@
+/**
+ * Test {{TYPE}} instrumentation
+ */
+
+const fs = require('fs');
+const path = require('path');
+const { execSync } = require('child_process');
+const babel = require('@babel/core');
+
+// Set up test environment
+const TEST_DIR = path.resolve(__dirname, 'temp');
+const PLUGIN_PATH = path.resolve(__dirname, '{{type}}-plugin.js');
+
+// Create test directory
+if (!fs.existsSync(TEST_DIR)) {
+  fs.mkdirSync(TEST_DIR, { recursive: true });
+}
+
+// Create coverage tracker file
+const coverageTrackerFile = path.join(TEST_DIR, 'coverage-tracker.js');
+fs.writeFileSync(coverageTrackerFile, `
+// Coverage tracker for {{TYPE}} instrumentation
+const COVERAGE_TRACKER = {
+  {{type}}s: {},
+  
+  track{{TYPE}}(component, {{type}}Id, ...args) {
+    const key = \`\${component}:\${{{type}}Id}\`;
+    
+    if (!this.{{type}}s[key]) {
+      this.{{type}}s[key] = {
+        executions: 0
+      };
+    }
+    
+    this.{{type}}s[key].executions++;
+    console.log(\`{{TYPE}} (id: \${{{type}}Id}) in \${component} executed\`);
+    
+    return args[0]; // Return first argument for chaining
+  },
+  
+  printReport() {
+    console.log('\\nCoverage Report:');
+    console.log('-----------------');
+    
+    console.log('\\n{{TYPE}}s:');
+    for (const key in this.{{type}}s) {
+      const [component, id] = key.split(':');
+      console.log(\`  {{TYPE}} \${id} in \${component}: \${this.{{type}}s[key].executions} executions\`);
+    }
+  }
+};
+
+module.exports = COVERAGE_TRACKER;
+`);
+
+// Create test file with {{TYPE}} examples
+const testFile = path.join(TEST_DIR, 'test-{{type}}.js');
+fs.writeFileSync(testFile, `
+// Import coverage tracker
+const COVERAGE_TRACKER = require('./coverage-tracker');
+
+// Add sample code with {{TYPE}} statements here
+// For example:
+/* 
+function test{{TYPE}}() {
+  // {{TYPE}} code to test
+}
+
+// Run test function
+test{{TYPE}}(); 
+*/
+
+// Print coverage report
+COVERAGE_TRACKER.printReport();
+`);
+
+// Instrument the code
+console.log('Instrumenting {{TYPE}} with plugin...');
+try {
+  // Verify plugin exists
+  if (!fs.existsSync(PLUGIN_PATH)) {
+    console.error(`Plugin not found at: ${PLUGIN_PATH}`);
+    process.exit(1);
+  }
+  
+  const result = babel.transformFileSync(testFile, {
+    plugins: [PLUGIN_PATH],
+    filename: 'test-{{type}}.js'
+  });
+  
+  if (result && result.code) {
+    const instrumentedFile = path.join(TEST_DIR, 'instrumented-{{type}}.js');
+    fs.writeFileSync(instrumentedFile, result.code);
+    console.log(`Instrumented code written to: ${instrumentedFile}`);
+    
+    // Run the instrumented code
+    console.log('\nRunning instrumented code:');
+    console.log('-------------------------------------------');
+    
+    execSync(`node ${instrumentedFile}`, { stdio: 'inherit' });
+    
+    console.log('-------------------------------------------');
+    console.log('{{TYPE}} instrumentation test completed successfully!');
+  } else {
+    console.error('Failed to transform code with the plugin');
+  }
+} catch (error) {
+  console.error('Error during {{TYPE}} instrumentation test:', error.message);
+  if (error.stack) {
+    console.error(error.stack.split('\n').slice(0, 3).join('\n'));
+  }
+} 

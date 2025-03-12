@@ -1,0 +1,490 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Code coverage report for scripts/instrumentation/deprecated/old-test-output/react-app/src/App.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../../../../../favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+    
+<body>
+<div class='wrapper'>
+    <div class='pad1'>
+        <h1><a href="../../../../../../index.html">All files</a> / <a href="index.html">scripts/instrumentation/deprecated/old-test-output/react-app/src</a> App.js</h1>
+        <div class='clearfix'>
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Statements</span>
+                <span class='fraction'>0/136</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>0/1</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>0/1</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Lines</span>
+                <span class='fraction'>0/136</span>
+            </div>
+        
+            
+        </div>
+        <p class="quiet">
+            Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
+        </p>
+        <template id="filterTemplate">
+            <div class="quiet">
+                Filter:
+                <input type="search" id="fileSearch">
+            </div>
+        </template>
+    </div>
+    <div class='status-line low'></div>
+    <pre><table class="coverage">
+<tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
+<a name='L2'></a><a href='#L2'>2</a>
+<a name='L3'></a><a href='#L3'>3</a>
+<a name='L4'></a><a href='#L4'>4</a>
+<a name='L5'></a><a href='#L5'>5</a>
+<a name='L6'></a><a href='#L6'>6</a>
+<a name='L7'></a><a href='#L7'>7</a>
+<a name='L8'></a><a href='#L8'>8</a>
+<a name='L9'></a><a href='#L9'>9</a>
+<a name='L10'></a><a href='#L10'>10</a>
+<a name='L11'></a><a href='#L11'>11</a>
+<a name='L12'></a><a href='#L12'>12</a>
+<a name='L13'></a><a href='#L13'>13</a>
+<a name='L14'></a><a href='#L14'>14</a>
+<a name='L15'></a><a href='#L15'>15</a>
+<a name='L16'></a><a href='#L16'>16</a>
+<a name='L17'></a><a href='#L17'>17</a>
+<a name='L18'></a><a href='#L18'>18</a>
+<a name='L19'></a><a href='#L19'>19</a>
+<a name='L20'></a><a href='#L20'>20</a>
+<a name='L21'></a><a href='#L21'>21</a>
+<a name='L22'></a><a href='#L22'>22</a>
+<a name='L23'></a><a href='#L23'>23</a>
+<a name='L24'></a><a href='#L24'>24</a>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a>
+<a name='L40'></a><a href='#L40'>40</a>
+<a name='L41'></a><a href='#L41'>41</a>
+<a name='L42'></a><a href='#L42'>42</a>
+<a name='L43'></a><a href='#L43'>43</a>
+<a name='L44'></a><a href='#L44'>44</a>
+<a name='L45'></a><a href='#L45'>45</a>
+<a name='L46'></a><a href='#L46'>46</a>
+<a name='L47'></a><a href='#L47'>47</a>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a>
+<a name='L74'></a><a href='#L74'>74</a>
+<a name='L75'></a><a href='#L75'>75</a>
+<a name='L76'></a><a href='#L76'>76</a>
+<a name='L77'></a><a href='#L77'>77</a>
+<a name='L78'></a><a href='#L78'>78</a>
+<a name='L79'></a><a href='#L79'>79</a>
+<a name='L80'></a><a href='#L80'>80</a>
+<a name='L81'></a><a href='#L81'>81</a>
+<a name='L82'></a><a href='#L82'>82</a>
+<a name='L83'></a><a href='#L83'>83</a>
+<a name='L84'></a><a href='#L84'>84</a>
+<a name='L85'></a><a href='#L85'>85</a>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a>
+<a name='L88'></a><a href='#L88'>88</a>
+<a name='L89'></a><a href='#L89'>89</a>
+<a name='L90'></a><a href='#L90'>90</a>
+<a name='L91'></a><a href='#L91'>91</a>
+<a name='L92'></a><a href='#L92'>92</a>
+<a name='L93'></a><a href='#L93'>93</a>
+<a name='L94'></a><a href='#L94'>94</a>
+<a name='L95'></a><a href='#L95'>95</a>
+<a name='L96'></a><a href='#L96'>96</a>
+<a name='L97'></a><a href='#L97'>97</a>
+<a name='L98'></a><a href='#L98'>98</a>
+<a name='L99'></a><a href='#L99'>99</a>
+<a name='L100'></a><a href='#L100'>100</a>
+<a name='L101'></a><a href='#L101'>101</a>
+<a name='L102'></a><a href='#L102'>102</a>
+<a name='L103'></a><a href='#L103'>103</a>
+<a name='L104'></a><a href='#L104'>104</a>
+<a name='L105'></a><a href='#L105'>105</a>
+<a name='L106'></a><a href='#L106'>106</a>
+<a name='L107'></a><a href='#L107'>107</a>
+<a name='L108'></a><a href='#L108'>108</a>
+<a name='L109'></a><a href='#L109'>109</a>
+<a name='L110'></a><a href='#L110'>110</a>
+<a name='L111'></a><a href='#L111'>111</a>
+<a name='L112'></a><a href='#L112'>112</a>
+<a name='L113'></a><a href='#L113'>113</a>
+<a name='L114'></a><a href='#L114'>114</a>
+<a name='L115'></a><a href='#L115'>115</a>
+<a name='L116'></a><a href='#L116'>116</a>
+<a name='L117'></a><a href='#L117'>117</a>
+<a name='L118'></a><a href='#L118'>118</a>
+<a name='L119'></a><a href='#L119'>119</a>
+<a name='L120'></a><a href='#L120'>120</a>
+<a name='L121'></a><a href='#L121'>121</a>
+<a name='L122'></a><a href='#L122'>122</a>
+<a name='L123'></a><a href='#L123'>123</a>
+<a name='L124'></a><a href='#L124'>124</a>
+<a name='L125'></a><a href='#L125'>125</a>
+<a name='L126'></a><a href='#L126'>126</a>
+<a name='L127'></a><a href='#L127'>127</a>
+<a name='L128'></a><a href='#L128'>128</a>
+<a name='L129'></a><a href='#L129'>129</a>
+<a name='L130'></a><a href='#L130'>130</a>
+<a name='L131'></a><a href='#L131'>131</a>
+<a name='L132'></a><a href='#L132'>132</a>
+<a name='L133'></a><a href='#L133'>133</a>
+<a name='L134'></a><a href='#L134'>134</a>
+<a name='L135'></a><a href='#L135'>135</a>
+<a name='L136'></a><a href='#L136'>136</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >"use strict";</span></span></span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >function _typeof(o) { "@babel/helpers - typeof"; return _typeof = (COVERAGE_TRACKER.trackBranch("App", 114, "ternary", "function" == typeof Symbol &amp;&amp; "symbol" == typeof Symbol.iterator ? 0 : 1), "function" == typeof Symbol &amp;&amp; "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o &amp;&amp; "function" == typeof Symbol &amp;&amp; o.constructor === Symbol &amp;&amp; o !== Symbol.prototype ? "symbol" : typeof o; }), _typeof(o); }</span>
+<span class="cstat-no" title="statement not covered" >Object.defineProperty(exports, "__esModule", {</span>
+<span class="cstat-no" title="statement not covered" >  value: true</span>
+<span class="cstat-no" title="statement not covered" >});</span>
+<span class="cstat-no" title="statement not covered" >exports["default"] = void 0;</span>
+<span class="cstat-no" title="statement not covered" >var _react = _interopRequireWildcard(require("react"));</span>
+<span class="cstat-no" title="statement not covered" >var _SimpleComponent = _interopRequireDefault(require("./components/SimpleComponent"));</span>
+<span class="cstat-no" title="statement not covered" >var _ConditionalComponent = _interopRequireDefault(require("./components/ConditionalComponent"));</span>
+<span class="cstat-no" title="statement not covered" >var _NestedComponent = _interopRequireDefault(require("./components/NestedComponent"));</span>
+<span class="cstat-no" title="statement not covered" >var _PropsComponent = _interopRequireDefault(require("./components/PropsComponent"));</span>
+<span class="cstat-no" title="statement not covered" >var _DynamicComponent = _interopRequireDefault(require("./components/DynamicComponent"));</span>
+<span class="cstat-no" title="statement not covered" >function _interopRequireDefault(e) { return COVERAGE_TRACKER.trackBranch("App", 113, "ternary", e &amp;&amp; e.__esModule ? 0 : 1), e &amp;&amp; e.__esModule ? e : { default: e }; }</span>
+<span class="cstat-no" title="statement not covered" >function _getRequireWildcardCache(e) { COVERAGE_TRACKER.trackBranch("App", 97, "if", "function" != typeof WeakMap ? 0 : 1); if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(e) { return COVERAGE_TRACKER.trackBranch("App", 98, "ternary", e ? 0 : 1), e ? t : r; })(e); }</span>
+<span class="cstat-no" title="statement not covered" >function _interopRequireWildcard(e, r) { COVERAGE_TRACKER.trackBranch("App", 99, "if", !r &amp;&amp; e &amp;&amp; e.__esModule ? 0 : 1); if (COVERAGE_TRACKER.trackBranch("App", 100, "logical", !r &amp;&amp; e ? 0 : 1), !r &amp;&amp; e &amp;&amp; e.__esModule) return e; COVERAGE_TRACKER.trackBranch("App", 101, "if", null === e || "object" != _typeof(e) &amp;&amp; "function" != typeof e ? 0 : 1); if (COVERAGE_TRACKER.trackBranch("App", 102, "logical", null === e ? 1 : 0), null === e || "object" != typeof e &amp;&amp; "function" != typeof e) return { "default": e }; var t = _getRequireWildcardCache(r); COVERAGE_TRACKER.trackBranch("App", 103, "if", t &amp;&amp; t.has(e) ? 0 : 1); if (COVERAGE_TRACKER.trackBranch("App", 104, "logical", t ? 0 : 1), t &amp;&amp; t.has(e)) return t.get(e); var n = { __proto__: null }, a = (COVERAGE_TRACKER.trackBranch("App", 105, "logical", Object.defineProperty ? 0 : 1), Object.defineProperty &amp;&amp; Object.getOwnPropertyDescriptor); for (var u in e) { COVERAGE_TRACKER.trackBranch("App", 106, "if", "default" !== u &amp;&amp; {}.hasOwnProperty.call(e, u) ? 0 : 1); COVERAGE_TRACKER.trackBranch("App", 107, "if", "default" !== u &amp;&amp; {}.hasOwnProperty.call(e, u) ? 0 : 1); if (COVERAGE_TRACKER.trackBranch("App", 108, "logical", "default" !== u ? 0 : 1), "default" !== u &amp;&amp; {}.hasOwnProperty.call(e, u)) { var i = (COVERAGE_TRACKER.trackBranch("App", 109, "ternary", a ? 0 : 1), a ? Object.getOwnPropertyDescriptor(e, u) : null); COVERAGE_TRACKER.trackBranch("App", 110, "ternary", i &amp;&amp; (i.get || i.set) ? 0 : 1); (COVERAGE_TRACKER.trackBranch("App", 111, "logical", i ? 0 : 1), i &amp;&amp; (i.get || i.set)) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } } return n["default"] = e, COVERAGE_TRACKER.trackBranch("App", 112, "logical", t ? 0 : 1), t &amp;&amp; t.set(e, n), n; }</span>
+<span class="cstat-no" title="statement not covered" >COVERAGE_TRACKER.trackJSXRender("App", 4, "SimpleComponent");</span>
+<span class="cstat-no" title="statement not covered" >COVERAGE_TRACKER.trackJSXRender("App", 7, "ConditionalComponent");</span>
+<span class="cstat-no" title="statement not covered" >COVERAGE_TRACKER.trackJSXRender("App", 10, "NestedComponent");</span>
+<span class="cstat-no" title="statement not covered" >COVERAGE_TRACKER.trackJSXRender("App", 13, "PropsComponent");</span>
+<span class="cstat-no" title="statement not covered" >COVERAGE_TRACKER.trackJSXRender("App", 14, "DynamicComponent");</span>
+<span class="cstat-no" title="statement not covered" >COVERAGE_TRACKER.trackJSXRender("App", 15, "div");</span>
+<span class="cstat-no" title="statement not covered" >COVERAGE_TRACKER.trackJSXRender("App", 16, "header");</span>
+<span class="cstat-no" title="statement not covered" >COVERAGE_TRACKER.trackJSXRender("App", 17, "h1");</span>
+<span class="cstat-no" title="statement not covered" >COVERAGE_TRACKER.trackJSXRender("App", 18, "button");</span>
+<span class="cstat-no" title="statement not covered" >COVERAGE_TRACKER.trackBranch("App", 22, "logical", showComponents ? 0 : 1);</span>
+<span class="cstat-no" title="statement not covered" >COVERAGE_TRACKER.trackJSXRender("App", 23, "main");</span>
+<span class="cstat-no" title="statement not covered" >COVERAGE_TRACKER.trackJSXRender("App", 24, "nav");</span>
+<span class="cstat-no" title="statement not covered" >COVERAGE_TRACKER.trackJSXRender("App", 25, "ul");</span>
+<span class="cstat-no" title="statement not covered" >COVERAGE_TRACKER.trackJSXRender("App", 26, "li");</span>
+<span class="cstat-no" title="statement not covered" >COVERAGE_TRACKER.trackJSXRender("App", 27, "button");</span>
+<span class="cstat-no" title="statement not covered" >COVERAGE_TRACKER.trackJSXRender("App", 31, "li");</span>
+<span class="cstat-no" title="statement not covered" >COVERAGE_TRACKER.trackJSXRender("App", 32, "button");</span>
+<span class="cstat-no" title="statement not covered" >COVERAGE_TRACKER.trackJSXRender("App", 36, "li");</span>
+<span class="cstat-no" title="statement not covered" >COVERAGE_TRACKER.trackJSXRender("App", 37, "button");</span>
+<span class="cstat-no" title="statement not covered" >COVERAGE_TRACKER.trackJSXRender("App", 41, "li");</span>
+<span class="cstat-no" title="statement not covered" >COVERAGE_TRACKER.trackJSXRender("App", 42, "button");</span>
+<span class="cstat-no" title="statement not covered" >COVERAGE_TRACKER.trackJSXRender("App", 46, "li");</span>
+<span class="cstat-no" title="statement not covered" >COVERAGE_TRACKER.trackJSXRender("App", 47, "button");</span>
+<span class="cstat-no" title="statement not covered" >COVERAGE_TRACKER.trackJSXRender("App", 61, "div");</span>
+<span class="cstat-no" title="statement not covered" >COVERAGE_TRACKER.trackJSXRender("App", 62, "div");</span>
+<span class="cstat-no" title="statement not covered" >COVERAGE_TRACKER.trackJSXRender("App", 72, "footer");</span>
+<span class="cstat-no" title="statement not covered" >COVERAGE_TRACKER.trackJSXRender("App", 73, "p");</span>
+<span class="cstat-no" title="statement not covered" >function _slicedToArray(r, e) { return COVERAGE_TRACKER.trackBranch("App", 96, "logical", _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) ? 1 : 0), _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }</span>
+<span class="cstat-no" title="statement not covered" >function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }</span>
+<span class="cstat-no" title="statement not covered" >function _unsupportedIterableToArray(r, a) { COVERAGE_TRACKER.trackBranch("App", 92, "if", r ? 0 : 1); if (r) { COVERAGE_TRACKER.trackBranch("App", 93, "if", "string" == typeof r ? 0 : 1); if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return COVERAGE_TRACKER.trackBranch("App", 94, "logical", "Object" === t &amp;&amp; r.constructor ? 0 : 1), "Object" === t &amp;&amp; r.constructor &amp;&amp; (t = r.constructor.name), COVERAGE_TRACKER.trackBranch("App", 95, "ternary", "Map" === t || "Set" === t ? 0 : 1), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }</span>
+<span class="cstat-no" title="statement not covered" >function _arrayLikeToArray(r, a) { COVERAGE_TRACKER.trackBranch("App", 90, "logical", null == a || a &gt; r.length ? 0 : 1); (COVERAGE_TRACKER.trackBranch("App", 91, "logical", null == a ? 1 : 0), null == a || a &gt; r.length) &amp;&amp; (a = r.length); for (var e = 0, n = Array(a); e &lt; a; e++) n[e] = r[e]; return n; }</span>
+<span class="cstat-no" title="statement not covered" >function _iterableToArrayLimit(r, l) { var t = (COVERAGE_TRACKER.trackBranch("App", 82, "ternary", null == r ? 0 : 1), null == r ? null : "undefined" != typeof Symbol &amp;&amp; r[Symbol.iterator] || r["@@iterator"]); COVERAGE_TRACKER.trackBranch("App", 83, "if", null != t ? 0 : 1); if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { COVERAGE_TRACKER.trackBranch("App", 84, "if", (i = (t = t.call(r)).next, 0 === l) ? 0 : 1); if (i = (t = t.call(r)).next, 0 === l) { COVERAGE_TRACKER.trackBranch("App", 85, "if", Object(t) !== t ? 0 : 1); if (Object(t) !== t) return; f = !1; } else for (; COVERAGE_TRACKER.trackBranch("App", 86, "logical", !(f = (e = i.call(t)).done) ? 0 : 1), !(f = (e = i.call(t)).done) &amp;&amp; (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { COVERAGE_TRACKER.trackBranch("App", 87, "if", !f &amp;&amp; null != t["return"] &amp;&amp; (u = t["return"](), Object(u) !== u) ? 0 : 1); if (COVERAGE_TRACKER.trackBranch("App", 88, "logical", !f &amp;&amp; null != t.return ? 0 : 1), !f &amp;&amp; null != t.return &amp;&amp; (u = t.return(), Object(u) !== u)) return; } finally { COVERAGE_TRACKER.trackBranch("App", 89, "if", o ? 0 : 1); if (o) throw n; } } return a; } }</span>
+<span class="cstat-no" title="statement not covered" >function _arrayWithHoles(r) { COVERAGE_TRACKER.trackBranch("App", 81, "if", Array.isArray(r) ? 0 : 1); if (Array.isArray(r)) return r; }</span>
+<span class="cstat-no" title="statement not covered" >/**</span>
+<span class="cstat-no" title="statement not covered" > * Main App component that demonstrates various JSX patterns</span>
+<span class="cstat-no" title="statement not covered" > * for testing our coverage instrumentation</span>
+<span class="cstat-no" title="statement not covered" > */</span>
+<span class="cstat-no" title="statement not covered" >function App() {</span>
+<span class="cstat-no" title="statement not covered" >  var _useState = (0, _react.useState)(true),</span>
+<span class="cstat-no" title="statement not covered" >    _useState2 = _slicedToArray(_useState, 2),</span>
+<span class="cstat-no" title="statement not covered" >    showComponents = _useState2[0],</span>
+<span class="cstat-no" title="statement not covered" >    setShowComponents = _useState2[1];</span>
+<span class="cstat-no" title="statement not covered" >  var _useState3 = (0, _react.useState)('simple'),</span>
+<span class="cstat-no" title="statement not covered" >    _useState4 = _slicedToArray(_useState3, 2),</span>
+<span class="cstat-no" title="statement not covered" >    selectedTab = _useState4[0],</span>
+<span class="cstat-no" title="statement not covered" >    setSelectedTab = _useState4[1];</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  // Conditional rendering using if statement</span>
+<span class="cstat-no" title="statement not covered" >  var renderTabContent = function renderTabContent() {</span>
+<span class="cstat-no" title="statement not covered" >    COVERAGE_TRACKER.trackBranch("App", 3, "if", selectedTab === 'simple' ? 0 : 1);</span>
+<span class="cstat-no" title="statement not covered" >    if (selectedTab === 'simple') {</span>
+<span class="cstat-no" title="statement not covered" >      return /*#__PURE__*/_react["default"].createElement(_SimpleComponent["default"], null);</span>
+<span class="cstat-no" title="statement not covered" >    } else {</span>
+<span class="cstat-no" title="statement not covered" >      COVERAGE_TRACKER.trackBranch("App", 5, "if", selectedTab === 'conditional' ? 0 : 1);</span>
+<span class="cstat-no" title="statement not covered" >      COVERAGE_TRACKER.trackBranch("App", 6, "if", selectedTab === 'conditional' ? 0 : 1);</span>
+<span class="cstat-no" title="statement not covered" >      if (selectedTab === 'conditional') {</span>
+<span class="cstat-no" title="statement not covered" >        return /*#__PURE__*/_react["default"].createElement(_ConditionalComponent["default"], {</span>
+<span class="cstat-no" title="statement not covered" >          condition: true</span>
+<span class="cstat-no" title="statement not covered" >        });</span>
+<span class="cstat-no" title="statement not covered" >      } else {</span>
+<span class="cstat-no" title="statement not covered" >        COVERAGE_TRACKER.trackBranch("App", 8, "if", selectedTab === 'nested' ? 0 : 1);</span>
+<span class="cstat-no" title="statement not covered" >        COVERAGE_TRACKER.trackBranch("App", 9, "if", selectedTab === 'nested' ? 0 : 1);</span>
+<span class="cstat-no" title="statement not covered" >        if (selectedTab === 'nested') {</span>
+<span class="cstat-no" title="statement not covered" >          return /*#__PURE__*/_react["default"].createElement(_NestedComponent["default"], null);</span>
+<span class="cstat-no" title="statement not covered" >        } else {</span>
+<span class="cstat-no" title="statement not covered" >          COVERAGE_TRACKER.trackBranch("App", 11, "if", selectedTab === 'props' ? 0 : 1);</span>
+<span class="cstat-no" title="statement not covered" >          COVERAGE_TRACKER.trackBranch("App", 12, "if", selectedTab === 'props' ? 0 : 1);</span>
+<span class="cstat-no" title="statement not covered" >          if (selectedTab === 'props') {</span>
+<span class="cstat-no" title="statement not covered" >            return /*#__PURE__*/_react["default"].createElement(_PropsComponent["default"], {</span>
+<span class="cstat-no" title="statement not covered" >              title: "Test Title",</span>
+<span class="cstat-no" title="statement not covered" >              description: "Test Description",</span>
+<span class="cstat-no" title="statement not covered" >              items: ['item1', 'item2', 'item3']</span>
+<span class="cstat-no" title="statement not covered" >            });</span>
+<span class="cstat-no" title="statement not covered" >          } else {</span>
+<span class="cstat-no" title="statement not covered" >            return /*#__PURE__*/_react["default"].createElement(_DynamicComponent["default"], {</span>
+<span class="cstat-no" title="statement not covered" >              count: 3</span>
+<span class="cstat-no" title="statement not covered" >            });</span>
+<span class="cstat-no" title="statement not covered" >          }</span>
+<span class="cstat-no" title="statement not covered" >        }</span>
+<span class="cstat-no" title="statement not covered" >      }</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" >  };</span>
+<span class="cstat-no" title="statement not covered" >  return /*#__PURE__*/_react["default"].createElement("div", {</span>
+<span class="cstat-no" title="statement not covered" >    className: "app"</span>
+<span class="cstat-no" title="statement not covered" >  }, /*#__PURE__*/_react["default"].createElement("header", null, /*#__PURE__*/_react["default"].createElement("h1", null, "Coverage Test App"), /*#__PURE__*/_react["default"].createElement("button", {</span>
+<span class="cstat-no" title="statement not covered" >    onClick: function onClick() {</span>
+<span class="cstat-no" title="statement not covered" >      return setShowComponents(!showComponents);</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" >  }, (COVERAGE_TRACKER.trackBranch("App", 19, "ternary", showComponents ? 0 : 1), COVERAGE_TRACKER.trackBranch("App", 20, "ternary", showComponents ? 0 : 1), COVERAGE_TRACKER.trackBranch("App", 21, "ternary", showComponents ? 0 : 1), COVERAGE_TRACKER.trackBranch("App", 74, "ternary", showComponents ? 0 : 1), showComponents ? 'Hide' : 'Show'), " Components")), showComponents &amp;&amp; /*#__PURE__*/_react["default"].createElement("main", null, /*#__PURE__*/_react["default"].createElement("nav", null, /*#__PURE__*/_react["default"].createElement("ul", null, /*#__PURE__*/_react["default"].createElement("li", null, /*#__PURE__*/_react["default"].createElement("button", {</span>
+<span class="cstat-no" title="statement not covered" >    className: (COVERAGE_TRACKER.trackBranch("App", 28, "ternary", selectedTab === 'simple' ? 0 : 1), COVERAGE_TRACKER.trackBranch("App", 29, "ternary", selectedTab === 'simple' ? 0 : 1), COVERAGE_TRACKER.trackBranch("App", 30, "ternary", selectedTab === 'simple' ? 0 : 1), COVERAGE_TRACKER.trackBranch("App", 51, "ternary", selectedTab === 'simple' ? 0 : 1), COVERAGE_TRACKER.trackBranch("App", 56, "ternary", selectedTab === 'simple' ? 0 : 1), COVERAGE_TRACKER.trackBranch("App", 66, "ternary", selectedTab === 'simple' ? 0 : 1), COVERAGE_TRACKER.trackBranch("App", 75, "ternary", selectedTab === 'simple' ? 0 : 1), selectedTab === 'simple' ? 'active' : ''),</span>
+<span class="cstat-no" title="statement not covered" >    onClick: function onClick() {</span>
+<span class="cstat-no" title="statement not covered" >      return setSelectedTab('simple');</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" >  }, "Simple")), /*#__PURE__*/_react["default"].createElement("li", null, /*#__PURE__*/_react["default"].createElement("button", {</span>
+<span class="cstat-no" title="statement not covered" >    className: (COVERAGE_TRACKER.trackBranch("App", 33, "ternary", selectedTab === 'conditional' ? 0 : 1), COVERAGE_TRACKER.trackBranch("App", 34, "ternary", selectedTab === 'conditional' ? 0 : 1), COVERAGE_TRACKER.trackBranch("App", 35, "ternary", selectedTab === 'conditional' ? 0 : 1), COVERAGE_TRACKER.trackBranch("App", 52, "ternary", selectedTab === 'conditional' ? 0 : 1), COVERAGE_TRACKER.trackBranch("App", 57, "ternary", selectedTab === 'conditional' ? 0 : 1), COVERAGE_TRACKER.trackBranch("App", 67, "ternary", selectedTab === 'conditional' ? 0 : 1), COVERAGE_TRACKER.trackBranch("App", 76, "ternary", selectedTab === 'conditional' ? 0 : 1), selectedTab === 'conditional' ? 'active' : ''),</span>
+<span class="cstat-no" title="statement not covered" >    onClick: function onClick() {</span>
+<span class="cstat-no" title="statement not covered" >      return setSelectedTab('conditional');</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" >  }, "Conditional")), /*#__PURE__*/_react["default"].createElement("li", null, /*#__PURE__*/_react["default"].createElement("button", {</span>
+<span class="cstat-no" title="statement not covered" >    className: (COVERAGE_TRACKER.trackBranch("App", 38, "ternary", selectedTab === 'nested' ? 0 : 1), COVERAGE_TRACKER.trackBranch("App", 39, "ternary", selectedTab === 'nested' ? 0 : 1), COVERAGE_TRACKER.trackBranch("App", 40, "ternary", selectedTab === 'nested' ? 0 : 1), COVERAGE_TRACKER.trackBranch("App", 53, "ternary", selectedTab === 'nested' ? 0 : 1), COVERAGE_TRACKER.trackBranch("App", 58, "ternary", selectedTab === 'nested' ? 0 : 1), COVERAGE_TRACKER.trackBranch("App", 68, "ternary", selectedTab === 'nested' ? 0 : 1), COVERAGE_TRACKER.trackBranch("App", 77, "ternary", selectedTab === 'nested' ? 0 : 1), selectedTab === 'nested' ? 'active' : ''),</span>
+<span class="cstat-no" title="statement not covered" >    onClick: function onClick() {</span>
+<span class="cstat-no" title="statement not covered" >      return setSelectedTab('nested');</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" >  }, "Nested")), /*#__PURE__*/_react["default"].createElement("li", null, /*#__PURE__*/_react["default"].createElement("button", {</span>
+<span class="cstat-no" title="statement not covered" >    className: (COVERAGE_TRACKER.trackBranch("App", 43, "ternary", selectedTab === 'props' ? 0 : 1), COVERAGE_TRACKER.trackBranch("App", 44, "ternary", selectedTab === 'props' ? 0 : 1), COVERAGE_TRACKER.trackBranch("App", 45, "ternary", selectedTab === 'props' ? 0 : 1), COVERAGE_TRACKER.trackBranch("App", 54, "ternary", selectedTab === 'props' ? 0 : 1), COVERAGE_TRACKER.trackBranch("App", 59, "ternary", selectedTab === 'props' ? 0 : 1), COVERAGE_TRACKER.trackBranch("App", 69, "ternary", selectedTab === 'props' ? 0 : 1), COVERAGE_TRACKER.trackBranch("App", 78, "ternary", selectedTab === 'props' ? 0 : 1), selectedTab === 'props' ? 'active' : ''),</span>
+<span class="cstat-no" title="statement not covered" >    onClick: function onClick() {</span>
+<span class="cstat-no" title="statement not covered" >      return setSelectedTab('props');</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" >  }, "Props")), /*#__PURE__*/_react["default"].createElement("li", null, /*#__PURE__*/_react["default"].createElement("button", {</span>
+<span class="cstat-no" title="statement not covered" >    className: (COVERAGE_TRACKER.trackBranch("App", 48, "ternary", selectedTab === 'dynamic' ? 0 : 1), COVERAGE_TRACKER.trackBranch("App", 49, "ternary", selectedTab === 'dynamic' ? 0 : 1), COVERAGE_TRACKER.trackBranch("App", 50, "ternary", selectedTab === 'dynamic' ? 0 : 1), COVERAGE_TRACKER.trackBranch("App", 55, "ternary", selectedTab === 'dynamic' ? 0 : 1), COVERAGE_TRACKER.trackBranch("App", 60, "ternary", selectedTab === 'dynamic' ? 0 : 1), COVERAGE_TRACKER.trackBranch("App", 70, "ternary", selectedTab === 'dynamic' ? 0 : 1), COVERAGE_TRACKER.trackBranch("App", 79, "ternary", selectedTab === 'dynamic' ? 0 : 1), selectedTab === 'dynamic' ? 'active' : ''),</span>
+<span class="cstat-no" title="statement not covered" >    onClick: function onClick() {</span>
+<span class="cstat-no" title="statement not covered" >      return setSelectedTab('dynamic');</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" >  }, "Dynamic")))), /*#__PURE__*/_react["default"].createElement("div", {</span>
+<span class="cstat-no" title="statement not covered" >    className: "content"</span>
+<span class="cstat-no" title="statement not covered" >  }, renderTabContent(), /*#__PURE__*/_react["default"].createElement("div", {</span>
+<span class="cstat-no" title="statement not covered" >    className: "status"</span>
+<span class="cstat-no" title="statement not covered" >  }, (COVERAGE_TRACKER.trackBranch("App", 63, "ternary", selectedTab === 'simple' ? 0 : 1), COVERAGE_TRACKER.trackBranch("App", 64, "ternary", selectedTab === 'simple' ? 0 : 1), COVERAGE_TRACKER.trackBranch("App", 65, "ternary", selectedTab === 'simple' ? 0 : 1), COVERAGE_TRACKER.trackBranch("App", 71, "ternary", selectedTab === 'simple' ? 0 : 1), COVERAGE_TRACKER.trackBranch("App", 80, "ternary", selectedTab === 'simple' ? 0 : 1), selectedTab === 'simple' ? &lt;p&gt;Basic component with simple JSX&lt;/p&gt; : &lt;p&gt;Advanced component with {selectedTab} rendering&lt;/p&gt;)))), /*#__PURE__*/_react["default"].createElement("footer", null, /*#__PURE__*/_react["default"].createElement("p", null, "Coverage Instrumentation Test")));</span>
+<span class="cstat-no" title="statement not covered" >}</span>
+<span class="cstat-no" title="statement not covered" >var _default = exports["default"] = App;</span></pre></td></tr></table></pre>
+
+                <div class='push'></div><!-- for sticky footer -->
+            </div><!-- /wrapper -->
+            <div class='footer quiet pad2 space-top1 center small'>
+                Code coverage generated by
+                <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
+                at 2025-03-11T15:21:44.849Z
+            </div>
+        <script src="../../../../../../prettify.js"></script>
+        <script>
+            window.onload = function () {
+                prettyPrint();
+            };
+        </script>
+        <script src="../../../../../../sorter.js"></script>
+        <script src="../../../../../../block-navigation.js"></script>
+    </body>
+</html>
+    

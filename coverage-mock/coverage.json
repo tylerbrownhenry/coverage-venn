@@ -1,0 +1,109 @@
+{
+  "summary": {
+    "total": 4,
+    "covered": 3,
+    "percentage": 75
+  },
+  "components": [
+    {
+      "path": "__mocks__/src/App.tsx",
+      "coverage": {
+        "unit": 80,
+        "e2e": 75,
+        "visual": 60,
+        "runtime": 85
+      },
+      "testIds": [
+        "root_app"
+      ],
+      "tags": [
+        "@root_app"
+      ],
+      "statements": 80,
+      "branches": 75,
+      "functions": 85,
+      "lines": 82,
+      "sourceInfo": {
+        "lineCount": 42,
+        "coveredLines": [1, 2, 3, 5, 6, 7, 8, 10, 11, 12, 14, 15, 16, 18, 20, 21, 22, 24, 25, 27, 28, 29, 30, 31, 35, 36, 40, 41, 42],
+        "uncoveredLines": [4, 9, 13, 17, 19, 23, 26, 32, 33, 34, 37, 38, 39]
+      }
+    },
+    {
+      "path": "__mocks__/src/__tests__/setup.ts",
+      "coverage": {
+        "unit": 95,
+        "e2e": 0,
+        "visual": 0,
+        "runtime": 0
+      },
+      "testIds": [],
+      "tags": [
+        "@root_setup"
+      ],
+      "statements": 95,
+      "branches": 90,
+      "functions": 100,
+      "lines": 98,
+      "sourceInfo": {
+        "lineCount": 25,
+        "coveredLines": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 24, 25],
+        "uncoveredLines": [23]
+      }
+    },
+    {
+      "path": "__mocks__/src/components/button.tsx",
+      "coverage": {
+        "unit": 85,
+        "e2e": 70,
+        "visual": 90,
+        "runtime": 0
+      },
+      "testIds": [
+        "root_button"
+      ],
+      "tags": [
+        "@root_button"
+      ],
+      "statements": 85,
+      "branches": 75,
+      "functions": 90,
+      "lines": 82,
+      "sourceInfo": {
+        "lineCount": 35,
+        "coveredLines": [1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 22, 23, 25, 26, 27, 30, 31, 32, 33, 34, 35],
+        "uncoveredLines": [7, 21, 24, 28, 29]
+      }
+    },
+    {
+      "path": "__mocks__/src/utils/utils.ts",
+      "coverage": {
+        "unit": 65,
+        "e2e": 0,
+        "visual": 0,
+        "runtime": 50
+      },
+      "testIds": [],
+      "tags": [
+        "@root_utils"
+      ],
+      "statements": 65,
+      "branches": 60,
+      "functions": 70,
+      "lines": 68,
+      "sourceInfo": {
+        "lineCount": 50,
+        "coveredLines": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 15, 16, 17, 18, 20, 21, 22, 23, 24, 25, 30, 31, 32, 33, 34, 35, 40, 41, 42, 45, 46, 47, 48],
+        "uncoveredLines": [12, 13, 14, 19, 26, 27, 28, 29, 36, 37, 38, 39, 43, 44, 49, 50]
+      }
+    }
+  ],
+  "timestamp": "2025-03-10T02:10:34.058Z",
+  "metadata": {
+    "version": "1.1.0",
+    "buildId": "mock-build-03102025",
+    "projectRoot": "__mocks__/src",
+    "sourceRoot": "__mocks__/src",
+    "testRoot": "__mocks__/src/__tests__"
+  }
+}

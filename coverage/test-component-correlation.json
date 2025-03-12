@@ -1,0 +1,1385 @@
+[
+  {
+    "path": "/Users/tylerhenry/Documents/GitHub/jogger/coverage-venn/__mocks__/src/App.tsx",
+    "name": "App",
+    "coverage": 0,
+    "correlatedTests": [
+      {
+        "feature": "App",
+        "scenario": "root_app",
+        "step": "should render with the correct title",
+        "confidence": 1
+      },
+      {
+        "feature": "App",
+        "scenario": "root_app",
+        "step": "render(<App />);",
+        "confidence": 1
+      },
+      {
+        "feature": "App",
+        "scenario": "root_app",
+        "step": "expect(screen.getByText('Mocked Title')).toBeInTheDocument();",
+        "confidence": 1
+      },
+      {
+        "feature": "App",
+        "scenario": "root_app",
+        "step": "expect(getThis).toHaveBeenCalledWith('Interactive Dashboard');",
+        "confidence": 1
+      },
+      {
+        "feature": "App",
+        "scenario": "root_app",
+        "step": "should render the button component",
+        "confidence": 1
+      },
+      {
+        "feature": "App",
+        "scenario": "root_app",
+        "step": "render(<App />);",
+        "confidence": 1
+      },
+      {
+        "feature": "App",
+        "scenario": "root_app",
+        "step": "expect(screen.getByTestId('mocked-button')).toBeInTheDocument();",
+        "confidence": 1
+      },
+      {
+        "feature": "App",
+        "scenario": "root_app",
+        "step": "should have the correct test ID",
+        "confidence": 1
+      },
+      {
+        "feature": "App",
+        "scenario": "root_app",
+        "step": "render(<App />);",
+        "confidence": 1
+      },
+      {
+        "feature": "App",
+        "scenario": "root_app",
+        "step": "expect(screen.getByTestId('root_app')).toBeInTheDocument();",
+        "confidence": 1
+      }
+    ],
+    "gapAnalysis": {
+      "testingPriority": "high",
+      "missingCoverage": [
+        "Event handler interactions",
+        "Hook lifecycle testing",
+        "Conditional rendering paths"
+      ],
+      "recommendedTests": [
+        "Test onClick interaction",
+        "Test onClick interaction",
+        "Test onClick interaction",
+        "Test state changes in App"
+      ]
+    }
+  },
+  {
+    "path": "/Users/tylerhenry/Documents/GitHub/jogger/coverage-venn/__mocks__/src/components/Dashboard.tsx",
+    "name": "Dashboard",
+    "coverage": 0,
+    "correlatedTests": [
+      {
+        "feature": "App",
+        "scenario": "root_app",
+        "step": "expect(getThis).toHaveBeenCalledWith('Interactive Dashboard');",
+        "confidence": 0.7
+      }
+    ],
+    "gapAnalysis": {
+      "testingPriority": "high",
+      "missingCoverage": [
+        "Testing with different prop values",
+        "Event handler interactions",
+        "Hook lifecycle testing",
+        "Conditional rendering paths"
+      ],
+      "recommendedTests": [
+        "Test Dashboard with different DashboardProps combinations",
+        "Test ons interaction",
+        "Test onClick interaction",
+        "Test onClick interaction",
+        "Test state changes in Dashboard"
+      ]
+    }
+  },
+  {
+    "path": "/Users/tylerhenry/Documents/GitHub/jogger/coverage-venn/__mocks__/src/components/Form.tsx",
+    "name": "Form",
+    "coverage": 0,
+    "correlatedTests": [
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "renders the form correctly",
+        "confidence": 1
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "render(<Form />);",
+        "confidence": 1
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "expect(screen.getByTestId('form_container')).toBeInTheDocument();",
+        "confidence": 1
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "expect(screen.getByTestId('form_name_input')).toBeInTheDocument();",
+        "confidence": 1
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "expect(screen.getByTestId('form_email_input')).toBeInTheDocument();",
+        "confidence": 1
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "expect(screen.getByTestId('form_message_input')).toBeInTheDocument();",
+        "confidence": 1
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "expect(screen.getByTestId('form_preview_button')).toBeInTheDocument();",
+        "confidence": 1
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "expect(screen.getByTestId('form_submit_button')).toBeInTheDocument();",
+        "confidence": 1
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "updates input values when typing",
+        "confidence": 1
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "render(<Form />);",
+        "confidence": 1
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "const nameInput = screen.getByTestId('form_name_input');",
+        "confidence": 1
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "const emailInput = screen.getByTestId('form_email_input');",
+        "confidence": 1
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "const messageInput = screen.getByTestId('form_message_input');",
+        "confidence": 1
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "fireEvent.change(nameInput, { target: { value: 'John Doe' } });",
+        "confidence": 1
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "fireEvent.change(emailInput, { target: { value: 'john@example.com' } });",
+        "confidence": 1
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "fireEvent.change(messageInput, { target: { value: 'This is a test message' } });",
+        "confidence": 1
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "expect(nameInput).toHaveValue('John Doe');",
+        "confidence": 1
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "expect(emailInput).toHaveValue('john@example.com');",
+        "confidence": 1
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "expect(messageInput).toHaveValue('This is a test message');",
+        "confidence": 1
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "hides the name field when showNameField is false",
+        "confidence": 1
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "render(<Form showNameField={false} />);",
+        "confidence": 1
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "expect(screen.queryByTestId('form_name_input')).not.toBeInTheDocument();",
+        "confidence": 1
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "expect(screen.getByTestId('form_email_input')).toBeInTheDocument();",
+        "confidence": 1
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "expect(screen.getByTestId('form_message_input')).toBeInTheDocument();",
+        "confidence": 1
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "calls onSubmit when the form is submitted with valid data",
+        "confidence": 1
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "render(",
+        "confidence": 1
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "const submitButton = screen.getByTestId('form_submit_button');",
+        "confidence": 1
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "fireEvent.click(submitButton);",
+        "confidence": 1
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "expect(handleSubmit).toHaveBeenCalled();",
+        "confidence": 1
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "expect(formatString(null)).toBe('');",
+        "confidence": 0.7
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "expect(formatString(undefined)).toBe('');",
+        "confidence": 0.7
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "expect(formatString('abc')).toBe('ABC');",
+        "confidence": 0.7
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "expect(formatString('hi')).toBe('HI');",
+        "confidence": 0.7
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "expect(formatString('hello')).toBe('Hello');",
+        "confidence": 0.7
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "expect(formatString('hello you')).toBe('Hello You');",
+        "confidence": 0.7
+      }
+    ],
+    "gapAnalysis": {
+      "testingPriority": "high",
+      "missingCoverage": [
+        "Testing with different prop values",
+        "Event handler interactions",
+        "Hook lifecycle testing",
+        "Conditional rendering paths"
+      ],
+      "recommendedTests": [
+        "Test Form with different FormProps combinations",
+        "Test onClick interaction",
+        "Test onClick interaction",
+        "Test onSubmit interaction",
+        "Test state changes in Form"
+      ]
+    }
+  },
+  {
+    "path": "/Users/tylerhenry/Documents/GitHub/jogger/coverage-venn/__mocks__/src/components/button.tsx",
+    "name": "Button",
+    "coverage": 50,
+    "correlatedTests": [
+      {
+        "feature": "App",
+        "scenario": "root_app",
+        "step": "should render the button component",
+        "confidence": 0.9
+      },
+      {
+        "feature": "App",
+        "scenario": "root_app",
+        "step": "expect(screen.getByTestId('mocked-button')).toBeInTheDocument();",
+        "confidence": 0.9
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "expect(screen.getByTestId('form_preview_button')).toBeInTheDocument();",
+        "confidence": 0.9
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "expect(screen.getByTestId('form_submit_button')).toBeInTheDocument();",
+        "confidence": 0.9
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "const submitButton = screen.getByTestId('form_submit_button');",
+        "confidence": 0.9
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "fireEvent.click(submitButton);",
+        "confidence": 0.9
+      },
+      {
+        "feature": "App",
+        "scenario": "root_app",
+        "step": "should render with the correct title",
+        "confidence": 0.8
+      },
+      {
+        "feature": "App",
+        "scenario": "root_app",
+        "step": "render(<App />);",
+        "confidence": 0.8
+      },
+      {
+        "feature": "App",
+        "scenario": "root_app",
+        "step": "expect(screen.getByText('Mocked Title')).toBeInTheDocument();",
+        "confidence": 0.8
+      },
+      {
+        "feature": "App",
+        "scenario": "root_app",
+        "step": "expect(getThis).toHaveBeenCalledWith('Interactive Dashboard');",
+        "confidence": 0.8
+      },
+      {
+        "feature": "App",
+        "scenario": "root_app",
+        "step": "render(<App />);",
+        "confidence": 0.8
+      },
+      {
+        "feature": "App",
+        "scenario": "root_app",
+        "step": "should have the correct test ID",
+        "confidence": 0.8
+      },
+      {
+        "feature": "App",
+        "scenario": "root_app",
+        "step": "render(<App />);",
+        "confidence": 0.8
+      },
+      {
+        "feature": "App",
+        "scenario": "root_app",
+        "step": "expect(screen.getByTestId('root_app')).toBeInTheDocument();",
+        "confidence": 0.8
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "renders the form correctly",
+        "confidence": 0.8
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "render(<Form />);",
+        "confidence": 0.8
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "expect(screen.getByTestId('form_container')).toBeInTheDocument();",
+        "confidence": 0.8
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "expect(screen.getByTestId('form_name_input')).toBeInTheDocument();",
+        "confidence": 0.8
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "expect(screen.getByTestId('form_email_input')).toBeInTheDocument();",
+        "confidence": 0.8
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "expect(screen.getByTestId('form_message_input')).toBeInTheDocument();",
+        "confidence": 0.8
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "updates input values when typing",
+        "confidence": 0.8
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "render(<Form />);",
+        "confidence": 0.8
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "const nameInput = screen.getByTestId('form_name_input');",
+        "confidence": 0.8
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "const emailInput = screen.getByTestId('form_email_input');",
+        "confidence": 0.8
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "const messageInput = screen.getByTestId('form_message_input');",
+        "confidence": 0.8
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "fireEvent.change(nameInput, { target: { value: 'John Doe' } });",
+        "confidence": 0.8
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "fireEvent.change(emailInput, { target: { value: 'john@example.com' } });",
+        "confidence": 0.8
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "fireEvent.change(messageInput, { target: { value: 'This is a test message' } });",
+        "confidence": 0.8
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "expect(nameInput).toHaveValue('John Doe');",
+        "confidence": 0.8
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "expect(emailInput).toHaveValue('john@example.com');",
+        "confidence": 0.8
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "expect(messageInput).toHaveValue('This is a test message');",
+        "confidence": 0.8
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "hides the name field when showNameField is false",
+        "confidence": 0.8
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "render(<Form showNameField={false} />);",
+        "confidence": 0.8
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "expect(screen.queryByTestId('form_name_input')).not.toBeInTheDocument();",
+        "confidence": 0.8
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "expect(screen.getByTestId('form_email_input')).toBeInTheDocument();",
+        "confidence": 0.8
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "expect(screen.getByTestId('form_message_input')).toBeInTheDocument();",
+        "confidence": 0.8
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "calls onSubmit when the form is submitted with valid data",
+        "confidence": 0.8
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "render(",
+        "confidence": 0.8
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "expect(handleSubmit).toHaveBeenCalled();",
+        "confidence": 0.8
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "returns empty string for null or undefined input",
+        "confidence": 0.7
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "expect(formatString(null)).toBe('');",
+        "confidence": 0.7
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "expect(formatString(undefined)).toBe('');",
+        "confidence": 0.7
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "returns uppercase for strings less than 5 characters",
+        "confidence": 0.7
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "expect(formatString('abc')).toBe('ABC');",
+        "confidence": 0.7
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "expect(formatString('hi')).toBe('HI');",
+        "confidence": 0.7
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "returns title case for strings between 5-10 characters",
+        "confidence": 0.7
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "expect(formatString('hello')).toBe('Hello');",
+        "confidence": 0.7
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "expect(formatString('hello you')).toBe('Hello You');",
+        "confidence": 0.7
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "capitalizes the first letter of each word",
+        "confidence": 0.7
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "expect(titleCase('hello world')).toBe('Hello World');",
+        "confidence": 0.7
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "expect(titleCase('test string')).toBe('Test String');",
+        "confidence": 0.7
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "returns empty string for empty input",
+        "confidence": 0.7
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "expect(titleCase('')).toBe('');",
+        "confidence": 0.7
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "returns validation results for a simple string",
+        "confidence": 0.7
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "expect(result.isValid).toBe(true);",
+        "confidence": 0.7
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "expect(result.hasNumbers).toBe(true);",
+        "confidence": 0.7
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "expect(result.hasUpperCase).toBe(true);",
+        "confidence": 0.7
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "expect(result.hasLowerCase).toBe(true);",
+        "confidence": 0.7
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "expect(result.hasSpecialChars).toBe(false);",
+        "confidence": 0.7
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "expect(result.errors).toHaveLength(0);",
+        "confidence": 0.7
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "identifies invalid empty strings",
+        "confidence": 0.7
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "expect(result.isValid).toBe(false);",
+        "confidence": 0.7
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "expect(result.errors).toContain('String cannot be empty');",
+        "confidence": 0.7
+      },
+      {
+        "feature": "utils",
+        "scenario": "Utils",
+        "step": "should return the input text",
+        "confidence": 0.7
+      },
+      {
+        "feature": "utils",
+        "scenario": "Utils",
+        "step": "expect(result).toBe(input);",
+        "confidence": 0.7
+      },
+      {
+        "feature": "utils",
+        "scenario": "Utils",
+        "step": "should handle empty string",
+        "confidence": 0.7
+      },
+      {
+        "feature": "utils",
+        "scenario": "Utils",
+        "step": "expect(result).toBe('');",
+        "confidence": 0.7
+      },
+      {
+        "feature": "utils",
+        "scenario": "Utils",
+        "step": "should handle special characters",
+        "confidence": 0.7
+      },
+      {
+        "feature": "utils",
+        "scenario": "Utils",
+        "step": "expect(result).toBe(input);",
+        "confidence": 0.7
+      }
+    ],
+    "gapAnalysis": {
+      "testingPriority": "medium",
+      "missingCoverage": [
+        "Event handler interactions"
+      ],
+      "recommendedTests": [
+        "Test onText interaction"
+      ]
+    }
+  },
+  {
+    "path": "/Users/tylerhenry/Documents/GitHub/jogger/coverage-venn/__mocks__/src/utils/dataUtils.ts",
+    "name": "DataUtils",
+    "coverage": 0,
+    "correlatedTests": [],
+    "gapAnalysis": {
+      "testingPriority": "high",
+      "missingCoverage": [
+        "Function call testing",
+        "Conditional branch testing",
+        "Error handling testing"
+      ],
+      "recommendedTests": [
+        "Unit test for validateItem() function",
+        "Unit test for transformItem() function",
+        "Unit test for normalizeItem() function",
+        "Test different conditional branches"
+      ]
+    }
+  },
+  {
+    "path": "/Users/tylerhenry/Documents/GitHub/jogger/coverage-venn/__mocks__/src/utils/stringUtils.ts",
+    "name": "StringUtils",
+    "coverage": 0,
+    "correlatedTests": [
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "returns empty string for null or undefined input",
+        "confidence": 0.7
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "expect(formatString(null)).toBe('');",
+        "confidence": 0.7
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "expect(formatString(undefined)).toBe('');",
+        "confidence": 0.7
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "returns uppercase for strings less than 5 characters",
+        "confidence": 0.7
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "expect(formatString('abc')).toBe('ABC');",
+        "confidence": 0.7
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "expect(formatString('hi')).toBe('HI');",
+        "confidence": 0.7
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "returns title case for strings between 5-10 characters",
+        "confidence": 0.7
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "expect(formatString('hello')).toBe('Hello');",
+        "confidence": 0.7
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "expect(formatString('hello you')).toBe('Hello You');",
+        "confidence": 0.7
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "capitalizes the first letter of each word",
+        "confidence": 0.7
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "expect(titleCase('hello world')).toBe('Hello World');",
+        "confidence": 0.7
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "expect(titleCase('test string')).toBe('Test String');",
+        "confidence": 0.7
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "returns empty string for empty input",
+        "confidence": 0.7
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "expect(titleCase('')).toBe('');",
+        "confidence": 0.7
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "returns validation results for a simple string",
+        "confidence": 0.7
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "expect(result.isValid).toBe(true);",
+        "confidence": 0.7
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "expect(result.hasNumbers).toBe(true);",
+        "confidence": 0.7
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "expect(result.hasUpperCase).toBe(true);",
+        "confidence": 0.7
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "expect(result.hasLowerCase).toBe(true);",
+        "confidence": 0.7
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "expect(result.hasSpecialChars).toBe(false);",
+        "confidence": 0.7
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "expect(result.errors).toHaveLength(0);",
+        "confidence": 0.7
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "identifies invalid empty strings",
+        "confidence": 0.7
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "expect(result.isValid).toBe(false);",
+        "confidence": 0.7
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "expect(result.errors).toContain('String cannot be empty');",
+        "confidence": 0.7
+      }
+    ],
+    "gapAnalysis": {
+      "testingPriority": "high",
+      "missingCoverage": [
+        "Function call testing",
+        "Conditional branch testing"
+      ],
+      "recommendedTests": [
+        "Unit test for formatString() function",
+        "Unit test for titleCase() function",
+        "Unit test for truncateWithEllipsis() function",
+        "Test different conditional branches"
+      ]
+    }
+  },
+  {
+    "path": "/Users/tylerhenry/Documents/GitHub/jogger/coverage-venn/__mocks__/src/utils/utils.ts",
+    "name": "Utils",
+    "coverage": 50,
+    "correlatedTests": [
+      {
+        "feature": "App",
+        "scenario": "root_app",
+        "step": "should render with the correct title",
+        "confidence": 1
+      },
+      {
+        "feature": "App",
+        "scenario": "root_app",
+        "step": "render(<App />);",
+        "confidence": 1
+      },
+      {
+        "feature": "App",
+        "scenario": "root_app",
+        "step": "expect(screen.getByText('Mocked Title')).toBeInTheDocument();",
+        "confidence": 1
+      },
+      {
+        "feature": "App",
+        "scenario": "root_app",
+        "step": "expect(getThis).toHaveBeenCalledWith('Interactive Dashboard');",
+        "confidence": 1
+      },
+      {
+        "feature": "App",
+        "scenario": "root_app",
+        "step": "should render the button component",
+        "confidence": 1
+      },
+      {
+        "feature": "App",
+        "scenario": "root_app",
+        "step": "render(<App />);",
+        "confidence": 1
+      },
+      {
+        "feature": "App",
+        "scenario": "root_app",
+        "step": "expect(screen.getByTestId('mocked-button')).toBeInTheDocument();",
+        "confidence": 1
+      },
+      {
+        "feature": "App",
+        "scenario": "root_app",
+        "step": "should have the correct test ID",
+        "confidence": 1
+      },
+      {
+        "feature": "App",
+        "scenario": "root_app",
+        "step": "render(<App />);",
+        "confidence": 1
+      },
+      {
+        "feature": "App",
+        "scenario": "root_app",
+        "step": "expect(screen.getByTestId('root_app')).toBeInTheDocument();",
+        "confidence": 1
+      },
+      {
+        "feature": "utils",
+        "scenario": "Utils",
+        "step": "should return the input text",
+        "confidence": 1
+      },
+      {
+        "feature": "utils",
+        "scenario": "Utils",
+        "step": "expect(result).toBe(input);",
+        "confidence": 1
+      },
+      {
+        "feature": "utils",
+        "scenario": "Utils",
+        "step": "should handle empty string",
+        "confidence": 1
+      },
+      {
+        "feature": "utils",
+        "scenario": "Utils",
+        "step": "expect(result).toBe('');",
+        "confidence": 1
+      },
+      {
+        "feature": "utils",
+        "scenario": "Utils",
+        "step": "should handle special characters",
+        "confidence": 1
+      },
+      {
+        "feature": "utils",
+        "scenario": "Utils",
+        "step": "expect(result).toBe(input);",
+        "confidence": 1
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "returns empty string for null or undefined input",
+        "confidence": 0.9
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "expect(formatString(null)).toBe('');",
+        "confidence": 0.9
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "expect(formatString(undefined)).toBe('');",
+        "confidence": 0.9
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "returns uppercase for strings less than 5 characters",
+        "confidence": 0.9
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "expect(formatString('abc')).toBe('ABC');",
+        "confidence": 0.9
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "expect(formatString('hi')).toBe('HI');",
+        "confidence": 0.9
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "returns title case for strings between 5-10 characters",
+        "confidence": 0.9
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "expect(formatString('hello')).toBe('Hello');",
+        "confidence": 0.9
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "expect(formatString('hello you')).toBe('Hello You');",
+        "confidence": 0.9
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "capitalizes the first letter of each word",
+        "confidence": 0.9
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "expect(titleCase('hello world')).toBe('Hello World');",
+        "confidence": 0.9
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "expect(titleCase('test string')).toBe('Test String');",
+        "confidence": 0.9
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "returns empty string for empty input",
+        "confidence": 0.9
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "expect(titleCase('')).toBe('');",
+        "confidence": 0.9
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "returns validation results for a simple string",
+        "confidence": 0.9
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "expect(result.isValid).toBe(true);",
+        "confidence": 0.9
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "expect(result.hasNumbers).toBe(true);",
+        "confidence": 0.9
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "expect(result.hasUpperCase).toBe(true);",
+        "confidence": 0.9
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "expect(result.hasLowerCase).toBe(true);",
+        "confidence": 0.9
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "expect(result.hasSpecialChars).toBe(false);",
+        "confidence": 0.9
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "expect(result.errors).toHaveLength(0);",
+        "confidence": 0.9
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "identifies invalid empty strings",
+        "confidence": 0.9
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "expect(result.isValid).toBe(false);",
+        "confidence": 0.9
+      },
+      {
+        "feature": "stringUtils",
+        "scenario": "stringUtils",
+        "step": "expect(result.errors).toContain('String cannot be empty');",
+        "confidence": 0.9
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "renders the form correctly",
+        "confidence": 0.7
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "render(<Form />);",
+        "confidence": 0.7
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "expect(screen.getByTestId('form_container')).toBeInTheDocument();",
+        "confidence": 0.7
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "expect(screen.getByTestId('form_name_input')).toBeInTheDocument();",
+        "confidence": 0.7
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "expect(screen.getByTestId('form_email_input')).toBeInTheDocument();",
+        "confidence": 0.7
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "expect(screen.getByTestId('form_message_input')).toBeInTheDocument();",
+        "confidence": 0.7
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "expect(screen.getByTestId('form_preview_button')).toBeInTheDocument();",
+        "confidence": 0.7
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "expect(screen.getByTestId('form_submit_button')).toBeInTheDocument();",
+        "confidence": 0.7
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "updates input values when typing",
+        "confidence": 0.7
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "render(<Form />);",
+        "confidence": 0.7
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "const nameInput = screen.getByTestId('form_name_input');",
+        "confidence": 0.7
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "const emailInput = screen.getByTestId('form_email_input');",
+        "confidence": 0.7
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "const messageInput = screen.getByTestId('form_message_input');",
+        "confidence": 0.7
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "fireEvent.change(nameInput, { target: { value: 'John Doe' } });",
+        "confidence": 0.7
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "fireEvent.change(emailInput, { target: { value: 'john@example.com' } });",
+        "confidence": 0.7
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "fireEvent.change(messageInput, { target: { value: 'This is a test message' } });",
+        "confidence": 0.7
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "expect(nameInput).toHaveValue('John Doe');",
+        "confidence": 0.7
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "expect(emailInput).toHaveValue('john@example.com');",
+        "confidence": 0.7
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "expect(messageInput).toHaveValue('This is a test message');",
+        "confidence": 0.7
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "hides the name field when showNameField is false",
+        "confidence": 0.7
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "render(<Form showNameField={false} />);",
+        "confidence": 0.7
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "expect(screen.queryByTestId('form_name_input')).not.toBeInTheDocument();",
+        "confidence": 0.7
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "expect(screen.getByTestId('form_email_input')).toBeInTheDocument();",
+        "confidence": 0.7
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "expect(screen.getByTestId('form_message_input')).toBeInTheDocument();",
+        "confidence": 0.7
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "calls onSubmit when the form is submitted with valid data",
+        "confidence": 0.7
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "render(",
+        "confidence": 0.7
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "const submitButton = screen.getByTestId('form_submit_button');",
+        "confidence": 0.7
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "fireEvent.click(submitButton);",
+        "confidence": 0.7
+      },
+      {
+        "feature": "Form",
+        "scenario": "Form Component",
+        "step": "expect(handleSubmit).toHaveBeenCalled();",
+        "confidence": 0.7
+      }
+    ],
+    "gapAnalysis": {
+      "testingPriority": "medium",
+      "missingCoverage": [],
+      "recommendedTests": []
+    }
+  }
+]
