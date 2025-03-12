@@ -99,15 +99,28 @@ async function main() {
 
 // Function to analyze with Istanbul
 async function analyzeWithIstanbul(coverageMap: any): Promise<ComponentCoverage[]> {
-  // Create analyzer with custom patterns to match project structure
+  // Create analyzer with expanded patterns to match more project structures
   const analyzer = new IstanbulCoverageAnalyzer(
-    // Include patterns for components
+    // Include patterns for components - adding more patterns to catch different project structures
     [
-      /.*\.(tsx|jsx)$/, // All React components
-      /.*\/components\/.*\.(ts|js|tsx|jsx)$/, // Components directory
-      /.*\/features\/.*\.(ts|js|tsx|jsx)$/, // Features directory
-      /.*\/pages\/.*\.(ts|js|tsx|jsx)$/, // Pages directory
-      /.*\/screens\/.*\.(ts|js|tsx|jsx)$/, // Screens directory
+      // React component files with any extension in any directory
+      /.*\.(tsx|jsx|ts|js)$/,
+      
+      // Standard component directories
+      /.*\/components\/.*\.(ts|js|tsx|jsx)$/,
+      /.*\/features\/.*\.(ts|js|tsx|jsx)$/,
+      /.*\/pages\/.*\.(ts|js|tsx|jsx)$/,
+      /.*\/screens\/.*\.(ts|js|tsx|jsx)$/,
+      /.*\/views\/.*\.(ts|js|tsx|jsx)$/,
+      
+      // Utility files and other common patterns
+      /.*\/utils\/.*\.(ts|js)$/,
+      /.*\/hooks\/.*\.(ts|js)$/,
+      /.*\/contexts\/.*\.(tsx|ts)$/,
+      /.*\/providers\/.*\.(tsx|ts)$/,
+      
+      // Any source file that might be a component
+      /.*\/src\/.*\.(tsx|jsx|ts|js)$/
     ],
     // Exclude patterns
     [
@@ -121,7 +134,7 @@ async function analyzeWithIstanbul(coverageMap: any): Promise<ComponentCoverage[
     ]
   );
   
-  console.log('Analyzing component coverage...');
+  console.log('Analyzing component coverage with expanded patterns...');
   
   // Analyze coverage
   return await analyzer.analyze(coverageMap);

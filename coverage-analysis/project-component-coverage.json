@@ -1,72 +1,42 @@
 [
   {
-    "path": "src/components/App.tsx",
-    "name": "App",
-    "coverage": 85.2,
-    "statements": 80,
-    "branches": 75,
-    "functions": 90,
-    "lines": 86,
-    "tests": 1
+    "path": "/Users/tylerhenry/Documents/GitHub/jogger/jogger/frontend/src/App.tsx",
+    "coverage": 25,
+    "statements": 0,
+    "branches": 100,
+    "functions": 0,
+    "lines": 0
   },
   {
-    "path": "src/components/button.tsx",
-    "name": "button",
-    "coverage": 50,
-    "statements": 43,
-    "branches": 32,
-    "functions": 65,
-    "lines": 60,
-    "tests": 0
+    "path": "/Users/tylerhenry/Documents/GitHub/jogger/jogger/frontend/src/components/machine/JogControls.tsx",
+    "coverage": 0,
+    "statements": 0,
+    "branches": 0,
+    "functions": 0,
+    "lines": 0
   },
   {
-    "path": "src/components/Form.tsx",
-    "name": "Form",
-    "coverage": 79.5,
-    "statements": 77,
-    "branches": 65,
-    "functions": 85,
-    "lines": 82,
-    "tests": 1
+    "path": "/Users/tylerhenry/Documents/GitHub/jogger/jogger/frontend/src/components/model/ModelViewer.tsx",
+    "coverage": 0,
+    "statements": 0,
+    "branches": 0,
+    "functions": 0,
+    "lines": 0
   },
   {
-    "path": "src/components/Dashboard.tsx",
-    "name": "Dashboard",
-    "coverage": 62.8,
-    "statements": 60,
-    "branches": 45,
-    "functions": 70,
-    "lines": 67,
-    "tests": 0
+    "path": "/Users/tylerhenry/Documents/GitHub/jogger/jogger/frontend/src/contexts/MachineContext.tsx",
+    "coverage": 0,
+    "statements": 0,
+    "branches": 0,
+    "functions": 0,
+    "lines": 0
   },
   {
-    "path": "src/utils/utils.ts",
-    "name": "utils",
-    "coverage": 50,
-    "statements": 40,
-    "branches": 35,
-    "functions": 60,
-    "lines": 55,
-    "tests": 1
-  },
-  {
-    "path": "src/utils/dataUtils.ts",
-    "name": "dataUtils",
-    "coverage": 42.3,
-    "statements": 35,
-    "branches": 25,
-    "functions": 55,
-    "lines": 50,
-    "tests": 0
-  },
-  {
-    "path": "src/utils/stringUtils.ts",
-    "name": "stringUtils",
-    "coverage": 68.5,
-    "statements": 65,
-    "branches": 50,
-    "functions": 75,
-    "lines": 72,
-    "tests": 1
+    "path": "/Users/tylerhenry/Documents/GitHub/jogger/jogger/frontend/src/utils/gcode-parser.tsx",
+    "coverage": 93.39750000000001,
+    "statements": 90.62,
+    "branches": 82.97,
+    "functions": 100,
+    "lines": 100
   }
 ]

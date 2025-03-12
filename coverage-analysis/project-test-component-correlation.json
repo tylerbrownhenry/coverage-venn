@@ -1,217 +1,139 @@
 [
   {
-    "path": "src/components/App.tsx",
+    "path": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/App.tsx",
     "name": "App",
-    "coverage": 26,
-    "correlatedTests": [
-      {
-        "feature": "App Feature",
-        "scenario": "Test scenario 1 for App",
-        "step": "Step 1: verify App works correctly",
-        "confidence": 0.5103902630237372
-      },
-      {
-        "feature": "App Feature",
-        "scenario": "Test scenario 2 for App",
-        "step": "Step 2: verify App works correctly",
-        "confidence": 0.5514033155599717
-      },
-      {
-        "feature": "App Feature",
-        "scenario": "Test scenario 3 for App",
-        "step": "Step 3: verify App works correctly",
-        "confidence": 0.6341548179476937
-      }
-    ],
+    "coverage": 0,
+    "correlatedTests": [],
     "gapAnalysis": {
       "testingPriority": "high",
       "missingCoverage": [
+        "Basic component rendering",
         "Event handler interactions",
-        "Conditional rendering paths",
-        "Error handling scenarios"
-      ],
-      "recommendedTests": [
-        "Test App with different prop values"
-      ]
-    }
-  },
-  {
-    "path": "src/components/Header.tsx",
-    "name": "Header",
-    "coverage": 15,
-    "correlatedTests": [
-      {
-        "feature": "Header Feature",
-        "scenario": "Test scenario 1 for Header",
-        "step": "Step 1: verify Header works correctly",
-        "confidence": 0.9139895952046792
-      }
-    ],
-    "gapAnalysis": {
-      "testingPriority": "high",
-      "missingCoverage": [
-        "Event handler interactions",
-        "Conditional rendering paths",
-        "Error handling scenarios"
-      ],
-      "recommendedTests": [
-        "Test Header with different prop values"
-      ]
-    }
-  },
-  {
-    "path": "src/components/Footer.tsx",
-    "name": "Footer",
-    "coverage": 35,
-    "correlatedTests": [
-      {
-        "feature": "Footer Feature",
-        "scenario": "Test scenario 1 for Footer",
-        "step": "Step 1: verify Footer works correctly",
-        "confidence": 0.5768516146623166
-      },
-      {
-        "feature": "Footer Feature",
-        "scenario": "Test scenario 2 for Footer",
-        "step": "Step 2: verify Footer works correctly",
-        "confidence": 0.8621353308018311
-      }
-    ],
-    "gapAnalysis": {
-      "testingPriority": "high",
-      "missingCoverage": [
-        "Event handler interactions",
-        "Conditional rendering paths",
-        "Error handling scenarios"
-      ],
-      "recommendedTests": [
-        "Test Footer with different prop values",
-        "Test Footer onClick interaction"
-      ]
-    }
-  },
-  {
-    "path": "src/components/Button.tsx",
-    "name": "Button",
-    "coverage": 23,
-    "correlatedTests": [
-      {
-        "feature": "Button Feature",
-        "scenario": "Test scenario 1 for Button",
-        "step": "Step 1: verify Button works correctly",
-        "confidence": 0.847106438700106
-      },
-      {
-        "feature": "Button Feature",
-        "scenario": "Test scenario 2 for Button",
-        "step": "Step 2: verify Button works correctly",
-        "confidence": 0.8174228316753838
-      },
-      {
-        "feature": "Button Feature",
-        "scenario": "Test scenario 3 for Button",
-        "step": "Step 3: verify Button works correctly",
-        "confidence": 0.5115602665699802
-      }
-    ],
-    "gapAnalysis": {
-      "testingPriority": "high",
-      "missingCoverage": [
-        "Event handler interactions"
-      ],
-      "recommendedTests": [
-        "Test Button with different prop values",
-        "Test Button onClick interaction",
-        "Test Button error states"
-      ]
-    }
-  },
-  {
-    "path": "src/components/Input.tsx",
-    "name": "Input",
-    "coverage": 50,
-    "correlatedTests": [
-      {
-        "feature": "Input Feature",
-        "scenario": "Test scenario 1 for Input",
-        "step": "Step 1: verify Input works correctly",
-        "confidence": 0.737443784272178
-      },
-      {
-        "feature": "Input Feature",
-        "scenario": "Test scenario 2 for Input",
-        "step": "Step 2: verify Input works correctly",
-        "confidence": 0.5128374733631118
-      },
-      {
-        "feature": "Input Feature",
-        "scenario": "Test scenario 3 for Input",
-        "step": "Step 3: verify Input works correctly",
-        "confidence": 0.704612081814321
-      }
-    ],
-    "gapAnalysis": {
-      "testingPriority": "medium",
-      "missingCoverage": [
-        "Event handler interactions"
-      ],
-      "recommendedTests": [
-        "Test Input with different prop values"
-      ]
-    }
-  },
-  {
-    "path": "src/components/Card.tsx",
-    "name": "Card",
-    "coverage": 69,
-    "correlatedTests": [
-      {
-        "feature": "Card Feature",
-        "scenario": "Test scenario 1 for Card",
-        "step": "Step 1: verify Card works correctly",
-        "confidence": 0.5750666424942512
-      },
-      {
-        "feature": "Card Feature",
-        "scenario": "Test scenario 2 for Card",
-        "step": "Step 2: verify Card works correctly",
-        "confidence": 0.649935616172112
-      }
-    ],
-    "gapAnalysis": {
-      "testingPriority": "medium",
-      "missingCoverage": [
-        "Event handler interactions"
-      ],
-      "recommendedTests": [
-        "Test Card with different prop values",
-        "Test Card onClick interaction",
-        "Test Card error states"
-      ]
-    }
-  },
-  {
-    "path": "src/components/Navigation.tsx",
-    "name": "Navigation",
-    "coverage": 18,
-    "correlatedTests": [
-      {
-        "feature": "Navigation Feature",
-        "scenario": "Test scenario 1 for Navigation",
-        "step": "Step 1: verify Navigation works correctly",
-        "confidence": 0.817682818548169
-      }
-    ],
-    "gapAnalysis": {
-      "testingPriority": "high",
-      "missingCoverage": [
-        "Event handler interactions",
+        "Hook lifecycle testing",
         "Conditional rendering paths"
       ],
       "recommendedTests": [
-        "Test Navigation with different prop values",
-        "Test Navigation onClick interaction"
+        "Basic render test for App",
+        "Test onClick interaction",
+        "Test onClick interaction",
+        "Test onClick interaction",
+        "Test state changes in App"
       ]
+    }
+  },
+  {
+    "path": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/components/Dashboard.tsx",
+    "name": "Dashboard",
+    "coverage": 0,
+    "correlatedTests": [],
+    "gapAnalysis": {
+      "testingPriority": "high",
+      "missingCoverage": [
+        "Basic component rendering",
+        "Testing with different prop values",
+        "Event handler interactions",
+        "Hook lifecycle testing",
+        "Conditional rendering paths"
+      ],
+      "recommendedTests": [
+        "Basic render test for Dashboard",
+        "Test Dashboard with different DashboardProps combinations",
+        "Test ons interaction",
+        "Test onClick interaction",
+        "Test onClick interaction",
+        "Test state changes in Dashboard"
+      ]
+    }
+  },
+  {
+    "path": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/components/Form.tsx",
+    "name": "Form",
+    "coverage": 0,
+    "correlatedTests": [],
+    "gapAnalysis": {
+      "testingPriority": "high",
+      "missingCoverage": [
+        "Basic component rendering",
+        "Testing with different prop values",
+        "Event handler interactions",
+        "Hook lifecycle testing",
+        "Conditional rendering paths"
+      ],
+      "recommendedTests": [
+        "Basic render test for Form",
+        "Test Form with different FormProps combinations",
+        "Test onClick interaction",
+        "Test onClick interaction",
+        "Test onSubmit interaction",
+        "Test state changes in Form"
+      ]
+    }
+  },
+  {
+    "path": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/components/button.tsx",
+    "name": "Button",
+    "coverage": 0,
+    "correlatedTests": [],
+    "gapAnalysis": {
+      "testingPriority": "high",
+      "missingCoverage": [
+        "Basic component rendering",
+        "Event handler interactions"
+      ],
+      "recommendedTests": [
+        "Basic render test for Button",
+        "Test onText interaction"
+      ]
+    }
+  },
+  {
+    "path": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/dataUtils.ts",
+    "name": "DataUtils",
+    "coverage": 0,
+    "correlatedTests": [],
+    "gapAnalysis": {
+      "testingPriority": "high",
+      "missingCoverage": [
+        "Function call testing",
+        "Conditional branch testing",
+        "Error handling testing"
+      ],
+      "recommendedTests": [
+        "Unit test for validateItem() function",
+        "Unit test for transformItem() function",
+        "Unit test for normalizeItem() function",
+        "Test different conditional branches"
+      ]
+    }
+  },
+  {
+    "path": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/stringUtils.ts",
+    "name": "StringUtils",
+    "coverage": 0,
+    "correlatedTests": [],
+    "gapAnalysis": {
+      "testingPriority": "high",
+      "missingCoverage": [
+        "Function call testing",
+        "Conditional branch testing"
+      ],
+      "recommendedTests": [
+        "Unit test for formatString() function",
+        "Unit test for titleCase() function",
+        "Unit test for truncateWithEllipsis() function",
+        "Test different conditional branches"
+      ]
+    }
+  },
+  {
+    "path": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/utils.ts",
+    "name": "Utils",
+    "coverage": 0,
+    "correlatedTests": [],
+    "gapAnalysis": {
+      "testingPriority": "high",
+      "missingCoverage": [],
+      "recommendedTests": []
     }
   }
 ]

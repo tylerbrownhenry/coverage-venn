@@ -2,6 +2,14 @@ import * as fs from 'fs/promises';
 import * as fsSync from 'fs';
 import * as path from 'path';
 import { ComponentHierarchyScanner } from '../../../src/scanners/ComponentHierarchyScanner';
+import { getProjectConfig } from '../../../config/project-config';
+
+// Get project-specific config
+const PROJECT_NAME = process.env.PROJECT_NAME || 'default';
+const projectConfig = getProjectConfig(PROJECT_NAME);
+console.log(`Using configuration for project: ${PROJECT_NAME}`);
+console.log(`Exclude patterns: ${JSON.stringify(projectConfig.excludeTestPatterns)}`);
+console.log(`Confidence threshold: ${projectConfig.confidenceThreshold}`);
 
 // Determine coverage source from environment variable
 const COVERAGE_SOURCE = process.env.COVERAGE_SOURCE || 'standard';
@@ -16,9 +24,10 @@ const COMPONENT_COVERAGE_PATH = COVERAGE_SOURCE === 'babel'
   ? path.resolve(BABEL_COVERAGE_DIR, 'component-coverage.json')
   : path.resolve(MOCK_COVERAGE_DIR, 'mock-component-coverage.json');
 
-const CORRELATION_OUTPUT_PATH = COVERAGE_SOURCE === 'babel'
-  ? path.resolve(BABEL_COVERAGE_DIR, 'test-component-correlation.json')
-  : path.resolve(COVERAGE_DIR, 'test-component-correlation.json');
+const CORRELATION_OUTPUT_PATH = 
+  COVERAGE_SOURCE === 'babel' ? path.resolve(BABEL_COVERAGE_DIR, 'test-component-correlation.json') :
+  COVERAGE_SOURCE === 'project' ? path.resolve(process.cwd(), 'coverage-analysis', 'project-test-component-correlation.json') :
+  path.resolve(COVERAGE_DIR, 'test-component-correlation.json');
 
 const MOCKS_DIR = path.resolve(process.cwd(), '__mocks__');
 
@@ -104,6 +113,22 @@ async function findComponentFiles(dir: string): Promise<string[]> {
 async function findTestFiles(dir: string): Promise<string[]> {
   const testFiles: string[] = [];
   
+  // Helper to check if a file should be excluded
+  function shouldExcludeTestFile(filePath: string): boolean {
+    return projectConfig.excludeTestPatterns.some(pattern => {
+      // Handle glob patterns
+      if (pattern.includes('*')) {
+        const regexPattern = pattern
+          .replace(/\./g, '\\.')
+          .replace(/\*\*/g, '.*')
+          .replace(/\*/g, '[^/]*');
+        const regex = new RegExp(regexPattern);
+        return regex.test(filePath);
+      }
+      return filePath.includes(pattern);
+    });
+  }
+  
   async function search(directory: string): Promise<void> {
     const files = await fs.readdir(directory, { withFileTypes: true });
     
@@ -113,13 +138,18 @@ async function findTestFiles(dir: string): Promise<string[]> {
       if (file.isDirectory()) {
         await search(filePath);
       } else if (
-        file.name.endsWith('.test.tsx') || 
+        (file.name.endsWith('.test.tsx') || 
         file.name.endsWith('.test.ts') || 
         file.name.endsWith('.spec.tsx') || 
         file.name.endsWith('.spec.ts') ||
-        file.name.endsWith('.feature')
+        file.name.endsWith('.feature'))
       ) {
-        testFiles.push(filePath);
+        if (shouldExcludeTestFile(filePath)) {
+          console.log(`Excluding test file based on pattern: ${filePath}`);
+        } else {
+          console.log(`Including test file: ${filePath}`);
+          testFiles.push(filePath);
+        }
       }
     }
   }
@@ -268,7 +298,47 @@ function correlateTestsWithComponents(
     coverageMap.set(coverage.path, coverage);
   });
   
+  // First handle custom mappings from config
+  const customMappedComponents: string[] = [];
   for (const componentPath of componentFiles) {
+    if (projectConfig.customMappings[componentPath] !== undefined) {
+      const componentName = getComponentName(componentPath);
+      const componentContent = componentContents[componentPath] || '';
+      
+      // Get coverage data for this component
+      const coverage = coverageMap.get(componentPath);
+      const coveragePercentage = coverage ? coverage.coverage : 0;
+      
+      console.log(`Using custom mapping for ${componentPath}`);
+      
+      // If custom mapping is explicitly empty, it means no tests
+      const correlatedTests: {
+        feature: string;
+        scenario: string;
+        step: string;
+        confidence: number;
+      }[] = [];
+      
+      // Add component with its custom correlated tests to the result
+      result.push({
+        path: componentPath,
+        name: componentName,
+        coverage: coveragePercentage,
+        correlatedTests
+      });
+      
+      // Mark this component as already processed
+      customMappedComponents.push(componentPath);
+    }
+  }
+  
+  // Then process remaining components
+  for (const componentPath of componentFiles) {
+    // Skip components we've already processed via custom mappings
+    if (customMappedComponents.includes(componentPath)) {
+      continue;
+    }
+    
     const componentName = getComponentName(componentPath);
     const componentContent = componentContents[componentPath] || '';
     
@@ -345,8 +415,8 @@ function correlateTestsWithComponents(
           // Cap confidence at 1.0
           confidence = Math.min(confidence, 1.0);
           
-          // Only add test correlations with confidence above a threshold
-          if (confidence > 0.6) {
+          // Only add test correlations with confidence above project-specific threshold
+          if (confidence > projectConfig.confidenceThreshold) {
             correlatedTests.push({
               feature: feature.name,
               scenario: scenario.name,
