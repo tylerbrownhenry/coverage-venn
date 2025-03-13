@@ -654,218 +654,336 @@ function generateHTML(components: ComponentWithTests[]): string {
   <title>Enhanced Coverage Report</title>
   <style>
     /* Base styles */
-    body { font-family: sans-serif; line-height: 1.6; max-width: 1200px; margin: 0 auto; padding: 20px; }
-    h1 { color: #2c3e50; border-bottom: 2px solid #eee; padding-bottom: 10px; }
-    table { width: 100%; border-collapse: collapse; margin: 20px 0; }
-    th, td { padding: 8px; text-align: left; border-bottom: 1px solid #ddd; }
-    th { background-color: #f5f5f5; }
-    tr:hover { background-color: #f9f9f9; }
-    .high { color: #27ae60; }
-    .medium { color: #f39c12; }
-    .low { color: #e74c3c; }
-    footer { margin-top: 30px; color: #7f8c8d; font-size: 0.9em; }
-    
-    /* Navigation and tabs */
-    .tabs { display: flex; margin-bottom: 20px; border-bottom: 1px solid #ddd; }
-    .tab { padding: 10px 15px; cursor: pointer; }
-    .tab.active { border-bottom: 3px solid #3498db; font-weight: bold; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; max-width: 1200px; margin: 0 auto; padding: 20px; color: #333; background-color: #f9f9f9; }
+    h1 { color: #2c3e50; border-bottom: 2px solid #eee; padding-bottom: 10px; margin-top: 0; }
+    h2 { color: #3498db; margin-top: 30px; }
+    h3 { color: #2c3e50; margin-bottom: 10px; }
+    h4 { margin-top: 20px; margin-bottom: 10px; color: #34495e; }
+    table { width: 100%; border-collapse: collapse; margin: 20px 0; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #ddd; }
+    th { background-color: #f2f2f2; font-weight: 600; }
+    tr:hover { background-color: #f5f5f5; }
+    .high { color: #27ae60; font-weight: bold; }
+    .medium { color: #f39c12; font-weight: bold; }
+    .low { color: #e74c3c; font-weight: bold; }
+    footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee; color: #7f8c8d; font-size: 0.9em; }
+    button { cursor: pointer; padding: 6px 12px; background-color: #3498db; color: white; border: none; border-radius: 4px; transition: background-color 0.3s; }
+    button:hover { background-color: #2980b9; }
+    pre { margin: 0; }
+    code { font-family: 'Menlo', 'Monaco', 'Courier New', monospace; }
     
     /* Component details */
-    .component-details { display: none; margin-top: 20px; }
+    .component-details { display: none; background-color: #fff; padding: 20px; border-radius: 5px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); margin-top: 20px; }
     .component-details.active { display: block; }
-    .detail-section { margin-bottom: 30px; display: none; }
-    .detail-section.active { display: block; }
-    .detail-section h3 { margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+    .component-path { color: #7f8c8d; font-family: monospace; margin-bottom: 10px; word-break: break-all; }
+    .component-coverage { font-size: 1.2em; margin-bottom: 20px; }
     
-    /* Source code */
+    /* Tabs */
+    .tab-container { margin-top: 20px; }
+    .tabs { display: flex; border-bottom: 1px solid #ddd; margin-bottom: 15px; flex-wrap: wrap; }
+    .tab { background: none; border: none; padding: 10px 15px; font-size: 0.95em; color: #7f8c8d; position: relative; transition: all 0.3s ease; }
+    .tab:hover { color: #3498db; }
+    .tab.active { color: #3498db; font-weight: 600; }
+    .tab.active::after { content: ''; position: absolute; bottom: -1px; left: 0; width: 100%; height: 3px; background-color: #3498db; }
+    
+    /* Tab content */
+    .detail-section { display: none; }
+    .detail-section.active { display: block; animation: fadeIn 0.3s ease-in-out; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    
+    /* Source code container */
     .code-container {
-      border: 1px solid #ddd;
+      border: 1px solid #e0e0e0;
       border-radius: 5px;
       overflow: auto;
-      background-color: #f8f9fa;
-      font-family: 'Courier New', monospace;
-      font-size: 14px;
-      margin: 10px 0;
-      max-height: 500px;
+      background-color: #fafafa;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+      max-height: 600px;
+      margin: 15px 0;
     }
     
+    .source-path {
+      font-family: monospace;
+      font-size: 0.9em;
+      color: #7f8c8d;
+      margin-bottom: 5px;
+    }
+    
+    /* Code lines */
     .code-line {
       display: flex;
+      border-bottom: 1px solid rgba(0,0,0,0.03);
+      font-size: 13px;
       line-height: 1.5;
       white-space: pre;
     }
     
-    .code-line.covered {
-      background-color: rgba(0, 255, 0, 0.15);
-      position: relative;
+    .code-line:hover {
+      background-color: rgba(0,0,0,0.02);
     }
     
-    .code-line.covered::after {
+    .code-line.covered {
+      background-color: rgba(46, 204, 113, 0.1);
+    }
+    
+    .code-line.covered .line-number::after {
       content: '✓';
-      position: absolute;
-      right: 5px;
-      color: #4caf50;
-      font-weight: bold;
+      color: #2ecc71;
+      margin-left: 3px;
     }
     
     .code-line.uncovered {
-      background-color: rgba(255, 0, 0, 0.15);
-      position: relative;
+      background-color: rgba(231, 76, 60, 0.1);
     }
     
-    .code-line.uncovered::after {
+    .code-line.uncovered .line-number::after {
       content: '✗';
-      position: absolute;
-      right: 5px;
-      color: #f44336;
-      font-weight: bold;
+      color: #e74c3c;
+      margin-left: 3px;
+    }
+    
+    .scrolled-to {
+      background-color: rgba(241, 196, 15, 0.3) !important;
+      transition: background-color 0.5s ease-in-out;
     }
     
     .line-number {
-      padding: 0 8px;
-      color: #999;
+      min-width: 50px;
       text-align: right;
-      border-right: 1px solid #ddd;
-      min-width: 40px;
+      padding: 0 10px;
+      color: #999;
+      border-right: 1px solid #eee;
       user-select: none;
     }
     
     .line-content {
-      padding: 0 8px;
-      flex-grow: 1;
-      white-space: pre-wrap;
-      word-wrap: break-word;
+      padding: 0 10px;
+      overflow-x: auto;
     }
     
+    /* Test files */
     .test-file {
       margin-bottom: 20px;
-      border: 1px solid #ddd;
+      border: 1px solid #e0e0e0;
       border-radius: 5px;
       overflow: hidden;
     }
     
-    .test-file-header {
-      display: flex;
-      justify-content: space-between;
-      padding: 8px 12px;
-      background-color: #f5f5f5;
-      border-bottom: 1px solid #ddd;
-      font-weight: bold;
+    .test-file h4 {
+      margin: 0;
+      padding: 10px 15px;
+      background-color: #f2f2f2;
+      border-bottom: 1px solid #e0e0e0;
     }
     
     .test-file-content {
-      max-height: 500px;
+      max-height: 400px;
       overflow-y: auto;
-      background-color: #f8f8f8;
-      font-family: monospace;
-      white-space: pre;
-      line-height: 1.5;
-      padding: 0;
+      padding: 10px 15px;
+      background-color: #fafafa;
     }
     
+    /* Test navigation */
     .test-nav {
-      padding: 5px 10px;
-      background-color: #f8f8f8;
-      border-bottom: 1px solid #e0e0e0;
       display: flex;
       flex-wrap: wrap;
-      gap: 5px;
-    }
-    
-    .test-nav-item {
-      cursor: pointer;
-      padding: 3px 8px;
-      margin: 3px;
-      border-radius: 10px;
-      background-color: #e0e0e0;
-      font-size: 12px;
-      color: #444;
-      transition: background-color 0.2s;
-    }
-    
-    .test-nav-item:hover {
-      background-color: #d0d0d0;
-    }
-    
-    .code-line {
-      display: flex;
-      line-height: 1.5;
-      font-size: 13px;
-      border-bottom: 1px solid #f0f0f0;
-    }
-    
-    .highlighted-test {
-      background-color: rgba(255, 236, 139, 0.4) !important;
-      border-left: 4px solid #f1c40f !important;
-    }
-    
-    .scrolled-to {
-      background-color: rgba(255, 193, 7, 0.6) !important;
-      transition: background-color 0.5s ease-in-out;
-    }
-    
-    .test-name-indicator {
-      padding: 8px 12px;
-      font-weight: bold;
-      color: #2c3e50;
-      background-color: #f9f2d2;
-      border-bottom: 1px solid #f1c40f;
-      border-top: 1px solid #f1c40f;
-      text-align: left;
-      font-size: 14px;
-    }
-    
-    .test-nav-item {
-      cursor: pointer;
-      padding: 4px 10px;
-      margin: 4px;
-      border-radius: 4px;
+      padding: 10px;
       background-color: #f5f5f5;
-      border: 1px solid #ddd;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    
+    .test-nav-item {
+      cursor: pointer;
+      padding: 5px 10px;
+      margin: 3px;
+      background-color: #e0e0e0;
+      border-radius: 3px;
       font-size: 12px;
       transition: all 0.2s ease;
     }
     
     .test-nav-item:hover {
-      background-color: #f1c40f;
-      color: #fff;
-      border-color: #e67e22;
+      background-color: #3498db;
+      color: white;
     }
     
-    .test-list { list-style-type: none; padding: 0; }
-    .test-item { padding: 8px; border-bottom: 1px solid #eee; }
-    .test-item:hover { background-color: #f9f9f9; }
-    .test-item .confidence.high { color: #27ae60; }
-    .test-item .confidence.medium { color: #f39c12; }
-    .test-item .confidence.low { color: #e74c3c; }
-    
-    .test-id-suggestions { list-style-type: none; padding: 0; }
-    .test-id-item { padding: 8px; border-bottom: 1px solid #eee; background-color: #f8f8f8; }
-    .copy-button { padding: 2px 8px; background-color: #3498db; color: white; border: none; border-radius: 4px; cursor: pointer; }
-    .copy-button:hover { background-color: #2980b9; }
-    
-    .file-path { font-family: monospace; background-color: #f8f8f8; padding: 5px; border-radius: 3px; }
-    .source-path { display: block; margin-bottom: 10px; }
-    
-    .no-highlighted-tests {
-      padding: 8px 12px;
-      background-color: #f5f5f5;
-      color: #666;
-      font-style: italic;
-      border-bottom: 1px solid #ddd;
+    /* Test highlights */
+    .highlighted-test {
+      background-color: rgba(255, 235, 59, 0.2);
+      border-left: 3px solid #f1c40f;
     }
     
     /* Syntax highlighting */
-    .keyword { color: #07a; }
-    .string { color: #690; }
-    .comment { color: #999; }
-    .method { color: #905; }
+    .keyword { color: #0033b3; font-weight: 600; }
+    .string { color: #067d17; }
+    .comment { color: #8e908c; font-style: italic; }
+    .method { color: #6f42c1; }
+    .function { color: #e36209; }
+    
+    /* Recommendations */
+    .recommendations {
+      background-color: #f8f9fa;
+      border-left: 4px solid #3498db;
+      padding: 15px;
+      margin: 20px 0;
+      border-radius: 0 5px 5px 0;
+    }
+    
+    .recommendations ul {
+      margin-top: 10px;
+      padding-left: 20px;
+    }
+    
+    .recommendations li {
+      margin-bottom: 5px;
+    }
+    
+    /* Copy button */
+    .copy-button {
+      padding: 4px 8px;
+      font-size: 12px;
+      background-color: #f2f2f2;
+      color: #333;
+      border: 1px solid #ddd;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    
+    .copy-button:hover {
+      background-color: #e0e0e0;
+    }
     
     @media (max-width: 768px) {
       .tabs { flex-direction: column; }
       .tab { border-bottom: 1px solid #eee; }
+      table { display: block; overflow-x: auto; }
     }
   </style>
+  <script>
+    // Show component details
+    function showComponentDetails(index) {
+      // Hide all other component details
+      document.querySelectorAll('.component-details').forEach(function(el) {
+        el.classList.remove('active');
+      });
+      
+      // Show selected component details
+      const componentEl = document.getElementById('component-' + index);
+      if (componentEl) {
+        componentEl.classList.add('active');
+        
+        // Hide summary and table
+        const summaryEl = document.getElementById('summary');
+        if (summaryEl) summaryEl.style.display = 'none';
+        
+        const tableEl = document.querySelector('table');
+        if (tableEl) tableEl.style.display = 'none';
+      } else {
+        console.error('Component element with id component-' + index + ' not found');
+      }
+    }
+    
+    // Hide component details
+    function hideComponentDetails(index) {
+      const componentEl = document.getElementById('component-' + index);
+      if (componentEl) {
+        componentEl.classList.remove('active');
+        
+        // Show summary and table
+        const summaryEl = document.getElementById('summary');
+        if (summaryEl) summaryEl.style.display = 'block';
+        
+        const tableEl = document.querySelector('table');
+        if (tableEl) tableEl.style.display = 'table';
+      }
+    }
+    
+    // Switch tabs in component details
+    function switchTab(tabId, index) {
+      // Deactivate all tabs in this component
+      document.querySelectorAll('#component-' + index + ' .tab').forEach(function(el) {
+        el.classList.remove('active');
+      });
+      
+      // Deactivate all detail sections in this component
+      document.querySelectorAll('#component-' + index + ' .detail-section').forEach(function(el) {
+        el.classList.remove('active');
+      });
+      
+      // Activate the selected tab
+      const tabButton = document.querySelector('#component-' + index + ' .tab[onclick*="\\'' + tabId + '\\'"]');
+      if (tabButton) {
+        tabButton.classList.add('active');
+      }
+      
+      // Activate the selected section
+      const section = document.getElementById(tabId);
+      if (section) {
+        section.classList.add('active');
+      }
+    }
+    
+    // Copy text to clipboard
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text)
+        .then(function() { 
+          alert('Copied to clipboard: ' + text); 
+        })
+        .catch(function(err) { 
+          console.error('Error copying text: ', err); 
+        });
+    }
+    
+    // Syntax highlight code
+    function applySyntaxHighlighting() {
+      document.querySelectorAll('.code-container pre code').forEach(function(block) {
+        if (block && block.textContent) {
+          // Keywords
+          block.innerHTML = block.innerHTML.replace(/\b(function|const|let|var|return|if|else|for|while|do|switch|case|break|continue|new|try|catch|finally|throw|typeof|instanceof|in|of|class|extends|super|import|export|from|as|async|await|yield|this|true|false|null|undefined)\b/g, '<span class="keyword">$1</span>');
+          
+          // Strings
+          block.innerHTML = block.innerHTML.replace(/(['"])(.*?)(['"])/g, '<span class="string">$1$2$3</span>');
+          
+          // Comments
+          block.innerHTML = block.innerHTML.replace(/\\/\\/(.*?)$/gm, '<span class="comment">//$1</span>');
+          
+          // Multi-line comments
+          block.innerHTML = block.innerHTML.replace(/\\/\\*([\\s\\S]*?)\\*\\//g, '<span class="comment">/*$1*/</span>');
+          
+          // Functions and methods
+          block.innerHTML = block.innerHTML.replace(/\\b(function)\\s+([a-zA-Z0-9_]+)/g, '<span class="keyword">$1</span> <span class="function">$2</span>');
+          block.innerHTML = block.innerHTML.replace(/\\.([a-zA-Z0-9_]+)\\(/g, '.<span class="method">$1</span>(');
+          
+          // Testing library methods
+          block.innerHTML = block.innerHTML.replace(/\b(describe|it|test|expect|beforeEach|afterEach|beforeAll|afterAll|mock|jest|render|screen|fireEvent|waitFor)\b/g, '<span class="method">$1</span>');
+        }
+      });
+    }
+    
+    // Scroll to a specific test
+    function scrollToTest(containerId, lineNumber) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      
+      const lineElement = container.querySelector('[id="line-' + lineNumber + '"]');
+      if (!lineElement) return;
+      
+      // Scroll the element into view
+      container.scrollTop = lineElement.offsetTop - container.offsetTop - 50;
+      
+      // Add a temporary highlight
+      lineElement.classList.add('scrolled-to');
+      setTimeout(function() {
+        lineElement.classList.remove('scrolled-to');
+      }, 2000);
+    }
+    
+    // Call syntax highlighting when the page loads
+    window.addEventListener('DOMContentLoaded', function() {
+      applySyntaxHighlighting();
+    });
+  </script>
 </head>
 <body>
   <h1>Enhanced Coverage Report</h1>
@@ -902,7 +1020,7 @@ function generateHTML(components: ComponentWithTests[]): string {
               ${getRelativePath(item.path)}
             </a>
           </td>
-          <td class="${coverageClass}">${item.coverage.toFixed(1)}%</td>
+          <td class="${coverageClass}">${(item.coverage * 100).toFixed(1)}%</td>
           <td>${testCount}</td>
           <td>${item.statements || item.metrics?.statements || 'N/A'}</td>
           <td>${item.branches || item.metrics?.branches || 'N/A'}</td>
@@ -919,162 +1037,6 @@ function generateHTML(components: ComponentWithTests[]): string {
   <footer>
     <p>Generated by Coverage Venn Tool</p>
   </footer>
-  
-  <script>
-    // Show component details
-    function showComponentDetails(index) {
-      // Hide all other component details
-      document.querySelectorAll('.component-details').forEach(el => {
-        el.classList.remove('active');
-      });
-      
-      // Show selected component details
-      const componentEl = document.getElementById('component-' + index);
-      if (componentEl) {
-        componentEl.classList.add('active');
-        
-        // Hide summary and table
-        const summaryEl = document.getElementById('summary');
-        if (summaryEl) summaryEl.style.display = 'none';
-        
-        const tableEl = document.querySelector('table');
-        if (tableEl) tableEl.style.display = 'none';
-      } else {
-        console.error('Component element with id component-' + index + ' not found');
-      }
-    }
-    
-    // Hide component details
-    function hideComponentDetails(index) {
-      const componentEl = document.getElementById('component-' + index);
-      if (componentEl) {
-        componentEl.classList.remove('active');
-        
-        // Show summary and table
-        const summaryEl = document.getElementById('summary');
-        if (summaryEl) summaryEl.style.display = 'block';
-        
-        const tableEl = document.querySelector('table');
-        if (tableEl) tableEl.style.display = 'table';
-      }
-    }
-    
-    // Switch tabs in component details
-    function switchTab(componentIndex, tabName) {
-      // Deactivate all tabs
-      document.querySelectorAll('#component-' + componentIndex + ' .tab').forEach(tab => {
-        tab.classList.remove('active');
-      });
-      
-      // Deactivate all sections
-      document.querySelectorAll('#component-' + componentIndex + ' .detail-section').forEach(section => {
-        section.classList.remove('active');
-      });
-      
-      // Activate selected tab
-      const tabEl = document.querySelector('#component-' + componentIndex + ' .tab[onclick*="' + tabName + '"]');
-      if (tabEl) {
-        tabEl.classList.add('active');
-      }
-      
-      // Activate selected section
-      const sectionEl = document.getElementById(tabName + '-' + componentIndex);
-      if (sectionEl) {
-        sectionEl.classList.add('active');
-      }
-    }
-    
-    // Copy text to clipboard
-    function copyToClipboard(text) {
-      navigator.clipboard.writeText(text)
-        .then(() => alert('Copied to clipboard: ' + text))
-        .catch(err => console.error('Error copying text: ', err));
-    }
-    
-    // Helper function for escaping HTML in the script
-    function escapeHtml(str) {
-      return str
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#039;');
-    }
-    
-    // Syntax highlight test code
-    function applySyntaxHighlighting(code) {
-      // Check if code is defined first
-      if (!code || typeof code !== 'string') {
-        console.warn('No code provided for syntax highlighting or code is not a string');
-        return '';
-      }
-      
-      // Keywords
-      code = code.replace(/\\b(function|const|let|var|return|if|else|for|while|do|switch|case|break|continue|new|try|catch|finally|throw|typeof|instanceof|in|of|class|extends|super|import|export|from|as|async|await|yield|this|true|false|null|undefined)\\b/g, '<span class="keyword">$1</span>');
-      
-      // Strings
-      code = code.replace(/(['"])(.*?)\\1/g, '<span class="string">$1$2$1</span>');
-      
-      // Comments
-      code = code.replace(/\\/\\/(.*?)$/gm, '<span class="comment">//$1</span>');
-      
-      // Multi-line comments
-      code = code.replace(/\\/\\*([\\s\\S]*?)\\*\\//g, '<span class="comment">/*$1*/</span>');
-      
-      // Functions and methods
-      code = code.replace(/\\b(function)\\s+([a-zA-Z0-9_]+)/g, '<span class="keyword">$1</span> <span class="function">$2</span>');
-      code = code.replace(/\\.([a-zA-Z0-9_]+)\\(/g, '.<span class="method">$1</span>(');
-      
-      // Testing library methods
-      code = code.replace(/\\b(describe|it|test|expect|beforeEach|afterEach|beforeAll|afterAll|mock|jest|render|screen|fireEvent|waitFor)\\b/g, '<span class="method">$1</span>');
-      
-      return code;
-    }
-    
-    // Scroll to a specific test
-    function scrollToTest(containerId, lineNumber) {
-      const container = document.getElementById(containerId);
-      if (!container) return;
-      
-      // Fix the selector string format to avoid TypeScript errors
-      const lineSelector = 'line-' + lineNumber;
-      const lineElement = container.querySelector('[id="' + lineSelector + '"]');
-      if (!lineElement) return;
-      
-      // Improved scroll calculation with better positioning
-      // Add a small offset to ensure the line is fully visible with some context above it
-      const offset = 20; // Smaller offset for better positioning
-      container.scrollTop = lineElement.offsetTop - container.offsetTop - offset;
-      
-      // Add a temporary highlight that lasts longer
-      lineElement.classList.add('scrolled-to');
-      setTimeout(() => {
-        lineElement.classList.remove('scrolled-to');
-      }, 3000); // Longer highlight duration (3 seconds)
-    }
-    
-    // Call syntax highlighting when the page loads
-    window.addEventListener('DOMContentLoaded', function() {
-      try {
-        // Apply syntax highlighting to all code elements
-        const codeContainers = document.querySelectorAll('.code-container, .test-file-content');
-        codeContainers.forEach(container => {
-          const codeElements = container.querySelectorAll('.line-content');
-          codeElements.forEach(element => {
-            if (element && element.textContent) {
-              const highlighted = applySyntaxHighlighting(element.textContent);
-              if (highlighted) {
-                element.innerHTML = highlighted;
-              }
-            }
-          });
-        });
-        console.log('Syntax highlighting applied successfully');
-      } catch (error) {
-        console.error('Error applying syntax highlighting:', error);
-      }
-    });
-  </script>
 </body>
 </html>`;
 
@@ -1099,7 +1061,7 @@ function formatSourceCode(code: string, coveredLines: number[] = [], uncoveredLi
       ? (isCovered ? 'covered' : (isUncovered ? 'uncovered' : ''))
       : '';
     
-    formattedCode += `<div class="code-line ${lineClass}">
+    formattedCode += `<div class="code-line ${lineClass}" id="line-${lineNumber}">
       <div class="line-number">${lineNumber}</div>
       <div class="line-content">${lineContent || ' '}</div>
     </div>`;
@@ -1237,26 +1199,33 @@ function generateComponentDetailTemplate(component: ComponentWithTests, index: n
       
       <div class="tab-container">
         <div class="tabs">
-          <button class="tab-button active" onclick="switchTab('source-tab-${componentName}', '${componentName}')">Source</button>
-          <button class="tab-button" onclick="switchTab('tests-tab-${componentName}', '${componentName}')">Test Files</button>
-          <button class="tab-button" onclick="switchTab('correlated-tab-${componentName}', '${componentName}')">Correlated Tests</button>
+          <button class="tab active" onclick="switchTab('source-${index}', ${index})">Source</button>
+          <button class="tab" onclick="switchTab('tests-${index}', ${index})">Test Files</button>
+          <button class="tab" onclick="switchTab('correlated-${index}', ${index})">Correlated Tests</button>
+          <button class="tab" onclick="hideComponentDetails(${index})">&larr; Back to Summary</button>
         </div>
         
-        <div class="tab-content active" id="source-tab-${componentName}">
-          <div class="source-code">
-            <pre><code class="language-typescript">${component.sourceCode ? escapeHtml(component.sourceCode) : 'Source code not available'}</code></pre>
+        <div id="source-${index}" class="detail-section active">
+          <h3>Source Code</h3>
+          <div class="source-path">${component.path}</div>
+          <div class="code-container">
+            ${component.sourceCode ? formatSourceCode(component.sourceCode, component.coveredLines, component.uncoveredLines) : '<p>Source code not available</p>'}
           </div>
         </div>
         
-        <div class="tab-content" id="tests-tab-${componentName}">
-          ${testFilesTemplate || '<p>No test files found.</p>'}
+        <div id="tests-${index}" class="detail-section">
+          <h3>Test Files (${component.testFiles?.length || 0})</h3>
+          <div class="test-files-section">
+            ${testFilesTemplate || '<p>No test files found.</p>'}
+          </div>
         </div>
         
-        <div class="tab-content" id="correlated-tab-${componentName}">
+        <div id="correlated-${index}" class="detail-section">
+          <h3>Related Tests (${(component.correlatedTests?.length || 0)})</h3>
           ${unitTestsTemplate}
           ${e2eTestsTemplate}
-          ${!unitTests.length && !e2eTests.length ? '<p>No correlated tests found.</p>' : ''}
           ${recommendationsTemplate}
+          ${(!unitTestsTemplate && !e2eTestsTemplate) ? '<p>No related tests found.</p>' : ''}
         </div>
       </div>
     </div>
