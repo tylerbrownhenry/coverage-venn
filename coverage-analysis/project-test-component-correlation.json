@@ -1,387 +1,554 @@
 [
   {
-    "path": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/App.tsx",
+    "path": "/Users/tylerhenry/Documents/GitHub/testApp/src/App.tsx",
     "name": "App",
     "coverage": 0,
     "correlatedTests": [
       {
-        "feature": "App",
-        "scenario": "root_app",
-        "step": "should render with the correct title",
-        "confidence": 1
+        "feature": "Counter Functionality",
+        "scenario": "User increments the counter",
+        "step": "Given I am on the counter screen",
+        "confidence": 0.6,
+        "isE2E": true
       },
       {
-        "feature": "App",
-        "scenario": "root_app",
-        "step": "render(<App />);",
-        "confidence": 1
+        "feature": "Counter Functionality",
+        "scenario": "User increments the counter",
+        "step": "When I tap the increment button",
+        "confidence": 0.6,
+        "isE2E": true
       },
       {
-        "feature": "App",
-        "scenario": "root_app",
-        "step": "expect(screen.getByText('Mocked Title')).toBeInTheDocument();",
-        "confidence": 1
+        "feature": "Counter Functionality",
+        "scenario": "User increments the counter",
+        "step": "Then the counter should display \"1\"",
+        "confidence": 0.6,
+        "isE2E": true
       },
       {
-        "feature": "App",
-        "scenario": "root_app",
-        "step": "expect(getThis).toHaveBeenCalledWith('Interactive Dashboard');",
-        "confidence": 1
+        "feature": "Counter Functionality",
+        "scenario": "User decrements the counter",
+        "step": "Given I am on the counter screen",
+        "confidence": 0.6,
+        "isE2E": true
       },
       {
-        "feature": "App",
-        "scenario": "root_app",
-        "step": "should render the button component",
-        "confidence": 1
+        "feature": "Counter Functionality",
+        "scenario": "User decrements the counter",
+        "step": "And the counter displays \"1\"",
+        "confidence": 0.6,
+        "isE2E": true
       },
       {
-        "feature": "App",
-        "scenario": "root_app",
-        "step": "render(<App />);",
-        "confidence": 1
+        "feature": "Counter Functionality",
+        "scenario": "User decrements the counter",
+        "step": "When I tap the decrement button",
+        "confidence": 0.6,
+        "isE2E": true
       },
       {
-        "feature": "App",
-        "scenario": "root_app",
-        "step": "expect(screen.getByTestId('mocked-button')).toBeInTheDocument();",
-        "confidence": 1
+        "feature": "Counter Functionality",
+        "scenario": "User decrements the counter",
+        "step": "Then the counter should display \"0\"",
+        "confidence": 0.6,
+        "isE2E": true
       },
       {
-        "feature": "App",
-        "scenario": "root_app",
-        "step": "should have the correct test ID",
-        "confidence": 1
+        "feature": "Counter Functionality",
+        "scenario": "Counter should not go below zero",
+        "step": "Given I am on the counter screen",
+        "confidence": 0.6,
+        "isE2E": true
       },
       {
-        "feature": "App",
-        "scenario": "root_app",
-        "step": "render(<App />);",
-        "confidence": 1
+        "feature": "Counter Functionality",
+        "scenario": "Counter should not go below zero",
+        "step": "And the counter displays \"0\"",
+        "confidence": 0.6,
+        "isE2E": true
       },
       {
-        "feature": "App",
-        "scenario": "root_app",
-        "step": "expect(screen.getByTestId('root_app')).toBeInTheDocument();",
-        "confidence": 1
-      }
-    ],
-    "gapAnalysis": {
-      "testingPriority": "high",
-      "missingCoverage": [
-        "Event handler interactions",
-        "Hook lifecycle testing",
-        "Conditional rendering paths"
-      ],
-      "recommendedTests": [
-        "Test onClick interaction",
-        "Test onClick interaction",
-        "Test onClick interaction",
-        "Test state changes in App"
-      ]
-    }
-  },
-  {
-    "path": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/components/Dashboard.tsx",
-    "name": "Dashboard",
-    "coverage": 0,
-    "correlatedTests": [
-      {
-        "feature": "App",
-        "scenario": "root_app",
-        "step": "expect(getThis).toHaveBeenCalledWith('Interactive Dashboard');",
-        "confidence": 0.7
-      }
-    ],
-    "gapAnalysis": {
-      "testingPriority": "high",
-      "missingCoverage": [
-        "Testing with different prop values",
-        "Event handler interactions",
-        "Hook lifecycle testing",
-        "Conditional rendering paths"
-      ],
-      "recommendedTests": [
-        "Test Dashboard with different DashboardProps combinations",
-        "Test ons interaction",
-        "Test onClick interaction",
-        "Test onClick interaction",
-        "Test state changes in Dashboard"
-      ]
-    }
-  },
-  {
-    "path": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/components/Form.tsx",
-    "name": "Form",
-    "coverage": 0,
-    "correlatedTests": [
-      {
-        "feature": "Form",
-        "scenario": "Form Component",
-        "step": "renders the form correctly",
-        "confidence": 1
+        "feature": "Counter Functionality",
+        "scenario": "Counter should not go below zero",
+        "step": "When I tap the decrement button",
+        "confidence": 0.6,
+        "isE2E": true
       },
       {
-        "feature": "Form",
-        "scenario": "Form Component",
-        "step": "render(<Form />);",
-        "confidence": 1
+        "feature": "Counter Functionality",
+        "scenario": "Counter should not go below zero",
+        "step": "Then the counter should display \"0\"",
+        "confidence": 0.6,
+        "isE2E": true
       },
       {
-        "feature": "Form",
-        "scenario": "Form Component",
-        "step": "expect(screen.getByTestId('form_container')).toBeInTheDocument();",
-        "confidence": 1
+        "feature": "Minimal",
+        "scenario": "minimalistic",
+        "step": "Given the minimalism",
+        "confidence": 0.6,
+        "isE2E": true
       },
       {
-        "feature": "Form",
-        "scenario": "Form Component",
-        "step": "expect(screen.getByTestId('form_name_input')).toBeInTheDocument();",
-        "confidence": 1
+        "feature": "Hello",
+        "scenario": "World",
+        "step": "Given a step",
+        "confidence": 0.6,
+        "isE2E": true
       },
       {
-        "feature": "Form",
-        "scenario": "Form Component",
-        "step": "expect(screen.getByTestId('form_email_input')).toBeInTheDocument();",
-        "confidence": 1
+        "feature": "Inconsistent cell counts",
+        "scenario": "minimalistic",
+        "step": "Given a data table with inconsistent cell count",
+        "confidence": 0.6,
+        "isE2E": true
       },
       {
-        "feature": "Form",
-        "scenario": "Form Component",
-        "step": "expect(screen.getByTestId('form_message_input')).toBeInTheDocument();",
-        "confidence": 1
+        "feature": "Inconsistent cell counts",
+        "scenario": "minimalistic",
+        "step": "Given the <what>",
+        "confidence": 0.6,
+        "isE2E": true
       },
       {
-        "feature": "Form",
-        "scenario": "Form Component",
-        "step": "expect(screen.getByTestId('form_preview_button')).toBeInTheDocument();",
-        "confidence": 1
+        "feature": "Minimal",
+        "scenario": "minimalistic",
+        "step": "Given the minimalism",
+        "confidence": 0.6,
+        "isE2E": true
       },
       {
-        "feature": "Form",
-        "scenario": "Form Component",
-        "step": "expect(screen.getByTestId('form_submit_button')).toBeInTheDocument();",
-        "confidence": 1
+        "feature": "Multiple parser errors",
+        "scenario": "minimalistic",
+        "step": "Given the minimalism",
+        "confidence": 0.6,
+        "isE2E": true
       },
       {
-        "feature": "Form",
-        "scenario": "Form Component",
-        "step": "updates input values when typing",
-        "confidence": 1
+        "feature": "Single parser error",
+        "scenario": "minimalistic",
+        "step": "Given the minimalism",
+        "confidence": 0.6,
+        "isE2E": true
       },
       {
-        "feature": "Form",
-        "scenario": "Form Component",
-        "step": "render(<Form />);",
-        "confidence": 1
+        "feature": "Background",
+        "scenario": "minimalistic",
+        "step": "Given the minimalism",
+        "confidence": 0.6,
+        "isE2E": true
       },
       {
-        "feature": "Form",
-        "scenario": "Form Component",
-        "step": "const nameInput = screen.getByTestId('form_name_input');",
-        "confidence": 1
+        "feature": "DataTables",
+        "scenario": "minimalistic",
+        "step": "Given a simple data table",
+        "confidence": 0.6,
+        "isE2E": true
       },
       {
-        "feature": "Form",
-        "scenario": "Form Component",
-        "step": "const emailInput = screen.getByTestId('form_email_input');",
-        "confidence": 1
+        "feature": "DataTables",
+        "scenario": "minimalistic",
+        "step": "And a data table with a single cell",
+        "confidence": 0.6,
+        "isE2E": true
       },
       {
-        "feature": "Form",
-        "scenario": "Form Component",
-        "step": "const messageInput = screen.getByTestId('form_message_input');",
-        "confidence": 1
+        "feature": "DataTables",
+        "scenario": "minimalistic",
+        "step": "And a data table with different fromatting",
+        "confidence": 0.6,
+        "isE2E": true
       },
       {
-        "feature": "Form",
-        "scenario": "Form Component",
-        "step": "fireEvent.change(nameInput, { target: { value: 'John Doe' } });",
-        "confidence": 1
+        "feature": "DataTables",
+        "scenario": "minimalistic",
+        "step": "And a data table with an empty cell",
+        "confidence": 0.6,
+        "isE2E": true
       },
       {
-        "feature": "Form",
-        "scenario": "Form Component",
-        "step": "fireEvent.change(emailInput, { target: { value: 'john@example.com' } });",
-        "confidence": 1
+        "feature": "DataTables",
+        "scenario": "minimalistic",
+        "step": "And a data table with comments and newlines inside",
+        "confidence": 0.6,
+        "isE2E": true
       },
       {
-        "feature": "Form",
-        "scenario": "Form Component",
-        "step": "fireEvent.change(messageInput, { target: { value: 'This is a test message' } });",
-        "confidence": 1
+        "feature": "Descriptions everywhere",
+        "scenario": "two lines",
+        "step": "Given the minimalism",
+        "confidence": 0.6,
+        "isE2E": true
       },
       {
-        "feature": "Form",
-        "scenario": "Form Component",
-        "step": "expect(nameInput).toHaveValue('John Doe');",
-        "confidence": 1
+        "feature": "Descriptions everywhere",
+        "scenario": "without indentation",
+        "step": "Given the minimalism",
+        "confidence": 0.6,
+        "isE2E": true
       },
       {
-        "feature": "Form",
-        "scenario": "Form Component",
-        "step": "expect(emailInput).toHaveValue('john@example.com');",
-        "confidence": 1
+        "feature": "Descriptions everywhere",
+        "scenario": "empty lines in the middle",
+        "step": "Given the minimalism",
+        "confidence": 0.6,
+        "isE2E": true
       },
       {
-        "feature": "Form",
-        "scenario": "Form Component",
-        "step": "expect(messageInput).toHaveValue('This is a test message');",
-        "confidence": 1
+        "feature": "Descriptions everywhere",
+        "scenario": "empty lines around",
+        "step": "Given the minimalism",
+        "confidence": 0.6,
+        "isE2E": true
       },
       {
-        "feature": "Form",
-        "scenario": "Form Component",
-        "step": "hides the name field when showNameField is false",
-        "confidence": 1
+        "feature": "Descriptions everywhere",
+        "scenario": "comment after description",
+        "step": "Given the minimalism",
+        "confidence": 0.6,
+        "isE2E": true
       },
       {
-        "feature": "Form",
-        "scenario": "Form Component",
-        "step": "render(<Form showNameField={false} />);",
-        "confidence": 1
+        "feature": "Descriptions everywhere",
+        "scenario": "comment right after description",
+        "step": "Given the minimalism",
+        "confidence": 0.6,
+        "isE2E": true
       },
       {
-        "feature": "Form",
-        "scenario": "Form Component",
-        "step": "expect(screen.queryByTestId('form_name_input')).not.toBeInTheDocument();",
-        "confidence": 1
+        "feature": "Descriptions everywhere",
+        "scenario": "description with escaped docstring separator",
+        "step": "Given the minimalism",
+        "confidence": 0.6,
+        "isE2E": true
       },
       {
-        "feature": "Form",
-        "scenario": "Form Component",
-        "step": "expect(screen.getByTestId('form_email_input')).toBeInTheDocument();",
-        "confidence": 1
+        "feature": "Descriptions everywhere",
+        "scenario": "description with escaped docstring separator",
+        "step": "Given the minimalism",
+        "confidence": 0.6,
+        "isE2E": true
       },
       {
-        "feature": "Form",
-        "scenario": "Form Component",
-        "step": "expect(screen.getByTestId('form_message_input')).toBeInTheDocument();",
-        "confidence": 1
+        "feature": "DocString variations",
+        "scenario": "minimalistic",
+        "step": "Given a simple DocString",
+        "confidence": 0.6,
+        "isE2E": true
       },
       {
-        "feature": "Form",
-        "scenario": "Form Component",
-        "step": "calls onSubmit when the form is submitted with valid data",
-        "confidence": 1
+        "feature": "DocString variations",
+        "scenario": "minimalistic",
+        "step": "Given a DocString with content type",
+        "confidence": 0.6,
+        "isE2E": true
       },
       {
-        "feature": "Form",
-        "scenario": "Form Component",
-        "step": "render(",
-        "confidence": 1
+        "feature": "DocString variations",
+        "scenario": "minimalistic",
+        "step": "And a DocString with wrong indentation",
+        "confidence": 0.6,
+        "isE2E": true
       },
       {
-        "feature": "Form",
-        "scenario": "Form Component",
-        "step": "const submitButton = screen.getByTestId('form_submit_button');",
-        "confidence": 1
+        "feature": "DocString variations",
+        "scenario": "minimalistic",
+        "step": "And a DocString with alternative separator",
+        "confidence": 0.6,
+        "isE2E": true
       },
       {
-        "feature": "Form",
-        "scenario": "Form Component",
-        "step": "fireEvent.click(submitButton);",
-        "confidence": 1
+        "feature": "DocString variations",
+        "scenario": "minimalistic",
+        "step": "And a DocString with normal separator inside",
+        "confidence": 0.6,
+        "isE2E": true
       },
       {
-        "feature": "Form",
-        "scenario": "Form Component",
-        "step": "expect(handleSubmit).toHaveBeenCalled();",
-        "confidence": 1
+        "feature": "DocString variations",
+        "scenario": "minimalistic",
+        "step": "And a DocString with alternative separator inside",
+        "confidence": 0.6,
+        "isE2E": true
       },
       {
-        "feature": "stringUtils",
-        "scenario": "stringUtils",
-        "step": "expect(formatString(null)).toBe('');",
-        "confidence": 0.7
+        "feature": "DocString variations",
+        "scenario": "minimalistic",
+        "step": "And a DocString with escaped separator inside",
+        "confidence": 0.6,
+        "isE2E": true
       },
       {
-        "feature": "stringUtils",
-        "scenario": "stringUtils",
-        "step": "expect(formatString(undefined)).toBe('');",
-        "confidence": 0.7
+        "feature": "Escaped pipes",
+        "scenario": "They are the future",
+        "step": "Given they have arrived",
+        "confidence": 0.6,
+        "isE2E": true
       },
       {
-        "feature": "stringUtils",
-        "scenario": "stringUtils",
-        "step": "expect(formatString('abc')).toBe('ABC');",
-        "confidence": 0.7
+        "feature": "Escaped pipes",
+        "scenario": "They are the future",
+        "step": "Given they have arrived",
+        "confidence": 0.6,
+        "isE2E": true
       },
       {
-        "feature": "stringUtils",
-        "scenario": "stringUtils",
-        "step": "expect(formatString('hi')).toBe('HI');",
-        "confidence": 0.7
+        "feature": "Explicit language specification",
+        "scenario": "minimalistic",
+        "step": "Given the minimalism",
+        "confidence": 0.6,
+        "isE2E": true
       },
       {
-        "feature": "stringUtils",
-        "scenario": "stringUtils",
-        "step": "expect(formatString('hello')).toBe('Hello');",
-        "confidence": 0.7
+        "feature": "Minimal",
+        "scenario": "minimalistic",
+        "step": "Given the minimalism",
+        "confidence": 0.6,
+        "isE2E": true
       },
       {
-        "feature": "stringUtils",
-        "scenario": "stringUtils",
-        "step": "expect(formatString('hello you')).toBe('Hello You');",
-        "confidence": 0.7
-      }
-    ],
-    "gapAnalysis": {
-      "testingPriority": "high",
-      "missingCoverage": [
-        "Testing with different prop values",
-        "Event handler interactions",
-        "Hook lifecycle testing",
-        "Conditional rendering paths"
-      ],
-      "recommendedTests": [
-        "Test Form with different FormProps combinations",
-        "Test onClick interaction",
-        "Test onClick interaction",
-        "Test onSubmit interaction",
-        "Test state changes in Form"
-      ]
-    }
-  },
-  {
-    "path": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/components/button.tsx",
-    "name": "Button",
-    "coverage": 0,
-    "correlatedTests": [
-      {
-        "feature": "App",
-        "scenario": "root_app",
-        "step": "should render the button component",
-        "confidence": 0.7
+        "feature": "Minimal Scenario Outline",
+        "scenario": "minimalistic",
+        "step": "Given the minimalism",
+        "confidence": 0.6,
+        "isE2E": true
       },
       {
-        "feature": "App",
-        "scenario": "root_app",
-        "step": "expect(screen.getByTestId('mocked-button')).toBeInTheDocument();",
-        "confidence": 0.7
+        "feature": "Minimal Scenario Outline",
+        "scenario": "minimalistic",
+        "step": "Given the <what>",
+        "confidence": 0.6,
+        "isE2E": true
       },
       {
-        "feature": "Form",
-        "scenario": "Form Component",
-        "step": "expect(screen.getByTestId('form_preview_button')).toBeInTheDocument();",
-        "confidence": 0.7
+        "feature": "Counter Functionality",
+        "scenario": "User increments the counter",
+        "step": "Given I am on the counter screen",
+        "confidence": 0.6,
+        "isE2E": true
       },
       {
-        "feature": "Form",
-        "scenario": "Form Component",
-        "step": "expect(screen.getByTestId('form_submit_button')).toBeInTheDocument();",
-        "confidence": 0.7
+        "feature": "Counter Functionality",
+        "scenario": "User increments the counter",
+        "step": "When I tap the increment button",
+        "confidence": 0.6,
+        "isE2E": true
       },
       {
-        "feature": "Form",
-        "scenario": "Form Component",
-        "step": "const submitButton = screen.getByTestId('form_submit_button');",
-        "confidence": 0.7
+        "feature": "Counter Functionality",
+        "scenario": "User increments the counter",
+        "step": "Then the counter should display \"1\"",
+        "confidence": 0.6,
+        "isE2E": true
       },
       {
-        "feature": "Form",
-        "scenario": "Form Component",
-        "step": "fireEvent.click(submitButton);",
-        "confidence": 0.7
+        "feature": "Counter Functionality",
+        "scenario": "User decrements the counter",
+        "step": "Given I am on the counter screen",
+        "confidence": 0.6,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "User decrements the counter",
+        "step": "And the counter displays \"1\"",
+        "confidence": 0.6,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "User decrements the counter",
+        "step": "When I tap the decrement button",
+        "confidence": 0.6,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "User decrements the counter",
+        "step": "Then the counter should display \"0\"",
+        "confidence": 0.6,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "Counter should not go below zero",
+        "step": "Given I am on the counter screen",
+        "confidence": 0.6,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "Counter should not go below zero",
+        "step": "And the counter displays \"0\"",
+        "confidence": 0.6,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "Counter should not go below zero",
+        "step": "When I tap the decrement button",
+        "confidence": 0.6,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "Counter should not go below zero",
+        "step": "Then the counter should display \"0\"",
+        "confidence": 0.6,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "User increments the counter",
+        "step": "Given I am on the counter screen",
+        "confidence": 0.6,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "User increments the counter",
+        "step": "When I tap the increment button",
+        "confidence": 0.6,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "User increments the counter",
+        "step": "Then the counter should display \"1\"",
+        "confidence": 0.6,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "User decrements the counter",
+        "step": "Given I am on the counter screen",
+        "confidence": 0.6,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "User decrements the counter",
+        "step": "And the counter displays \"1\"",
+        "confidence": 0.6,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "User decrements the counter",
+        "step": "When I tap the decrement button",
+        "confidence": 0.6,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "User decrements the counter",
+        "step": "Then the counter should display \"0\"",
+        "confidence": 0.6,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "Counter should not go below zero",
+        "step": "Given I am on the counter screen",
+        "confidence": 0.6,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "Counter should not go below zero",
+        "step": "And the counter displays \"0\"",
+        "confidence": 0.6,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "Counter should not go below zero",
+        "step": "When I tap the decrement button",
+        "confidence": 0.6,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "Counter should not go below zero",
+        "step": "Then the counter should display \"0\"",
+        "confidence": 0.6,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "User increments the counter",
+        "step": "Given I am on the counter screen",
+        "confidence": 0.6,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "User increments the counter",
+        "step": "When I tap the increment button",
+        "confidence": 0.6,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "User increments the counter",
+        "step": "Then the counter should display \"1\"",
+        "confidence": 0.6,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "User decrements the counter",
+        "step": "Given I am on the counter screen",
+        "confidence": 0.6,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "User decrements the counter",
+        "step": "And the counter displays \"1\"",
+        "confidence": 0.6,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "User decrements the counter",
+        "step": "When I tap the decrement button",
+        "confidence": 0.6,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "User decrements the counter",
+        "step": "Then the counter should display \"0\"",
+        "confidence": 0.6,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "Counter should not go below zero",
+        "step": "Given I am on the counter screen",
+        "confidence": 0.6,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "Counter should not go below zero",
+        "step": "And the counter displays \"0\"",
+        "confidence": 0.6,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "Counter should not go below zero",
+        "step": "When I tap the decrement button",
+        "confidence": 0.6,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "Counter should not go below zero",
+        "step": "Then the counter should display \"0\"",
+        "confidence": 0.6,
+        "isE2E": true
       }
     ],
     "gapAnalysis": {
@@ -390,444 +557,473 @@
         "Event handler interactions"
       ],
       "recommendedTests": [
-        "Test onText interaction"
+        "Test ontainer interaction",
+        "Test ontent interaction",
+        "Test ontSize interaction"
       ]
     }
   },
   {
-    "path": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/dataUtils.ts",
-    "name": "DataUtils",
-    "coverage": 0,
-    "correlatedTests": [],
-    "gapAnalysis": {
-      "testingPriority": "high",
-      "missingCoverage": [
-        "Function call testing",
-        "Conditional branch testing",
-        "Error handling testing"
-      ],
-      "recommendedTests": [
-        "Unit test for validateItem() function",
-        "Unit test for transformItem() function",
-        "Unit test for normalizeItem() function",
-        "Test different conditional branches"
-      ]
-    }
-  },
-  {
-    "path": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/stringUtils.ts",
-    "name": "StringUtils",
+    "path": "/Users/tylerhenry/Documents/GitHub/testApp/src/components/Counter.tsx",
+    "name": "Counter",
     "coverage": 0,
     "correlatedTests": [
       {
-        "feature": "stringUtils",
-        "scenario": "stringUtils",
-        "step": "returns empty string for null or undefined input",
-        "confidence": 0.7
+        "feature": "Counter Functionality",
+        "scenario": "User increments the counter",
+        "step": "Given I am on the counter screen",
+        "confidence": 1,
+        "isE2E": true
       },
       {
-        "feature": "stringUtils",
-        "scenario": "stringUtils",
-        "step": "expect(formatString(null)).toBe('');",
-        "confidence": 0.7
+        "feature": "Counter Functionality",
+        "scenario": "User increments the counter",
+        "step": "When I tap the increment button",
+        "confidence": 1,
+        "isE2E": true
       },
       {
-        "feature": "stringUtils",
-        "scenario": "stringUtils",
-        "step": "expect(formatString(undefined)).toBe('');",
-        "confidence": 0.7
+        "feature": "Counter Functionality",
+        "scenario": "User increments the counter",
+        "step": "Then the counter should display \"1\"",
+        "confidence": 1,
+        "isE2E": true
       },
       {
-        "feature": "stringUtils",
-        "scenario": "stringUtils",
-        "step": "returns uppercase for strings less than 5 characters",
-        "confidence": 0.7
+        "feature": "Counter Functionality",
+        "scenario": "User decrements the counter",
+        "step": "Given I am on the counter screen",
+        "confidence": 1,
+        "isE2E": true
       },
       {
-        "feature": "stringUtils",
-        "scenario": "stringUtils",
-        "step": "expect(formatString('abc')).toBe('ABC');",
-        "confidence": 0.7
+        "feature": "Counter Functionality",
+        "scenario": "User decrements the counter",
+        "step": "And the counter displays \"1\"",
+        "confidence": 1,
+        "isE2E": true
       },
       {
-        "feature": "stringUtils",
-        "scenario": "stringUtils",
-        "step": "expect(formatString('hi')).toBe('HI');",
-        "confidence": 0.7
+        "feature": "Counter Functionality",
+        "scenario": "User decrements the counter",
+        "step": "When I tap the decrement button",
+        "confidence": 1,
+        "isE2E": true
       },
       {
-        "feature": "stringUtils",
-        "scenario": "stringUtils",
-        "step": "returns title case for strings between 5-10 characters",
-        "confidence": 0.7
+        "feature": "Counter Functionality",
+        "scenario": "User decrements the counter",
+        "step": "Then the counter should display \"0\"",
+        "confidence": 1,
+        "isE2E": true
       },
       {
-        "feature": "stringUtils",
-        "scenario": "stringUtils",
-        "step": "expect(formatString('hello')).toBe('Hello');",
-        "confidence": 0.7
+        "feature": "Counter Functionality",
+        "scenario": "Counter should not go below zero",
+        "step": "Given I am on the counter screen",
+        "confidence": 1,
+        "isE2E": true
       },
       {
-        "feature": "stringUtils",
-        "scenario": "stringUtils",
-        "step": "expect(formatString('hello you')).toBe('Hello You');",
-        "confidence": 0.7
+        "feature": "Counter Functionality",
+        "scenario": "Counter should not go below zero",
+        "step": "And the counter displays \"0\"",
+        "confidence": 1,
+        "isE2E": true
       },
       {
-        "feature": "stringUtils",
-        "scenario": "stringUtils",
-        "step": "capitalizes the first letter of each word",
-        "confidence": 0.7
+        "feature": "Counter Functionality",
+        "scenario": "Counter should not go below zero",
+        "step": "When I tap the decrement button",
+        "confidence": 1,
+        "isE2E": true
       },
       {
-        "feature": "stringUtils",
-        "scenario": "stringUtils",
-        "step": "expect(titleCase('hello world')).toBe('Hello World');",
-        "confidence": 0.7
+        "feature": "Counter Functionality",
+        "scenario": "Counter should not go below zero",
+        "step": "Then the counter should display \"0\"",
+        "confidence": 1,
+        "isE2E": true
       },
       {
-        "feature": "stringUtils",
-        "scenario": "stringUtils",
-        "step": "expect(titleCase('test string')).toBe('Test String');",
-        "confidence": 0.7
+        "feature": "Counter",
+        "scenario": "Counter Component",
+        "step": "renders correctly with default value",
+        "confidence": 1,
+        "isE2E": false
       },
       {
-        "feature": "stringUtils",
-        "scenario": "stringUtils",
-        "step": "returns empty string for empty input",
-        "confidence": 0.7
+        "feature": "Counter",
+        "scenario": "Counter Component",
+        "step": "const { getByTestId, getByText } = render(<Counter />);",
+        "confidence": 1,
+        "isE2E": false
       },
       {
-        "feature": "stringUtils",
-        "scenario": "stringUtils",
-        "step": "expect(titleCase('')).toBe('');",
-        "confidence": 0.7
+        "feature": "Counter",
+        "scenario": "Counter Component",
+        "step": "expect(getByText('Counter Component')).toBeTruthy();",
+        "confidence": 1,
+        "isE2E": false
       },
       {
-        "feature": "stringUtils",
-        "scenario": "stringUtils",
-        "step": "returns validation results for a simple string",
-        "confidence": 0.7
+        "feature": "Counter",
+        "scenario": "Counter Component",
+        "step": "expect(getByTestId('counter-value').props.children).toBe(0);",
+        "confidence": 1,
+        "isE2E": false
       },
       {
-        "feature": "stringUtils",
-        "scenario": "stringUtils",
-        "step": "expect(result.isValid).toBe(true);",
-        "confidence": 0.7
+        "feature": "Counter",
+        "scenario": "Counter Component",
+        "step": "renders with initial value when provided",
+        "confidence": 1,
+        "isE2E": false
       },
       {
-        "feature": "stringUtils",
-        "scenario": "stringUtils",
-        "step": "expect(result.hasNumbers).toBe(true);",
-        "confidence": 0.7
+        "feature": "Counter",
+        "scenario": "Counter Component",
+        "step": "const { getByTestId } = render(<Counter initialValue={5} />);",
+        "confidence": 1,
+        "isE2E": false
       },
       {
-        "feature": "stringUtils",
-        "scenario": "stringUtils",
-        "step": "expect(result.hasUpperCase).toBe(true);",
-        "confidence": 0.7
+        "feature": "Counter",
+        "scenario": "Counter Component",
+        "step": "expect(getByTestId('counter-value').props.children).toBe(5);",
+        "confidence": 1,
+        "isE2E": false
       },
       {
-        "feature": "stringUtils",
-        "scenario": "stringUtils",
-        "step": "expect(result.hasLowerCase).toBe(true);",
-        "confidence": 0.7
+        "feature": "Counter",
+        "scenario": "Counter Component",
+        "step": "increments the counter when increment button is pressed",
+        "confidence": 1,
+        "isE2E": false
       },
       {
-        "feature": "stringUtils",
-        "scenario": "stringUtils",
-        "step": "expect(result.hasSpecialChars).toBe(false);",
-        "confidence": 0.7
+        "feature": "Counter",
+        "scenario": "Counter Component",
+        "step": "const { getByTestId } = render(<Counter initialValue={0} />);",
+        "confidence": 1,
+        "isE2E": false
       },
       {
-        "feature": "stringUtils",
-        "scenario": "stringUtils",
-        "step": "expect(result.errors).toHaveLength(0);",
-        "confidence": 0.7
+        "feature": "Counter",
+        "scenario": "Counter Component",
+        "step": "fireEvent.press(incrementButton);",
+        "confidence": 1,
+        "isE2E": false
       },
       {
-        "feature": "stringUtils",
-        "scenario": "stringUtils",
-        "step": "identifies invalid empty strings",
-        "confidence": 0.7
+        "feature": "Counter",
+        "scenario": "Counter Component",
+        "step": "expect(getByTestId('counter-value').props.children).toBe(1);",
+        "confidence": 1,
+        "isE2E": false
       },
       {
-        "feature": "stringUtils",
-        "scenario": "stringUtils",
-        "step": "expect(result.isValid).toBe(false);",
-        "confidence": 0.7
+        "feature": "Counter",
+        "scenario": "Counter Component",
+        "step": "decrements the counter when decrement button is pressed",
+        "confidence": 1,
+        "isE2E": false
       },
       {
-        "feature": "stringUtils",
-        "scenario": "stringUtils",
-        "step": "expect(result.errors).toContain('String cannot be empty');",
-        "confidence": 0.7
+        "feature": "Counter",
+        "scenario": "Counter Component",
+        "step": "const { getByTestId } = render(<Counter initialValue={5} />);",
+        "confidence": 1,
+        "isE2E": false
+      },
+      {
+        "feature": "Counter",
+        "scenario": "Counter Component",
+        "step": "fireEvent.press(decrementButton);",
+        "confidence": 1,
+        "isE2E": false
+      },
+      {
+        "feature": "Counter",
+        "scenario": "Counter Component",
+        "step": "expect(getByTestId('counter-value').props.children).toBe(4);",
+        "confidence": 1,
+        "isE2E": false
+      },
+      {
+        "feature": "Counter",
+        "scenario": "Counter Component",
+        "step": "does not decrement below zero",
+        "confidence": 1,
+        "isE2E": false
+      },
+      {
+        "feature": "Counter",
+        "scenario": "Counter Component",
+        "step": "const { getByTestId } = render(<Counter initialValue={0} />);",
+        "confidence": 1,
+        "isE2E": false
+      },
+      {
+        "feature": "Counter",
+        "scenario": "Counter Component",
+        "step": "fireEvent.press(decrementButton);",
+        "confidence": 1,
+        "isE2E": false
+      },
+      {
+        "feature": "Counter",
+        "scenario": "Counter Component",
+        "step": "expect(getByTestId('counter-value').props.children).toBe(0);",
+        "confidence": 1,
+        "isE2E": false
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "User increments the counter",
+        "step": "Given I am on the counter screen",
+        "confidence": 1,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "User increments the counter",
+        "step": "When I tap the increment button",
+        "confidence": 1,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "User increments the counter",
+        "step": "Then the counter should display \"1\"",
+        "confidence": 1,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "User decrements the counter",
+        "step": "Given I am on the counter screen",
+        "confidence": 1,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "User decrements the counter",
+        "step": "And the counter displays \"1\"",
+        "confidence": 1,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "User decrements the counter",
+        "step": "When I tap the decrement button",
+        "confidence": 1,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "User decrements the counter",
+        "step": "Then the counter should display \"0\"",
+        "confidence": 1,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "Counter should not go below zero",
+        "step": "Given I am on the counter screen",
+        "confidence": 1,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "Counter should not go below zero",
+        "step": "And the counter displays \"0\"",
+        "confidence": 1,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "Counter should not go below zero",
+        "step": "When I tap the decrement button",
+        "confidence": 1,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "Counter should not go below zero",
+        "step": "Then the counter should display \"0\"",
+        "confidence": 1,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "User increments the counter",
+        "step": "Given I am on the counter screen",
+        "confidence": 1,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "User increments the counter",
+        "step": "When I tap the increment button",
+        "confidence": 1,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "User increments the counter",
+        "step": "Then the counter should display \"1\"",
+        "confidence": 1,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "User decrements the counter",
+        "step": "Given I am on the counter screen",
+        "confidence": 1,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "User decrements the counter",
+        "step": "And the counter displays \"1\"",
+        "confidence": 1,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "User decrements the counter",
+        "step": "When I tap the decrement button",
+        "confidence": 1,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "User decrements the counter",
+        "step": "Then the counter should display \"0\"",
+        "confidence": 1,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "Counter should not go below zero",
+        "step": "Given I am on the counter screen",
+        "confidence": 1,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "Counter should not go below zero",
+        "step": "And the counter displays \"0\"",
+        "confidence": 1,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "Counter should not go below zero",
+        "step": "When I tap the decrement button",
+        "confidence": 1,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "Counter should not go below zero",
+        "step": "Then the counter should display \"0\"",
+        "confidence": 1,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "User increments the counter",
+        "step": "Given I am on the counter screen",
+        "confidence": 1,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "User increments the counter",
+        "step": "When I tap the increment button",
+        "confidence": 1,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "User increments the counter",
+        "step": "Then the counter should display \"1\"",
+        "confidence": 1,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "User decrements the counter",
+        "step": "Given I am on the counter screen",
+        "confidence": 1,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "User decrements the counter",
+        "step": "And the counter displays \"1\"",
+        "confidence": 1,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "User decrements the counter",
+        "step": "When I tap the decrement button",
+        "confidence": 1,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "User decrements the counter",
+        "step": "Then the counter should display \"0\"",
+        "confidence": 1,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "Counter should not go below zero",
+        "step": "Given I am on the counter screen",
+        "confidence": 1,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "Counter should not go below zero",
+        "step": "And the counter displays \"0\"",
+        "confidence": 1,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "Counter should not go below zero",
+        "step": "When I tap the decrement button",
+        "confidence": 1,
+        "isE2E": true
+      },
+      {
+        "feature": "Counter Functionality",
+        "scenario": "Counter should not go below zero",
+        "step": "Then the counter should display \"0\"",
+        "confidence": 1,
+        "isE2E": true
       }
     ],
     "gapAnalysis": {
       "testingPriority": "high",
       "missingCoverage": [
-        "Function call testing",
-        "Conditional branch testing"
+        "Testing with different prop values",
+        "Event handler interactions",
+        "Hook lifecycle testing"
       ],
       "recommendedTests": [
-        "Unit test for formatString() function",
-        "Unit test for titleCase() function",
-        "Unit test for truncateWithEllipsis() function",
-        "Test different conditional branches"
+        "Test Counter with different CounterProps combinations",
+        "Test onPress interaction",
+        "Test onPress interaction",
+        "Test ontainer interaction",
+        "Test state changes in Counter"
       ]
-    }
-  },
-  {
-    "path": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/utils.ts",
-    "name": "Utils",
-    "coverage": 0,
-    "correlatedTests": [
-      {
-        "feature": "utils",
-        "scenario": "Utils",
-        "step": "should return the input text",
-        "confidence": 1
-      },
-      {
-        "feature": "utils",
-        "scenario": "Utils",
-        "step": "expect(result).toBe(input);",
-        "confidence": 1
-      },
-      {
-        "feature": "utils",
-        "scenario": "Utils",
-        "step": "should handle empty string",
-        "confidence": 1
-      },
-      {
-        "feature": "utils",
-        "scenario": "Utils",
-        "step": "expect(result).toBe('');",
-        "confidence": 1
-      },
-      {
-        "feature": "utils",
-        "scenario": "Utils",
-        "step": "should handle special characters",
-        "confidence": 1
-      },
-      {
-        "feature": "utils",
-        "scenario": "Utils",
-        "step": "expect(result).toBe(input);",
-        "confidence": 1
-      },
-      {
-        "feature": "App",
-        "scenario": "root_app",
-        "step": "should render with the correct title",
-        "confidence": 0.9
-      },
-      {
-        "feature": "App",
-        "scenario": "root_app",
-        "step": "render(<App />);",
-        "confidence": 0.9
-      },
-      {
-        "feature": "App",
-        "scenario": "root_app",
-        "step": "expect(screen.getByText('Mocked Title')).toBeInTheDocument();",
-        "confidence": 0.9
-      },
-      {
-        "feature": "App",
-        "scenario": "root_app",
-        "step": "expect(getThis).toHaveBeenCalledWith('Interactive Dashboard');",
-        "confidence": 0.9
-      },
-      {
-        "feature": "App",
-        "scenario": "root_app",
-        "step": "should render the button component",
-        "confidence": 0.9
-      },
-      {
-        "feature": "App",
-        "scenario": "root_app",
-        "step": "render(<App />);",
-        "confidence": 0.9
-      },
-      {
-        "feature": "App",
-        "scenario": "root_app",
-        "step": "expect(screen.getByTestId('mocked-button')).toBeInTheDocument();",
-        "confidence": 0.9
-      },
-      {
-        "feature": "App",
-        "scenario": "root_app",
-        "step": "should have the correct test ID",
-        "confidence": 0.9
-      },
-      {
-        "feature": "App",
-        "scenario": "root_app",
-        "step": "render(<App />);",
-        "confidence": 0.9
-      },
-      {
-        "feature": "App",
-        "scenario": "root_app",
-        "step": "expect(screen.getByTestId('root_app')).toBeInTheDocument();",
-        "confidence": 0.9
-      },
-      {
-        "feature": "stringUtils",
-        "scenario": "stringUtils",
-        "step": "returns empty string for null or undefined input",
-        "confidence": 0.7
-      },
-      {
-        "feature": "stringUtils",
-        "scenario": "stringUtils",
-        "step": "expect(formatString(null)).toBe('');",
-        "confidence": 0.7
-      },
-      {
-        "feature": "stringUtils",
-        "scenario": "stringUtils",
-        "step": "expect(formatString(undefined)).toBe('');",
-        "confidence": 0.7
-      },
-      {
-        "feature": "stringUtils",
-        "scenario": "stringUtils",
-        "step": "returns uppercase for strings less than 5 characters",
-        "confidence": 0.7
-      },
-      {
-        "feature": "stringUtils",
-        "scenario": "stringUtils",
-        "step": "expect(formatString('abc')).toBe('ABC');",
-        "confidence": 0.7
-      },
-      {
-        "feature": "stringUtils",
-        "scenario": "stringUtils",
-        "step": "expect(formatString('hi')).toBe('HI');",
-        "confidence": 0.7
-      },
-      {
-        "feature": "stringUtils",
-        "scenario": "stringUtils",
-        "step": "returns title case for strings between 5-10 characters",
-        "confidence": 0.7
-      },
-      {
-        "feature": "stringUtils",
-        "scenario": "stringUtils",
-        "step": "expect(formatString('hello')).toBe('Hello');",
-        "confidence": 0.7
-      },
-      {
-        "feature": "stringUtils",
-        "scenario": "stringUtils",
-        "step": "expect(formatString('hello you')).toBe('Hello You');",
-        "confidence": 0.7
-      },
-      {
-        "feature": "stringUtils",
-        "scenario": "stringUtils",
-        "step": "capitalizes the first letter of each word",
-        "confidence": 0.7
-      },
-      {
-        "feature": "stringUtils",
-        "scenario": "stringUtils",
-        "step": "expect(titleCase('hello world')).toBe('Hello World');",
-        "confidence": 0.7
-      },
-      {
-        "feature": "stringUtils",
-        "scenario": "stringUtils",
-        "step": "expect(titleCase('test string')).toBe('Test String');",
-        "confidence": 0.7
-      },
-      {
-        "feature": "stringUtils",
-        "scenario": "stringUtils",
-        "step": "returns empty string for empty input",
-        "confidence": 0.7
-      },
-      {
-        "feature": "stringUtils",
-        "scenario": "stringUtils",
-        "step": "expect(titleCase('')).toBe('');",
-        "confidence": 0.7
-      },
-      {
-        "feature": "stringUtils",
-        "scenario": "stringUtils",
-        "step": "returns validation results for a simple string",
-        "confidence": 0.7
-      },
-      {
-        "feature": "stringUtils",
-        "scenario": "stringUtils",
-        "step": "expect(result.isValid).toBe(true);",
-        "confidence": 0.7
-      },
-      {
-        "feature": "stringUtils",
-        "scenario": "stringUtils",
-        "step": "expect(result.hasNumbers).toBe(true);",
-        "confidence": 0.7
-      },
-      {
-        "feature": "stringUtils",
-        "scenario": "stringUtils",
-        "step": "expect(result.hasUpperCase).toBe(true);",
-        "confidence": 0.7
-      },
-      {
-        "feature": "stringUtils",
-        "scenario": "stringUtils",
-        "step": "expect(result.hasLowerCase).toBe(true);",
-        "confidence": 0.7
-      },
-      {
-        "feature": "stringUtils",
-        "scenario": "stringUtils",
-        "step": "expect(result.hasSpecialChars).toBe(false);",
-        "confidence": 0.7
-      },
-      {
-        "feature": "stringUtils",
-        "scenario": "stringUtils",
-        "step": "expect(result.errors).toHaveLength(0);",
-        "confidence": 0.7
-      },
-      {
-        "feature": "stringUtils",
-        "scenario": "stringUtils",
-        "step": "identifies invalid empty strings",
-        "confidence": 0.7
-      },
-      {
-        "feature": "stringUtils",
-        "scenario": "stringUtils",
-        "step": "expect(result.isValid).toBe(false);",
-        "confidence": 0.7
-      },
-      {
-        "feature": "stringUtils",
-        "scenario": "stringUtils",
-        "step": "expect(result.errors).toContain('String cannot be empty');",
-        "confidence": 0.7
-      }
-    ],
-    "gapAnalysis": {
-      "testingPriority": "high",
-      "missingCoverage": [],
-      "recommendedTests": []
     }
   }
 ]

@@ -40,12 +40,12 @@
     "check:plugin": "node scripts/analysis/check/check-plugin.js",
     "run:script": "node scripts/run-script.js",
     "coverage:correlate:mock": "npm run scan:mock && npm run analyze:mock && npm run correlate:mock && npm run report:correlated",
-    "coverage:correlate:project": "npm run scan:project && npm run analyze:project && npm run correlate:project && npm run report:correlated:project",
+    "coverage:correlate:project": "export PROJECT_ROOT=${PROJECT_ROOT} && export PROJECT_NAME=${PROJECT_NAME} && npm run scan:project && npm run analyze:project && npm run correlate:project && npm run report:correlated:project",
     "scan:project": "PROJECT_ROOT=$PROJECT_ROOT SOURCE_DIR=$SOURCE_DIR ts-node scripts/analysis/scan/scan-project.ts",
     "analyze:project": "PROJECT_ROOT=$PROJECT_ROOT ts-node scripts/analysis/analyze/analyze-project.ts",
     "correlate:project": "PROJECT_ROOT=$PROJECT_ROOT COVERAGE_SOURCE=project ts-node scripts/analysis/correlate/correlate-coverage.ts",
     "report:correlated:project": "PROJECT_ROOT=$PROJECT_ROOT COVERAGE_SOURCE=project ts-node scripts/generate/generate-html-report-enhanced.ts",
-    "project:coverage": "PROJECT_ROOT=/Users/tylerhenry/Documents/GitHub/testApp PROJECT_NAME=testApp npm run coverage:correlate:project",
+    "project:coverage": "export PROJECT_ROOT=/Users/tylerhenry/Documents/GitHub/testApp && export PROJECT_NAME=testApp && npm run coverage:correlate:project",
     "update-config": "ts-node scripts/update-project-config.ts"
   },
   "dependencies": {

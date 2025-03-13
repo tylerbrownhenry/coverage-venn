@@ -221,7 +221,7 @@
 </head>
 <body>
   <h1>Enhanced Coverage Report</h1>
-  <p>Generated on 3/12/2025, 9:05:17 AM</p>
+  <p>Generated on 3/12/2025, 8:55:29 PM</p>
   
   <div id="summary">
     <h2>Coverage Summary</h2>
@@ -248,7 +248,7 @@
           <td>App</td>
           <td title="/Users/tylerhenry/Documents/GitHub/testApp/src/App.tsx">
             <a href="file:///Users/tylerhenry/Documents/GitHub/testApp/src/App.tsx" target="_blank" class="file-path">
-              src/App.tsx
+              testApp/src/App.tsx
             </a>
           </td>
           <td class="low">25.0%</td>
@@ -262,11 +262,11 @@
           <td>Counter</td>
           <td title="/Users/tylerhenry/Documents/GitHub/testApp/src/components/Counter.tsx">
             <a href="file:///Users/tylerhenry/Documents/GitHub/testApp/src/components/Counter.tsx" target="_blank" class="file-path">
-              src/components/Counter.tsx
+              testApp/src/components/Counter.tsx
             </a>
           </td>
           <td class="high">100.0%</td>
-          <td>2</td>
+          <td>5</td>
           <td>100</td>
           <td>100</td>
           <td>100</td>
@@ -277,1257 +277,1485 @@
   </table>
   
   
-  <div id="component-0" class="component-details">
-    <button onclick="hideComponentDetails(0)">← Back to List</button>
-    <h2>App</h2>
-    
-    <div class="source-path">
-      File: <a href="file:///Users/tylerhenry/Documents/GitHub/testApp/src/App.tsx" target="_blank" class="file-path">src/App.tsx</a>
-    </div>
-    
-    <p>Coverage: <span class="low">25.0%</span></p>
-    <p>Tests: 2</p>
-    
-    <div class="tabs">
-      <div class="tab active" onclick="switchTab(0, 'source')">Source Code</div>
-      <div class="tab" onclick="switchTab(0, 'tests')">Related Tests</div>
-      <div class="tab" onclick="switchTab(0, 'testfiles')">Test Files</div>
-      <div class="tab" onclick="switchTab(0, 'testids')">Test ID Recommendations</div>
-      <div class="tab" onclick="switchTab(0, 'analysis')">Gap Analysis</div>
-    </div>
-    
-    <div id="source-0" class="detail-section source-section active">
-      <div class="section">
-            <h3>Source Code</h3>
-            <div class="code-container">
-              <div class="code-line covered">
-      <div class="line-number">1</div>
-      <div class="line-content">import React from &#039;react&#039;;</div>
-    </div><div class="code-line covered">
-      <div class="line-number">2</div>
-      <div class="line-content">import { SafeAreaView, StatusBar, StyleSheet, Text, View } from &#039;react-native&#039;;</div>
-    </div><div class="code-line covered">
-      <div class="line-number">3</div>
-      <div class="line-content">import Counter from &#039;./components/Counter&#039;;</div>
-    </div><div class="code-line uncovered">
-      <div class="line-number">4</div>
-      <div class="line-content"> </div>
-    </div><div class="code-line uncovered">
-      <div class="line-number">5</div>
-      <div class="line-content">const App: React.FC = () =&gt; {</div>
-    </div><div class="code-line uncovered">
-      <div class="line-number">6</div>
-      <div class="line-content">  return (</div>
-    </div><div class="code-line uncovered">
-      <div class="line-number">7</div>
-      <div class="line-content">    &lt;SafeAreaView style={styles.safeArea}&gt;</div>
-    </div><div class="code-line uncovered">
-      <div class="line-number">8</div>
-      <div class="line-content">      &lt;StatusBar barStyle=&quot;dark-content&quot; /&gt;</div>
-    </div><div class="code-line uncovered">
-      <div class="line-number">9</div>
-      <div class="line-content">      &lt;View style={styles.container}&gt;</div>
-    </div><div class="code-line uncovered">
-      <div class="line-number">10</div>
-      <div class="line-content">        &lt;Text style={styles.header}&gt;Test App&lt;/Text&gt;</div>
-    </div><div class="code-line uncovered">
-      <div class="line-number">11</div>
-      <div class="line-content">        &lt;Counter initialValue={0} /&gt;</div>
-    </div><div class="code-line uncovered">
-      <div class="line-number">12</div>
-      <div class="line-content">      &lt;/View&gt;</div>
-    </div><div class="code-line uncovered">
-      <div class="line-number">13</div>
-      <div class="line-content">    &lt;/SafeAreaView&gt;</div>
-    </div><div class="code-line uncovered">
-      <div class="line-number">14</div>
-      <div class="line-content">  );</div>
-    </div><div class="code-line uncovered">
-      <div class="line-number">15</div>
-      <div class="line-content">};</div>
-    </div><div class="code-line covered">
-      <div class="line-number">16</div>
-      <div class="line-content"> </div>
-    </div><div class="code-line uncovered">
-      <div class="line-number">17</div>
-      <div class="line-content">const styles = StyleSheet.create({</div>
-    </div><div class="code-line uncovered">
-      <div class="line-number">18</div>
-      <div class="line-content">  safeArea: {</div>
-    </div><div class="code-line uncovered">
-      <div class="line-number">19</div>
-      <div class="line-content">    flex: 1,</div>
-    </div><div class="code-line uncovered">
-      <div class="line-number">20</div>
-      <div class="line-content">  },</div>
-    </div><div class="code-line uncovered">
-      <div class="line-number">21</div>
-      <div class="line-content">  container: {</div>
-    </div><div class="code-line covered">
-      <div class="line-number">22</div>
-      <div class="line-content">    flex: 1,</div>
-    </div><div class="code-line uncovered">
-      <div class="line-number">23</div>
-      <div class="line-content">    alignItems: &#039;center&#039;,</div>
-    </div><div class="code-line covered">
-      <div class="line-number">24</div>
-      <div class="line-content">    justifyContent: &#039;center&#039;,</div>
-    </div><div class="code-line uncovered">
-      <div class="line-number">25</div>
-      <div class="line-content">    padding: 20,</div>
-    </div><div class="code-line uncovered">
-      <div class="line-number">26</div>
-      <div class="line-content">  },</div>
-    </div><div class="code-line uncovered">
-      <div class="line-number">27</div>
-      <div class="line-content">  header: {</div>
-    </div><div class="code-line uncovered">
-      <div class="line-number">28</div>
-      <div class="line-content">    fontSize: 24,</div>
-    </div><div class="code-line uncovered">
-      <div class="line-number">29</div>
-      <div class="line-content">    fontWeight: &#039;bold&#039;,</div>
-    </div><div class="code-line uncovered">
-      <div class="line-number">30</div>
-      <div class="line-content">    marginBottom: 20,</div>
-    </div><div class="code-line uncovered">
-      <div class="line-number">31</div>
-      <div class="line-content">  },</div>
-    </div><div class="code-line covered">
-      <div class="line-number">32</div>
-      <div class="line-content">});</div>
-    </div><div class="code-line uncovered">
-      <div class="line-number">33</div>
-      <div class="line-content"> </div>
-    </div><div class="code-line uncovered">
-      <div class="line-number">34</div>
-      <div class="line-content">export default App; </div>
-    </div>
-            </div>
+    <div class="component-details" id="component-0">
+      <h3>App.tsx</h3>
+      <div class="component-path">/Users/tylerhenry/Documents/GitHub/testApp/src/App.tsx</div>
+      <div class="component-coverage">Coverage: 2500.0%</div>
+      
+      <div class="tab-container">
+        <div class="tabs">
+          <button class="tab-button active" onclick="switchTab('source-tab-App.tsx', 'App.tsx')">Source</button>
+          <button class="tab-button" onclick="switchTab('tests-tab-App.tsx', 'App.tsx')">Test Files</button>
+          <button class="tab-button" onclick="switchTab('correlated-tab-App.tsx', 'App.tsx')">Correlated Tests</button>
+        </div>
+        
+        <div class="tab-content active" id="source-tab-App.tsx">
+          <div class="source-code">
+            <pre><code class="language-typescript">import React from &#039;react&#039;;
+import { SafeAreaView, StatusBar, StyleSheet, Text, View } from &#039;react-native&#039;;
+import Counter from &#039;./components/Counter&#039;;
+
+const App: React.FC = () =&gt; {
+  return (
+    &lt;SafeAreaView style={styles.safeArea}&gt;
+      &lt;StatusBar barStyle=&quot;dark-content&quot; /&gt;
+      &lt;View style={styles.container}&gt;
+        &lt;Text style={styles.header}&gt;Test App&lt;/Text&gt;
+        &lt;Counter initialValue={0} /&gt;
+      &lt;/View&gt;
+    &lt;/SafeAreaView&gt;
+  );
+};
+
+const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+  },
+  container: {
+    flex: 1,
+    alignItems: &#039;center&#039;,
+    justifyContent: &#039;center&#039;,
+    padding: 20,
+  },
+  header: {
+    fontSize: 24,
+    fontWeight: &#039;bold&#039;,
+    marginBottom: 20,
+  },
+});
+
+export default App; </code></pre>
           </div>
+        </div>
+        
+        <div class="tab-content" id="tests-tab-App.tsx">
+          
+    <div class="test-file">
+      <h4>App.test.tsx</h4>
+      <pre><code class="language-typescript">/**
+ * @format
+ */
+
+import &#039;react-native&#039;;
+import React from &#039;react&#039;;
+import App from &#039;../App&#039;;
+
+// Note: import explicitly to use the types shiped with jest.
+import {it} from &#039;@jest/globals&#039;;
+
+// Note: test renderer must be required after react-native.
+import renderer from &#039;react-test-renderer&#039;;
+
+it(&#039;renders correctly&#039;, () =&gt; {
+  renderer.create(&lt;App /&gt;);
+});
+</code></pre>
     </div>
-    
-    <div id="tests-0" class="detail-section tests-section">
-      <h3>Related Tests (0)</h3>
-      <p>No related tests found.</p>
-    </div>
-    
-    <div id="testfiles-0" class="detail-section testfiles-section">
-      <h3>Test Files (2)</h3>
-      <div class="test-files-section">
-        
-                <div class="test-file">
-                  <div class="test-file-header">
-                    <span>__mocks__/src/__tests__/App.test.tsx</span>
-                    <button class="copy-button" onclick="copyToClipboard('/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/__tests__/App.test.tsx')">Copy</button>
-                  </div>
-                  <div class="test-nav">
-                        <span class="test-nav-item" onclick="scrollToTest('testfile-0--Users-tylerhenry-Documents-GitHub-coverage-venn---mocks---src---tests---App-test-tsx', 49)">should render with the correct title</span><span class="test-nav-item" onclick="scrollToTest('testfile-0--Users-tylerhenry-Documents-GitHub-coverage-venn---mocks---src---tests---App-test-tsx', 62)">should render the button component</span><span class="test-nav-item" onclick="scrollToTest('testfile-0--Users-tylerhenry-Documents-GitHub-coverage-venn---mocks---src---tests---App-test-tsx', 71)">should have the correct test ID</span>
-                      </div>
-                  <div class="test-file-content" id="testfile-0--Users-tylerhenry-Documents-GitHub-coverage-venn---mocks---src---tests---App-test-tsx">
-                    <!-- Create highlighted test content -->
-                    <div class="code-line " id="line-1">
-                          <div class="line-number">1</div>
-                          <div class="line-content">import React from &#039;react&#039;;</div>
-                        </div><div class="code-line " id="line-2">
-                          <div class="line-number">2</div>
-                          <div class="line-content">import { render, screen } from &#039;@testing-library/react&#039;;</div>
-                        </div><div class="code-line " id="line-3">
-                          <div class="line-number">3</div>
-                          <div class="line-content">import &#039;@testing-library/jest-dom&#039;; // Import directly here instead of from setup</div>
-                        </div><div class="code-line " id="line-4">
-                          <div class="line-number">4</div>
-                          <div class="line-content">import App from &#039;../App&#039;;</div>
-                        </div><div class="code-line " id="line-5">
-                          <div class="line-number">5</div>
-                          <div class="line-content">import { getThis } from &#039;../utils/utils&#039;;</div>
-                        </div><div class="code-line " id="line-6">
-                          <div class="line-number">6</div>
-                          <div class="line-content"></div>
-                        </div><div class="code-line " id="line-7">
-                          <div class="line-number">7</div>
-                          <div class="line-content">// Add TypeScript declaration for the jest-dom matchers</div>
-                        </div><div class="code-line " id="line-8">
-                          <div class="line-number">8</div>
-                          <div class="line-content">declare global {</div>
-                        </div><div class="code-line " id="line-9">
-                          <div class="line-number">9</div>
-                          <div class="line-content">  namespace jest {</div>
-                        </div><div class="code-line " id="line-10">
-                          <div class="line-number">10</div>
-                          <div class="line-content">    interface Matchers&lt;R&gt; {</div>
-                        </div><div class="code-line " id="line-11">
-                          <div class="line-number">11</div>
-                          <div class="line-content">      toBeInTheDocument(): R;</div>
-                        </div><div class="code-line " id="line-12">
-                          <div class="line-number">12</div>
-                          <div class="line-content">    }</div>
-                        </div><div class="code-line " id="line-13">
-                          <div class="line-number">13</div>
-                          <div class="line-content">  }</div>
-                        </div><div class="code-line " id="line-14">
-                          <div class="line-number">14</div>
-                          <div class="line-content">}</div>
-                        </div><div class="code-line " id="line-15">
-                          <div class="line-number">15</div>
-                          <div class="line-content"></div>
-                        </div><div class="code-line " id="line-16">
-                          <div class="line-number">16</div>
-                          <div class="line-content">// Mock dependencies</div>
-                        </div><div class="code-line " id="line-17">
-                          <div class="line-number">17</div>
-                          <div class="line-content">jest.mock(&#039;../components/button&#039;, () =&gt; ({</div>
-                        </div><div class="code-line " id="line-18">
-                          <div class="line-number">18</div>
-                          <div class="line-content">  Button: () =&gt; &lt;div data-testid=&quot;mocked-button&quot;&gt;Mocked Button&lt;/div&gt;</div>
-                        </div><div class="code-line " id="line-19">
-                          <div class="line-number">19</div>
-                          <div class="line-content">}));</div>
-                        </div><div class="code-line " id="line-20">
-                          <div class="line-number">20</div>
-                          <div class="line-content"></div>
-                        </div><div class="code-line " id="line-21">
-                          <div class="line-number">21</div>
-                          <div class="line-content">jest.mock(&#039;../utils/utils&#039;, () =&gt; ({</div>
-                        </div><div class="code-line " id="line-22">
-                          <div class="line-number">22</div>
-                          <div class="line-content">  getThis: jest.fn()</div>
-                        </div><div class="code-line " id="line-23">
-                          <div class="line-number">23</div>
-                          <div class="line-content">}));</div>
-                        </div><div class="code-line " id="line-24">
-                          <div class="line-number">24</div>
-                          <div class="line-content"></div>
-                        </div><div class="code-line " id="line-25">
-                          <div class="line-number">25</div>
-                          <div class="line-content">// Mock additional components</div>
-                        </div><div class="code-line " id="line-26">
-                          <div class="line-number">26</div>
-                          <div class="line-content">jest.mock(&#039;../components/Form&#039;, () =&gt; ({</div>
-                        </div><div class="code-line " id="line-27">
-                          <div class="line-number">27</div>
-                          <div class="line-content">  Form: () =&gt; &lt;div data-testid=&quot;mocked-form&quot;&gt;Mocked Form&lt;/div&gt;</div>
-                        </div><div class="code-line " id="line-28">
-                          <div class="line-number">28</div>
-                          <div class="line-content">}));</div>
-                        </div><div class="code-line " id="line-29">
-                          <div class="line-number">29</div>
-                          <div class="line-content"></div>
-                        </div><div class="code-line " id="line-30">
-                          <div class="line-number">30</div>
-                          <div class="line-content">jest.mock(&#039;../components/Dashboard&#039;, () =&gt; ({</div>
-                        </div><div class="code-line " id="line-31">
-                          <div class="line-number">31</div>
-                          <div class="line-content">  Dashboard: () =&gt; &lt;div data-testid=&quot;mocked-dashboard&quot;&gt;Mocked Dashboard&lt;/div&gt;</div>
-                        </div><div class="code-line " id="line-32">
-                          <div class="line-number">32</div>
-                          <div class="line-content">}));</div>
-                        </div><div class="code-line " id="line-33">
-                          <div class="line-number">33</div>
-                          <div class="line-content"></div>
-                        </div><div class="code-line " id="line-34">
-                          <div class="line-number">34</div>
-                          <div class="line-content">// Mock string utils</div>
-                        </div><div class="code-line " id="line-35">
-                          <div class="line-number">35</div>
-                          <div class="line-content">jest.mock(&#039;../utils/stringUtils&#039;, () =&gt; ({</div>
-                        </div><div class="code-line " id="line-36">
-                          <div class="line-number">36</div>
-                          <div class="line-content">  formatString: jest.fn(text =&gt; text)</div>
-                        </div><div class="code-line " id="line-37">
-                          <div class="line-number">37</div>
-                          <div class="line-content">}));</div>
-                        </div><div class="code-line " id="line-38">
-                          <div class="line-number">38</div>
-                          <div class="line-content"></div>
-                        </div><div class="code-line " id="line-39">
-                          <div class="line-number">39</div>
-                          <div class="line-content">// Mock data utils</div>
-                        </div><div class="code-line " id="line-40">
-                          <div class="line-number">40</div>
-                          <div class="line-content">jest.mock(&#039;../utils/dataUtils&#039;, () =&gt; ({</div>
-                        </div><div class="code-line " id="line-41">
-                          <div class="line-number">41</div>
-                          <div class="line-content">  processData: jest.fn(() =&gt; ({ success: true, data: [] }))</div>
-                        </div><div class="code-line " id="line-42">
-                          <div class="line-number">42</div>
-                          <div class="line-content">}));</div>
-                        </div><div class="code-line " id="line-43">
-                          <div class="line-number">43</div>
-                          <div class="line-content"></div>
-                        </div><div class="code-line " id="line-44">
-                          <div class="line-number">44</div>
-                          <div class="line-content">describe(&#039;root_app&#039;, () =&gt; {</div>
-                        </div><div class="code-line " id="line-45">
-                          <div class="line-number">45</div>
-                          <div class="line-content">  beforeEach(() =&gt; {</div>
-                        </div><div class="code-line " id="line-46">
-                          <div class="line-number">46</div>
-                          <div class="line-content">    jest.clearAllMocks();</div>
-                        </div><div class="code-line " id="line-47">
-                          <div class="line-number">47</div>
-                          <div class="line-content">  });</div>
-                        </div><div class="code-line " id="line-48">
-                          <div class="line-number">48</div>
-                          <div class="line-content"></div>
-                        </div><div class="test-name-indicator">should render with the correct title</div><div class="code-line highlighted-test" id="line-49">
-                          <div class="line-number">49</div>
-                          <div class="line-content">  it(&#039;should render with the correct title&#039;, () =&gt; {</div>
-                        </div><div class="code-line highlighted-test" id="line-50">
-                          <div class="line-number">50</div>
-                          <div class="line-content">    // Setup mock to return a specific value</div>
-                        </div><div class="code-line highlighted-test" id="line-51">
-                          <div class="line-number">51</div>
-                          <div class="line-content">    (getThis as jest.Mock).mockReturnValue(&#039;Mocked Title&#039;);</div>
-                        </div><div class="code-line highlighted-test" id="line-52">
-                          <div class="line-number">52</div>
-                          <div class="line-content">    </div>
-                        </div><div class="code-line highlighted-test" id="line-53">
-                          <div class="line-number">53</div>
-                          <div class="line-content">    render(&lt;App /&gt;);</div>
-                        </div><div class="code-line highlighted-test" id="line-54">
-                          <div class="line-number">54</div>
-                          <div class="line-content">    </div>
-                        </div><div class="code-line highlighted-test" id="line-55">
-                          <div class="line-number">55</div>
-                          <div class="line-content">    // Check the title is rendered</div>
-                        </div><div class="code-line highlighted-test" id="line-56">
-                          <div class="line-number">56</div>
-                          <div class="line-content">    expect(screen.getByText(&#039;Mocked Title&#039;)).toBeInTheDocument();</div>
-                        </div><div class="code-line highlighted-test" id="line-57">
-                          <div class="line-number">57</div>
-                          <div class="line-content">    </div>
-                        </div><div class="code-line highlighted-test" id="line-58">
-                          <div class="line-number">58</div>
-                          <div class="line-content">    // Verify getThis was called with the right argument</div>
-                        </div><div class="code-line highlighted-test" id="line-59">
-                          <div class="line-number">59</div>
-                          <div class="line-content">    expect(getThis).toHaveBeenCalledWith(&#039;Interactive Dashboard&#039;);</div>
-                        </div><div class="code-line highlighted-test" id="line-60">
-                          <div class="line-number">60</div>
-                          <div class="line-content">  });</div>
-                        </div><div class="code-line " id="line-61">
-                          <div class="line-number">61</div>
-                          <div class="line-content"></div>
-                        </div><div class="test-name-indicator">should render the button component</div><div class="code-line highlighted-test" id="line-62">
-                          <div class="line-number">62</div>
-                          <div class="line-content">  it(&#039;should render the button component&#039;, () =&gt; {</div>
-                        </div><div class="code-line highlighted-test" id="line-63">
-                          <div class="line-number">63</div>
-                          <div class="line-content">    (getThis as jest.Mock).mockReturnValue(&#039;Any Title&#039;);</div>
-                        </div><div class="code-line highlighted-test" id="line-64">
-                          <div class="line-number">64</div>
-                          <div class="line-content">    </div>
-                        </div><div class="code-line highlighted-test" id="line-65">
-                          <div class="line-number">65</div>
-                          <div class="line-content">    render(&lt;App /&gt;);</div>
-                        </div><div class="code-line highlighted-test" id="line-66">
-                          <div class="line-number">66</div>
-                          <div class="line-content">    </div>
-                        </div><div class="code-line highlighted-test" id="line-67">
-                          <div class="line-number">67</div>
-                          <div class="line-content">    // Check the button is rendered (mocked version)</div>
-                        </div><div class="code-line highlighted-test" id="line-68">
-                          <div class="line-number">68</div>
-                          <div class="line-content">    expect(screen.getByTestId(&#039;mocked-button&#039;)).toBeInTheDocument();</div>
-                        </div><div class="code-line highlighted-test" id="line-69">
-                          <div class="line-number">69</div>
-                          <div class="line-content">  });</div>
-                        </div><div class="code-line " id="line-70">
-                          <div class="line-number">70</div>
-                          <div class="line-content"></div>
-                        </div><div class="test-name-indicator">should have the correct test ID</div><div class="code-line highlighted-test" id="line-71">
-                          <div class="line-number">71</div>
-                          <div class="line-content">  it(&#039;should have the correct test ID&#039;, () =&gt; {</div>
-                        </div><div class="code-line highlighted-test" id="line-72">
-                          <div class="line-number">72</div>
-                          <div class="line-content">    (getThis as jest.Mock).mockReturnValue(&#039;Any Title&#039;);</div>
-                        </div><div class="code-line highlighted-test" id="line-73">
-                          <div class="line-number">73</div>
-                          <div class="line-content">    </div>
-                        </div><div class="code-line highlighted-test" id="line-74">
-                          <div class="line-number">74</div>
-                          <div class="line-content">    render(&lt;App /&gt;);</div>
-                        </div><div class="code-line highlighted-test" id="line-75">
-                          <div class="line-number">75</div>
-                          <div class="line-content">    </div>
-                        </div><div class="code-line highlighted-test" id="line-76">
-                          <div class="line-number">76</div>
-                          <div class="line-content">    // Check the root element has the correct test ID</div>
-                        </div><div class="code-line highlighted-test" id="line-77">
-                          <div class="line-number">77</div>
-                          <div class="line-content">    expect(screen.getByTestId(&#039;root_app&#039;)).toBeInTheDocument();</div>
-                        </div><div class="code-line highlighted-test" id="line-78">
-                          <div class="line-number">78</div>
-                          <div class="line-content">  });</div>
-                        </div><div class="code-line " id="line-79">
-                          <div class="line-number">79</div>
-                          <div class="line-content">}); </div>
-                        </div>
-                  </div>
-                </div>
-              
-                <div class="test-file">
-                  <div class="test-file-header">
-                    <span>__mocks__/src/__tests__/app.test.tsx</span>
-                    <button class="copy-button" onclick="copyToClipboard('/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/__tests__/app.test.tsx')">Copy</button>
-                  </div>
-                  <div class="test-nav">
-                        <span class="test-nav-item" onclick="scrollToTest('testfile-0--Users-tylerhenry-Documents-GitHub-coverage-venn---mocks---src---tests---app-test-tsx', 49)">should render with the correct title</span><span class="test-nav-item" onclick="scrollToTest('testfile-0--Users-tylerhenry-Documents-GitHub-coverage-venn---mocks---src---tests---app-test-tsx', 62)">should render the button component</span><span class="test-nav-item" onclick="scrollToTest('testfile-0--Users-tylerhenry-Documents-GitHub-coverage-venn---mocks---src---tests---app-test-tsx', 71)">should have the correct test ID</span>
-                      </div>
-                  <div class="test-file-content" id="testfile-0--Users-tylerhenry-Documents-GitHub-coverage-venn---mocks---src---tests---app-test-tsx">
-                    <!-- Create highlighted test content -->
-                    <div class="code-line " id="line-1">
-                          <div class="line-number">1</div>
-                          <div class="line-content">import React from &#039;react&#039;;</div>
-                        </div><div class="code-line " id="line-2">
-                          <div class="line-number">2</div>
-                          <div class="line-content">import { render, screen } from &#039;@testing-library/react&#039;;</div>
-                        </div><div class="code-line " id="line-3">
-                          <div class="line-number">3</div>
-                          <div class="line-content">import &#039;@testing-library/jest-dom&#039;; // Import directly here instead of from setup</div>
-                        </div><div class="code-line " id="line-4">
-                          <div class="line-number">4</div>
-                          <div class="line-content">import App from &#039;../App&#039;;</div>
-                        </div><div class="code-line " id="line-5">
-                          <div class="line-number">5</div>
-                          <div class="line-content">import { getThis } from &#039;../utils/utils&#039;;</div>
-                        </div><div class="code-line " id="line-6">
-                          <div class="line-number">6</div>
-                          <div class="line-content"></div>
-                        </div><div class="code-line " id="line-7">
-                          <div class="line-number">7</div>
-                          <div class="line-content">// Add TypeScript declaration for the jest-dom matchers</div>
-                        </div><div class="code-line " id="line-8">
-                          <div class="line-number">8</div>
-                          <div class="line-content">declare global {</div>
-                        </div><div class="code-line " id="line-9">
-                          <div class="line-number">9</div>
-                          <div class="line-content">  namespace jest {</div>
-                        </div><div class="code-line " id="line-10">
-                          <div class="line-number">10</div>
-                          <div class="line-content">    interface Matchers&lt;R&gt; {</div>
-                        </div><div class="code-line " id="line-11">
-                          <div class="line-number">11</div>
-                          <div class="line-content">      toBeInTheDocument(): R;</div>
-                        </div><div class="code-line " id="line-12">
-                          <div class="line-number">12</div>
-                          <div class="line-content">    }</div>
-                        </div><div class="code-line " id="line-13">
-                          <div class="line-number">13</div>
-                          <div class="line-content">  }</div>
-                        </div><div class="code-line " id="line-14">
-                          <div class="line-number">14</div>
-                          <div class="line-content">}</div>
-                        </div><div class="code-line " id="line-15">
-                          <div class="line-number">15</div>
-                          <div class="line-content"></div>
-                        </div><div class="code-line " id="line-16">
-                          <div class="line-number">16</div>
-                          <div class="line-content">// Mock dependencies</div>
-                        </div><div class="code-line " id="line-17">
-                          <div class="line-number">17</div>
-                          <div class="line-content">jest.mock(&#039;../components/button&#039;, () =&gt; ({</div>
-                        </div><div class="code-line " id="line-18">
-                          <div class="line-number">18</div>
-                          <div class="line-content">  Button: () =&gt; &lt;div data-testid=&quot;mocked-button&quot;&gt;Mocked Button&lt;/div&gt;</div>
-                        </div><div class="code-line " id="line-19">
-                          <div class="line-number">19</div>
-                          <div class="line-content">}));</div>
-                        </div><div class="code-line " id="line-20">
-                          <div class="line-number">20</div>
-                          <div class="line-content"></div>
-                        </div><div class="code-line " id="line-21">
-                          <div class="line-number">21</div>
-                          <div class="line-content">jest.mock(&#039;../utils/utils&#039;, () =&gt; ({</div>
-                        </div><div class="code-line " id="line-22">
-                          <div class="line-number">22</div>
-                          <div class="line-content">  getThis: jest.fn()</div>
-                        </div><div class="code-line " id="line-23">
-                          <div class="line-number">23</div>
-                          <div class="line-content">}));</div>
-                        </div><div class="code-line " id="line-24">
-                          <div class="line-number">24</div>
-                          <div class="line-content"></div>
-                        </div><div class="code-line " id="line-25">
-                          <div class="line-number">25</div>
-                          <div class="line-content">// Mock additional components</div>
-                        </div><div class="code-line " id="line-26">
-                          <div class="line-number">26</div>
-                          <div class="line-content">jest.mock(&#039;../components/Form&#039;, () =&gt; ({</div>
-                        </div><div class="code-line " id="line-27">
-                          <div class="line-number">27</div>
-                          <div class="line-content">  Form: () =&gt; &lt;div data-testid=&quot;mocked-form&quot;&gt;Mocked Form&lt;/div&gt;</div>
-                        </div><div class="code-line " id="line-28">
-                          <div class="line-number">28</div>
-                          <div class="line-content">}));</div>
-                        </div><div class="code-line " id="line-29">
-                          <div class="line-number">29</div>
-                          <div class="line-content"></div>
-                        </div><div class="code-line " id="line-30">
-                          <div class="line-number">30</div>
-                          <div class="line-content">jest.mock(&#039;../components/Dashboard&#039;, () =&gt; ({</div>
-                        </div><div class="code-line " id="line-31">
-                          <div class="line-number">31</div>
-                          <div class="line-content">  Dashboard: () =&gt; &lt;div data-testid=&quot;mocked-dashboard&quot;&gt;Mocked Dashboard&lt;/div&gt;</div>
-                        </div><div class="code-line " id="line-32">
-                          <div class="line-number">32</div>
-                          <div class="line-content">}));</div>
-                        </div><div class="code-line " id="line-33">
-                          <div class="line-number">33</div>
-                          <div class="line-content"></div>
-                        </div><div class="code-line " id="line-34">
-                          <div class="line-number">34</div>
-                          <div class="line-content">// Mock string utils</div>
-                        </div><div class="code-line " id="line-35">
-                          <div class="line-number">35</div>
-                          <div class="line-content">jest.mock(&#039;../utils/stringUtils&#039;, () =&gt; ({</div>
-                        </div><div class="code-line " id="line-36">
-                          <div class="line-number">36</div>
-                          <div class="line-content">  formatString: jest.fn(text =&gt; text)</div>
-                        </div><div class="code-line " id="line-37">
-                          <div class="line-number">37</div>
-                          <div class="line-content">}));</div>
-                        </div><div class="code-line " id="line-38">
-                          <div class="line-number">38</div>
-                          <div class="line-content"></div>
-                        </div><div class="code-line " id="line-39">
-                          <div class="line-number">39</div>
-                          <div class="line-content">// Mock data utils</div>
-                        </div><div class="code-line " id="line-40">
-                          <div class="line-number">40</div>
-                          <div class="line-content">jest.mock(&#039;../utils/dataUtils&#039;, () =&gt; ({</div>
-                        </div><div class="code-line " id="line-41">
-                          <div class="line-number">41</div>
-                          <div class="line-content">  processData: jest.fn(() =&gt; ({ success: true, data: [] }))</div>
-                        </div><div class="code-line " id="line-42">
-                          <div class="line-number">42</div>
-                          <div class="line-content">}));</div>
-                        </div><div class="code-line " id="line-43">
-                          <div class="line-number">43</div>
-                          <div class="line-content"></div>
-                        </div><div class="code-line " id="line-44">
-                          <div class="line-number">44</div>
-                          <div class="line-content">describe(&#039;root_app&#039;, () =&gt; {</div>
-                        </div><div class="code-line " id="line-45">
-                          <div class="line-number">45</div>
-                          <div class="line-content">  beforeEach(() =&gt; {</div>
-                        </div><div class="code-line " id="line-46">
-                          <div class="line-number">46</div>
-                          <div class="line-content">    jest.clearAllMocks();</div>
-                        </div><div class="code-line " id="line-47">
-                          <div class="line-number">47</div>
-                          <div class="line-content">  });</div>
-                        </div><div class="code-line " id="line-48">
-                          <div class="line-number">48</div>
-                          <div class="line-content"></div>
-                        </div><div class="test-name-indicator">should render with the correct title</div><div class="code-line highlighted-test" id="line-49">
-                          <div class="line-number">49</div>
-                          <div class="line-content">  it(&#039;should render with the correct title&#039;, () =&gt; {</div>
-                        </div><div class="code-line highlighted-test" id="line-50">
-                          <div class="line-number">50</div>
-                          <div class="line-content">    // Setup mock to return a specific value</div>
-                        </div><div class="code-line highlighted-test" id="line-51">
-                          <div class="line-number">51</div>
-                          <div class="line-content">    (getThis as jest.Mock).mockReturnValue(&#039;Mocked Title&#039;);</div>
-                        </div><div class="code-line highlighted-test" id="line-52">
-                          <div class="line-number">52</div>
-                          <div class="line-content">    </div>
-                        </div><div class="code-line highlighted-test" id="line-53">
-                          <div class="line-number">53</div>
-                          <div class="line-content">    render(&lt;App /&gt;);</div>
-                        </div><div class="code-line highlighted-test" id="line-54">
-                          <div class="line-number">54</div>
-                          <div class="line-content">    </div>
-                        </div><div class="code-line highlighted-test" id="line-55">
-                          <div class="line-number">55</div>
-                          <div class="line-content">    // Check the title is rendered</div>
-                        </div><div class="code-line highlighted-test" id="line-56">
-                          <div class="line-number">56</div>
-                          <div class="line-content">    expect(screen.getByText(&#039;Mocked Title&#039;)).toBeInTheDocument();</div>
-                        </div><div class="code-line highlighted-test" id="line-57">
-                          <div class="line-number">57</div>
-                          <div class="line-content">    </div>
-                        </div><div class="code-line highlighted-test" id="line-58">
-                          <div class="line-number">58</div>
-                          <div class="line-content">    // Verify getThis was called with the right argument</div>
-                        </div><div class="code-line highlighted-test" id="line-59">
-                          <div class="line-number">59</div>
-                          <div class="line-content">    expect(getThis).toHaveBeenCalledWith(&#039;Interactive Dashboard&#039;);</div>
-                        </div><div class="code-line highlighted-test" id="line-60">
-                          <div class="line-number">60</div>
-                          <div class="line-content">  });</div>
-                        </div><div class="code-line " id="line-61">
-                          <div class="line-number">61</div>
-                          <div class="line-content"></div>
-                        </div><div class="test-name-indicator">should render the button component</div><div class="code-line highlighted-test" id="line-62">
-                          <div class="line-number">62</div>
-                          <div class="line-content">  it(&#039;should render the button component&#039;, () =&gt; {</div>
-                        </div><div class="code-line highlighted-test" id="line-63">
-                          <div class="line-number">63</div>
-                          <div class="line-content">    (getThis as jest.Mock).mockReturnValue(&#039;Any Title&#039;);</div>
-                        </div><div class="code-line highlighted-test" id="line-64">
-                          <div class="line-number">64</div>
-                          <div class="line-content">    </div>
-                        </div><div class="code-line highlighted-test" id="line-65">
-                          <div class="line-number">65</div>
-                          <div class="line-content">    render(&lt;App /&gt;);</div>
-                        </div><div class="code-line highlighted-test" id="line-66">
-                          <div class="line-number">66</div>
-                          <div class="line-content">    </div>
-                        </div><div class="code-line highlighted-test" id="line-67">
-                          <div class="line-number">67</div>
-                          <div class="line-content">    // Check the button is rendered (mocked version)</div>
-                        </div><div class="code-line highlighted-test" id="line-68">
-                          <div class="line-number">68</div>
-                          <div class="line-content">    expect(screen.getByTestId(&#039;mocked-button&#039;)).toBeInTheDocument();</div>
-                        </div><div class="code-line highlighted-test" id="line-69">
-                          <div class="line-number">69</div>
-                          <div class="line-content">  });</div>
-                        </div><div class="code-line " id="line-70">
-                          <div class="line-number">70</div>
-                          <div class="line-content"></div>
-                        </div><div class="test-name-indicator">should have the correct test ID</div><div class="code-line highlighted-test" id="line-71">
-                          <div class="line-number">71</div>
-                          <div class="line-content">  it(&#039;should have the correct test ID&#039;, () =&gt; {</div>
-                        </div><div class="code-line highlighted-test" id="line-72">
-                          <div class="line-number">72</div>
-                          <div class="line-content">    (getThis as jest.Mock).mockReturnValue(&#039;Any Title&#039;);</div>
-                        </div><div class="code-line highlighted-test" id="line-73">
-                          <div class="line-number">73</div>
-                          <div class="line-content">    </div>
-                        </div><div class="code-line highlighted-test" id="line-74">
-                          <div class="line-number">74</div>
-                          <div class="line-content">    render(&lt;App /&gt;);</div>
-                        </div><div class="code-line highlighted-test" id="line-75">
-                          <div class="line-number">75</div>
-                          <div class="line-content">    </div>
-                        </div><div class="code-line highlighted-test" id="line-76">
-                          <div class="line-number">76</div>
-                          <div class="line-content">    // Check the root element has the correct test ID</div>
-                        </div><div class="code-line highlighted-test" id="line-77">
-                          <div class="line-number">77</div>
-                          <div class="line-content">    expect(screen.getByTestId(&#039;root_app&#039;)).toBeInTheDocument();</div>
-                        </div><div class="code-line highlighted-test" id="line-78">
-                          <div class="line-number">78</div>
-                          <div class="line-content">  });</div>
-                        </div><div class="code-line " id="line-79">
-                          <div class="line-number">79</div>
-                          <div class="line-content">}); </div>
-                        </div>
-                  </div>
-                </div>
-              
-      </div>
-    </div>
-    
-    <div id="testids-0" class="detail-section testids-section">
-      <h3>Recommended Test IDs</h3>
-      <p>Use these test IDs to improve test coverage correlation:</p>
-      <ul class="test-id-suggestions">
-        
-          <li class="test-id-item">
-            <code>root_app</code>
-            <button class="copy-button" onclick="copyToClipboard('root_app')">Copy</button>
-          </li>
-        
-          <li class="test-id-item">
-            <code>app_container</code>
-            <button class="copy-button" onclick="copyToClipboard('app_container')">Copy</button>
-          </li>
-        
-          <li class="test-id-item">
-            <code>app_title</code>
-            <button class="copy-button" onclick="copyToClipboard('app_title')">Copy</button>
-          </li>
-        
-          <li class="test-id-item">
-            <code>app_content</code>
-            <button class="copy-button" onclick="copyToClipboard('app_content')">Copy</button>
-          </li>
-        
-          <li class="test-id-item">
-            <code>app_button</code>
-            <button class="copy-button" onclick="copyToClipboard('app_button')">Copy</button>
-          </li>
-        
-      </ul>
-    </div>
-    
-    <div id="analysis-0" class="detail-section analysis-section">
-      <h3>Gap Analysis</h3>
-      <p>No gap analysis available.</p>
-    </div>
-  </div>
   
-  <div id="component-1" class="component-details">
-    <button onclick="hideComponentDetails(1)">← Back to List</button>
-    <h2>Counter</h2>
-    
-    <div class="source-path">
-      File: <a href="file:///Users/tylerhenry/Documents/GitHub/testApp/src/components/Counter.tsx" target="_blank" class="file-path">src/components/Counter.tsx</a>
+    <div class="test-file">
+      <h4>App.test.tsx</h4>
+      <pre><code class="language-typescript">/**
+ * @format
+ */
+
+import &#039;react-native&#039;;
+import React from &#039;react&#039;;
+import App from &#039;../App&#039;;
+
+// Note: import explicitly to use the types shiped with jest.
+import {it} from &#039;@jest/globals&#039;;
+
+// Note: test renderer must be required after react-native.
+import renderer from &#039;react-test-renderer&#039;;
+
+it(&#039;renders correctly&#039;, () =&gt; {
+  renderer.create(&lt;App /&gt;);
+});
+</code></pre>
     </div>
-    
-    <p>Coverage: <span class="high">100.0%</span></p>
-    <p>Tests: 2</p>
-    
-    <div class="tabs">
-      <div class="tab active" onclick="switchTab(1, 'source')">Source Code</div>
-      <div class="tab" onclick="switchTab(1, 'tests')">Related Tests</div>
-      <div class="tab" onclick="switchTab(1, 'testfiles')">Test Files</div>
-      <div class="tab" onclick="switchTab(1, 'testids')">Test ID Recommendations</div>
-      <div class="tab" onclick="switchTab(1, 'analysis')">Gap Analysis</div>
+  
+        </div>
+        
+        <div class="tab-content" id="correlated-tab-App.tsx">
+          
+          
+    <div class="correlatedE2ETests">
+      <h4>Correlated E2E Tests</h4>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Scenario</th>
+            <th>Step</th>
+            <th>Confidence</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>User increments the counter</td>
+              <td>Given I am on the counter screen</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>User increments the counter</td>
+              <td>When I tap the increment button</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>User increments the counter</td>
+              <td>Then the counter should display &quot;1&quot;</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>User decrements the counter</td>
+              <td>Given I am on the counter screen</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>User decrements the counter</td>
+              <td>And the counter displays &quot;1&quot;</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>User decrements the counter</td>
+              <td>When I tap the decrement button</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>User decrements the counter</td>
+              <td>Then the counter should display &quot;0&quot;</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>Counter should not go below zero</td>
+              <td>Given I am on the counter screen</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>Counter should not go below zero</td>
+              <td>And the counter displays &quot;0&quot;</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>Counter should not go below zero</td>
+              <td>When I tap the decrement button</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>Counter should not go below zero</td>
+              <td>Then the counter should display &quot;0&quot;</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Minimal</td>
+              <td>minimalistic</td>
+              <td>Given the minimalism</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Hello</td>
+              <td>World</td>
+              <td>Given a step</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Inconsistent cell counts</td>
+              <td>minimalistic</td>
+              <td>Given a data table with inconsistent cell count</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Inconsistent cell counts</td>
+              <td>minimalistic</td>
+              <td>Given the &lt;what&gt;</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Minimal</td>
+              <td>minimalistic</td>
+              <td>Given the minimalism</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Multiple parser errors</td>
+              <td>minimalistic</td>
+              <td>Given the minimalism</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Single parser error</td>
+              <td>minimalistic</td>
+              <td>Given the minimalism</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Background</td>
+              <td>minimalistic</td>
+              <td>Given the minimalism</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>DataTables</td>
+              <td>minimalistic</td>
+              <td>Given a simple data table</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>DataTables</td>
+              <td>minimalistic</td>
+              <td>And a data table with a single cell</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>DataTables</td>
+              <td>minimalistic</td>
+              <td>And a data table with different fromatting</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>DataTables</td>
+              <td>minimalistic</td>
+              <td>And a data table with an empty cell</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>DataTables</td>
+              <td>minimalistic</td>
+              <td>And a data table with comments and newlines inside</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Descriptions everywhere</td>
+              <td>two lines</td>
+              <td>Given the minimalism</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Descriptions everywhere</td>
+              <td>without indentation</td>
+              <td>Given the minimalism</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Descriptions everywhere</td>
+              <td>empty lines in the middle</td>
+              <td>Given the minimalism</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Descriptions everywhere</td>
+              <td>empty lines around</td>
+              <td>Given the minimalism</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Descriptions everywhere</td>
+              <td>comment after description</td>
+              <td>Given the minimalism</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Descriptions everywhere</td>
+              <td>comment right after description</td>
+              <td>Given the minimalism</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Descriptions everywhere</td>
+              <td>description with escaped docstring separator</td>
+              <td>Given the minimalism</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Descriptions everywhere</td>
+              <td>description with escaped docstring separator</td>
+              <td>Given the minimalism</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>DocString variations</td>
+              <td>minimalistic</td>
+              <td>Given a simple DocString</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>DocString variations</td>
+              <td>minimalistic</td>
+              <td>Given a DocString with content type</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>DocString variations</td>
+              <td>minimalistic</td>
+              <td>And a DocString with wrong indentation</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>DocString variations</td>
+              <td>minimalistic</td>
+              <td>And a DocString with alternative separator</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>DocString variations</td>
+              <td>minimalistic</td>
+              <td>And a DocString with normal separator inside</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>DocString variations</td>
+              <td>minimalistic</td>
+              <td>And a DocString with alternative separator inside</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>DocString variations</td>
+              <td>minimalistic</td>
+              <td>And a DocString with escaped separator inside</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Escaped pipes</td>
+              <td>They are the future</td>
+              <td>Given they have arrived</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Escaped pipes</td>
+              <td>They are the future</td>
+              <td>Given they have arrived</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Explicit language specification</td>
+              <td>minimalistic</td>
+              <td>Given the minimalism</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Minimal</td>
+              <td>minimalistic</td>
+              <td>Given the minimalism</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Minimal Scenario Outline</td>
+              <td>minimalistic</td>
+              <td>Given the minimalism</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Minimal Scenario Outline</td>
+              <td>minimalistic</td>
+              <td>Given the &lt;what&gt;</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>User increments the counter</td>
+              <td>Given I am on the counter screen</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>User increments the counter</td>
+              <td>When I tap the increment button</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>User increments the counter</td>
+              <td>Then the counter should display &quot;1&quot;</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>User decrements the counter</td>
+              <td>Given I am on the counter screen</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>User decrements the counter</td>
+              <td>And the counter displays &quot;1&quot;</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>User decrements the counter</td>
+              <td>When I tap the decrement button</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>User decrements the counter</td>
+              <td>Then the counter should display &quot;0&quot;</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>Counter should not go below zero</td>
+              <td>Given I am on the counter screen</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>Counter should not go below zero</td>
+              <td>And the counter displays &quot;0&quot;</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>Counter should not go below zero</td>
+              <td>When I tap the decrement button</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>Counter should not go below zero</td>
+              <td>Then the counter should display &quot;0&quot;</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>User increments the counter</td>
+              <td>Given I am on the counter screen</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>User increments the counter</td>
+              <td>When I tap the increment button</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>User increments the counter</td>
+              <td>Then the counter should display &quot;1&quot;</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>User decrements the counter</td>
+              <td>Given I am on the counter screen</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>User decrements the counter</td>
+              <td>And the counter displays &quot;1&quot;</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>User decrements the counter</td>
+              <td>When I tap the decrement button</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>User decrements the counter</td>
+              <td>Then the counter should display &quot;0&quot;</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>Counter should not go below zero</td>
+              <td>Given I am on the counter screen</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>Counter should not go below zero</td>
+              <td>And the counter displays &quot;0&quot;</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>Counter should not go below zero</td>
+              <td>When I tap the decrement button</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>Counter should not go below zero</td>
+              <td>Then the counter should display &quot;0&quot;</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>User increments the counter</td>
+              <td>Given I am on the counter screen</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>User increments the counter</td>
+              <td>When I tap the increment button</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>User increments the counter</td>
+              <td>Then the counter should display &quot;1&quot;</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>User decrements the counter</td>
+              <td>Given I am on the counter screen</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>User decrements the counter</td>
+              <td>And the counter displays &quot;1&quot;</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>User decrements the counter</td>
+              <td>When I tap the decrement button</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>User decrements the counter</td>
+              <td>Then the counter should display &quot;0&quot;</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>Counter should not go below zero</td>
+              <td>Given I am on the counter screen</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>Counter should not go below zero</td>
+              <td>And the counter displays &quot;0&quot;</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>Counter should not go below zero</td>
+              <td>When I tap the decrement button</td>
+              <td>60.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>Counter should not go below zero</td>
+              <td>Then the counter should display &quot;0&quot;</td>
+              <td>60.0%</td>
+            </tr>
+          
+        </tbody>
+      </table>
     </div>
-    
-    <div id="source-1" class="detail-section source-section active">
-      <div class="section">
-            <h3>Source Code</h3>
-            <div class="code-container">
-              <div class="code-line covered">
-      <div class="line-number">1</div>
-      <div class="line-content">import React, { useState } from &#039;react&#039;;</div>
-    </div><div class="code-line covered">
-      <div class="line-number">2</div>
-      <div class="line-content">import { View, Text, Button, StyleSheet } from &#039;react-native&#039;;</div>
-    </div><div class="code-line covered">
-      <div class="line-number">3</div>
-      <div class="line-content"> </div>
-    </div><div class="code-line covered">
-      <div class="line-number">4</div>
-      <div class="line-content">interface CounterProps {</div>
-    </div><div class="code-line covered">
-      <div class="line-number">5</div>
-      <div class="line-content">  initialValue?: number;</div>
-    </div><div class="code-line covered">
-      <div class="line-number">6</div>
-      <div class="line-content">}</div>
-    </div><div class="code-line covered">
-      <div class="line-number">7</div>
-      <div class="line-content"> </div>
-    </div><div class="code-line covered">
-      <div class="line-number">8</div>
-      <div class="line-content">const Counter: React.FC&lt;CounterProps&gt; = ({ initialValue = 0 }) =&gt; {</div>
-    </div><div class="code-line covered">
-      <div class="line-number">9</div>
-      <div class="line-content">  const [count, setCount] = useState(initialValue);</div>
-    </div><div class="code-line covered">
-      <div class="line-number">10</div>
-      <div class="line-content"> </div>
-    </div><div class="code-line covered">
-      <div class="line-number">11</div>
-      <div class="line-content">  const increment = () =&gt; {</div>
-    </div><div class="code-line covered">
-      <div class="line-number">12</div>
-      <div class="line-content">    setCount(prevCount =&gt; prevCount + 1);</div>
-    </div><div class="code-line covered">
-      <div class="line-number">13</div>
-      <div class="line-content">  };</div>
-    </div><div class="code-line covered">
-      <div class="line-number">14</div>
-      <div class="line-content"> </div>
-    </div><div class="code-line covered">
-      <div class="line-number">15</div>
-      <div class="line-content">  const decrement = () =&gt; {</div>
-    </div><div class="code-line covered">
-      <div class="line-number">16</div>
-      <div class="line-content">    setCount(prevCount =&gt; prevCount &gt; 0 ? prevCount - 1 : 0);</div>
-    </div><div class="code-line covered">
-      <div class="line-number">17</div>
-      <div class="line-content">  };</div>
-    </div><div class="code-line covered">
-      <div class="line-number">18</div>
-      <div class="line-content"> </div>
-    </div><div class="code-line covered">
-      <div class="line-number">19</div>
-      <div class="line-content">  return (</div>
-    </div><div class="code-line covered">
-      <div class="line-number">20</div>
-      <div class="line-content">    &lt;View style={styles.container}&gt;</div>
-    </div><div class="code-line covered">
-      <div class="line-number">21</div>
-      <div class="line-content">      &lt;Text style={styles.title}&gt;Counter Component&lt;/Text&gt;</div>
-    </div><div class="code-line covered">
-      <div class="line-number">22</div>
-      <div class="line-content">      &lt;Text style={styles.counter} testID=&quot;counter-value&quot; accessibilityLabel=&quot;counter-value&quot;&gt;{count}&lt;/Text&gt;</div>
-    </div><div class="code-line covered">
-      <div class="line-number">23</div>
-      <div class="line-content">      &lt;View style={styles.buttonContainer}&gt;</div>
-    </div><div class="code-line covered">
-      <div class="line-number">24</div>
-      <div class="line-content">        &lt;Button </div>
-    </div><div class="code-line covered">
-      <div class="line-number">25</div>
-      <div class="line-content">          title=&quot;Decrement&quot; </div>
-    </div><div class="code-line covered">
-      <div class="line-number">26</div>
-      <div class="line-content">          onPress={decrement} </div>
-    </div><div class="code-line covered">
-      <div class="line-number">27</div>
-      <div class="line-content">          testID=&quot;decrement-button&quot;</div>
-    </div><div class="code-line covered">
-      <div class="line-number">28</div>
-      <div class="line-content">          accessibilityLabel=&quot;decrement-button&quot;</div>
-    </div><div class="code-line covered">
-      <div class="line-number">29</div>
-      <div class="line-content">        /&gt;</div>
-    </div><div class="code-line covered">
-      <div class="line-number">30</div>
-      <div class="line-content">        &lt;Button </div>
-    </div><div class="code-line covered">
-      <div class="line-number">31</div>
-      <div class="line-content">          title=&quot;Increment&quot; </div>
-    </div><div class="code-line covered">
-      <div class="line-number">32</div>
-      <div class="line-content">          onPress={increment} </div>
-    </div><div class="code-line covered">
-      <div class="line-number">33</div>
-      <div class="line-content">          testID=&quot;increment-button&quot;</div>
-    </div><div class="code-line covered">
-      <div class="line-number">34</div>
-      <div class="line-content">          accessibilityLabel=&quot;increment-button&quot;</div>
-    </div><div class="code-line covered">
-      <div class="line-number">35</div>
-      <div class="line-content">        /&gt;</div>
-    </div><div class="code-line covered">
-      <div class="line-number">36</div>
-      <div class="line-content">      &lt;/View&gt;</div>
-    </div><div class="code-line covered">
-      <div class="line-number">37</div>
-      <div class="line-content">    &lt;/View&gt;</div>
-    </div><div class="code-line covered">
-      <div class="line-number">38</div>
-      <div class="line-content">  );</div>
-    </div><div class="code-line covered">
-      <div class="line-number">39</div>
-      <div class="line-content">};</div>
-    </div><div class="code-line covered">
-      <div class="line-number">40</div>
-      <div class="line-content"> </div>
-    </div><div class="code-line covered">
-      <div class="line-number">41</div>
-      <div class="line-content">const styles = StyleSheet.create({</div>
-    </div><div class="code-line covered">
-      <div class="line-number">42</div>
-      <div class="line-content">  container: {</div>
-    </div><div class="code-line covered">
-      <div class="line-number">43</div>
-      <div class="line-content">    padding: 20,</div>
-    </div><div class="code-line covered">
-      <div class="line-number">44</div>
-      <div class="line-content">    alignItems: &#039;center&#039;,</div>
-    </div><div class="code-line covered">
-      <div class="line-number">45</div>
-      <div class="line-content">    justifyContent: &#039;center&#039;,</div>
-    </div><div class="code-line uncovered">
-      <div class="line-number">46</div>
-      <div class="line-content">  },</div>
-    </div><div class="code-line covered">
-      <div class="line-number">47</div>
-      <div class="line-content">  title: {</div>
-    </div><div class="code-line uncovered">
-      <div class="line-number">48</div>
-      <div class="line-content">    fontSize: 18,</div>
-    </div><div class="code-line covered">
-      <div class="line-number">49</div>
-      <div class="line-content">    fontWeight: &#039;bold&#039;,</div>
-    </div><div class="code-line covered">
-      <div class="line-number">50</div>
-      <div class="line-content">    marginBottom: 10,</div>
-    </div><div class="code-line covered">
-      <div class="line-number">51</div>
-      <div class="line-content">  },</div>
-    </div><div class="code-line uncovered">
-      <div class="line-number">52</div>
-      <div class="line-content">  counter: {</div>
-    </div><div class="code-line uncovered">
-      <div class="line-number">53</div>
-      <div class="line-content">    fontSize: 48,</div>
-    </div><div class="code-line covered">
-      <div class="line-number">54</div>
-      <div class="line-content">    fontWeight: &#039;bold&#039;,</div>
-    </div><div class="code-line covered">
-      <div class="line-number">55</div>
-      <div class="line-content">    marginVertical: 20,</div>
-    </div><div class="code-line covered">
-      <div class="line-number">56</div>
-      <div class="line-content">  },</div>
-    </div><div class="code-line covered">
-      <div class="line-number">57</div>
-      <div class="line-content">  buttonContainer: {</div>
-    </div><div class="code-line covered">
-      <div class="line-number">58</div>
-      <div class="line-content">    flexDirection: &#039;row&#039;,</div>
-    </div><div class="code-line uncovered">
-      <div class="line-number">59</div>
-      <div class="line-content">    justifyContent: &#039;space-between&#039;,</div>
-    </div><div class="code-line covered">
-      <div class="line-number">60</div>
-      <div class="line-content">    width: &#039;100%&#039;,</div>
-    </div><div class="code-line covered">
-      <div class="line-number">61</div>
-      <div class="line-content">  },</div>
-    </div><div class="code-line covered">
-      <div class="line-number">62</div>
-      <div class="line-content">});</div>
-    </div><div class="code-line covered">
-      <div class="line-number">63</div>
-      <div class="line-content"> </div>
-    </div><div class="code-line covered">
-      <div class="line-number">64</div>
-      <div class="line-content">export default Counter; </div>
-    </div>
-            </div>
-          </div>
-    </div>
-    
-    <div id="tests-1" class="detail-section tests-section">
-      <h3>Related Tests (0)</h3>
-      <p>No related tests found.</p>
-    </div>
-    
-    <div id="testfiles-1" class="detail-section testfiles-section">
-      <h3>Test Files (2)</h3>
-      <div class="test-files-section">
-        
-                <div class="test-file">
-                  <div class="test-file-header">
-                    <span>src/__tests__/Counter.test.tsx</span>
-                    <button class="copy-button" onclick="copyToClipboard('/Users/tylerhenry/Documents/GitHub/testApp/src/__tests__/Counter.test.tsx')">Copy</button>
-                  </div>
-                  <div class="test-nav">
-                        <span class="test-nav-item" onclick="scrollToTest('testfile-1--Users-tylerhenry-Documents-GitHub-testApp-src---tests---Counter-test-tsx', 6)">renders correctly with default value</span><span class="test-nav-item" onclick="scrollToTest('testfile-1--Users-tylerhenry-Documents-GitHub-testApp-src---tests---Counter-test-tsx', 13)">renders with initial value when provided</span><span class="test-nav-item" onclick="scrollToTest('testfile-1--Users-tylerhenry-Documents-GitHub-testApp-src---tests---Counter-test-tsx', 19)">increments the counter when increment button is pressed</span><span class="test-nav-item" onclick="scrollToTest('testfile-1--Users-tylerhenry-Documents-GitHub-testApp-src---tests---Counter-test-tsx', 28)">decrements the counter when decrement button is pressed</span><span class="test-nav-item" onclick="scrollToTest('testfile-1--Users-tylerhenry-Documents-GitHub-testApp-src---tests---Counter-test-tsx', 37)">does not decrement below zero</span>
-                      </div>
-                  <div class="test-file-content" id="testfile-1--Users-tylerhenry-Documents-GitHub-testApp-src---tests---Counter-test-tsx">
-                    <!-- Create highlighted test content -->
-                    <div class="code-line " id="line-1">
-                          <div class="line-number">1</div>
-                          <div class="line-content">import React from &#039;react&#039;;</div>
-                        </div><div class="code-line " id="line-2">
-                          <div class="line-number">2</div>
-                          <div class="line-content">import { render, fireEvent } from &#039;@testing-library/react-native&#039;;</div>
-                        </div><div class="code-line " id="line-3">
-                          <div class="line-number">3</div>
-                          <div class="line-content">import Counter from &#039;../components/Counter&#039;;</div>
-                        </div><div class="code-line " id="line-4">
-                          <div class="line-number">4</div>
-                          <div class="line-content"></div>
-                        </div><div class="code-line " id="line-5">
-                          <div class="line-number">5</div>
-                          <div class="line-content">describe(&#039;Counter Component&#039;, () =&gt; {</div>
-                        </div><div class="test-name-indicator">renders correctly with default value</div><div class="code-line highlighted-test" id="line-6">
-                          <div class="line-number">6</div>
-                          <div class="line-content">  it(&#039;renders correctly with default value&#039;, () =&gt; {</div>
-                        </div><div class="code-line highlighted-test" id="line-7">
-                          <div class="line-number">7</div>
-                          <div class="line-content">    const { getByTestId, getByText } = render(&lt;Counter /&gt;);</div>
-                        </div><div class="code-line highlighted-test" id="line-8">
-                          <div class="line-number">8</div>
-                          <div class="line-content">    </div>
-                        </div><div class="code-line highlighted-test" id="line-9">
-                          <div class="line-number">9</div>
-                          <div class="line-content">    expect(getByText(&#039;Counter Component&#039;)).toBeTruthy();</div>
-                        </div><div class="code-line highlighted-test" id="line-10">
-                          <div class="line-number">10</div>
-                          <div class="line-content">    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(0);</div>
-                        </div><div class="code-line highlighted-test" id="line-11">
-                          <div class="line-number">11</div>
-                          <div class="line-content">  });</div>
-                        </div><div class="code-line " id="line-12">
-                          <div class="line-number">12</div>
-                          <div class="line-content"></div>
-                        </div><div class="test-name-indicator">renders with initial value when provided</div><div class="code-line highlighted-test" id="line-13">
-                          <div class="line-number">13</div>
-                          <div class="line-content">  it(&#039;renders with initial value when provided&#039;, () =&gt; {</div>
-                        </div><div class="code-line highlighted-test" id="line-14">
-                          <div class="line-number">14</div>
-                          <div class="line-content">    const { getByTestId } = render(&lt;Counter initialValue={5} /&gt;);</div>
-                        </div><div class="code-line highlighted-test" id="line-15">
-                          <div class="line-number">15</div>
-                          <div class="line-content">    </div>
-                        </div><div class="code-line highlighted-test" id="line-16">
-                          <div class="line-number">16</div>
-                          <div class="line-content">    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(5);</div>
-                        </div><div class="code-line highlighted-test" id="line-17">
-                          <div class="line-number">17</div>
-                          <div class="line-content">  });</div>
-                        </div><div class="code-line " id="line-18">
-                          <div class="line-number">18</div>
-                          <div class="line-content"></div>
-                        </div><div class="test-name-indicator">increments the counter when increment button is pressed</div><div class="code-line highlighted-test" id="line-19">
-                          <div class="line-number">19</div>
-                          <div class="line-content">  it(&#039;increments the counter when increment button is pressed&#039;, () =&gt; {</div>
-                        </div><div class="code-line highlighted-test" id="line-20">
-                          <div class="line-number">20</div>
-                          <div class="line-content">    const { getByTestId } = render(&lt;Counter initialValue={0} /&gt;);</div>
-                        </div><div class="code-line highlighted-test" id="line-21">
-                          <div class="line-number">21</div>
-                          <div class="line-content">    </div>
-                        </div><div class="code-line highlighted-test" id="line-22">
-                          <div class="line-number">22</div>
-                          <div class="line-content">    const incrementButton = getByTestId(&#039;increment-button&#039;);</div>
-                        </div><div class="code-line highlighted-test" id="line-23">
-                          <div class="line-number">23</div>
-                          <div class="line-content">    fireEvent.press(incrementButton);</div>
-                        </div><div class="code-line highlighted-test" id="line-24">
-                          <div class="line-number">24</div>
-                          <div class="line-content">    </div>
-                        </div><div class="code-line highlighted-test" id="line-25">
-                          <div class="line-number">25</div>
-                          <div class="line-content">    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(1);</div>
-                        </div><div class="code-line highlighted-test" id="line-26">
-                          <div class="line-number">26</div>
-                          <div class="line-content">  });</div>
-                        </div><div class="code-line " id="line-27">
-                          <div class="line-number">27</div>
-                          <div class="line-content"></div>
-                        </div><div class="test-name-indicator">decrements the counter when decrement button is pressed</div><div class="code-line highlighted-test" id="line-28">
-                          <div class="line-number">28</div>
-                          <div class="line-content">  it(&#039;decrements the counter when decrement button is pressed&#039;, () =&gt; {</div>
-                        </div><div class="code-line highlighted-test" id="line-29">
-                          <div class="line-number">29</div>
-                          <div class="line-content">    const { getByTestId } = render(&lt;Counter initialValue={5} /&gt;);</div>
-                        </div><div class="code-line highlighted-test" id="line-30">
-                          <div class="line-number">30</div>
-                          <div class="line-content">    </div>
-                        </div><div class="code-line highlighted-test" id="line-31">
-                          <div class="line-number">31</div>
-                          <div class="line-content">    const decrementButton = getByTestId(&#039;decrement-button&#039;);</div>
-                        </div><div class="code-line highlighted-test" id="line-32">
-                          <div class="line-number">32</div>
-                          <div class="line-content">    fireEvent.press(decrementButton);</div>
-                        </div><div class="code-line highlighted-test" id="line-33">
-                          <div class="line-number">33</div>
-                          <div class="line-content">    </div>
-                        </div><div class="code-line highlighted-test" id="line-34">
-                          <div class="line-number">34</div>
-                          <div class="line-content">    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(4);</div>
-                        </div><div class="code-line highlighted-test" id="line-35">
-                          <div class="line-number">35</div>
-                          <div class="line-content">  });</div>
-                        </div><div class="code-line " id="line-36">
-                          <div class="line-number">36</div>
-                          <div class="line-content"></div>
-                        </div><div class="test-name-indicator">does not decrement below zero</div><div class="code-line highlighted-test" id="line-37">
-                          <div class="line-number">37</div>
-                          <div class="line-content">  it(&#039;does not decrement below zero&#039;, () =&gt; {</div>
-                        </div><div class="code-line highlighted-test" id="line-38">
-                          <div class="line-number">38</div>
-                          <div class="line-content">    const { getByTestId } = render(&lt;Counter initialValue={0} /&gt;);</div>
-                        </div><div class="code-line highlighted-test" id="line-39">
-                          <div class="line-number">39</div>
-                          <div class="line-content">    </div>
-                        </div><div class="code-line highlighted-test" id="line-40">
-                          <div class="line-number">40</div>
-                          <div class="line-content">    const decrementButton = getByTestId(&#039;decrement-button&#039;);</div>
-                        </div><div class="code-line highlighted-test" id="line-41">
-                          <div class="line-number">41</div>
-                          <div class="line-content">    fireEvent.press(decrementButton);</div>
-                        </div><div class="code-line highlighted-test" id="line-42">
-                          <div class="line-number">42</div>
-                          <div class="line-content">    </div>
-                        </div><div class="code-line highlighted-test" id="line-43">
-                          <div class="line-number">43</div>
-                          <div class="line-content">    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(0);</div>
-                        </div><div class="code-line highlighted-test" id="line-44">
-                          <div class="line-number">44</div>
-                          <div class="line-content">  });</div>
-                        </div><div class="code-line " id="line-45">
-                          <div class="line-number">45</div>
-                          <div class="line-content">}); </div>
-                        </div>
-                  </div>
-                </div>
-              
-                <div class="test-file">
-                  <div class="test-file-header">
-                    <span>src/__tests__/counter.test.tsx</span>
-                    <button class="copy-button" onclick="copyToClipboard('/Users/tylerhenry/Documents/GitHub/testApp/src/__tests__/counter.test.tsx')">Copy</button>
-                  </div>
-                  <div class="test-nav">
-                        <span class="test-nav-item" onclick="scrollToTest('testfile-1--Users-tylerhenry-Documents-GitHub-testApp-src---tests---counter-test-tsx', 6)">renders correctly with default value</span><span class="test-nav-item" onclick="scrollToTest('testfile-1--Users-tylerhenry-Documents-GitHub-testApp-src---tests---counter-test-tsx', 13)">renders with initial value when provided</span><span class="test-nav-item" onclick="scrollToTest('testfile-1--Users-tylerhenry-Documents-GitHub-testApp-src---tests---counter-test-tsx', 19)">increments the counter when increment button is pressed</span><span class="test-nav-item" onclick="scrollToTest('testfile-1--Users-tylerhenry-Documents-GitHub-testApp-src---tests---counter-test-tsx', 28)">decrements the counter when decrement button is pressed</span><span class="test-nav-item" onclick="scrollToTest('testfile-1--Users-tylerhenry-Documents-GitHub-testApp-src---tests---counter-test-tsx', 37)">does not decrement below zero</span>
-                      </div>
-                  <div class="test-file-content" id="testfile-1--Users-tylerhenry-Documents-GitHub-testApp-src---tests---counter-test-tsx">
-                    <!-- Create highlighted test content -->
-                    <div class="code-line " id="line-1">
-                          <div class="line-number">1</div>
-                          <div class="line-content">import React from &#039;react&#039;;</div>
-                        </div><div class="code-line " id="line-2">
-                          <div class="line-number">2</div>
-                          <div class="line-content">import { render, fireEvent } from &#039;@testing-library/react-native&#039;;</div>
-                        </div><div class="code-line " id="line-3">
-                          <div class="line-number">3</div>
-                          <div class="line-content">import Counter from &#039;../components/Counter&#039;;</div>
-                        </div><div class="code-line " id="line-4">
-                          <div class="line-number">4</div>
-                          <div class="line-content"></div>
-                        </div><div class="code-line " id="line-5">
-                          <div class="line-number">5</div>
-                          <div class="line-content">describe(&#039;Counter Component&#039;, () =&gt; {</div>
-                        </div><div class="test-name-indicator">renders correctly with default value</div><div class="code-line highlighted-test" id="line-6">
-                          <div class="line-number">6</div>
-                          <div class="line-content">  it(&#039;renders correctly with default value&#039;, () =&gt; {</div>
-                        </div><div class="code-line highlighted-test" id="line-7">
-                          <div class="line-number">7</div>
-                          <div class="line-content">    const { getByTestId, getByText } = render(&lt;Counter /&gt;);</div>
-                        </div><div class="code-line highlighted-test" id="line-8">
-                          <div class="line-number">8</div>
-                          <div class="line-content">    </div>
-                        </div><div class="code-line highlighted-test" id="line-9">
-                          <div class="line-number">9</div>
-                          <div class="line-content">    expect(getByText(&#039;Counter Component&#039;)).toBeTruthy();</div>
-                        </div><div class="code-line highlighted-test" id="line-10">
-                          <div class="line-number">10</div>
-                          <div class="line-content">    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(0);</div>
-                        </div><div class="code-line highlighted-test" id="line-11">
-                          <div class="line-number">11</div>
-                          <div class="line-content">  });</div>
-                        </div><div class="code-line " id="line-12">
-                          <div class="line-number">12</div>
-                          <div class="line-content"></div>
-                        </div><div class="test-name-indicator">renders with initial value when provided</div><div class="code-line highlighted-test" id="line-13">
-                          <div class="line-number">13</div>
-                          <div class="line-content">  it(&#039;renders with initial value when provided&#039;, () =&gt; {</div>
-                        </div><div class="code-line highlighted-test" id="line-14">
-                          <div class="line-number">14</div>
-                          <div class="line-content">    const { getByTestId } = render(&lt;Counter initialValue={5} /&gt;);</div>
-                        </div><div class="code-line highlighted-test" id="line-15">
-                          <div class="line-number">15</div>
-                          <div class="line-content">    </div>
-                        </div><div class="code-line highlighted-test" id="line-16">
-                          <div class="line-number">16</div>
-                          <div class="line-content">    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(5);</div>
-                        </div><div class="code-line highlighted-test" id="line-17">
-                          <div class="line-number">17</div>
-                          <div class="line-content">  });</div>
-                        </div><div class="code-line " id="line-18">
-                          <div class="line-number">18</div>
-                          <div class="line-content"></div>
-                        </div><div class="test-name-indicator">increments the counter when increment button is pressed</div><div class="code-line highlighted-test" id="line-19">
-                          <div class="line-number">19</div>
-                          <div class="line-content">  it(&#039;increments the counter when increment button is pressed&#039;, () =&gt; {</div>
-                        </div><div class="code-line highlighted-test" id="line-20">
-                          <div class="line-number">20</div>
-                          <div class="line-content">    const { getByTestId } = render(&lt;Counter initialValue={0} /&gt;);</div>
-                        </div><div class="code-line highlighted-test" id="line-21">
-                          <div class="line-number">21</div>
-                          <div class="line-content">    </div>
-                        </div><div class="code-line highlighted-test" id="line-22">
-                          <div class="line-number">22</div>
-                          <div class="line-content">    const incrementButton = getByTestId(&#039;increment-button&#039;);</div>
-                        </div><div class="code-line highlighted-test" id="line-23">
-                          <div class="line-number">23</div>
-                          <div class="line-content">    fireEvent.press(incrementButton);</div>
-                        </div><div class="code-line highlighted-test" id="line-24">
-                          <div class="line-number">24</div>
-                          <div class="line-content">    </div>
-                        </div><div class="code-line highlighted-test" id="line-25">
-                          <div class="line-number">25</div>
-                          <div class="line-content">    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(1);</div>
-                        </div><div class="code-line highlighted-test" id="line-26">
-                          <div class="line-number">26</div>
-                          <div class="line-content">  });</div>
-                        </div><div class="code-line " id="line-27">
-                          <div class="line-number">27</div>
-                          <div class="line-content"></div>
-                        </div><div class="test-name-indicator">decrements the counter when decrement button is pressed</div><div class="code-line highlighted-test" id="line-28">
-                          <div class="line-number">28</div>
-                          <div class="line-content">  it(&#039;decrements the counter when decrement button is pressed&#039;, () =&gt; {</div>
-                        </div><div class="code-line highlighted-test" id="line-29">
-                          <div class="line-number">29</div>
-                          <div class="line-content">    const { getByTestId } = render(&lt;Counter initialValue={5} /&gt;);</div>
-                        </div><div class="code-line highlighted-test" id="line-30">
-                          <div class="line-number">30</div>
-                          <div class="line-content">    </div>
-                        </div><div class="code-line highlighted-test" id="line-31">
-                          <div class="line-number">31</div>
-                          <div class="line-content">    const decrementButton = getByTestId(&#039;decrement-button&#039;);</div>
-                        </div><div class="code-line highlighted-test" id="line-32">
-                          <div class="line-number">32</div>
-                          <div class="line-content">    fireEvent.press(decrementButton);</div>
-                        </div><div class="code-line highlighted-test" id="line-33">
-                          <div class="line-number">33</div>
-                          <div class="line-content">    </div>
-                        </div><div class="code-line highlighted-test" id="line-34">
-                          <div class="line-number">34</div>
-                          <div class="line-content">    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(4);</div>
-                        </div><div class="code-line highlighted-test" id="line-35">
-                          <div class="line-number">35</div>
-                          <div class="line-content">  });</div>
-                        </div><div class="code-line " id="line-36">
-                          <div class="line-number">36</div>
-                          <div class="line-content"></div>
-                        </div><div class="test-name-indicator">does not decrement below zero</div><div class="code-line highlighted-test" id="line-37">
-                          <div class="line-number">37</div>
-                          <div class="line-content">  it(&#039;does not decrement below zero&#039;, () =&gt; {</div>
-                        </div><div class="code-line highlighted-test" id="line-38">
-                          <div class="line-number">38</div>
-                          <div class="line-content">    const { getByTestId } = render(&lt;Counter initialValue={0} /&gt;);</div>
-                        </div><div class="code-line highlighted-test" id="line-39">
-                          <div class="line-number">39</div>
-                          <div class="line-content">    </div>
-                        </div><div class="code-line highlighted-test" id="line-40">
-                          <div class="line-number">40</div>
-                          <div class="line-content">    const decrementButton = getByTestId(&#039;decrement-button&#039;);</div>
-                        </div><div class="code-line highlighted-test" id="line-41">
-                          <div class="line-number">41</div>
-                          <div class="line-content">    fireEvent.press(decrementButton);</div>
-                        </div><div class="code-line highlighted-test" id="line-42">
-                          <div class="line-number">42</div>
-                          <div class="line-content">    </div>
-                        </div><div class="code-line highlighted-test" id="line-43">
-                          <div class="line-number">43</div>
-                          <div class="line-content">    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(0);</div>
-                        </div><div class="code-line highlighted-test" id="line-44">
-                          <div class="line-number">44</div>
-                          <div class="line-content">  });</div>
-                        </div><div class="code-line " id="line-45">
-                          <div class="line-number">45</div>
-                          <div class="line-content">}); </div>
-                        </div>
-                  </div>
-                </div>
-              
-      </div>
-    </div>
-    
-    <div id="testids-1" class="detail-section testids-section">
-      <h3>Recommended Test IDs</h3>
-      <p>Use these test IDs to improve test coverage correlation:</p>
-      <ul class="test-id-suggestions">
-        
-          <li class="test-id-item">
-            <code>root_counter</code>
-            <button class="copy-button" onclick="copyToClipboard('root_counter')">Copy</button>
-          </li>
-        
-          <li class="test-id-item">
-            <code>counter_container</code>
-            <button class="copy-button" onclick="copyToClipboard('counter_container')">Copy</button>
-          </li>
-        
-          <li class="test-id-item">
-            <code>counter_title</code>
-            <button class="copy-button" onclick="copyToClipboard('counter_title')">Copy</button>
-          </li>
-        
-          <li class="test-id-item">
-            <code>counter_content</code>
-            <button class="copy-button" onclick="copyToClipboard('counter_content')">Copy</button>
-          </li>
-        
-          <li class="test-id-item">
-            <code>counter_button</code>
-            <button class="copy-button" onclick="copyToClipboard('counter_button')">Copy</button>
-          </li>
-        
+  
+          
+          
+    <div class="recommendations">
+      <h4>Recommendations</h4>
+      <p>Based on analysis of this component, the following tests are recommended:</p>
+      <ul>
+        <li>Create a test for element with testID: <code>root_app</code></li><li>Create a test for element with testID: <code>app_container</code></li><li>Create a test for element with testID: <code>app_title</code></li><li>Create a test for element with testID: <code>app_content</code></li><li>Create a test for element with testID: <code>app_button</code></li>
       </ul>
     </div>
-    
-    <div id="analysis-1" class="detail-section analysis-section">
-      <h3>Gap Analysis</h3>
-      <p>No gap analysis available.</p>
+  
+        </div>
+      </div>
     </div>
-  </div>
+  
+    <div class="component-details" id="component-1">
+      <h3>Counter.tsx</h3>
+      <div class="component-path">/Users/tylerhenry/Documents/GitHub/testApp/src/components/Counter.tsx</div>
+      <div class="component-coverage">Coverage: 10000.0%</div>
+      
+      <div class="tab-container">
+        <div class="tabs">
+          <button class="tab-button active" onclick="switchTab('source-tab-Counter.tsx', 'Counter.tsx')">Source</button>
+          <button class="tab-button" onclick="switchTab('tests-tab-Counter.tsx', 'Counter.tsx')">Test Files</button>
+          <button class="tab-button" onclick="switchTab('correlated-tab-Counter.tsx', 'Counter.tsx')">Correlated Tests</button>
+        </div>
+        
+        <div class="tab-content active" id="source-tab-Counter.tsx">
+          <div class="source-code">
+            <pre><code class="language-typescript">import React, { useState } from &#039;react&#039;;
+import { View, Text, Button, StyleSheet } from &#039;react-native&#039;;
+
+interface CounterProps {
+  initialValue?: number;
+}
+
+const Counter: React.FC&lt;CounterProps&gt; = ({ initialValue = 0 }) =&gt; {
+  const [count, setCount] = useState(initialValue);
+
+  const increment = () =&gt; {
+    setCount(prevCount =&gt; prevCount + 1);
+  };
+
+  const decrement = () =&gt; {
+    setCount(prevCount =&gt; prevCount &gt; 0 ? prevCount - 1 : 0);
+  };
+
+  return (
+    &lt;View style={styles.container}&gt;
+      &lt;Text style={styles.title}&gt;Counter Component&lt;/Text&gt;
+      &lt;Text style={styles.counter} testID=&quot;counter-value&quot; accessibilityLabel=&quot;counter-value&quot;&gt;{count}&lt;/Text&gt;
+      &lt;View style={styles.buttonContainer}&gt;
+        &lt;Button 
+          title=&quot;Decrement&quot; 
+          onPress={decrement} 
+          testID=&quot;decrement-button&quot;
+          accessibilityLabel=&quot;decrement-button&quot;
+        /&gt;
+        &lt;Button 
+          title=&quot;Increment&quot; 
+          onPress={increment} 
+          testID=&quot;increment-button&quot;
+          accessibilityLabel=&quot;increment-button&quot;
+        /&gt;
+      &lt;/View&gt;
+    &lt;/View&gt;
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    padding: 20,
+    alignItems: &#039;center&#039;,
+    justifyContent: &#039;center&#039;,
+  },
+  title: {
+    fontSize: 18,
+    fontWeight: &#039;bold&#039;,
+    marginBottom: 10,
+  },
+  counter: {
+    fontSize: 48,
+    fontWeight: &#039;bold&#039;,
+    marginVertical: 20,
+  },
+  buttonContainer: {
+    flexDirection: &#039;row&#039;,
+    justifyContent: &#039;space-between&#039;,
+    width: &#039;100%&#039;,
+  },
+});
+
+export default Counter; </code></pre>
+          </div>
+        </div>
+        
+        <div class="tab-content" id="tests-tab-Counter.tsx">
+          
+    <div class="test-file">
+      <h4>Counter.test.tsx</h4>
+      <pre><code class="language-typescript">import React from &#039;react&#039;;
+import { render, fireEvent } from &#039;@testing-library/react-native&#039;;
+import Counter from &#039;../components/Counter&#039;;
+
+describe(&#039;Counter Component&#039;, () =&gt; {
+  it(&#039;renders correctly with default value&#039;, () =&gt; {
+    const { getByTestId, getByText } = render(&lt;Counter /&gt;);
+    
+    expect(getByText(&#039;Counter Component&#039;)).toBeTruthy();
+    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(0);
+  });
+
+  it(&#039;renders with initial value when provided&#039;, () =&gt; {
+    const { getByTestId } = render(&lt;Counter initialValue={5} /&gt;);
+    
+    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(5);
+  });
+
+  it(&#039;increments the counter when increment button is pressed&#039;, () =&gt; {
+    const { getByTestId } = render(&lt;Counter initialValue={0} /&gt;);
+    
+    const incrementButton = getByTestId(&#039;increment-button&#039;);
+    fireEvent.press(incrementButton);
+    
+    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(1);
+  });
+
+  it(&#039;decrements the counter when decrement button is pressed&#039;, () =&gt; {
+    const { getByTestId } = render(&lt;Counter initialValue={5} /&gt;);
+    
+    const decrementButton = getByTestId(&#039;decrement-button&#039;);
+    fireEvent.press(decrementButton);
+    
+    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(4);
+  });
+
+  it(&#039;does not decrement below zero&#039;, () =&gt; {
+    const { getByTestId } = render(&lt;Counter initialValue={0} /&gt;);
+    
+    const decrementButton = getByTestId(&#039;decrement-button&#039;);
+    fireEvent.press(decrementButton);
+    
+    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(0);
+  });
+}); </code></pre>
+    </div>
+  
+    <div class="test-file">
+      <h4>Counter.test.tsx</h4>
+      <pre><code class="language-typescript">import React from &#039;react&#039;;
+import { render, fireEvent } from &#039;@testing-library/react-native&#039;;
+import Counter from &#039;../components/Counter&#039;;
+
+describe(&#039;Counter Component&#039;, () =&gt; {
+  it(&#039;renders correctly with default value&#039;, () =&gt; {
+    const { getByTestId, getByText } = render(&lt;Counter /&gt;);
+    
+    expect(getByText(&#039;Counter Component&#039;)).toBeTruthy();
+    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(0);
+  });
+
+  it(&#039;renders with initial value when provided&#039;, () =&gt; {
+    const { getByTestId } = render(&lt;Counter initialValue={5} /&gt;);
+    
+    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(5);
+  });
+
+  it(&#039;increments the counter when increment button is pressed&#039;, () =&gt; {
+    const { getByTestId } = render(&lt;Counter initialValue={0} /&gt;);
+    
+    const incrementButton = getByTestId(&#039;increment-button&#039;);
+    fireEvent.press(incrementButton);
+    
+    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(1);
+  });
+
+  it(&#039;decrements the counter when decrement button is pressed&#039;, () =&gt; {
+    const { getByTestId } = render(&lt;Counter initialValue={5} /&gt;);
+    
+    const decrementButton = getByTestId(&#039;decrement-button&#039;);
+    fireEvent.press(decrementButton);
+    
+    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(4);
+  });
+
+  it(&#039;does not decrement below zero&#039;, () =&gt; {
+    const { getByTestId } = render(&lt;Counter initialValue={0} /&gt;);
+    
+    const decrementButton = getByTestId(&#039;decrement-button&#039;);
+    fireEvent.press(decrementButton);
+    
+    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(0);
+  });
+}); </code></pre>
+    </div>
+  
+    <div class="test-file">
+      <h4>Counter.test.tsx</h4>
+      <pre><code class="language-typescript">import React from &#039;react&#039;;
+import { render, fireEvent } from &#039;@testing-library/react-native&#039;;
+import Counter from &#039;../components/Counter&#039;;
+
+describe(&#039;Counter Component&#039;, () =&gt; {
+  it(&#039;renders correctly with default value&#039;, () =&gt; {
+    const { getByTestId, getByText } = render(&lt;Counter /&gt;);
+    
+    expect(getByText(&#039;Counter Component&#039;)).toBeTruthy();
+    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(0);
+  });
+
+  it(&#039;renders with initial value when provided&#039;, () =&gt; {
+    const { getByTestId } = render(&lt;Counter initialValue={5} /&gt;);
+    
+    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(5);
+  });
+
+  it(&#039;increments the counter when increment button is pressed&#039;, () =&gt; {
+    const { getByTestId } = render(&lt;Counter initialValue={0} /&gt;);
+    
+    const incrementButton = getByTestId(&#039;increment-button&#039;);
+    fireEvent.press(incrementButton);
+    
+    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(1);
+  });
+
+  it(&#039;decrements the counter when decrement button is pressed&#039;, () =&gt; {
+    const { getByTestId } = render(&lt;Counter initialValue={5} /&gt;);
+    
+    const decrementButton = getByTestId(&#039;decrement-button&#039;);
+    fireEvent.press(decrementButton);
+    
+    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(4);
+  });
+
+  it(&#039;does not decrement below zero&#039;, () =&gt; {
+    const { getByTestId } = render(&lt;Counter initialValue={0} /&gt;);
+    
+    const decrementButton = getByTestId(&#039;decrement-button&#039;);
+    fireEvent.press(decrementButton);
+    
+    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(0);
+  });
+}); </code></pre>
+    </div>
+  
+    <div class="test-file">
+      <h4>Counter.test.tsx</h4>
+      <pre><code class="language-typescript">import React from &#039;react&#039;;
+import { render, fireEvent } from &#039;@testing-library/react-native&#039;;
+import Counter from &#039;../components/Counter&#039;;
+
+describe(&#039;Counter Component&#039;, () =&gt; {
+  it(&#039;renders correctly with default value&#039;, () =&gt; {
+    const { getByTestId, getByText } = render(&lt;Counter /&gt;);
+    
+    expect(getByText(&#039;Counter Component&#039;)).toBeTruthy();
+    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(0);
+  });
+
+  it(&#039;renders with initial value when provided&#039;, () =&gt; {
+    const { getByTestId } = render(&lt;Counter initialValue={5} /&gt;);
+    
+    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(5);
+  });
+
+  it(&#039;increments the counter when increment button is pressed&#039;, () =&gt; {
+    const { getByTestId } = render(&lt;Counter initialValue={0} /&gt;);
+    
+    const incrementButton = getByTestId(&#039;increment-button&#039;);
+    fireEvent.press(incrementButton);
+    
+    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(1);
+  });
+
+  it(&#039;decrements the counter when decrement button is pressed&#039;, () =&gt; {
+    const { getByTestId } = render(&lt;Counter initialValue={5} /&gt;);
+    
+    const decrementButton = getByTestId(&#039;decrement-button&#039;);
+    fireEvent.press(decrementButton);
+    
+    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(4);
+  });
+
+  it(&#039;does not decrement below zero&#039;, () =&gt; {
+    const { getByTestId } = render(&lt;Counter initialValue={0} /&gt;);
+    
+    const decrementButton = getByTestId(&#039;decrement-button&#039;);
+    fireEvent.press(decrementButton);
+    
+    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(0);
+  });
+}); </code></pre>
+    </div>
+  
+    <div class="test-file">
+      <h4>counter.feature</h4>
+      <pre><code class="language-typescript">Feature: Counter Functionality
+  As a user
+  I want to use the counter
+  So that I can increment and decrement values
+
+  @counter-value
+  Scenario: User increments the counter
+    Given I am on the counter screen
+    When I tap the increment button
+    Then the counter should display &quot;1&quot;
+
+  @decrement-button
+  Scenario: User decrements the counter
+    Given I am on the counter screen
+    And the counter displays &quot;1&quot;
+    When I tap the decrement button
+    Then the counter should display &quot;0&quot;
+
+  @increment-button
+  Scenario: Counter should not go below zero
+    Given I am on the counter screen
+    And the counter displays &quot;0&quot;
+    When I tap the decrement button
+    Then the counter should display &quot;0&quot; </code></pre>
+    </div>
+  
+        </div>
+        
+        <div class="tab-content" id="correlated-tab-Counter.tsx">
+          
+    <div class="correlatedUnitTests">
+      <h4>Correlated Unit Tests</h4>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Scenario</th>
+            <th>Step</th>
+            <th>Confidence</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+            <tr>
+              <td>Counter</td>
+              <td>Counter Component</td>
+              <td>renders correctly with default value</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter</td>
+              <td>Counter Component</td>
+              <td>const { getByTestId, getByText } = render(&lt;Counter /&gt;);</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter</td>
+              <td>Counter Component</td>
+              <td>expect(getByText(&#039;Counter Component&#039;)).toBeTruthy();</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter</td>
+              <td>Counter Component</td>
+              <td>expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(0);</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter</td>
+              <td>Counter Component</td>
+              <td>renders with initial value when provided</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter</td>
+              <td>Counter Component</td>
+              <td>const { getByTestId } = render(&lt;Counter initialValue={5} /&gt;);</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter</td>
+              <td>Counter Component</td>
+              <td>expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(5);</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter</td>
+              <td>Counter Component</td>
+              <td>increments the counter when increment button is pressed</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter</td>
+              <td>Counter Component</td>
+              <td>const { getByTestId } = render(&lt;Counter initialValue={0} /&gt;);</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter</td>
+              <td>Counter Component</td>
+              <td>fireEvent.press(incrementButton);</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter</td>
+              <td>Counter Component</td>
+              <td>expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(1);</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter</td>
+              <td>Counter Component</td>
+              <td>decrements the counter when decrement button is pressed</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter</td>
+              <td>Counter Component</td>
+              <td>const { getByTestId } = render(&lt;Counter initialValue={5} /&gt;);</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter</td>
+              <td>Counter Component</td>
+              <td>fireEvent.press(decrementButton);</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter</td>
+              <td>Counter Component</td>
+              <td>expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(4);</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter</td>
+              <td>Counter Component</td>
+              <td>does not decrement below zero</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter</td>
+              <td>Counter Component</td>
+              <td>const { getByTestId } = render(&lt;Counter initialValue={0} /&gt;);</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter</td>
+              <td>Counter Component</td>
+              <td>fireEvent.press(decrementButton);</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter</td>
+              <td>Counter Component</td>
+              <td>expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(0);</td>
+              <td>100.0%</td>
+            </tr>
+          
+        </tbody>
+      </table>
+    </div>
+  
+          
+    <div class="correlatedE2ETests">
+      <h4>Correlated E2E Tests</h4>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Scenario</th>
+            <th>Step</th>
+            <th>Confidence</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>User increments the counter</td>
+              <td>Given I am on the counter screen</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>User increments the counter</td>
+              <td>When I tap the increment button</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>User increments the counter</td>
+              <td>Then the counter should display &quot;1&quot;</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>User decrements the counter</td>
+              <td>Given I am on the counter screen</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>User decrements the counter</td>
+              <td>And the counter displays &quot;1&quot;</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>User decrements the counter</td>
+              <td>When I tap the decrement button</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>User decrements the counter</td>
+              <td>Then the counter should display &quot;0&quot;</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>Counter should not go below zero</td>
+              <td>Given I am on the counter screen</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>Counter should not go below zero</td>
+              <td>And the counter displays &quot;0&quot;</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>Counter should not go below zero</td>
+              <td>When I tap the decrement button</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>Counter should not go below zero</td>
+              <td>Then the counter should display &quot;0&quot;</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>User increments the counter</td>
+              <td>Given I am on the counter screen</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>User increments the counter</td>
+              <td>When I tap the increment button</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>User increments the counter</td>
+              <td>Then the counter should display &quot;1&quot;</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>User decrements the counter</td>
+              <td>Given I am on the counter screen</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>User decrements the counter</td>
+              <td>And the counter displays &quot;1&quot;</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>User decrements the counter</td>
+              <td>When I tap the decrement button</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>User decrements the counter</td>
+              <td>Then the counter should display &quot;0&quot;</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>Counter should not go below zero</td>
+              <td>Given I am on the counter screen</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>Counter should not go below zero</td>
+              <td>And the counter displays &quot;0&quot;</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>Counter should not go below zero</td>
+              <td>When I tap the decrement button</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>Counter should not go below zero</td>
+              <td>Then the counter should display &quot;0&quot;</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>User increments the counter</td>
+              <td>Given I am on the counter screen</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>User increments the counter</td>
+              <td>When I tap the increment button</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>User increments the counter</td>
+              <td>Then the counter should display &quot;1&quot;</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>User decrements the counter</td>
+              <td>Given I am on the counter screen</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>User decrements the counter</td>
+              <td>And the counter displays &quot;1&quot;</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>User decrements the counter</td>
+              <td>When I tap the decrement button</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>User decrements the counter</td>
+              <td>Then the counter should display &quot;0&quot;</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>Counter should not go below zero</td>
+              <td>Given I am on the counter screen</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>Counter should not go below zero</td>
+              <td>And the counter displays &quot;0&quot;</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>Counter should not go below zero</td>
+              <td>When I tap the decrement button</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>Counter should not go below zero</td>
+              <td>Then the counter should display &quot;0&quot;</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>User increments the counter</td>
+              <td>Given I am on the counter screen</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>User increments the counter</td>
+              <td>When I tap the increment button</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>User increments the counter</td>
+              <td>Then the counter should display &quot;1&quot;</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>User decrements the counter</td>
+              <td>Given I am on the counter screen</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>User decrements the counter</td>
+              <td>And the counter displays &quot;1&quot;</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>User decrements the counter</td>
+              <td>When I tap the decrement button</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>User decrements the counter</td>
+              <td>Then the counter should display &quot;0&quot;</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>Counter should not go below zero</td>
+              <td>Given I am on the counter screen</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>Counter should not go below zero</td>
+              <td>And the counter displays &quot;0&quot;</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>Counter should not go below zero</td>
+              <td>When I tap the decrement button</td>
+              <td>100.0%</td>
+            </tr>
+          
+            <tr>
+              <td>Counter Functionality</td>
+              <td>Counter should not go below zero</td>
+              <td>Then the counter should display &quot;0&quot;</td>
+              <td>100.0%</td>
+            </tr>
+          
+        </tbody>
+      </table>
+    </div>
+  
+          
+          
+    <div class="recommendations">
+      <h4>Recommendations</h4>
+      <p>Based on analysis of this component, the following tests are recommended:</p>
+      <ul>
+        <li>Create a test for element with testID: <code>root_counter</code></li><li>Create a test for element with testID: <code>counter_container</code></li><li>Create a test for element with testID: <code>counter_title</code></li><li>Create a test for element with testID: <code>counter_content</code></li><li>Create a test for element with testID: <code>counter_button</code></li>
+      </ul>
+    </div>
+  
+        </div>
+      </div>
+    </div>
   
   
   <footer>
@@ -1537,19 +1765,40 @@
   <script>
     // Show component details
     function showComponentDetails(index) {
+      // Hide all other component details
       document.querySelectorAll('.component-details').forEach(el => {
         el.classList.remove('active');
       });
-      document.getElementById('component-' + index).classList.add('active');
-      document.getElementById('summary').style.display = 'none';
-      document.querySelector('table').style.display = 'none';
+      
+      // Show selected component details
+      const componentEl = document.getElementById('component-' + index);
+      if (componentEl) {
+        componentEl.classList.add('active');
+        
+        // Hide summary and table
+        const summaryEl = document.getElementById('summary');
+        if (summaryEl) summaryEl.style.display = 'none';
+        
+        const tableEl = document.querySelector('table');
+        if (tableEl) tableEl.style.display = 'none';
+      } else {
+        console.error('Component element with id component-' + index + ' not found');
+      }
     }
     
     // Hide component details
     function hideComponentDetails(index) {
-      document.getElementById('component-' + index).classList.remove('active');
-      document.getElementById('summary').style.display = 'block';
-      document.querySelector('table').style.display = 'table';
+      const componentEl = document.getElementById('component-' + index);
+      if (componentEl) {
+        componentEl.classList.remove('active');
+        
+        // Show summary and table
+        const summaryEl = document.getElementById('summary');
+        if (summaryEl) summaryEl.style.display = 'block';
+        
+        const tableEl = document.querySelector('table');
+        if (tableEl) tableEl.style.display = 'table';
+      }
     }
     
     // Switch tabs in component details
@@ -1565,10 +1814,16 @@
       });
       
       // Activate selected tab
-      document.querySelector('#component-' + componentIndex + ' .tab[onclick*="' + tabName + '"]').classList.add('active');
+      const tabEl = document.querySelector('#component-' + componentIndex + ' .tab[onclick*="' + tabName + '"]');
+      if (tabEl) {
+        tabEl.classList.add('active');
+      }
       
       // Activate selected section
-      document.getElementById(tabName + '-' + componentIndex).classList.add('active');
+      const sectionEl = document.getElementById(tabName + '-' + componentIndex);
+      if (sectionEl) {
+        sectionEl.classList.add('active');
+      }
     }
     
     // Copy text to clipboard
@@ -1590,6 +1845,12 @@
     
     // Syntax highlight test code
     function applySyntaxHighlighting(code) {
+      // Check if code is defined first
+      if (!code || typeof code !== 'string') {
+        console.warn('No code provided for syntax highlighting or code is not a string');
+        return '';
+      }
+      
       // Keywords
       code = code.replace(/\b(function|const|let|var|return|if|else|for|while|do|switch|case|break|continue|new|try|catch|finally|throw|typeof|instanceof|in|of|class|extends|super|import|export|from|as|async|await|yield|this|true|false|null|undefined)\b/g, '<span class="keyword">$1</span>');
       
@@ -1636,7 +1897,24 @@
     
     // Call syntax highlighting when the page loads
     window.addEventListener('DOMContentLoaded', function() {
-      applySyntaxHighlighting();
+      try {
+        // Apply syntax highlighting to all code elements
+        const codeContainers = document.querySelectorAll('.code-container, .test-file-content');
+        codeContainers.forEach(container => {
+          const codeElements = container.querySelectorAll('.line-content');
+          codeElements.forEach(element => {
+            if (element && element.textContent) {
+              const highlighted = applySyntaxHighlighting(element.textContent);
+              if (highlighted) {
+                element.innerHTML = highlighted;
+              }
+            }
+          });
+        });
+        console.log('Syntax highlighting applied successfully');
+      } catch (error) {
+        console.error('Error applying syntax highlighting:', error);
+      }
     });
   </script>
 </body>

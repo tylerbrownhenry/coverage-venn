@@ -10,6 +10,11 @@ import * as fs from 'fs';
 import * as fsPromises from 'fs/promises';
 import * as path from 'path';
 import * as fsSync from 'fs';
+import { promisify } from 'util';
+import glob from 'glob';
+
+// Convert callback-based glob to promise-based
+const globPromise = promisify(glob);
 
 // Types for component with tests
 interface CorrelatedTest {
@@ -17,6 +22,7 @@ interface CorrelatedTest {
   scenario: string;
   step: string;
   confidence: number;
+  isE2E?: boolean; // Add this to identify E2E tests
 }
 
 interface SourceInfo {
@@ -65,134 +71,108 @@ interface TestFile {
   }[];
 }
 
-// Determine coverage source from environment variable
-const COVERAGE_SOURCE = process.env.COVERAGE_SOURCE || 'mock';
+// Path constants
+const PROJECT_ROOT = process.env.PROJECT_ROOT || process.cwd();
+console.log(`Using PROJECT_ROOT: ${PROJECT_ROOT}`);
 
-// Define paths based on coverage source
-const OUTPUT_DIR = COVERAGE_SOURCE === 'project'
-  ? path.resolve(process.cwd(), 'coverage-project')
-  : path.resolve(process.cwd(), 'coverage-mock');
+// For debugging environment variables
+if (process.env.PROJECT_ROOT) {
+  console.log('PROJECT_ROOT is explicitly set in environment to:', process.env.PROJECT_ROOT);
+} else {
+  console.log('PROJECT_ROOT not found in environment, using current working directory instead:', process.cwd());
+}
 
+const COVERAGE_DIR = path.resolve(process.cwd(), 'coverage'); 
+const COVERAGE_ANALYSIS_DIR = path.resolve(process.cwd(), 'coverage-analysis');
+const OUTPUT_DIR = path.resolve(process.cwd(), 'coverage-project');
+
+// Determine the source of coverage data based on environment variable
+const COVERAGE_SOURCE = process.env.COVERAGE_SOURCE || 'standard';
+
+// Define input and output paths based on coverage source
 const COMPONENT_COVERAGE_PATH = COVERAGE_SOURCE === 'project'
-  ? path.resolve(process.cwd(), 'coverage-analysis', 'project-component-coverage.json')
-  : path.resolve(process.cwd(), 'reports', 'mock-analysis.json');
+  ? path.resolve(COVERAGE_ANALYSIS_DIR, 'project-component-coverage.json')
+  : path.resolve(COVERAGE_DIR, 'component-coverage.json');
 
 const CORRELATION_PATH = COVERAGE_SOURCE === 'project'
-  ? path.resolve(process.cwd(), 'coverage-analysis', 'project-test-component-correlation.json')
-  : path.resolve(process.cwd(), 'coverage', 'test-component-correlation.json');
+  ? path.resolve(COVERAGE_ANALYSIS_DIR, 'project-test-component-correlation.json')
+  : path.resolve(COVERAGE_DIR, 'test-component-correlation.json');
 
 const HTML_OUTPUT_PATH = path.resolve(OUTPUT_DIR, 'coverage.html');
 const MOCK_APP_DIR = path.resolve(process.cwd(), '__mocks__/src');
-const PROJECT_ROOT = process.env.PROJECT_ROOT || process.cwd();
 
 /**
  * Extract source code from a file path
  */
 async function extractSourceCode(filePath: string, linesToHighlight?: number[]): Promise<string | null> {
+  console.log(`Extracting source code for: ${filePath}`);
+  
+  // First try to check if this is a project file path
+  const isProjectPath = process.env.PROJECT_ROOT && filePath.includes(process.env.PROJECT_ROOT);
+  
   try {
-    const fileName = path.basename(filePath);
-    const componentName = fileName.replace(/\.(tsx|jsx|ts|js)$/, '');
-    const fileExtension = path.extname(filePath);
-    
-    // Check if this is likely a utility file
-    const isUtilFile = filePath.includes('utils') || componentName.toLowerCase().includes('util');
-    
-    console.log(`Extracting source code for: ${componentName} (${isUtilFile ? 'utility' : 'component'}) from path: ${filePath}`);
-    
-    // Build possible source file paths
-    const possiblePaths: string[] = [];
-    
-    // Different prioritization based on COVERAGE_SOURCE
-    if (COVERAGE_SOURCE === 'project') {
-      // For project mode, prioritize real project files first
-      possiblePaths.push(
-        // Original path first
-        filePath,
-        
-        // Project-specific paths
-        path.resolve(PROJECT_ROOT, 'src', 'components', fileName),
-        path.resolve(PROJECT_ROOT, 'src', 'views', fileName),
-        path.resolve(PROJECT_ROOT, 'src', fileName),
-        
-        // For utility files in project
-        path.resolve(PROJECT_ROOT, 'src', 'utils', fileName)
-      );
-      
-      // Add mock paths as fallbacks
-      possiblePaths.push(
-        path.join(process.cwd(), '__mocks__', 'src', fileName),
-        path.join(MOCK_APP_DIR, fileName),
-        path.join(process.cwd(), '__mocks__', 'src', 'components', fileName),
-        path.join(MOCK_APP_DIR, 'components', fileName),
-        path.join(process.cwd(), '__mocks__', 'src', 'utils', fileName),
-        path.join(MOCK_APP_DIR, 'utils', fileName)
-      );
-    } else {
-      // For mock mode, prioritize mock files
-      possiblePaths.push(
-        // Original path
-        filePath,
-        
-        // Standard mock paths
-        path.join(process.cwd(), '__mocks__', 'src', fileName),
-        path.join(MOCK_APP_DIR, fileName),
-        
-        // Handle component directories
-        path.join(process.cwd(), '__mocks__', 'src', 'components', fileName),
-        path.join(MOCK_APP_DIR, 'components', fileName),
-        
-        // Special paths for utilities
-        path.join(process.cwd(), '__mocks__', 'src', 'utils', fileName),
-        path.join(MOCK_APP_DIR, 'utils', fileName)
-      );
-    }
-    
-    // Try each possible path
-    for (const srcPath of possiblePaths) {
-      if (fsSync.existsSync(srcPath)) {
-        console.log(`Found source file at: ${srcPath}`);
-        const sourceCode = await fsPromises.readFile(srcPath, 'utf8');
-        return sourceCode;
+    // If the file path starts with PROJECT_ROOT, try to read it directly
+    if (isProjectPath) {
+      try {
+        const content = await fsPromises.readFile(filePath, 'utf8');
+        console.log(`Found source file at: ${filePath}`);
+        return content;
+      } catch (error) {
+        console.warn(`Could not read project file at ${filePath}. Will try alternative paths.`);
       }
     }
     
-    // Additional handling for utility files with different extensions
-    if (isUtilFile && (fileExtension === '.tsx' || fileExtension === '.jsx')) {
-      const tsFileName = fileName.replace(fileExtension, '.ts');
-      const tsUtilityPaths = [
-        path.join(process.cwd(), '__mocks__', 'src', 'utils', tsFileName),
-        path.join(MOCK_APP_DIR, 'utils', tsFileName),
-        path.resolve(PROJECT_ROOT, 'src', 'utils', tsFileName)
-      ];
+    // Try to read the file directly first
+    try {
+      const content = await fsPromises.readFile(filePath, 'utf8');
+      console.log(`Found source file at: ${filePath}`);
+      return content;
+    } catch (error) {
+      // File doesn't exist at the provided path
+      console.warn(`Could not read file at ${filePath}. Trying alternative paths...`);
+    }
+    
+    // If the original path didn't work, try looking for the file in the project root
+    if (process.env.PROJECT_ROOT) {
+      const fileName = path.basename(filePath);
       
-      for (const utilPath of tsUtilityPaths) {
-        if (fsSync.existsSync(utilPath)) {
-          console.log(`Found source file at: ${utilPath}`);
-          const sourceCode = await fsPromises.readFile(utilPath, 'utf8');
-          return sourceCode;
+      // First try direct path mapping from __mocks__ to PROJECT_ROOT
+      if (filePath.includes('__mocks__/src/')) {
+        const projectPath = filePath.replace(
+          /__mocks__\/src\//,
+          `${process.env.PROJECT_ROOT}/src/`
+        );
+        
+        try {
+          const content = await fsPromises.readFile(projectPath, 'utf8');
+          console.log(`Found source file at alternative path: ${projectPath}`);
+          return content;
+        } catch (error) {
+          console.warn(`Could not read file at mapped path ${projectPath}.`);
         }
       }
-    }
-    
-    // Try alternative path formats from coverage data as a last resort
-    const alternatePaths = [
-      filePath.replace(/^.*\/src\//, process.cwd() + '/__mocks__/src/'),
-      filePath.replace(/^.*\/src\//, PROJECT_ROOT + '/src/')
-    ];
-    
-    for (const altPath of alternatePaths) {
-      if (fsSync.existsSync(altPath)) {
-        console.log(`Found source file at: ${altPath}`);
-        const sourceCode = await fsPromises.readFile(altPath, 'utf8');
-        return sourceCode;
+      
+      // Try to find the file by name in the project root recursively
+      try {
+        const { execSync } = require('child_process');
+        const result = execSync(`find ${process.env.PROJECT_ROOT} -name "${fileName}" | grep -v "node_modules" | head -1`, { encoding: 'utf8' });
+        
+        if (result && result.trim()) {
+          const foundPath = result.trim();
+          console.log(`Found file by name at: ${foundPath}`);
+          const content = await fsPromises.readFile(foundPath, 'utf8');
+          return content;
+        }
+      } catch (error) {
+        console.warn(`Could not find file by name in project root: ${error}`);
       }
     }
     
-    // If we couldn't find the source file, generate mock code
-    console.log(`Could not find source file for ${componentName}. Generating mock source code.`);
+    // If all else fails, generate mock source code
+    console.warn(`Could not find file. Generating mock source code for: ${filePath}`);
     return generateMockSourceCode(filePath);
   } catch (error) {
-    console.error(`Error extracting source code for ${filePath}: ${error}`);
+    console.error(`Error extracting source code for ${filePath}:`, error);
     return null;
   }
 }
@@ -386,237 +366,120 @@ export default ${componentName};`;
  * Find test files for a component
  */
 async function findTestFiles(componentPath: string): Promise<TestFile[]> {
+  const result: TestFile[] = [];
+  const componentName = path.basename(componentPath).replace(/\.(tsx|ts|js|jsx)$/, '').toLowerCase();
+  const PROJECT_ROOT = process.env.PROJECT_ROOT || process.cwd();
+  
+  console.log(`Finding test files for component: ${componentName} from path: ${componentPath}`);
+  
   try {
-    // Extract component information
-    const dir = path.dirname(componentPath);
-    const fileName = path.basename(componentPath);
-    const componentName = fileName.replace(/\.(tsx|jsx|ts|js)$/, '');
-    const fileExtension = path.extname(componentPath);
-    
-    console.log(`Finding test files for component: ${componentName} from path: ${componentPath}`);
-    
-    // Check if this is a utility file
-    const isUtilFile = dir.includes('utils') || componentPath.includes('utils') || componentName.toLowerCase().includes('util');
-    
-    // Ensure we check both lowercase and proper case for component name (handles stringUtils vs StringUtils)
-    const componentVariants = [
-      componentName, 
-      componentName.toLowerCase(),
-      componentName.charAt(0).toUpperCase() + componentName.slice(1)
-    ];
-    
-    // Build possible test patterns
-    const possibleTestPatterns: string[] = [];
-    
-    // For project mode, prioritize real project test files first
-    if (COVERAGE_SOURCE === 'project' && PROJECT_ROOT) {
-      const baseProjectDir = path.dirname(componentPath);
-      const srcDir = path.join(PROJECT_ROOT, 'src');
-      
-      // Add patterns for each component name variant
-      for (const variant of componentVariants) {
-        // Look in the same directory as the component
-        possibleTestPatterns.push(
-          path.join(baseProjectDir, '__tests__', `${variant}.test.tsx`),
-          path.join(baseProjectDir, '__tests__', `${variant}.test.ts`),
-          path.join(baseProjectDir, '__tests__', `${variant}.test.jsx`),
-          path.join(baseProjectDir, '__tests__', `${variant}.test.js`),
-          path.join(baseProjectDir, `${variant}.test.tsx`),
-          path.join(baseProjectDir, `${variant}.test.ts`),
-          path.join(baseProjectDir, `${variant}.test.jsx`),
-          path.join(baseProjectDir, `${variant}.test.js`)
-        );
+    // First look in project directory if PROJECT_ROOT is defined
+    if (PROJECT_ROOT) {
+      console.log(`Using project root for test search: ${PROJECT_ROOT}`);
+
+      // Patterns for test files
+      const testFilePatterns = [
+        // Standard patterns
+        path.join(PROJECT_ROOT, 'src', '**', `${componentName}.test.?(ts|tsx|js|jsx)`),
+        path.join(PROJECT_ROOT, 'src', '**', `${componentName}.spec.?(ts|tsx|js|jsx)`),
+        path.join(PROJECT_ROOT, 'src', '**', '__tests__', `${componentName}.test.?(ts|tsx|js|jsx)`),
+        path.join(PROJECT_ROOT, 'src', '**', '__tests__', `${componentName}.spec.?(ts|tsx|js|jsx)`),
         
-        // Look in the project's __tests__ directory
-        possibleTestPatterns.push(
-          path.join(PROJECT_ROOT, '__tests__', `${variant}.test.tsx`),
-          path.join(PROJECT_ROOT, '__tests__', `${variant}.test.ts`),
-          path.join(PROJECT_ROOT, 'tests', `${variant}.test.tsx`),
-          path.join(PROJECT_ROOT, 'tests', `${variant}.test.ts`)
-        );
+        // Common test directories
+        path.join(PROJECT_ROOT, '__tests__', '**', `${componentName}.test.?(ts|tsx|js|jsx)`),
+        path.join(PROJECT_ROOT, '__tests__', '**', `${componentName}.spec.?(ts|tsx|js|jsx)`),
+        path.join(PROJECT_ROOT, 'tests', '**', `${componentName}.test.?(ts|tsx|js|jsx)`),
+        path.join(PROJECT_ROOT, 'tests', '**', `${componentName}.spec.?(ts|tsx|js|jsx)`),
+        path.join(PROJECT_ROOT, 'test', '**', `${componentName}.test.?(ts|tsx|js|jsx)`),
+        path.join(PROJECT_ROOT, 'test', '**', `${componentName}.spec.?(ts|tsx|js|jsx)`),
         
-        // Look in the src/__tests__ directory
-        possibleTestPatterns.push(
-          path.join(srcDir, '__tests__', `${variant}.test.tsx`),
-          path.join(srcDir, '__tests__', `${variant}.test.ts`)
-        );
+        // Case-insensitive for file name only
+        path.join(PROJECT_ROOT, 'src', '**', `*${componentName}*.test.?(ts|tsx|js|jsx)`),
+        path.join(PROJECT_ROOT, 'src', '**', `*${componentName}*.spec.?(ts|tsx|js|jsx)`),
         
-        // Component-specific test directories
-        const relativeComponentPath = path.relative(srcDir, componentPath);
-        const componentDir = path.dirname(relativeComponentPath);
+        // Jest conventaions
+        path.join(PROJECT_ROOT, '**', '__tests__', `*${componentName}*`),
         
-        possibleTestPatterns.push(
-          path.join(srcDir, componentDir, '__tests__', `${variant}.test.tsx`),
-          path.join(srcDir, componentDir, '__tests__', `${variant}.test.ts`)
-        );
-      }
-    }
-    
-    // Add patterns for each component name variant
-    for (const variant of componentVariants) {
-      // Standard patterns
-      possibleTestPatterns.push(
-        path.join(dir, '__tests__', `${variant}.test.tsx`),
-        path.join(dir, '__tests__', `${variant}.test.ts`),
-        path.join(dir, '__tests__', `${variant}.test.jsx`),
-        path.join(dir, '__tests__', `${variant}.test.js`),
-        path.join(dir, `${variant}.test.tsx`),
-        path.join(dir, `${variant}.test.ts`),
-        path.join(dir, `${variant}.test.jsx`),
-        path.join(dir, `${variant}.test.js`)
-      );
-      
-      // Check in parent directory
-      possibleTestPatterns.push(
-        path.join(dir, '..', '__tests__', `${variant}.test.tsx`),
-        path.join(dir, '..', '__tests__', `${variant}.test.ts`),
-        path.join(dir, '..', '__tests__', `${variant}.test.jsx`),
-        path.join(dir, '..', '__tests__', `${variant}.test.js`)
-      );
-      
-      // Special patterns for utility files
-      if (isUtilFile) {
-        // Look in utils-specific directories
-        possibleTestPatterns.push(
-          path.join(PROJECT_ROOT, 'src', 'utils', '__tests__', `${variant}.test.ts`),
-          path.join(PROJECT_ROOT, 'src', 'utils', `${variant}.test.ts`),
-          path.join(PROJECT_ROOT, 'src', '__tests__', 'utils', `${variant}.test.ts`),
-          path.join(PROJECT_ROOT, 'test', 'utils', `${variant}.test.ts`),
-          path.join(PROJECT_ROOT, 'tests', 'utils', `${variant}.test.ts`)
-        );
+        // Try node_modules (for demo apps)
+        path.join(PROJECT_ROOT, 'node_modules', '**', `${componentName}.test.?(ts|tsx|js|jsx)`),
         
-        // For mock app utilities
-        possibleTestPatterns.push(
-          path.join(MOCK_APP_DIR, 'utils', '__tests__', `${variant}.test.ts`),
-          path.join(MOCK_APP_DIR, 'utils', `${variant}.test.ts`),
-          path.join(MOCK_APP_DIR, '__tests__', 'utils', `${variant}.test.ts`)
-        );
-      }
+        // E2E tests
+        path.join(PROJECT_ROOT, 'e2e', '**', `${componentName}.?(ts|tsx|js|jsx|feature)`)
+      ];
       
-      // Check in test directories
-      possibleTestPatterns.push(
-        path.join(PROJECT_ROOT, 'test', `${variant}.test.tsx`),
-        path.join(PROJECT_ROOT, 'test', `${variant}.test.ts`),
-        path.join(PROJECT_ROOT, 'tests', `${variant}.test.tsx`),
-        path.join(PROJECT_ROOT, 'tests', `${variant}.test.ts`)
-      );
-      
-      // Check in src/test directories
-      possibleTestPatterns.push(
-        path.join(PROJECT_ROOT, 'src', 'test', `${variant}.test.tsx`),
-        path.join(PROJECT_ROOT, 'src', 'test', `${variant}.test.ts`),
-        path.join(PROJECT_ROOT, 'src', 'tests', `${variant}.test.tsx`),
-        path.join(PROJECT_ROOT, 'src', 'tests', `${variant}.test.ts`)
-      );
-      
-      // For mock app, check in specific paths
-      possibleTestPatterns.push(
-        path.join(MOCK_APP_DIR, '__tests__', `${variant}.test.tsx`),
-        path.join(MOCK_APP_DIR, '__tests__', `${variant}.test.ts`)
-      );
-    }
-    
-    const testFiles: TestFile[] = [];
-    
-    // Try all possible patterns
-    for (const testPath of possibleTestPatterns) {
-      if (fsSync.existsSync(testPath)) {
-        console.log(`Found test file: ${testPath}`);
-        const content = await fsPromises.readFile(testPath, 'utf8');
-        testFiles.push({ path: testPath, content });
-      }
-    }
-    
-    // If no test files were found, create template test files for the components we're tracking
-    if (testFiles.length === 0 && COVERAGE_SOURCE === 'project') {
-      // Create a template test file to demonstrate what a test for this component might look like
-      const targetDir = path.join(process.cwd(), 'project-test-files');
-      if (!fsSync.existsSync(targetDir)) {
-        fsSync.mkdirSync(targetDir, { recursive: true });
-      }
-      
-      const testPath = path.join(targetDir, `${componentName}.test.tsx`);
-      let testContent = '';
-      
-      // Different templates based on component type
-      if (componentName.toLowerCase().includes('context')) {
-        testContent = generateContextTestTemplate(componentName, componentPath);
-      } else if (isUtilFile) {
-        testContent = generateUtilityTestTemplate(componentName, componentPath);
-      } else {
-        testContent = generateComponentTestTemplate(componentName, componentPath);
-      }
-      
-      // Write the template to file if it doesn't exist
-      if (!fsSync.existsSync(testPath)) {
-        await fsPromises.writeFile(testPath, testContent, 'utf8');
-        console.log(`Created template test file: ${testPath}`);
-      }
-      
-      testFiles.push({ 
-        path: testPath, 
-        content: testContent,
-        highlightedTests: findTestsInContent(testContent, componentName)
-      });
-    }
-    
-    if (testFiles.length === 0) {
-      // If no test files were found with the regular paths, try a more flexible search
-      // This helps with cases where the file structure is different from what we expected
-      const mockAppTestsDir = path.join(MOCK_APP_DIR, '__tests__');
-      try {
-        if (fsSync.existsSync(mockAppTestsDir)) {
-          const testFilesList = await fsPromises.readdir(mockAppTestsDir);
+      // Use glob to find test files
+      for (const pattern of testFilePatterns) {
+        try {
+          const glob = require('glob');
+          const files = glob.sync(pattern, { nocase: true });
           
-          // Look for any test file that might match our component name
-          for (const file of testFilesList) {
-            if (file.includes(componentName.toLowerCase()) && file.endsWith('.test.ts') || file.endsWith('.test.tsx')) {
-              const testPath = path.join(mockAppTestsDir, file);
-              console.log(`Found test file via directory search: ${testPath}`);
-              const content = await fsPromises.readFile(testPath, 'utf8');
-              testFiles.push({ path: testPath, content });
+          for (const file of files) {
+            console.log(`Found test file: ${file}`);
+            
+            try {
+              const content = fsSync.readFileSync(file, 'utf8');
+              result.push({
+                path: file,
+                content
+              });
+            } catch (error) {
+              console.error(`Error reading test file ${file}:`, error);
             }
           }
+        } catch (error) {
+          console.error(`Error searching for ${pattern}:`, error);
         }
-        
-        // Also check the utils/__tests__ directory if it exists
-        const utilsTestsDir = path.join(MOCK_APP_DIR, 'utils', '__tests__');
-        if (fsSync.existsSync(utilsTestsDir)) {
-          const testFilesList = await fsPromises.readdir(utilsTestsDir);
+      }
+    }
+    
+    // If no test files found in project, try mock directory as fallback
+    if (result.length === 0) {
+      console.log(`No test files found in project. Falling back to mock directory.`);
+      
+      const MOCKS_DIR = path.resolve(process.cwd(), '__mocks__');
+      
+      const mockTestPatterns = [
+        path.join(MOCKS_DIR, 'src', '**', `${componentName}.test.?(ts|tsx|js|jsx)`),
+        path.join(MOCKS_DIR, 'src', '**', `${componentName}.spec.?(ts|tsx|js|jsx)`),
+        path.join(MOCKS_DIR, 'src', '**', '__tests__', `${componentName}.test.?(ts|tsx|js|jsx)`),
+        path.join(MOCKS_DIR, 'src', '**', '__tests__', `${componentName}.spec.?(ts|tsx|js|jsx)`),
+        path.join(MOCKS_DIR, 'src', '__tests__', `${componentName}.test.?(ts|tsx|js|jsx)`),
+        path.join(MOCKS_DIR, 'src', '__tests__', `${componentName}.spec.?(ts|tsx|js|jsx)`),
+        path.join(MOCKS_DIR, 'src', 'utils', '__tests__', `${componentName}.test.?(ts|tsx|js|jsx)`),
+        path.join(MOCKS_DIR, 'src', 'utils', '__tests__', `${componentName}.spec.?(ts|tsx|js|jsx)`)
+      ];
+      
+      // Use glob to find mock test files
+      for (const pattern of mockTestPatterns) {
+        try {
+          const glob = require('glob');
+          const files = glob.sync(pattern, { nocase: true });
           
-          // Look for any test file that might match our component name
-          for (const file of testFilesList) {
-            if (file.includes(componentName.toLowerCase()) && (file.endsWith('.test.ts') || file.endsWith('.test.tsx'))) {
-              const testPath = path.join(utilsTestsDir, file);
-              console.log(`Found test file via utils directory search: ${testPath}`);
-              const content = await fsPromises.readFile(testPath, 'utf8');
-              testFiles.push({ path: testPath, content });
+          for (const file of files) {
+            console.log(`Found mock test file: ${file}`);
+            
+            try {
+              const content = fsSync.readFileSync(file, 'utf8');
+              result.push({
+                path: file,
+                content
+              });
+            } catch (error) {
+              console.error(`Error reading mock test file ${file}:`, error);
             }
           }
+        } catch (error) {
+          console.error(`Error searching for ${pattern}:`, error);
         }
-      } catch (error) {
-        console.warn(`Error during directory-based test search: ${error}`);
       }
     }
     
-    // After finding test files, deduplicate them based on path
-    const uniqueTestFiles: { [key: string]: TestFile } = {};
+    // Return whatever we found, even if empty - don't throw an error
+    return result;
     
-    for (const testFile of testFiles) {
-      // Only add this file if we haven't seen it before
-      if (!uniqueTestFiles[testFile.path]) {
-        // Identify the specific tests in this file that relate to the component
-        const highlightedTests = testFile.highlightedTests || findTestsInContent(testFile.content, componentName);
-        uniqueTestFiles[testFile.path] = {
-          ...testFile,
-          highlightedTests
-        };
-      }
-    }
-    
-    return Object.values(uniqueTestFiles);
   } catch (error) {
-    console.error(`Error finding test files: ${error}`);
+    console.error(`Error finding test files for ${componentName}:`, error);
+    // Return empty array instead of throwing
     return [];
   }
 }
@@ -756,12 +619,17 @@ function generateRecommendedTestIds(componentPath: string): string[] {
 }
 
 /**
- * Convert absolute file path to relative path for display
+ * Get a user-friendly relative path for display
  */
 function getRelativePath(filePath: string): string {
   // For mock app
   if (filePath.includes('__mocks__')) {
     return filePath.replace(/^.*\/__mocks__\//, '__mocks__/');
+  }
+  
+  // For testApp files
+  if (filePath.includes('/testApp/')) {
+    return filePath.replace(/^.*\/testApp\//, 'testApp/');
   }
   
   // For project files
@@ -1046,173 +914,7 @@ function generateHTML(components: ComponentWithTests[]): string {
     </tbody>
   </table>
   
-  ${components.map((component, index) => `
-  <div id="component-${index}" class="component-details">
-    <button onclick="hideComponentDetails(${index})">← Back to List</button>
-    <h2>${component.name || path.basename(component.path).replace(/\.(tsx|jsx|ts|js)$/, '')}</h2>
-    
-    <div class="source-path">
-      File: <a href="file://${component.path}" target="_blank" class="file-path">${getRelativePath(component.path)}</a>
-    </div>
-    
-    <p>Coverage: <span class="${getCoverageClass(component.coverage)}">${component.coverage.toFixed(1)}%</span></p>
-    <p>Tests: ${component.tests || component.testFiles?.length || component.correlatedTests?.length || 0}</p>
-    
-    <div class="tabs">
-      <div class="tab active" onclick="switchTab(${index}, 'source')">Source Code</div>
-      <div class="tab" onclick="switchTab(${index}, 'tests')">Related Tests</div>
-      <div class="tab" onclick="switchTab(${index}, 'testfiles')">Test Files</div>
-      <div class="tab" onclick="switchTab(${index}, 'testids')">Test ID Recommendations</div>
-      <div class="tab" onclick="switchTab(${index}, 'analysis')">Gap Analysis</div>
-    </div>
-    
-    <div id="source-${index}" class="detail-section source-section active">
-      ${component.sourceCode 
-        ? `<div class="section">
-            <h3>Source Code</h3>
-            <div class="code-container">
-              ${formatSourceCode(
-                component.sourceCode,
-                component.coveredLines || [],
-                component.uncoveredLines || []
-              )}
-            </div>
-          </div>`
-        : ''
-      }
-    </div>
-    
-    <div id="tests-${index}" class="detail-section tests-section">
-      <h3>Related Tests (${component.correlatedTests?.length || 0})</h3>
-      ${component.correlatedTests && component.correlatedTests.length > 0 
-        ? `<ul class="test-list">
-            ${component.correlatedTests.map(test => `
-              <li class="test-item">
-                <strong>${test.feature}</strong>
-                <div>Scenario: ${test.scenario}</div>
-                <div>Step: ${test.step}</div>
-                <div>Confidence: <span class="confidence ${getConfidenceClass(test.confidence)}">${(test.confidence * 100).toFixed(0)}%</span></div>
-              </li>
-            `).join('')}
-          </ul>`
-        : '<p>No related tests found.</p>'
-      }
-    </div>
-    
-    <div id="testfiles-${index}" class="detail-section testfiles-section">
-      <h3>Test Files (${component.testFiles?.length || 0})</h3>
-      <div class="test-files-section">
-        ${component.testFiles && component.testFiles.length > 0
-          ? component.testFiles.map(testFile => {
-              // Safely access the highlighted tests
-              const safeHighlightedTests = testFile.highlightedTests || [];
-              return `
-                <div class="test-file">
-                  <div class="test-file-header">
-                    <span>${getRelativePath(testFile.path)}</span>
-                    <button class="copy-button" onclick="copyToClipboard('${testFile.path}')">Copy</button>
-                  </div>
-                  ${safeHighlightedTests.length > 0 
-                    ? `<div class="test-nav">
-                        ${safeHighlightedTests.map((test, idx) => 
-                          `<span class="test-nav-item" onclick="scrollToTest('testfile-${index}-${testFile.path.replace(/[^a-zA-Z0-9]/g, '-')}', ${test.lineStart})">${test.name}</span>`
-                        ).join('')}
-                      </div>`
-                    : ''
-                  }
-                  <div class="test-file-content" id="testfile-${index}-${testFile.path.replace(/[^a-zA-Z0-9]/g, '-')}">
-                    <!-- Create highlighted test content -->
-                    ${(() => {
-                      const testLines = testFile.content.split('\n');
-                      let result = '';
-                      
-                      for (let i = 0; i < testLines.length; i++) {
-                        const lineNumber = i + 1;
-                        
-                        // Check if this line is part of a highlighted test
-                        let isHighlighted = false;
-                        let testNameToShow = null;
-                        
-                        for (const test of safeHighlightedTests) {
-                          if (lineNumber === test.lineStart) {
-                            testNameToShow = test.name;
-                          }
-                          
-                          if (lineNumber >= test.lineStart && lineNumber <= test.lineEnd) {
-                            isHighlighted = true;
-                            break;
-                          }
-                        }
-                        
-                        // Add test name indicator if this is the start of a test
-                        if (testNameToShow) {
-                          result += `<div class="test-name-indicator">${testNameToShow}</div>`;
-                        }
-                        
-                        // Add the line with proper formatting
-                        const highlightClass = isHighlighted ? 'highlighted-test' : '';
-                        const lineContent = escapeHtml(testLines[i]);
-                        
-                        result += `<div class="code-line ${highlightClass}" id="line-${lineNumber}">
-                          <div class="line-number">${lineNumber}</div>
-                          <div class="line-content">${lineContent}</div>
-                        </div>`;
-                      }
-                      
-                      if (safeHighlightedTests.length === 0) {
-                        result = `<div class="no-highlighted-tests">No specific tests highlighted. This file may contain general tests or utilities.</div>${result}`;
-                      }
-                      
-                      return result;
-                    })()}
-                  </div>
-                </div>
-              `;
-            }).join('')
-          : `
-            <p>No test files found for this component.</p>
-            <p>Consider creating tests in one of these locations:</p>
-            <ul>
-              <li><code>${getRelativePath(component.path).replace(/\.(tsx|jsx|ts|js)$/, '.test.$1')}</code></li>
-              <li><code>${path.join(path.dirname(getRelativePath(component.path)), '__tests__', path.basename(component.path).replace(/\.(tsx|jsx|ts|js)$/, '.test.$1'))}</code></li>
-            </ul>
-          `
-        }
-      </div>
-    </div>
-    
-    <div id="testids-${index}" class="detail-section testids-section">
-      <h3>Recommended Test IDs</h3>
-      <p>Use these test IDs to improve test coverage correlation:</p>
-      <ul class="test-id-suggestions">
-        ${(component.recommendedTestIds || generateRecommendedTestIds(component.path)).map(id => `
-          <li class="test-id-item">
-            <code>${id}</code>
-            <button class="copy-button" onclick="copyToClipboard('${id}')">Copy</button>
-          </li>
-        `).join('')}
-      </ul>
-    </div>
-    
-    <div id="analysis-${index}" class="detail-section analysis-section">
-      <h3>Gap Analysis</h3>
-      ${component.gapAnalysis
-        ? `<div>
-            <p>Testing Priority: <span class="${getCoverageClass(component.coverage)}">${component.gapAnalysis.testingPriority}</span></p>
-            <h4>Missing Coverage:</h4>
-            <ul>
-              ${component.gapAnalysis.missingCoverage.map(item => `<li>${item}</li>`).join('')}
-            </ul>
-            <h4>Recommended Tests:</h4>
-            <ul>
-              ${component.gapAnalysis.recommendedTests.map(item => `<li>${item}</li>`).join('')}
-            </ul>
-          </div>`
-        : '<p>No gap analysis available.</p>'
-      }
-    </div>
-  </div>
-  `).join('')}
+  ${components.map((component, index) => generateComponentDetailTemplate(component, index)).join('')}
   
   <footer>
     <p>Generated by Coverage Venn Tool</p>
@@ -1221,19 +923,40 @@ function generateHTML(components: ComponentWithTests[]): string {
   <script>
     // Show component details
     function showComponentDetails(index) {
+      // Hide all other component details
       document.querySelectorAll('.component-details').forEach(el => {
         el.classList.remove('active');
       });
-      document.getElementById('component-' + index).classList.add('active');
-      document.getElementById('summary').style.display = 'none';
-      document.querySelector('table').style.display = 'none';
+      
+      // Show selected component details
+      const componentEl = document.getElementById('component-' + index);
+      if (componentEl) {
+        componentEl.classList.add('active');
+        
+        // Hide summary and table
+        const summaryEl = document.getElementById('summary');
+        if (summaryEl) summaryEl.style.display = 'none';
+        
+        const tableEl = document.querySelector('table');
+        if (tableEl) tableEl.style.display = 'none';
+      } else {
+        console.error('Component element with id component-' + index + ' not found');
+      }
     }
     
     // Hide component details
     function hideComponentDetails(index) {
-      document.getElementById('component-' + index).classList.remove('active');
-      document.getElementById('summary').style.display = 'block';
-      document.querySelector('table').style.display = 'table';
+      const componentEl = document.getElementById('component-' + index);
+      if (componentEl) {
+        componentEl.classList.remove('active');
+        
+        // Show summary and table
+        const summaryEl = document.getElementById('summary');
+        if (summaryEl) summaryEl.style.display = 'block';
+        
+        const tableEl = document.querySelector('table');
+        if (tableEl) tableEl.style.display = 'table';
+      }
     }
     
     // Switch tabs in component details
@@ -1249,10 +972,16 @@ function generateHTML(components: ComponentWithTests[]): string {
       });
       
       // Activate selected tab
-      document.querySelector('#component-' + componentIndex + ' .tab[onclick*="' + tabName + '"]').classList.add('active');
+      const tabEl = document.querySelector('#component-' + componentIndex + ' .tab[onclick*="' + tabName + '"]');
+      if (tabEl) {
+        tabEl.classList.add('active');
+      }
       
       // Activate selected section
-      document.getElementById(tabName + '-' + componentIndex).classList.add('active');
+      const sectionEl = document.getElementById(tabName + '-' + componentIndex);
+      if (sectionEl) {
+        sectionEl.classList.add('active');
+      }
     }
     
     // Copy text to clipboard
@@ -1274,6 +1003,12 @@ function generateHTML(components: ComponentWithTests[]): string {
     
     // Syntax highlight test code
     function applySyntaxHighlighting(code) {
+      // Check if code is defined first
+      if (!code || typeof code !== 'string') {
+        console.warn('No code provided for syntax highlighting or code is not a string');
+        return '';
+      }
+      
       // Keywords
       code = code.replace(/\\b(function|const|let|var|return|if|else|for|while|do|switch|case|break|continue|new|try|catch|finally|throw|typeof|instanceof|in|of|class|extends|super|import|export|from|as|async|await|yield|this|true|false|null|undefined)\\b/g, '<span class="keyword">$1</span>');
       
@@ -1320,7 +1055,24 @@ function generateHTML(components: ComponentWithTests[]): string {
     
     // Call syntax highlighting when the page loads
     window.addEventListener('DOMContentLoaded', function() {
-      applySyntaxHighlighting();
+      try {
+        // Apply syntax highlighting to all code elements
+        const codeContainers = document.querySelectorAll('.code-container, .test-file-content');
+        codeContainers.forEach(container => {
+          const codeElements = container.querySelectorAll('.line-content');
+          codeElements.forEach(element => {
+            if (element && element.textContent) {
+              const highlighted = applySyntaxHighlighting(element.textContent);
+              if (highlighted) {
+                element.innerHTML = highlighted;
+              }
+            }
+          });
+        });
+        console.log('Syntax highlighting applied successfully');
+      } catch (error) {
+        console.error('Error applying syntax highlighting:', error);
+      }
     });
   </script>
 </body>
@@ -1397,400 +1149,121 @@ function getConfidenceClass(confidence: number): string {
 }
 
 /**
- * Main function
+ * Generate component detail template
  */
-async function main() {
-  try {
-    console.log(`Generating enhanced HTML report for ${COVERAGE_SOURCE} data...`);
-    
-    // Create output directory if it doesn't exist
-    if (!fsSync.existsSync(OUTPUT_DIR)) {
-      fsSync.mkdirSync(OUTPUT_DIR, { recursive: true });
-    }
-    
-    // Load component coverage data
-    let componentData: ComponentWithTests[] = [];
-    
-    try {
-      if (fsSync.existsSync(COMPONENT_COVERAGE_PATH)) {
-        const data = await fsPromises.readFile(COMPONENT_COVERAGE_PATH, 'utf8');
-        
-        // Handle different formats of the component coverage data
-        try {
-          // Try parsing as an array first (project-component-coverage.json format)
-          const parsedData = JSON.parse(data);
-          if (Array.isArray(parsedData)) {
-            componentData = parsedData.map(item => {
-              const component: ComponentWithTests = {
-                path: item.path,
-                name: path.basename(item.path).replace(/\.(tsx|jsx|ts|js)$/, ''),
-                coverage: item.coverage || 0,
-                statements: item.statements || 0,
-                branches: item.branches || 0,
-                functions: item.functions || 0,
-                lines: item.lines || 0,
-                tests: 0, // Will be updated later
-                metrics: {
-                  statements: item.statements || 0,
-                  branches: item.branches || 0,
-                  functions: item.functions || 0,
-                  lines: item.lines || 0
-                }
-              };
-              
-              // Fix component paths only for mock data source, preserve project paths
-              if (COVERAGE_SOURCE === 'mock') {
-                // Adjust paths to look in __mocks__ directory
-                if (component.name === 'App') {
-                  component.path = path.join(process.cwd(), '__mocks__', 'src', 'App.tsx');
-                } else {
-                  component.path = path.join(process.cwd(), '__mocks__', 'src', 'components', `${component.name}.tsx`);
-                }
-              }
-              // For project data, ensure we maintain original paths
-              // Just check if the file exists and normalize the path if needed
-              else if (COVERAGE_SOURCE === 'project') {
-                // Preserve the original path but ensure it exists
-                // This will help with mapping to the actual project files
-                if (!component.path.startsWith(PROJECT_ROOT)) {
-                  // Try to locate the component in the project
-                  console.log(`Preserving project path: ${component.path}`);
-                }
-              }
-              
-              return component;
-            });
-          } else if (parsedData.components) {
-            // Handle the { components: [...] } format
-            componentData = parsedData.components;
-          } else {
-            console.warn(`Unexpected data format in ${COMPONENT_COVERAGE_PATH}`);
-          }
-        } catch (parseError) {
-          console.error(`Error parsing component coverage data: ${parseError}`);
-        }
-      } else {
-        console.warn(`Could not load component coverage data from ${COMPONENT_COVERAGE_PATH}`);
-      }
-    } catch (error) {
-      console.error(`Error loading component coverage data: ${error}`);
-    }
-    
-    console.log(`Loaded coverage data for ${componentData.length} components.`);
-    
-    // Filter out components that don't exist in the project when in project mode
-    if (COVERAGE_SOURCE === 'project') {
-      const initialCount = componentData.length;
-      componentData = componentData.filter(component => {
-        // Check if component exists in the project
-        const componentFileName = path.basename(component.path);
-        const componentName = component.name;
-        
-        // Build list of possible real paths
-        const possiblePaths = [
-          // Try direct paths first
-          path.join(PROJECT_ROOT, 'src', 'components', componentFileName),
-          path.join(PROJECT_ROOT, 'src', 'views', componentFileName),
-          path.join(PROJECT_ROOT, 'src', componentFileName),
-          // Try for utility files
-          path.join(PROJECT_ROOT, 'src', 'utils', componentFileName),
-          // Try with .js and .ts extensions if this is a .tsx file
-          componentFileName.endsWith('.tsx') ? path.join(PROJECT_ROOT, 'src', 'components', componentFileName.replace('.tsx', '.ts')) : null,
-          componentFileName.endsWith('.tsx') ? path.join(PROJECT_ROOT, 'src', 'components', componentFileName.replace('.tsx', '.js')) : null,
-          // Try alternate directories
-          path.join(PROJECT_ROOT, 'src', 'features', componentFileName),
-          path.join(PROJECT_ROOT, 'src', 'contexts', componentFileName),
-          // Try the reported path itself
-          component.path
-        ].filter(Boolean); // Remove null entries
-        
-        // Check if any of the possible paths exist
-        const exists = possiblePaths.some(p => p && fsSync.existsSync(p));
-        
-        if (!exists) {
-          console.log(`Filtering out component ${componentName} - not found in project at any of: ${possiblePaths.join(', ')}`);
-        }
-        
-        return exists;
-      });
+function generateComponentDetailTemplate(component: ComponentWithTests, index: number): string {
+  const componentName = component.name || path.basename(component.path);
+  
+  // Separate tests into unit tests and E2E tests
+  const unitTests = (component.correlatedTests || []).filter(test => !test.isE2E);
+  const e2eTests = (component.correlatedTests || []).filter(test => test.isE2E);
+  
+  console.log(`Component ${componentName}: ${unitTests.length} unit tests, ${e2eTests.length} E2E tests`);
+  
+  const testFilesTemplate = component.testFiles ? component.testFiles.map(file => `
+    <div class="test-file">
+      <h4>${path.basename(file.path)}</h4>
+      <pre><code class="language-typescript">${escapeHtml(file.content)}</code></pre>
+    </div>
+  `).join('') : '';
+  
+  const unitTestsTemplate = unitTests.length > 0 ? `
+    <div class="correlatedUnitTests">
+      <h4>Correlated Unit Tests</h4>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Scenario</th>
+            <th>Step</th>
+            <th>Confidence</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${unitTests.map(test => `
+            <tr>
+              <td>${escapeHtml(test.feature)}</td>
+              <td>${escapeHtml(test.scenario)}</td>
+              <td>${escapeHtml(test.step)}</td>
+              <td>${(test.confidence * 100).toFixed(1)}%</td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>
+    </div>
+  ` : '';
+  
+  const e2eTestsTemplate = e2eTests.length > 0 ? `
+    <div class="correlatedE2ETests">
+      <h4>Correlated E2E Tests</h4>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Scenario</th>
+            <th>Step</th>
+            <th>Confidence</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${e2eTests.map(test => `
+            <tr>
+              <td>${escapeHtml(test.feature)}</td>
+              <td>${escapeHtml(test.scenario)}</td>
+              <td>${escapeHtml(test.step)}</td>
+              <td>${(test.confidence * 100).toFixed(1)}%</td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>
+    </div>
+  ` : '';
+  
+  const recommendationsTemplate = component.recommendedTestIds && component.recommendedTestIds.length > 0 ? `
+    <div class="recommendations">
+      <h4>Recommendations</h4>
+      <p>Based on analysis of this component, the following tests are recommended:</p>
+      <ul>
+        ${component.recommendedTestIds.map(id => `<li>Create a test for element with testID: <code>${escapeHtml(id)}</code></li>`).join('')}
+      </ul>
+    </div>
+  ` : '';
+  
+  return `
+    <div class="component-details" id="component-${index}">
+      <h3>${componentName}</h3>
+      <div class="component-path">${component.path}</div>
+      <div class="component-coverage">Coverage: ${(component.coverage * 100).toFixed(1)}%</div>
       
-      console.log(`Filtered components from ${initialCount} to ${componentData.length} that exist in project`);
-    }
-    
-    // Load correlation data if available
-    let foundTestCorrelations = false;
-    try {
-      if (fsSync.existsSync(CORRELATION_PATH)) {
-        const correlationData = await fsPromises.readFile(CORRELATION_PATH, 'utf8');
-        const correlations = JSON.parse(correlationData);
+      <div class="tab-container">
+        <div class="tabs">
+          <button class="tab-button active" onclick="switchTab('source-tab-${componentName}', '${componentName}')">Source</button>
+          <button class="tab-button" onclick="switchTab('tests-tab-${componentName}', '${componentName}')">Test Files</button>
+          <button class="tab-button" onclick="switchTab('correlated-tab-${componentName}', '${componentName}')">Correlated Tests</button>
+        </div>
         
-        console.log(`Loaded correlation data with ${correlations.components?.length || 0} components`);
+        <div class="tab-content active" id="source-tab-${componentName}">
+          <div class="source-code">
+            <pre><code class="language-typescript">${component.sourceCode ? escapeHtml(component.sourceCode) : 'Source code not available'}</code></pre>
+          </div>
+        </div>
         
-        // Merge correlation data with component data
-        if (correlations.components && correlations.components.length > 0) {
-          componentData = componentData.map(component => {
-            console.log(`Looking for correlation match for: ${component.name} at ${component.path}`);
-            
-            // Try different matching strategies for correlation
-            const correlationInfo = correlations.components.find((c: any) => {
-              const matches = pathsMatch(c.path, component.path);
-              if (matches) {
-                console.log(`★ Found correlation match: ${c.path} matches ${component.path}`);
-              }
-              return matches;
-            });
-            
-            if (correlationInfo) {
-              foundTestCorrelations = true;
-              return {
-                ...component,
-                correlatedTests: correlationInfo.correlatedTests,
-                gapAnalysis: correlationInfo.gapAnalysis,
-                tests: correlationInfo.correlatedTests?.length || 0
-              };
-            } else {
-              console.log(`No correlation match found for: ${component.name}`);
-            }
-            
-            return component;
-          });
-        }
-      }
-    } catch (error) {
-      console.warn(`Could not load correlation data: ${error}`);
-    }
-    
-    // Handle correlation data differently based on the source
-    if (!foundTestCorrelations) {
-      if (COVERAGE_SOURCE === 'project') {
-        console.log("No correlation data found for project components. Will attempt to find test files dynamically.");
-        // For project mode, we'll simply leave components without pre-defined correlations
-        // and will try to find test files dynamically in the subsequent steps
-      } else {
-        // Only add mock correlations for mock mode
-        console.log("No correlation data found. Adding mock test associations for mock components.");
-        componentData = componentData.map(component => {
-          if (component.name === 'App') {
-            component.tests = 1;
-            component.correlatedTests = [
-              { feature: 'App', scenario: 'root_app', step: 'should render with the correct title', confidence: 1.0 }
-            ];
-          } else if (component.name === 'Button') {
-            component.tests = 1;
-            component.correlatedTests = [
-              { feature: 'Button', scenario: 'Button Component', step: 'should render the button correctly', confidence: 0.9 }
-            ];
-          }
-          // ... keep other mock assignments ...
-          return component;
-        });
-      }
-    }
-    
-    // Enhance component data with source code and additional information
-    for (const component of componentData) {
-      // Convert relative paths to absolute paths
-      if (!path.isAbsolute(component.path)) {
-        component.path = path.resolve(PROJECT_ROOT, component.path);
-      }
-      
-      // Extract source code
-      const sourceCodeResult = await extractSourceCode(component.path);
-      component.sourceCode = sourceCodeResult === null ? undefined : sourceCodeResult;
-      
-      // Find test files explicitly
-      if (!component.testFiles) {
-        const testFiles = await findTestFiles(component.path);
-        component.testFiles = testFiles;
+        <div class="tab-content" id="tests-tab-${componentName}">
+          ${testFilesTemplate || '<p>No test files found.</p>'}
+        </div>
         
-        // If we found test files but there's no test count, update it
-        if (testFiles.length > 0 && !component.tests) {
-          component.tests = testFiles.length;
-        }
-      }
-      
-      // Update coverage based on test files - if no tests are found, set coverage to 0
-      // unless real coverage data is already present
-      if ((!component.testFiles || component.testFiles.length === 0) && 
-          (!component.correlatedTests || component.correlatedTests.length === 0) && 
-          component.coverage === 100) {
-        // Set ALL coverage metrics to 0 to be consistent
-        component.coverage = 0;
-        component.statements = 0;
-        component.branches = 0;
-        component.functions = 0;
-        component.lines = 0;
-        
-        // Also update metrics object if it exists
-        if (component.metrics) {
-          component.metrics.statements = 0;
-          component.metrics.branches = 0;
-          component.metrics.functions = 0;
-          component.metrics.lines = 0;
-        }
-      }
-      
-      // Fix the opposite case - if we found tests but coverage is still 0, update it to a realistic value
-      if ((component.testFiles?.length > 0 || (component.correlatedTests && component.correlatedTests.length > 0)) && component.coverage === 0) {
-        const testScore = Math.min(
-          ((component.testFiles?.length || 0) * 10) + 
-          ((component.correlatedTests?.length || 0) * 5), 
-          100
-        );
-        const realisticCoverage = 50 + (testScore / 4); // Base 50% plus up to 25% more based on tests
-        
-        component.coverage = Math.min(realisticCoverage, 95); // Cap at 95% - nothing is perfect!
-        
-        // Update other metrics to match
-        component.statements = component.coverage;
-        component.branches = Math.max(component.coverage - 10, 0); // Branches typically have less coverage
-        component.functions = component.coverage;
-        component.lines = component.coverage;
-        
-        // Also update metrics object if it exists
-        if (component.metrics) {
-          component.metrics.statements = component.statements;
-          component.metrics.branches = component.branches;
-          component.metrics.functions = component.functions;
-          component.metrics.lines = component.lines;
-        }
-      }
-      
-      // Determine line counts
-      if (component.sourceCode) {
-        component.lineCount = component.sourceCode.split('\n').length;
-        
-        // Generate covered lines based on real coverage data if available
-        if (!component.coveredLines) {
-          component.coveredLines = [];
-          const lineCount = component.lineCount;
-          const coveragePercent = component.coverage / 100;
-          
-          // If no tests, all lines are uncovered
-          if (component.coverage === 0) {
-            // No covered lines, all lines are uncovered
-            component.coveredLines = [];
-          } else {
-            // Generate realistic covered lines based on coverage percentage
-            // For code with patterns like imports at the top, we assume those are always covered
-            const importLines = Math.floor(lineCount * 0.1); // Assume ~10% of file is imports
-            
-            // Always mark import lines as covered
-            for (let i = 1; i <= importLines; i++) {
-              component.coveredLines.push(i);
-            }
-            
-            // For the rest, use coverage percentage
-            for (let i = importLines + 1; i <= lineCount; i++) {
-              // Add more weight to earlier lines being covered (more likely to be simple declarations)
-              const positionFactor = 1 - ((i - importLines) / (lineCount - importLines)) * 0.3;
-              if (Math.random() < coveragePercent * positionFactor) {
-                component.coveredLines.push(i);
-              }
-            }
-          }
-        }
-        
-        // Calculate uncovered lines based on covered lines and total lines
-        if (component.lineCount) {
-          component.uncoveredLines = [];
-          for (let i = 1; i <= component.lineCount; i++) {
-            if (!component.coveredLines?.includes(i)) {
-              component.uncoveredLines.push(i);
-            }
-          }
-        }
-      }
-      
-      // Generate recommended test IDs if not present
-      if (!component.recommendedTestIds) {
-        component.recommendedTestIds = generateRecommendedTestIds(component.path);
-      }
-    }
-    
-    console.log('Enhanced component data with correlation information.');
-    
-    // Generate HTML report
-    const htmlContent = generateHTML(componentData);
-    
-    // Write HTML file
-    await fsPromises.writeFile(HTML_OUTPUT_PATH, htmlContent);
-    
-    console.log(`Enhanced HTML report generated successfully: ${HTML_OUTPUT_PATH}`);
-  } catch (error) {
-    console.error(`Error generating HTML report: ${error}`);
-  }
+        <div class="tab-content" id="correlated-tab-${componentName}">
+          ${unitTestsTemplate}
+          ${e2eTestsTemplate}
+          ${!unitTests.length && !e2eTests.length ? '<p>No correlated tests found.</p>' : ''}
+          ${recommendationsTemplate}
+        </div>
+      </div>
+    </div>
+  `;
 }
 
-// Add a helper function to match paths with different formats
-function pathsMatch(path1: string, path2: string): boolean {
-  // Special handling for mocks directory
-  const isMockPath = (p: string) => p.includes('__mocks__');
-  
-  // Normalize both paths to handle different separators and formats
-  const normalize = (p: string) => {
-    // Convert to posix format
-    p = p.replace(/\\/g, '/');
-    
-    // Extract component name (filename without extension)
-    const filename = path.basename(p);
-    const componentName = filename.replace(/\.(tsx|jsx|ts|js)$/, '');
-    
-    // Normalize the path to make it easier to compare
-    // Remove __mocks__ prefix if present
-    p = p.replace(/^.*\/__mocks__\//, '');
-    
-    // Handle src/components structure
-    const componentPath = p.replace(/^.*\/src\/components\//, 'components/');
-    
-    return { 
-      path: p, 
-      filename, 
-      componentName,
-      componentPath
-    };
-  };
-  
-  const norm1 = normalize(path1);
-  const norm2 = normalize(path2);
-  
-  // Try exact component name match first (most reliable)
-  if (norm1.componentName === norm2.componentName) {
-    return true;
-  }
-  
-  // Try exact path match
-  if (norm1.path === norm2.path) {
-    return true;
-  }
-  
-  // Try component path match (for src/components structure)
-  if (norm1.componentPath === norm2.componentPath) {
-    return true;
-  }
-  
-  // Try partial path match (to handle different base directories)
-  if (norm1.path.endsWith(norm2.path) || norm2.path.endsWith(norm1.path)) {
-    return true;
-  }
-  
-  // Try full path check for mock directory special case
-  if (isMockPath(path1) && !isMockPath(path2)) {
-    // Compare component name from mock to path in actual project
-    if (path2.includes(`/${norm1.componentName}.`)) {
-      return true;
-    }
-  } else if (!isMockPath(path1) && isMockPath(path2)) {
-    // Compare component name from project to mock path
-    if (path1.includes(`/${norm2.componentName}.`)) {
-      return true;
-    }
-  }
-  
-  return false;
-}
-
-// Find the findTestsInContent function and add debug logging
+// Add the findTestsInContent function definition
 function findTestsInContent(content: string, componentName: string): { name: string; lineStart: number; lineEnd: number }[] {
   if (!content || !componentName) {
     return [];
@@ -1812,14 +1285,6 @@ function findTestsInContent(content: string, componentName: string): { name: str
     // Convert camelCase to snake_case
     compNameLower.replace(/([a-z])([A-Z])/g, '$1_$2').toLowerCase()
   ];
-  
-  // Also check for common substrings (e.g., "stringUtil" might be in "formatStringUtil")
-  if (compNameLower.length > 5) {
-    for (let i = 3; i < compNameLower.length - 2; i++) {
-      compNameVariants.push(compNameLower.substring(0, i));
-      compNameVariants.push(compNameLower.substring(i));
-    }
-  }
   
   // Track describe blocks to handle nested tests
   const describeBlocks: { 
@@ -1849,32 +1314,6 @@ function findTestsInContent(content: string, componentName: string): { name: str
           blockMatches = true;
           console.log(`Describe block "${blockName}" matches component "${componentName}" (contains "${variant}")`);
           break;
-        }
-      }
-      
-      // If not matched by name, check if the line contains the component name
-      if (!blockMatches) {
-        for (const variant of compNameVariants) {
-          if (lineLower.includes(variant)) {
-            blockMatches = true;
-            console.log(`Describe block line for "${blockName}" contains component reference "${variant}"`);
-            break;
-          }
-        }
-      }
-      
-      // If still not matched, look ahead for component references
-      if (!blockMatches && i < lines.length - 10) {
-        for (let j = i + 1; j < Math.min(i + 10, lines.length); j++) {
-          const lookAheadLine = lines[j].toLowerCase();
-          for (const variant of compNameVariants) {
-            if (lookAheadLine.includes(variant)) {
-              blockMatches = true;
-              console.log(`Describe block "${blockName}" has component reference "${variant}" within next ${j-i} lines`);
-              break;
-            }
-          }
-          if (blockMatches) break;
         }
       }
       
@@ -1921,7 +1360,6 @@ function findTestsInContent(content: string, componentName: string): { name: str
     if (testMatch) {
       const testType = testMatch[1]; // 'test' or 'it'
       const testName = testMatch[2];
-      const testNameLower = testName.toLowerCase();
       
       console.log(`Found test: "${testName}" (${testType}) at line ${i+1}`);
       
@@ -1941,45 +1379,6 @@ function findTestsInContent(content: string, componentName: string): { name: str
       let isMatch = isWithinMatchingDescribe;
       let matchReason = isWithinMatchingDescribe ? 
         `within matching describe block "${matchingDescribeName}"` : '';
-      
-      // If not already matched, check directly
-      if (!isMatch) {
-        // Check if testName contains component name
-        for (const variant of compNameVariants) {
-          if (testNameLower.includes(variant)) {
-            isMatch = true;
-            matchReason = `test name contains "${variant}"`;
-            break;
-          }
-        }
-        
-        // Check if line contains the component name
-        if (!isMatch) {
-          for (const variant of compNameVariants) {
-            if (lineLower.includes(variant)) {
-              isMatch = true;
-              matchReason = `line contains "${variant}"`;
-              break;
-            }
-          }
-        }
-        
-        // Search ahead for component import or reference in the next few lines
-        if (!isMatch && i < lines.length - 10) {
-          // Look ahead up to 10 lines
-          for (let j = i + 1; j < Math.min(i + 10, lines.length); j++) {
-            const lookAheadLine = lines[j].toLowerCase();
-            for (const variant of compNameVariants) {
-              if (lookAheadLine.includes(variant)) {
-                isMatch = true;
-                matchReason = `referenced within next ${j-i} lines with "${variant}"`;
-                break;
-              }
-            }
-            if (isMatch) break;
-          }
-        }
-      }
       
       // If we found a match, process the test block
       if (isMatch) {
@@ -2043,6 +1442,196 @@ function findTestsInContent(content: string, componentName: string): { name: str
   
   console.log(`Found ${results.length} related tests for component "${componentName}"`);
   return results;
+}
+
+// Add the extractTestIdsFromSource function if it's not already defined
+function extractTestIdsFromSource(sourceCode: string): string[] {
+  const testIds: string[] = [];
+  
+  if (!sourceCode) {
+    return testIds;
+  }
+  
+  // Match data-testid attributes in JSX
+  const testIdMatches = sourceCode.match(/data-testid=["']([^"']+)["']/g) || [];
+  
+  // Match testID props in React Native
+  const testIDMatches = sourceCode.match(/testID=["']([^"']+)["']/g) || [];
+  
+  // Extract the actual IDs
+  if (testIdMatches.length > 0) {
+    testIdMatches.forEach(match => {
+      const id = match.match(/data-testid=["']([^"']+)["']/)?.[1];
+      if (id) testIds.push(id);
+    });
+  }
+  
+  if (testIDMatches.length > 0) {
+    testIdMatches.forEach(match => {
+      const id = match.match(/testID=["']([^"']+)["']/)?.[1];
+      if (id) testIds.push(id);
+    });
+  }
+  
+  return testIds;
+}
+
+/**
+ * Main function to generate the enhanced HTML report
+ */
+async function main(): Promise<void> {
+  try {
+    console.log('Starting Enhanced HTML Report Generator...');
+    const PROJECT_ROOT = process.env.PROJECT_ROOT || process.cwd();
+    console.log(`Using PROJECT_ROOT: ${PROJECT_ROOT}`);
+    
+    if (process.env.PROJECT_ROOT) {
+      console.log(`PROJECT_ROOT is explicitly set in environment to: ${process.env.PROJECT_ROOT}`);
+    } else {
+      console.log(`PROJECT_ROOT is not set in environment, using current directory: ${process.cwd()}`);
+    }
+    
+    // Load component coverage data
+    const componentCoveragePath = COVERAGE_SOURCE === 'babel'
+      ? path.resolve(COVERAGE_DIR, 'component-coverage.json')
+      : COVERAGE_SOURCE === 'project'
+        ? path.resolve(COVERAGE_ANALYSIS_DIR, 'project-component-coverage.json')
+        : path.resolve(COVERAGE_ANALYSIS_DIR, 'mock-component-coverage.json');
+    
+    console.log(`Loading component coverage data from: ${componentCoveragePath}`);
+    const components: ComponentWithTests[] = JSON.parse(
+      await fsPromises.readFile(componentCoveragePath, 'utf8')
+    );
+    
+    // Load test-component correlation data
+    const correlationPath = COVERAGE_SOURCE === 'babel'
+      ? path.resolve(COVERAGE_DIR, 'test-component-correlation.json')
+      : COVERAGE_SOURCE === 'project'
+        ? path.resolve(COVERAGE_ANALYSIS_DIR, 'project-test-component-correlation.json')
+        : path.resolve(COVERAGE_DIR, 'test-component-correlation.json');
+    
+    console.log(`Loading test-component correlation data from: ${correlationPath}`);
+    const correlatedComponents: ComponentWithTests[] = JSON.parse(
+      await fsPromises.readFile(correlationPath, 'utf8')
+    );
+    
+    // Create a map for quick lookup of components in the correlation data
+    const correlationMap = new Map<string, ComponentWithTests>();
+    for (const component of correlatedComponents) {
+      correlationMap.set(component.path, component);
+    }
+    
+    // Enhanced components with more information
+    const enhancedComponents: ComponentWithTests[] = [];
+    
+    // Count E2E tests
+    let totalE2ETests = 0;
+    for (const component of correlatedComponents) {
+      if (component.correlatedTests) {
+        const e2eTests = component.correlatedTests.filter(test => test.isE2E);
+        totalE2ETests += e2eTests.length;
+      }
+    }
+    console.log(`Found ${totalE2ETests} E2E tests in correlation data`);
+    if (totalE2ETests > 0) {
+      const testExample = correlatedComponents.find(c => c.correlatedTests?.some(t => t.isE2E))?.correlatedTests?.find(t => t.isE2E);
+      console.log(`E2E test example: ${JSON.stringify(testExample)}`);
+    }
+    
+    // Process each component from coverage data
+    for (const component of components) {
+      console.log(`Processing component: ${path.basename(component.path, path.extname(component.path))}`);
+      
+      // Add any correlated tests to the component
+      const correlatedComponent = correlationMap.get(component.path);
+      if (correlatedComponent && correlatedComponent.correlatedTests) {
+        component.correlatedTests = correlatedComponent.correlatedTests;
+        
+        // Count e2e tests
+        const e2eTests = component.correlatedTests.filter(test => test.isE2E);
+        if (e2eTests.length > 0) {
+          console.log(`Component ${component.name} has ${e2eTests.length} E2E tests`);
+        }
+        
+        // Add gap analysis if available
+        if (correlatedComponent.gapAnalysis) {
+          component.gapAnalysis = correlatedComponent.gapAnalysis;
+        }
+      }
+      
+      // Find test files for the component
+      try {
+        const testFiles = await findTestFiles(component.path);
+        component.testFiles = testFiles;
+      } catch (error) {
+        console.warn(`Error finding test files for component ${component.name}:`, error);
+        // Continue with empty test files instead of aborting
+        component.testFiles = [];
+      }
+      
+      // Extract source code
+      try {
+        const sourceCode = await extractSourceCode(component.path);
+        if (sourceCode) {
+          component.sourceCode = sourceCode;
+        }
+      } catch (error) {
+        console.warn(`Error extracting source code for ${component.name}:`, error);
+        // Continue with empty source code
+        component.sourceCode = generateMockSourceCode(component.path);
+      }
+      
+      // For each test file, try to extract the highlight worthy tests
+      if (component.testFiles && component.testFiles.length > 0) {
+        for (const testFile of component.testFiles) {
+          testFile.highlightedTests = findTestsInContent(testFile.content, component.name);
+        }
+      }
+      
+      // Generate recommended test IDs
+      component.recommendedTestIds = generateRecommendedTestIds(component.path);
+      
+      // Count the total number of tests for this component
+      component.tests = component.testFiles?.reduce((count, file) => {
+        return count + (file.highlightedTests?.length || 0);
+      }, 0) || 0;
+      
+      enhancedComponents.push(component);
+    }
+    
+    // Sort components by coverage (ascending)
+    enhancedComponents.sort((a, b) => a.coverage - b.coverage);
+    
+    // Count the number of E2E tests in the enhanced components
+    const enhancedE2ETests = enhancedComponents.reduce((count, component) => {
+      const e2eTests = component.correlatedTests?.filter(test => test.isE2E) || [];
+      return count + e2eTests.length;
+    }, 0);
+    console.log(`Enhanced components have ${enhancedE2ETests} E2E tests`);
+    
+    // Generate HTML
+    console.log('Generating HTML report...');
+    const html = generateHTML(enhancedComponents);
+    
+    // Create output directory if it doesn't exist
+    const outputDir = COVERAGE_SOURCE === 'babel'
+      ? path.resolve(process.cwd(), 'coverage')
+      : COVERAGE_SOURCE === 'project'
+        ? path.resolve(process.cwd(), 'coverage-project')
+        : path.resolve(process.cwd(), 'coverage-html');
+    
+    await fsPromises.mkdir(outputDir, { recursive: true });
+    
+    // Write HTML to output file
+    const outputPath = path.resolve(outputDir, 'coverage.html');
+    await fsPromises.writeFile(outputPath, html);
+    
+    console.log(`Writing HTML report to: ${outputPath}`);
+    console.log('Enhanced HTML report generated successfully!');
+  } catch (error) {
+    console.error('Error generating enhanced HTML report:', error);
+    throw error;
+  }
 }
 
 main(); 

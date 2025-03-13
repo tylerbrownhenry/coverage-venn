@@ -10,7 +10,6 @@ const projectConfig = getProjectConfig(PROJECT_NAME);
 console.log(`Using configuration for project: ${PROJECT_NAME}`);
 console.log(`Exclude patterns: ${JSON.stringify(projectConfig.excludeTestPatterns)}`);
 console.log(`Confidence threshold: ${projectConfig.confidenceThreshold}`);
-
 // Determine coverage source from environment variable
 const COVERAGE_SOURCE = process.env.COVERAGE_SOURCE || 'standard';
 
@@ -18,6 +17,11 @@ const COVERAGE_SOURCE = process.env.COVERAGE_SOURCE || 'standard';
 const COVERAGE_DIR = path.resolve(process.cwd(), 'coverage');
 const BABEL_COVERAGE_DIR = path.resolve(process.cwd(), 'coverage-babel');
 const MOCK_COVERAGE_DIR = path.resolve(process.cwd(), 'coverage-analysis');
+const MOCKS_DIR = path.resolve(process.cwd(), '__mocks__');
+
+// Get the project root (either from env var or default to mocks dir)
+const PROJECT_ROOT_DIR = process.env.PROJECT_ROOT ? path.resolve(process.env.PROJECT_ROOT) : MOCKS_DIR;
+const SRC_DIR = process.env.PROJECT_ROOT ? path.join(PROJECT_ROOT_DIR, 'src') : MOCKS_DIR;
 
 // Define paths based on coverage source
 const COMPONENT_COVERAGE_PATH = COVERAGE_SOURCE === 'babel'
@@ -28,8 +32,6 @@ const CORRELATION_OUTPUT_PATH =
   COVERAGE_SOURCE === 'babel' ? path.resolve(BABEL_COVERAGE_DIR, 'test-component-correlation.json') :
   COVERAGE_SOURCE === 'project' ? path.resolve(process.cwd(), 'coverage-analysis', 'project-test-component-correlation.json') :
   path.resolve(COVERAGE_DIR, 'test-component-correlation.json');
-
-const MOCKS_DIR = path.resolve(process.cwd(), '__mocks__');
 
 // Interface for test step correlation
 interface TestStep {
@@ -58,6 +60,7 @@ interface ComponentWithTests {
     scenario: string;
     step: string;
     confidence: number;
+    isE2E?: boolean;
   }[];
   gapAnalysis?: {
     testingPriority: 'high' | 'medium' | 'low';
@@ -317,6 +320,7 @@ function correlateTestsWithComponents(
         scenario: string;
         step: string;
         confidence: number;
+        isE2E?: boolean;
       }[] = [];
       
       // Add component with its custom correlated tests to the result
@@ -352,6 +356,7 @@ function correlateTestsWithComponents(
       scenario: string;
       step: string;
       confidence: number;
+      isE2E?: boolean;
     }[] = [];
     
     // Get component imports to help with correlation
@@ -359,6 +364,7 @@ function correlateTestsWithComponents(
     
     // Extract test IDs from the component
     const testIds = extractTestIds(componentContent);
+    console.log(`Component ${componentName} has test IDs: ${JSON.stringify(testIds)}`);
     
     // For each feature (test file)
     for (const feature of features) {
@@ -386,6 +392,46 @@ function correlateTestsWithComponents(
       // Check if the test uses any testIDs from this component
       const usesTestIds = testIds.some(id => featureContent.includes(id.toLowerCase()));
       
+      // Check if this is an E2E test (feature file)
+      const isE2ETest = feature.file.endsWith('.feature');
+      
+      // For E2E tests, check if any tags match the component's test IDs
+      let hasMatchingTag = false;
+      let matchingTags: string[] = [];
+      if (isE2ETest) {
+        // Look for @tag annotations in the feature file
+        const tagMatches = featureContent.match(/@([a-zA-Z0-9_-]+)/g) || [];
+        const tags = tagMatches.map(tag => tag.substring(1).toLowerCase()); // Remove @ prefix
+        
+        // Enhanced tag matching logic
+        // 1. Direct test ID matches
+        const directTagMatches = testIds.filter(id => tags.includes(id.toLowerCase()));
+        if (directTagMatches.length > 0) {
+          hasMatchingTag = true;
+          matchingTags.push(...directTagMatches);
+        }
+        
+        // 2. Component name variations in tags
+        const componentNameVariations = [
+          componentName.toLowerCase(),
+          componentName.replace(/([A-Z])/g, '_$1').toLowerCase().replace(/^_/, ''), // PascalCase to snake_case
+          componentName.replace(/([A-Z])/g, '-$1').toLowerCase().replace(/^-/, '')  // PascalCase to kebab-case
+        ];
+        
+        const componentNameMatches = componentNameVariations.filter(name => 
+          tags.some(tag => tag.includes(name) || name.includes(tag))
+        );
+        
+        if (componentNameMatches.length > 0) {
+          hasMatchingTag = true;
+          matchingTags.push(...componentNameMatches);
+        }
+        
+        if (hasMatchingTag) {
+          console.log(`Found matching tags ${matchingTags.join(', ')} in E2E feature file ${feature.file} for component ${componentName}`);
+        }
+      }
+      
       // Process each scenario in the feature
       for (const scenario of feature.scenarios) {
         // Check if scenario name mentions component
@@ -402,27 +448,76 @@ function correlateTestsWithComponents(
           // Calculate confidence score based on multiple factors
           let confidence = 0.5; // Base confidence
           
-          // Factors that increase confidence
-          if (directlyImportsComponent) confidence += 0.3;
-          if (usesTestIds || stepUsesTestIds) confidence += 0.3;
-          if (mentionsComponent) confidence += 0.1;
-          if (scenarioMentionsComponent) confidence += 0.1;
-          if (stepMentionsComponent) confidence += 0.1;
-          
-          // If we have coverage data and it shows coverage, this is a strong indicator
-          if (coverage && coverage.coverage > 0) confidence += 0.2;
+          // Different confidence calculation for E2E vs unit tests
+          if (isE2ETest) {
+            confidence = 0.3; // Lower base confidence for E2E tests
+            
+            // Factors that increase confidence for E2E tests
+            if (hasMatchingTag) {
+              confidence += 0.5; // Significant boost for tag matches (increased from 0.4)
+              console.log(`Tag match boosting confidence for ${componentName} in E2E test: ${feature.file}`);
+            }
+            
+            if (stepUsesTestIds) {
+              confidence += 0.4; // Significant boost for test ID mentions in step
+              console.log(`Step uses test IDs for ${componentName} in E2E test: ${feature.file}`);
+            }
+            
+            if (scenarioMentionsComponent) {
+              confidence += 0.3; // Higher boost for component mentions in scenario (E2E)
+              console.log(`Scenario mentions ${componentName} in E2E test: ${feature.file}`);
+            }
+            
+            if (stepMentionsComponent) {
+              confidence += 0.3; // Higher boost for component mentions in step (E2E)
+              console.log(`Step mentions ${componentName} in E2E test: ${feature.file}`);
+            }
+            
+            // If feature name or file path includes component name
+            if (feature.name.toLowerCase().includes(componentName.toLowerCase()) || 
+                feature.file.toLowerCase().includes(componentName.toLowerCase())) {
+              confidence += 0.3;
+              console.log(`Feature name/path contains ${componentName}`);
+            }
+          } else {
+            // Original confidence calculation for unit tests
+            // Factors that increase confidence
+            if (directlyImportsComponent) confidence += 0.3;
+            if (usesTestIds || stepUsesTestIds) confidence += 0.3;
+            if (mentionsComponent) confidence += 0.1;
+            if (scenarioMentionsComponent) confidence += 0.1;
+            if (stepMentionsComponent) confidence += 0.1;
+            
+            // If we have coverage data and it shows coverage, this is a strong indicator
+            if (coverage && coverage.coverage > 0) confidence += 0.2;
+          }
           
           // Cap confidence at 1.0
           confidence = Math.min(confidence, 1.0);
           
-          // Only add test correlations with confidence above project-specific threshold
-          if (confidence > projectConfig.confidenceThreshold) {
-            correlatedTests.push({
+          // Use a lower threshold for E2E tests
+          const confidenceThreshold = isE2ETest 
+            ? Math.max(0.3, projectConfig.confidenceThreshold - 0.1) // Use 0.3 minimum or 0.1 less than project threshold
+            : projectConfig.confidenceThreshold;
+          
+          // Only add test correlations with confidence above threshold
+          if (confidence > confidenceThreshold) {
+            const correlatedTest = {
               feature: feature.name,
               scenario: scenario.name,
               step: step.text,
-              confidence: parseFloat(confidence.toFixed(2))
-            });
+              confidence: parseFloat(confidence.toFixed(2)),
+              isE2E: isE2ETest
+            };
+            
+            correlatedTests.push(correlatedTest);
+            
+            if (isE2ETest) {
+              console.log(`Added E2E correlation for ${componentName}: ${feature.name} > ${scenario.name} with confidence ${confidence.toFixed(2)}`);
+            }
+          } else if (isE2ETest && confidence > 0.2) {
+            // Log near-miss E2E correlations for debugging
+            console.log(`Near-miss E2E correlation for ${componentName}: ${feature.name} > ${scenario.name} with confidence ${confidence.toFixed(2)} (threshold: ${confidenceThreshold})`);
           }
         }
       }
@@ -628,6 +723,157 @@ function performGapAnalysis(components: ComponentWithTests[]): void {
   }
 }
 
+// Add a new function to find E2E feature files
+async function findE2EFeatureFiles(dir: string): Promise<string[]> {
+  const e2eFiles: string[] = [];
+  const excludePatterns = projectConfig.excludeTestPatterns || [];
+
+  console.log(`Finding E2E feature files in directory: ${dir}`);
+
+  function shouldExcludeE2EFile(filePath: string): boolean {
+    return excludePatterns.some(pattern => {
+      // Handle glob patterns
+      if (pattern.includes('*')) {
+        const regexPattern = pattern
+          .replace(/\./g, '\\.')
+          .replace(/\*\*/g, '.*')
+          .replace(/\*/g, '[^/]*');
+        const regex = new RegExp(regexPattern);
+        return regex.test(filePath);
+      }
+      return filePath.includes(pattern);
+    });
+  }
+
+  async function search(directory: string): Promise<void> {
+    try {
+      const entries = await fs.readdir(directory, { withFileTypes: true });
+      
+      for (const entry of entries) {
+        const fullPath = path.join(directory, entry.name);
+        
+        if (entry.isDirectory() && !fullPath.includes('node_modules') && !fullPath.includes('.git')) {
+          await search(fullPath);
+        } else if (entry.isFile() && entry.name.endsWith('.feature') && !shouldExcludeE2EFile(fullPath)) {
+          console.log(`Found E2E feature file: ${fullPath}`);
+          e2eFiles.push(fullPath);
+        }
+      }
+    } catch (error) {
+      console.error(`Error searching directory ${directory}: ${error}`);
+    }
+  }
+
+  // First do a targeted search in common locations
+  const potentialE2ePaths = [
+    path.join(dir, 'e2e'),
+    path.join(dir, 'features'),
+    path.join(dir, 'e2e', 'features'),
+    path.join(dir, 'cypress'),
+    path.join(dir, 'cypress', 'integration'),
+    path.join(dir, 'cypress', 'e2e'),
+    path.join(dir, 'test', 'e2e'),
+    path.join(dir, 'tests', 'e2e'),
+    path.join(dir, 'specs'),
+    path.join(dir, 'src', 'e2e'),
+    path.join(dir, '__tests__', 'e2e'),
+    dir  // Also search the root directory
+  ];
+
+  for (const potentialPath of potentialE2ePaths) {
+    try {
+      const stats = await fs.stat(potentialPath);
+      if (stats.isDirectory()) {
+        console.log(`Searching for feature files in: ${potentialPath}`);
+        await search(potentialPath);
+      }
+    } catch (error) {
+      // Directory doesn't exist, skip
+    }
+  }
+
+  // If targeted search didn't find anything, try a broader search
+  if (e2eFiles.length === 0) {
+    console.log("No feature files found in common locations. Performing broader search...");
+    try {
+      await search(dir);
+    } catch (error) {
+      console.error(`Error during broader search: ${error}`);
+    }
+  }
+
+  console.log(`Total E2E feature files found: ${e2eFiles.length}`);
+  return e2eFiles;
+}
+
+// Add a function to extract scenarios and steps from feature files
+async function extractE2EScenarios(featureFiles: string[]): Promise<Feature[]> {
+  const features: Feature[] = [];
+
+  for (const file of featureFiles) {
+    try {
+      const content = await fs.readFile(file, 'utf8');
+      const lines = content.split('\n');
+      let featureName = '';
+      let inFeature = false;
+      let currentScenario: { name: string; steps: TestStep[] } | null = null;
+      
+      for (let i = 0; i < lines.length; i++) {
+        const line = lines[i].trim();
+        
+        if (line.startsWith('Feature:')) {
+          inFeature = true;
+          featureName = line.substring('Feature:'.length).trim();
+        } else if (inFeature && line.startsWith('Scenario:')) {
+          // If we already have a scenario, add it to our list
+          if (currentScenario) {
+            if (!features.find(f => f.file === file)) {
+              features.push({
+                name: featureName,
+                file,
+                scenarios: []
+              });
+            }
+            features.find(f => f.file === file)?.scenarios.push(currentScenario);
+          }
+          
+          // Start a new scenario
+          currentScenario = {
+            name: line.substring('Scenario:'.length).trim(),
+            steps: []
+          };
+        } else if (currentScenario && (line.startsWith('Given ') || line.startsWith('When ') || 
+                                       line.startsWith('Then ') || line.startsWith('And ') || 
+                                       line.startsWith('But '))) {
+          // Add step to current scenario
+          currentScenario.steps.push({
+            text: line,
+            file,
+            line: i + 1
+          });
+        }
+      }
+      
+      // Add the last scenario if we have one
+      if (currentScenario && inFeature) {
+        if (!features.find(f => f.file === file)) {
+          features.push({
+            name: featureName,
+            file,
+            scenarios: []
+          });
+        }
+        features.find(f => f.file === file)?.scenarios.push(currentScenario);
+      }
+      
+    } catch (error) {
+      console.error(`Error processing feature file ${file}: ${error}`);
+    }
+  }
+  
+  return features;
+}
+
 async function main() {
   try {
     console.log('Starting test-component correlation analysis...');
@@ -649,33 +895,190 @@ async function main() {
       coverageMap.set(component.path, component);
     }
     
-    // Step 2: Find all component files in __mocks__ directory
-    const componentFiles = await findComponentFiles(MOCKS_DIR);
-    console.log(`Found ${componentFiles.length} component files in __mocks__.`);
+    // Use PROJECT_ROOT_DIR for components if available, otherwise fall back to MOCKS_DIR
+    console.log(`Looking for component files in: ${SRC_DIR}`);
+    const componentFiles = await findComponentFiles(SRC_DIR);
+    console.log(`Found ${componentFiles.length} component files.`);
     
-    // Step 3: Find all test files
-    const testFiles = await findTestFiles(MOCKS_DIR);
+    // For test files, also prioritize PROJECT_ROOT if available
+    const testDir = process.env.PROJECT_ROOT ? PROJECT_ROOT_DIR : MOCKS_DIR;
+    console.log(`Looking for test files in: ${testDir}`);
+    const testFiles = await findTestFiles(testDir);
     console.log(`Found ${testFiles.length} test files.`);
     
-    // Step 4: Extract test steps
+    // Step 4: Find E2E feature files
+    // Look in multiple potential locations for E2E tests
+    let e2eFiles: string[] = [];
+    
+    if (PROJECT_ROOT_DIR) {
+      console.log(`Searching for E2E feature files in project root: ${PROJECT_ROOT_DIR}`);
+      e2eFiles = await findE2EFeatureFiles(PROJECT_ROOT_DIR);
+    }
+    
+    console.log(`Found ${e2eFiles.length} E2E feature files.`);
+    
+    // Step 5: Extract test steps
     const features = await extractTestSteps(testFiles);
     console.log(`Extracted ${features.length} features with steps.`);
     
-    // Step 5: Read component contents
+    // Step 6: Extract E2E scenarios
+    const e2eFeatures = await extractE2EScenarios(e2eFiles);
+    console.log(`Extracted ${e2eFeatures.length} E2E features with scenarios.`);
+    
+    // Add debugging for E2E features
+    if (e2eFeatures.length > 0) {
+      console.log(`E2E Feature example: ${e2eFeatures[0].name} from ${e2eFeatures[0].file}`);
+      console.log(`E2E Feature has ${e2eFeatures[0].scenarios.length} scenarios`);
+      if (e2eFeatures[0].scenarios.length > 0) {
+        console.log(`First scenario: ${e2eFeatures[0].scenarios[0].name}`);
+        console.log(`First scenario has ${e2eFeatures[0].scenarios[0].steps.length} steps`);
+      }
+    } else {
+      console.log('E2E features array is empty. Possible reasons:');
+      console.log('1. No .feature files were found in any of the searched directories');
+      console.log('2. Feature files exist but could not be parsed correctly');
+      console.log('3. Feature files exist but were excluded by pattern');
+      
+      // Search for feature files in the entire project as a fallback
+      console.log('Attempting to find any .feature files in the project as a diagnostic step...');
+      const allFeatureFiles: string[] = [];
+      
+      async function searchAllFeatures(dir: string): Promise<void> {
+        try {
+          const entries = await fs.readdir(dir, { withFileTypes: true });
+          
+          for (const entry of entries) {
+            const fullPath = path.join(dir, entry.name);
+            
+            if (entry.isDirectory() && !fullPath.includes('node_modules') && !fullPath.includes('.git')) {
+              await searchAllFeatures(fullPath);
+            } else if (entry.isFile() && entry.name.endsWith('.feature')) {
+              allFeatureFiles.push(fullPath);
+            }
+          }
+        } catch (error) {
+          // Skip directories we can't read
+        }
+      }
+      
+      await searchAllFeatures(process.cwd());
+      
+      if (allFeatureFiles.length > 0) {
+        console.log(`Found ${allFeatureFiles.length} feature files in the project that were not processed:`);
+        allFeatureFiles.forEach(file => console.log(`  - ${file}`));
+        console.log('These files were not processed. Attempting to process them now...');
+        
+        // Try to process these files
+        const fallbackFeatures = await extractE2EScenarios(allFeatureFiles);
+        console.log(`Extracted ${fallbackFeatures.length} fallback E2E features with scenarios.`);
+        
+        if (fallbackFeatures.length > 0) {
+          e2eFeatures.push(...fallbackFeatures);
+          console.log(`Added ${fallbackFeatures.length} fallback features to E2E features.`);
+        }
+      } else {
+        console.log('No feature files found in the entire project. E2E tests may not exist or may be in a different format.');
+      }
+    }
+    
+    // Step 7: Read component contents
     const componentContents = await scanComponents(componentFiles);
     
-    // Step 6: Correlate test steps with components
+    // Step 8: Combine unit test features and E2E features
+    const allFeatures = [...features, ...e2eFeatures];
+    
+    // Step 9: Correlate test steps with components
     const correlations = correlateTestsWithComponents(
-      features,
+      allFeatures,
       componentFiles,
       componentContents,
       coverageData
     );
     
-    // Step 7: Perform gap analysis
+    // If we're in project mode, make sure we use the correct component paths
+    if (COVERAGE_SOURCE === 'project') {
+      try {
+        // Load the project component coverage data
+        const projectComponentCoveragePath = path.resolve(process.cwd(), 'coverage-analysis', 'project-component-coverage.json');
+        const projectComponentCoverage = JSON.parse(await fs.readFile(projectComponentCoveragePath, 'utf8'));
+        
+        console.log(`Loaded ${projectComponentCoverage.length} components from project coverage data`);
+        
+        // Update the component paths in the correlated components
+        for (const component of correlations) {
+          // Get the basename and the component name for more robust matching
+          const componentBasename = path.basename(component.path);
+          const componentName = component.name.toLowerCase();
+          
+          // Try several matching strategies in order of preference
+          let matchingComponent = null;
+          
+          // 1. Direct path basename match
+          matchingComponent = projectComponentCoverage.find((c: any) => 
+            path.basename(c.path) === componentBasename
+          );
+          
+          // 2. If no match, try matching by component name in the path
+          if (!matchingComponent) {
+            matchingComponent = projectComponentCoverage.find((c: any) => {
+              const projPath = c.path.toLowerCase();
+              return projPath.includes(`/${componentName}.`) || 
+                     projPath.includes(`/${componentName}/`) ||
+                     projPath.endsWith(`/${componentName}`);
+            });
+          }
+          
+          // 3. Try matching by similar basename (ignoring case and file extension)
+          if (!matchingComponent) {
+            const baseWithoutExt = componentBasename.replace(/\.(tsx|ts|jsx|js)$/, '').toLowerCase();
+            matchingComponent = projectComponentCoverage.find((c: any) => {
+              const projBasename = path.basename(c.path).replace(/\.(tsx|ts|jsx|js)$/, '').toLowerCase();
+              return projBasename === baseWithoutExt;
+            });
+          }
+          
+          if (matchingComponent) {
+            console.log(`Updating component path for ${component.name} from ${component.path} to ${matchingComponent.path}`);
+            component.path = matchingComponent.path;
+          } else {
+            console.log(`Could not find matching project path for component: ${component.name} (${componentBasename})`);
+            
+            // If path contains __mocks__ and we have PROJECT_ROOT, try to create a plausible path
+            if (component.path.includes('__mocks__') && process.env.PROJECT_ROOT) {
+              // Extract the relative path after __mocks__/src
+              const mockPathRegex = /__mocks__\/src\/(.+)$/;
+              const match = component.path.match(mockPathRegex);
+              
+              if (match && match[1]) {
+                const relativePath = match[1];
+                const projectedPath = path.join(PROJECT_ROOT_DIR, 'src', relativePath);
+                
+                console.log(`Attempting to create projected path: ${projectedPath}`);
+                
+                // Check if the projected path exists
+                try {
+                  if (fsSync.existsSync(projectedPath)) {
+                    console.log(`Projected path exists, updating component path to: ${projectedPath}`);
+                    component.path = projectedPath;
+                  }
+                } catch (err) {
+                  console.error(`Error checking projected path: ${err}`);
+                }
+              } else {
+                console.log(`Could not extract relative path from ${component.path}`);
+              }
+            }
+          }
+        }
+      } catch (error) {
+        console.error('Error updating component paths:', error);
+      }
+    }
+    
+    // Step 10: Perform gap analysis
     performGapAnalysis(correlations);
     
-    // Step 8: Output correlation data
+    // Step 11: Output correlation data
     await fs.mkdir(COVERAGE_DIR, { recursive: true });
     await fs.writeFile(
       CORRELATION_OUTPUT_PATH,
@@ -683,8 +1086,11 @@ async function main() {
       'utf8'
     );
     
-    // Step 9: Print summary
+    // Step 12: Print summary
     console.log(`\nCorrelation analysis complete. Results saved to ${CORRELATION_OUTPUT_PATH}`);
+    
+    // Count E2E tests for reporting
+    let totalE2ECorrelations = 0;
     
     for (const component of correlations) {
       // Get the latest coverage info if available
@@ -693,26 +1099,53 @@ async function main() {
         component.coverage = coverage.coverage;
       }
       
+      // Count E2E tests for this component
+      const e2eTests = component.correlatedTests.filter(test => test.isE2E);
+      totalE2ECorrelations += e2eTests.length;
+      
       console.log(`\nComponent: ${component.name} (${component.path})`);
       console.log(`Coverage: ${component.coverage.toFixed(2)}%`);
       
       if (component.correlatedTests && component.correlatedTests.length > 0) {
         console.log('Related Tests:');
         
-        // Display top 5 most confident correlations
-        for (let i = 0; i < Math.min(5, component.correlatedTests.length); i++) {
-          const test = component.correlatedTests[i];
-          const confidenceLabel = 
-            test.confidence >= 0.7 ? 'High' :
-            test.confidence >= 0.4 ? 'Medium' : 'Low';
+        // Display unit tests
+        const unitTests = component.correlatedTests.filter(test => !test.isE2E);
+        if (unitTests.length > 0) {
+          console.log('Unit Tests:');
+          // Display top 5 most confident unit test correlations
+          for (let i = 0; i < Math.min(5, unitTests.length); i++) {
+            const test = unitTests[i];
+            const confidenceLabel = 
+              test.confidence >= 0.7 ? 'High' :
+              test.confidence >= 0.4 ? 'Medium' : 'Low';
+            
+            console.log(`  - ${test.feature} > ${test.scenario}`);
+            console.log(`    Step: ${test.step}`);
+            console.log(`    Confidence: ${confidenceLabel} (${test.confidence.toFixed(2)})`);
+          }
           
-          console.log(`  - ${test.feature} > ${test.scenario}`);
-          console.log(`    Step: ${test.step}`);
-          console.log(`    Confidence: ${confidenceLabel} (${test.confidence.toFixed(2)})`);
+          if (unitTests.length > 5) {
+            console.log(`  ... and ${unitTests.length - 5} more unit tests`);
+          }
         }
         
-        if (component.correlatedTests.length > 5) {
-          console.log(`  ... and ${component.correlatedTests.length - 5} more`);
+        // Display E2E tests separately
+        if (e2eTests.length > 0) {
+          console.log('E2E Tests:');
+          // Display all E2E test correlations
+          for (let i = 0; i < e2eTests.length; i++) {
+            const test = e2eTests[i];
+            const confidenceLabel = 
+              test.confidence >= 0.7 ? 'High' :
+              test.confidence >= 0.4 ? 'Medium' : 'Low';
+            
+            console.log(`  - ${test.feature} > ${test.scenario}`);
+            console.log(`    Step: ${test.step}`);
+            console.log(`    Confidence: ${confidenceLabel} (${test.confidence.toFixed(2)})`);
+          }
+        } else {
+          console.log('No E2E tests found for this component.');
         }
       } else {
         console.log('No related tests found.');
@@ -737,6 +1170,8 @@ async function main() {
         }
       }
     }
+    
+    console.log(`\nFound ${totalE2ECorrelations} E2E test correlations across all components.`);
   } catch (error) {
     console.error('Error in correlation analysis:', error);
     process.exit(1);
