@@ -369,9 +369,9 @@ async function findTestFiles(componentPath: string): Promise<TestFile[]> {
   const result: TestFile[] = [];
   const componentName = path.basename(componentPath).replace(/\.(tsx|ts|js|jsx)$/, '').toLowerCase();
   const PROJECT_ROOT = process.env.PROJECT_ROOT || process.cwd();
-    
-    console.log(`Finding test files for component: ${componentName} from path: ${componentPath}`);
-    
+  
+  console.log(`Finding test files for component: ${componentName} from path: ${componentPath}`);
+  
   try {
     // First look in project directory if PROJECT_ROOT is defined
     if (PROJECT_ROOT) {
@@ -379,7 +379,7 @@ async function findTestFiles(componentPath: string): Promise<TestFile[]> {
 
       // Patterns for test files
       const testFilePatterns = [
-      // Standard patterns
+        // Standard patterns
         path.join(PROJECT_ROOT, 'src', '**', `${componentName}.test.?(ts|tsx|js|jsx)`),
         path.join(PROJECT_ROOT, 'src', '**', `${componentName}.spec.?(ts|tsx|js|jsx)`),
         path.join(PROJECT_ROOT, 'src', '**', '__tests__', `${componentName}.test.?(ts|tsx|js|jsx)`),
@@ -466,9 +466,9 @@ async function findTestFiles(componentPath: string): Promise<TestFile[]> {
               });
             } catch (error) {
               console.error(`Error reading mock test file ${file}:`, error);
+            }
           }
-        }
-      } catch (error) {
+        } catch (error) {
           console.error(`Error searching for ${pattern}:`, error);
         }
       }
@@ -820,46 +820,6 @@ function generateHTML(components: ComponentWithTests[]): string {
       border-left: 3px solid #f1c40f;
     }
     
-    /* Scrolled-to highlight */
-    .scrolled-to {
-      background-color: rgba(52, 152, 219, 0.3) !important;
-      border-left: 3px solid #3498db !important;
-      animation: highlight-pulse 2s ease-in-out;
-    }
-    
-    @keyframes highlight-pulse {
-      0% { background-color: rgba(52, 152, 219, 0.5); }
-      50% { background-color: rgba(52, 152, 219, 0.3); }
-      100% { background-color: rgba(52, 152, 219, 0.1); }
-    }
-    
-    /* Test name indicator */
-    .test-name-indicator {
-      position: absolute;
-      right: 10px;
-      background-color: #f1c40f;
-      color: #333;
-      padding: 2px 6px;
-      border-radius: 3px;
-      font-size: 11px;
-      font-weight: bold;
-      z-index: 10;
-      max-width: 200px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    
-    /* No highlighted tests message */
-    .no-highlighted-tests {
-      padding: 10px;
-      color: #666;
-      font-style: italic;
-      background-color: #f8f8f8;
-      border-bottom: 1px solid #ddd;
-      font-size: 12px;
-    }
-    
     /* Recommendations */
     .recommendations {
       background-color: #f8f9fa;
@@ -964,55 +924,6 @@ function generateHTML(components: ComponentWithTests[]): string {
       }
     }
     
-    // Scroll to a specific test
-    function scrollToTest(containerId, lineNumber) {
-      const container = document.getElementById(containerId);
-      if (!container) return;
-      
-      const lineElement = container.querySelector('[id="line-' + lineNumber + '"]');
-      if (!lineElement) return;
-      
-      // Scroll the element into view
-      container.scrollTop = lineElement.offsetTop - container.offsetTop - 50;
-      
-      // Add a highlight class that will be removed after a few seconds
-      lineElement.classList.add('scrolled-to');
-      setTimeout(() => {
-        lineElement.classList.remove('scrolled-to');
-      }, 3000);
-    }
-    
-    // Scroll to a correlated test in the test files
-    function scrollToCorrelatedTest(feature, scenario, step) {
-      // First, switch to the tests tab
-      const componentId = document.querySelector('.detail-section.active').id.split('-')[1];
-      switchTab('tests-' + componentId, componentId);
-      
-      // Look for a matching test in all test files
-      const testFiles = document.querySelectorAll('#tests-' + componentId + ' .test-file');
-      
-      // Try to find a test that matches the feature, scenario, and step
-      let found = false;
-      testFiles.forEach(file => {
-        const testNavItems = file.querySelectorAll('.test-nav-item');
-        testNavItems.forEach(item => {
-          const testName = item.textContent;
-          if (testName.includes(feature) || testName.includes(scenario) || testName.includes(step)) {
-            // Simulate a click on this test nav item
-            item.click();
-            found = true;
-            return;
-          }
-        });
-        if (found) return;
-      });
-      
-      // If no exact match found, just switch to the tests tab
-      if (!found) {
-        console.log('No matching test found for: ' + feature + ' - ' + scenario + ' - ' + step);
-      }
-    }
-    
     // Copy text to clipboard
     function copyToClipboard(text) {
       navigator.clipboard.writeText(text)
@@ -1029,26 +940,44 @@ function generateHTML(components: ComponentWithTests[]): string {
       // Target both source code and test file code containers
       document.querySelectorAll('.code-container .line-content, .test-file .line-content').forEach(function(block) {
         if (block && block.textContent) {
-      // Keywords
+          // Keywords
           block.innerHTML = block.innerHTML.replace(/\\b(function|const|let|var|return|if|else|for|while|do|switch|case|break|continue|new|try|catch|finally|throw|typeof|instanceof|in|of|class|extends|super|import|export|from|as|async|await|yield|this|true|false|null|undefined)\\b/g, '<span class="keyword">$1</span>');
-      
-      // Strings
+          
+          // Strings
           block.innerHTML = block.innerHTML.replace(/(['"])(.*?)(['"])/g, '<span class="string">$1$2$3</span>');
-      
-      // Comments
+          
+          // Comments
           block.innerHTML = block.innerHTML.replace(/\\/\\/(.*?)$/gm, '<span class="comment">//$1</span>');
-      
-      // Multi-line comments
+          
+          // Multi-line comments
           block.innerHTML = block.innerHTML.replace(/\\/\\*([\\s\\S]*?)\\*\\//g, '<span class="comment">/*$1*/</span>');
-      
-      // Functions and methods
+          
+          // Functions and methods
           block.innerHTML = block.innerHTML.replace(/\\b(function)\\s+([a-zA-Z0-9_]+)/g, '<span class="keyword">$1</span> <span class="function">$2</span>');
           block.innerHTML = block.innerHTML.replace(/\\.([a-zA-Z0-9_]+)\\(/g, '.<span class="method">$1</span>(');
-      
-      // Testing library methods
+          
+          // Testing library methods
           block.innerHTML = block.innerHTML.replace(/\\b(describe|it|test|expect|beforeEach|afterEach|beforeAll|afterAll|mock|jest|render|screen|fireEvent|waitFor)\\b/g, '<span class="test-method">$1</span>');
         }
       });
+    }
+    
+    // Scroll to a specific test
+    function scrollToTest(containerId, lineNumber) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      
+      const lineElement = container.querySelector('[id="line-' + lineNumber + '"]');
+      if (!lineElement) return;
+      
+      // Scroll the element into view
+      container.scrollTop = lineElement.offsetTop - container.offsetTop - 50;
+      
+      // Add a temporary highlight
+      lineElement.classList.add('scrolled-to');
+      setTimeout(function() {
+        lineElement.classList.remove('scrolled-to');
+      }, 2000);
     }
     
     // Call syntax highlighting when the page loads
@@ -1118,14 +1047,9 @@ function generateHTML(components: ComponentWithTests[]): string {
 /**
  * Format source code with syntax highlighting and line coverage indicators
  */
-function formatSourceCode(code: string, coveredLines: number[] = [], uncoveredLines: number[] = [], highlightedTests: { name: string; lineStart: number; lineEnd: number }[] = []): string {
+function formatSourceCode(code: string, coveredLines: number[] = [], uncoveredLines: number[] = []): string {
   const lines = code.split('\n');
   let formattedCode = '';
-  
-  // Add a message if no tests are highlighted but we expected some
-  if (highlightedTests.length === 0 && (code.includes('test(') || code.includes('it(') || code.includes('describe('))) {
-    formattedCode += `<div class="no-highlighted-tests">No specific tests highlighted. This file may contain general tests or utilities.</div>`;
-  }
   
   for (let i = 0; i < lines.length; i++) {
     const lineNumber = i + 1;
@@ -1138,22 +1062,9 @@ function formatSourceCode(code: string, coveredLines: number[] = [], uncoveredLi
       ? (isCovered ? 'covered' : (isUncovered ? 'uncovered' : ''))
       : '';
     
-    // Check if this line is the start of a test
-    const testHighlight = highlightedTests.find(t => t.lineStart === lineNumber);
-    const isTestStart = testHighlight !== undefined;
-    
-    // Add highlighted-test class if it's a test line
-    const isTestLine = highlightedTests.some(t => lineNumber >= t.lineStart && lineNumber <= t.lineEnd);
-    const testClass = isTestLine ? 'highlighted-test' : '';
-    
-    // Add test name indicator if it's the start of a test
-    const testNameIndicator = isTestStart 
-      ? `<div class="test-name-indicator">${escapeHtml(testHighlight.name)}</div>` 
-      : '';
-    
-    formattedCode += `<div class="code-line ${lineClass} ${testClass}" id="line-${lineNumber}">
+    formattedCode += `<div class="code-line ${lineClass}" id="line-${lineNumber}">
       <div class="line-number">${lineNumber}</div>
-      <div class="line-content">${testNameIndicator}${lineContent || ' '}</div>
+      <div class="line-content">${lineContent || ' '}</div>
     </div>`;
   }
   
@@ -1212,30 +1123,15 @@ function generateComponentDetailTemplate(component: ComponentWithTests, index: n
   
   console.log(`Component ${componentName}: ${unitTests.length} unit tests, ${e2eTests.length} E2E tests`);
   
-  const testFilesTemplate = component.testFiles ? component.testFiles.map((file, fileIndex) => {
-    // Extract tests for navigation
-    const testHighlights = file.highlightedTests || findTestsInContent(file.content, componentName);
-    
-    // Create test navigation bar if tests are found
-    const testNavBar = testHighlights.length > 0 ? `
-      <div class="test-nav">
-        ${testHighlights.map(test => 
-          `<span class="test-nav-item" onclick="scrollToTest('test-file-${index}-${fileIndex}', ${test.lineStart})">${escapeHtml(test.name)}</span>`
-        ).join('')}
-      </div>
-    ` : '';
-    
-    return `
+  const testFilesTemplate = component.testFiles ? component.testFiles.map((file, fileIndex) => `
     <div class="test-file">
       <h4>${path.basename(file.path)}</h4>
       <div class="source-path">${file.path}</div>
-      ${testNavBar}
       <div class="code-container" id="test-file-${index}-${fileIndex}">
-        ${formatSourceCode(file.content, [], [], testHighlights)}
+        ${formatSourceCode(file.content)}
       </div>
     </div>
-    `;
-  }).join('') : '';
+  `).join('') : '';
   
   const unitTestsTemplate = unitTests.length > 0 ? `
     <div class="correlatedUnitTests">
@@ -1316,13 +1212,6 @@ function generateComponentDetailTemplate(component: ComponentWithTests, index: n
         <div id="source-${index}" class="detail-section active">
           <h3>Source Code</h3>
           <div class="source-path">${component.path}</div>
-          ${component.correlatedTests && component.correlatedTests.length > 0 ? `
-          <div class="test-nav">
-            ${component.correlatedTests.map(test => 
-              `<span class="test-nav-item" onclick="scrollToCorrelatedTest('${test.feature}', '${test.scenario}', '${test.step}')">${escapeHtml(test.feature)} - ${escapeHtml(test.scenario)}</span>`
-            ).join('')}
-          </div>
-          ` : ''}
           <div class="code-container">
             ${component.sourceCode ? formatSourceCode(component.sourceCode, component.coveredLines, component.uncoveredLines) : '<p>Source code not available</p>'}
           </div>
@@ -1464,57 +1353,258 @@ function findTestsInContent(content: string, componentName: string): { name: str
       let matchReason = isWithinMatchingDescribe ? 
         `within matching describe block "${matchingDescribeName}"` : '';
       
-      if (!isMatch) {
-        // Check if the test name itself contains the component name
-        for (const variant of compNameVariants) {
-          if (testName.toLowerCase().includes(variant)) {
-            isMatch = true;
-            matchReason = `test name "${testName}" contains "${variant}"`;
-            break;
-          }
-        }
-      }
-      
-      // If this test matches our component, add it to results
+      // If we found a match, process the test block
       if (isMatch) {
-        console.log(`Test "${testName}" matches component "${componentName}": ${matchReason}`);
+        console.log(`✓ Match found for "${componentName}": "${testName}" (${matchReason})`);
         
-        // Find the end of this test block
+        // Improved method to find the end of this test block
+        let blockDepth = 1;
         let endLine = i;
-        let braceCount = 0;
-        let foundOpeningBrace = false;
+        let foundEndingBrace = false;
         
-        // Scan forward to find the closing brace of this test
-        for (let j = i; j < lines.length; j++) {
-          const currentLine = lines[j];
+        for (let j = i + 1; j < lines.length; j++) {
+          // Count opening and closing braces
+          const openBraces = (lines[j].match(/\{/g) || []).length;
+          const closeBraces = (lines[j].match(/\}/g) || []).length;
           
-          // Count opening braces
-          const openBraces = (currentLine.match(/\{/g) || []).length;
-          braceCount += openBraces;
+          blockDepth += openBraces;
+          blockDepth -= closeBraces;
           
-          if (openBraces > 0) {
-            foundOpeningBrace = true;
-          }
-          
-          // Count closing braces
-          const closeBraces = (currentLine.match(/\}/g) || []).length;
-          braceCount -= closeBraces;
-          
-          // If we've found the opening brace and the braces are balanced, we've found the end
-          if (foundOpeningBrace && braceCount === 0) {
+          if (blockDepth <= 0) {
             endLine = j;
+            foundEndingBrace = true;
             break;
           }
         }
         
+        // If we couldn't find the ending brace, use a fallback approach
+        // This helps with the last test in a file
+        if (!foundEndingBrace) {
+          console.log(`Could not find ending brace for test "${testName}". Looking for next test or end of file.`);
+          // Look for the next test as a boundary or use the end of file
+          let nextTestIndex = -1;
+          for (let j = i + 1; j < lines.length; j++) {
+            if (lines[j].match(/\s*(test|it|describe)\s*\(\s*['"](.+?)['"]/)) {
+              nextTestIndex = j - 1;
+              break;
+            }
+          }
+          
+          // If we didn't find another test, use the end of the file
+          if (nextTestIndex === -1) {
+            nextTestIndex = lines.length - 1;
+            console.log(`No more tests found. Using end of file (line ${nextTestIndex + 1}) as test boundary.`);
+          } else {
+            console.log(`Found next test at line ${nextTestIndex + 1}. Using previous line as test boundary.`);
+          }
+          
+          endLine = nextTestIndex;
+        }
+        
+        // Store results with ONE-INDEXED line numbers (not zero-indexed)
         results.push({
           name: testName,
-          lineStart: i + 1, // 1-indexed line numbers
-          lineEnd: endLine + 1 // 1-indexed line numbers
+          lineStart: i + 1, // Convert to 1-indexed line number
+          lineEnd: endLine + 1 // Convert to 1-indexed line number
         });
+      } else {
+        console.log(`✗ No match for "${componentName}" in test: "${testName}"`);
       }
     }
   }
   
+  console.log(`Found ${results.length} related tests for component "${componentName}"`);
   return results;
 }
+
+// Add the extractTestIdsFromSource function if it's not already defined
+function extractTestIdsFromSource(sourceCode: string): string[] {
+  const testIds: string[] = [];
+  
+  if (!sourceCode) {
+    return testIds;
+  }
+  
+  // Match data-testid attributes in JSX
+  const testIdMatches = sourceCode.match(/data-testid=["']([^"']+)["']/g) || [];
+  
+  // Match testID props in React Native
+  const testIDMatches = sourceCode.match(/testID=["']([^"']+)["']/g) || [];
+  
+  // Extract the actual IDs
+  if (testIdMatches.length > 0) {
+    testIdMatches.forEach(match => {
+      const id = match.match(/data-testid=["']([^"']+)["']/)?.[1];
+      if (id) testIds.push(id);
+    });
+  }
+  
+  if (testIDMatches.length > 0) {
+    testIdMatches.forEach(match => {
+      const id = match.match(/testID=["']([^"']+)["']/)?.[1];
+      if (id) testIds.push(id);
+    });
+  }
+  
+  return testIds;
+}
+
+/**
+ * Main function to generate the enhanced HTML report
+ */
+async function main(): Promise<void> {
+  try {
+    console.log('Starting Enhanced HTML Report Generator...');
+    const PROJECT_ROOT = process.env.PROJECT_ROOT || process.cwd();
+    console.log(`Using PROJECT_ROOT: ${PROJECT_ROOT}`);
+    
+    if (process.env.PROJECT_ROOT) {
+      console.log(`PROJECT_ROOT is explicitly set in environment to: ${process.env.PROJECT_ROOT}`);
+    } else {
+      console.log(`PROJECT_ROOT is not set in environment, using current directory: ${process.cwd()}`);
+    }
+    
+    // Load component coverage data
+    const componentCoveragePath = COVERAGE_SOURCE === 'babel'
+      ? path.resolve(COVERAGE_DIR, 'component-coverage.json')
+      : COVERAGE_SOURCE === 'project'
+        ? path.resolve(COVERAGE_ANALYSIS_DIR, 'project-component-coverage.json')
+        : path.resolve(COVERAGE_ANALYSIS_DIR, 'mock-component-coverage.json');
+    
+    console.log(`Loading component coverage data from: ${componentCoveragePath}`);
+    const components: ComponentWithTests[] = JSON.parse(
+      await fsPromises.readFile(componentCoveragePath, 'utf8')
+    );
+    
+    // Load test-component correlation data
+    const correlationPath = COVERAGE_SOURCE === 'babel'
+      ? path.resolve(COVERAGE_DIR, 'test-component-correlation.json')
+      : COVERAGE_SOURCE === 'project'
+        ? path.resolve(COVERAGE_ANALYSIS_DIR, 'project-test-component-correlation.json')
+        : path.resolve(COVERAGE_DIR, 'test-component-correlation.json');
+    
+    console.log(`Loading test-component correlation data from: ${correlationPath}`);
+    const correlatedComponents: ComponentWithTests[] = JSON.parse(
+      await fsPromises.readFile(correlationPath, 'utf8')
+    );
+    
+    // Create a map for quick lookup of components in the correlation data
+    const correlationMap = new Map<string, ComponentWithTests>();
+    for (const component of correlatedComponents) {
+      correlationMap.set(component.path, component);
+    }
+    
+    // Enhanced components with more information
+    const enhancedComponents: ComponentWithTests[] = [];
+    
+    // Count E2E tests
+    let totalE2ETests = 0;
+    for (const component of correlatedComponents) {
+      if (component.correlatedTests) {
+        const e2eTests = component.correlatedTests.filter(test => test.isE2E);
+        totalE2ETests += e2eTests.length;
+      }
+    }
+    console.log(`Found ${totalE2ETests} E2E tests in correlation data`);
+    if (totalE2ETests > 0) {
+      const testExample = correlatedComponents.find(c => c.correlatedTests?.some(t => t.isE2E))?.correlatedTests?.find(t => t.isE2E);
+      console.log(`E2E test example: ${JSON.stringify(testExample)}`);
+    }
+    
+    // Process each component from coverage data
+    for (const component of components) {
+      console.log(`Processing component: ${path.basename(component.path, path.extname(component.path))}`);
+      
+      // Add any correlated tests to the component
+      const correlatedComponent = correlationMap.get(component.path);
+      if (correlatedComponent && correlatedComponent.correlatedTests) {
+        component.correlatedTests = correlatedComponent.correlatedTests;
+        
+        // Count e2e tests
+        const e2eTests = component.correlatedTests.filter(test => test.isE2E);
+        if (e2eTests.length > 0) {
+          console.log(`Component ${component.name} has ${e2eTests.length} E2E tests`);
+        }
+        
+        // Add gap analysis if available
+        if (correlatedComponent.gapAnalysis) {
+          component.gapAnalysis = correlatedComponent.gapAnalysis;
+        }
+      }
+      
+      // Find test files for the component
+      try {
+        const testFiles = await findTestFiles(component.path);
+        component.testFiles = testFiles;
+      } catch (error) {
+        console.warn(`Error finding test files for component ${component.name}:`, error);
+        // Continue with empty test files instead of aborting
+        component.testFiles = [];
+      }
+      
+      // Extract source code
+      try {
+        const sourceCode = await extractSourceCode(component.path);
+        if (sourceCode) {
+          component.sourceCode = sourceCode;
+        }
+      } catch (error) {
+        console.warn(`Error extracting source code for ${component.name}:`, error);
+        // Continue with empty source code
+        component.sourceCode = generateMockSourceCode(component.path);
+      }
+      
+      // For each test file, try to extract the highlight worthy tests
+      if (component.testFiles && component.testFiles.length > 0) {
+        for (const testFile of component.testFiles) {
+          testFile.highlightedTests = findTestsInContent(testFile.content, component.name);
+        }
+      }
+      
+      // Generate recommended test IDs
+      component.recommendedTestIds = generateRecommendedTestIds(component.path);
+      
+      // Count the total number of tests for this component
+      component.tests = component.testFiles?.reduce((count, file) => {
+        return count + (file.highlightedTests?.length || 0);
+      }, 0) || 0;
+      
+      enhancedComponents.push(component);
+    }
+    
+    // Sort components by coverage (ascending)
+    enhancedComponents.sort((a, b) => a.coverage - b.coverage);
+    
+    // Count the number of E2E tests in the enhanced components
+    const enhancedE2ETests = enhancedComponents.reduce((count, component) => {
+      const e2eTests = component.correlatedTests?.filter(test => test.isE2E) || [];
+      return count + e2eTests.length;
+    }, 0);
+    console.log(`Enhanced components have ${enhancedE2ETests} E2E tests`);
+    
+    // Generate HTML
+    console.log('Generating HTML report...');
+    const html = generateHTML(enhancedComponents);
+    
+    // Create output directory if it doesn't exist
+    const outputDir = COVERAGE_SOURCE === 'babel'
+      ? path.resolve(process.cwd(), 'coverage')
+      : COVERAGE_SOURCE === 'project'
+        ? path.resolve(process.cwd(), 'coverage-project')
+        : path.resolve(process.cwd(), 'coverage-html');
+    
+    await fsPromises.mkdir(outputDir, { recursive: true });
+    
+    // Write HTML to output file
+    const outputPath = path.resolve(outputDir, 'coverage.html');
+    await fsPromises.writeFile(outputPath, html);
+    
+    console.log(`Writing HTML report to: ${outputPath}`);
+    console.log('Enhanced HTML report generated successfully!');
+  } catch (error) {
+    console.error('Error generating enhanced HTML report:', error);
+    throw error;
+  }
+}
+
+main(); 
