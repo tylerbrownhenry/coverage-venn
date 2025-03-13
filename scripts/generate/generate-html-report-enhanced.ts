@@ -654,7 +654,15 @@ function generateHTML(components: ComponentWithTests[]): string {
   <title>Enhanced Coverage Report</title>
   <style>
     /* Base styles */
-    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; max-width: 1200px; margin: 0 auto; padding: 20px; color: #333; background-color: #f9f9f9; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 20px;
+      background-color: #f8f9fa;
+      color: #333;
+    }
+    
     h1 { color: #2c3e50; border-bottom: 2px solid #eee; padding-bottom: 10px; margin-top: 0; }
     h2 { color: #3498db; margin-top: 30px; }
     h3 { color: #2c3e50; margin-bottom: 10px; }
@@ -693,94 +701,93 @@ function generateHTML(components: ComponentWithTests[]): string {
     
     /* Source code container */
     .code-container {
-      border: 1px solid #e0e0e0;
-      border-radius: 5px;
-      overflow: auto;
-      background-color: #fafafa;
-      box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
       max-height: 600px;
-      margin: 15px 0;
+      overflow: auto;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      background: #f5f5f5;
+      font-family: 'Consolas', 'Monaco', monospace;
+      font-size: 14px;
+      line-height: 1.4;
+      position: relative;
     }
     
-    .source-path {
-      font-family: monospace;
-      font-size: 0.9em;
-      color: #7f8c8d;
-      margin-bottom: 5px;
-    }
-    
-    /* Code lines */
+    /* Line styles */
     .code-line {
       display: flex;
-      border-bottom: 1px solid rgba(0,0,0,0.03);
-      font-size: 13px;
-      line-height: 1.5;
-      white-space: pre;
-    }
-    
-    .code-line:hover {
-      background-color: rgba(0,0,0,0.02);
-    }
-    
-    .code-line.covered {
-      background-color: rgba(46, 204, 113, 0.1);
-    }
-    
-    .code-line.covered .line-number::after {
-      content: '✓';
-      color: #2ecc71;
-      margin-left: 3px;
-    }
-    
-    .code-line.uncovered {
-      background-color: rgba(231, 76, 60, 0.1);
-    }
-    
-    .code-line.uncovered .line-number::after {
-      content: '✗';
-      color: #e74c3c;
-      margin-left: 3px;
-    }
-    
-    .scrolled-to {
-      background-color: rgba(241, 196, 15, 0.3) !important;
-      transition: background-color 0.5s ease-in-out;
+      width: 100%;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
     }
     
     .line-number {
-      min-width: 50px;
+      width: 40px;
       text-align: right;
-      padding: 0 10px;
+      padding-right: 10px;
       color: #999;
-      border-right: 1px solid #eee;
+      border-right: 1px solid #ddd;
+      background-color: #f0f0f0;
       user-select: none;
     }
     
     .line-content {
-      padding: 0 10px;
-      overflow-x: auto;
+      padding-left: 10px;
+      white-space: pre;
+      overflow: visible;
+      flex-grow: 1;
     }
     
-    /* Test files */
+    /* Test file styles */
     .test-file {
       margin-bottom: 20px;
-      border: 1px solid #e0e0e0;
-      border-radius: 5px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
       overflow: hidden;
     }
     
     .test-file h4 {
       margin: 0;
-      padding: 10px 15px;
-      background-color: #f2f2f2;
-      border-bottom: 1px solid #e0e0e0;
+      padding: 10px;
+      background-color: #f0f0f0;
+      border-bottom: 1px solid #ddd;
     }
     
-    .test-file-content {
-      max-height: 400px;
-      overflow-y: auto;
-      padding: 10px 15px;
-      background-color: #fafafa;
+    .test-file .source-path {
+      padding: 5px 10px;
+      font-size: 12px;
+      color: #666;
+      background-color: #f8f8f8;
+      border-bottom: 1px solid #ddd;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    
+    /* Syntax highlighting colors */
+    .keyword {
+      color: #0066cc;
+      font-weight: bold;
+    }
+    
+    .string {
+      color: #008800;
+    }
+    
+    .comment {
+      color: #888888;
+      font-style: italic;
+    }
+    
+    .function {
+      color: #9900cc;
+    }
+    
+    .method {
+      color: #0066aa;
+    }
+    
+    .test-method {
+      color: #cc6600;
+      font-weight: bold;
     }
     
     /* Test navigation */
@@ -812,13 +819,6 @@ function generateHTML(components: ComponentWithTests[]): string {
       background-color: rgba(255, 235, 59, 0.2);
       border-left: 3px solid #f1c40f;
     }
-    
-    /* Syntax highlighting */
-    .keyword { color: #0033b3; font-weight: 600; }
-    .string { color: #067d17; }
-    .comment { color: #8e908c; font-style: italic; }
-    .method { color: #6f42c1; }
-    .function { color: #e36209; }
     
     /* Recommendations */
     .recommendations {
@@ -937,10 +937,11 @@ function generateHTML(components: ComponentWithTests[]): string {
     
     // Syntax highlight code
     function applySyntaxHighlighting() {
-      document.querySelectorAll('.code-container pre code').forEach(function(block) {
+      // Target both source code and test file code containers
+      document.querySelectorAll('.code-container .line-content, .test-file .line-content').forEach(function(block) {
         if (block && block.textContent) {
           // Keywords
-          block.innerHTML = block.innerHTML.replace(/\b(function|const|let|var|return|if|else|for|while|do|switch|case|break|continue|new|try|catch|finally|throw|typeof|instanceof|in|of|class|extends|super|import|export|from|as|async|await|yield|this|true|false|null|undefined)\b/g, '<span class="keyword">$1</span>');
+          block.innerHTML = block.innerHTML.replace(/\\b(function|const|let|var|return|if|else|for|while|do|switch|case|break|continue|new|try|catch|finally|throw|typeof|instanceof|in|of|class|extends|super|import|export|from|as|async|await|yield|this|true|false|null|undefined)\\b/g, '<span class="keyword">$1</span>');
           
           // Strings
           block.innerHTML = block.innerHTML.replace(/(['"])(.*?)(['"])/g, '<span class="string">$1$2$3</span>');
@@ -956,7 +957,7 @@ function generateHTML(components: ComponentWithTests[]): string {
           block.innerHTML = block.innerHTML.replace(/\\.([a-zA-Z0-9_]+)\\(/g, '.<span class="method">$1</span>(');
           
           // Testing library methods
-          block.innerHTML = block.innerHTML.replace(/\b(describe|it|test|expect|beforeEach|afterEach|beforeAll|afterAll|mock|jest|render|screen|fireEvent|waitFor)\b/g, '<span class="method">$1</span>');
+          block.innerHTML = block.innerHTML.replace(/\\b(describe|it|test|expect|beforeEach|afterEach|beforeAll|afterAll|mock|jest|render|screen|fireEvent|waitFor)\\b/g, '<span class="test-method">$1</span>');
         }
       });
     }
@@ -1122,10 +1123,13 @@ function generateComponentDetailTemplate(component: ComponentWithTests, index: n
   
   console.log(`Component ${componentName}: ${unitTests.length} unit tests, ${e2eTests.length} E2E tests`);
   
-  const testFilesTemplate = component.testFiles ? component.testFiles.map(file => `
+  const testFilesTemplate = component.testFiles ? component.testFiles.map((file, fileIndex) => `
     <div class="test-file">
       <h4>${path.basename(file.path)}</h4>
-      <pre><code class="language-typescript">${escapeHtml(file.content)}</code></pre>
+      <div class="source-path">${file.path}</div>
+      <div class="code-container" id="test-file-${index}-${fileIndex}">
+        ${formatSourceCode(file.content)}
+      </div>
     </div>
   `).join('') : '';
   

@@ -6,7 +6,15 @@
   <title>Enhanced Coverage Report</title>
   <style>
     /* Base styles */
-    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; max-width: 1200px; margin: 0 auto; padding: 20px; color: #333; background-color: #f9f9f9; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 20px;
+      background-color: #f8f9fa;
+      color: #333;
+    }
+    
     h1 { color: #2c3e50; border-bottom: 2px solid #eee; padding-bottom: 10px; margin-top: 0; }
     h2 { color: #3498db; margin-top: 30px; }
     h3 { color: #2c3e50; margin-bottom: 10px; }
@@ -45,94 +53,93 @@
     
     /* Source code container */
     .code-container {
-      border: 1px solid #e0e0e0;
-      border-radius: 5px;
-      overflow: auto;
-      background-color: #fafafa;
-      box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
       max-height: 600px;
-      margin: 15px 0;
+      overflow: auto;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      background: #f5f5f5;
+      font-family: 'Consolas', 'Monaco', monospace;
+      font-size: 14px;
+      line-height: 1.4;
+      position: relative;
     }
     
-    .source-path {
-      font-family: monospace;
-      font-size: 0.9em;
-      color: #7f8c8d;
-      margin-bottom: 5px;
-    }
-    
-    /* Code lines */
+    /* Line styles */
     .code-line {
       display: flex;
-      border-bottom: 1px solid rgba(0,0,0,0.03);
-      font-size: 13px;
-      line-height: 1.5;
-      white-space: pre;
-    }
-    
-    .code-line:hover {
-      background-color: rgba(0,0,0,0.02);
-    }
-    
-    .code-line.covered {
-      background-color: rgba(46, 204, 113, 0.1);
-    }
-    
-    .code-line.covered .line-number::after {
-      content: '✓';
-      color: #2ecc71;
-      margin-left: 3px;
-    }
-    
-    .code-line.uncovered {
-      background-color: rgba(231, 76, 60, 0.1);
-    }
-    
-    .code-line.uncovered .line-number::after {
-      content: '✗';
-      color: #e74c3c;
-      margin-left: 3px;
-    }
-    
-    .scrolled-to {
-      background-color: rgba(241, 196, 15, 0.3) !important;
-      transition: background-color 0.5s ease-in-out;
+      width: 100%;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
     }
     
     .line-number {
-      min-width: 50px;
+      width: 40px;
       text-align: right;
-      padding: 0 10px;
+      padding-right: 10px;
       color: #999;
-      border-right: 1px solid #eee;
+      border-right: 1px solid #ddd;
+      background-color: #f0f0f0;
       user-select: none;
     }
     
     .line-content {
-      padding: 0 10px;
-      overflow-x: auto;
+      padding-left: 10px;
+      white-space: pre;
+      overflow: visible;
+      flex-grow: 1;
     }
     
-    /* Test files */
+    /* Test file styles */
     .test-file {
       margin-bottom: 20px;
-      border: 1px solid #e0e0e0;
-      border-radius: 5px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
       overflow: hidden;
     }
     
     .test-file h4 {
       margin: 0;
-      padding: 10px 15px;
-      background-color: #f2f2f2;
-      border-bottom: 1px solid #e0e0e0;
+      padding: 10px;
+      background-color: #f0f0f0;
+      border-bottom: 1px solid #ddd;
     }
     
-    .test-file-content {
-      max-height: 400px;
-      overflow-y: auto;
-      padding: 10px 15px;
-      background-color: #fafafa;
+    .test-file .source-path {
+      padding: 5px 10px;
+      font-size: 12px;
+      color: #666;
+      background-color: #f8f8f8;
+      border-bottom: 1px solid #ddd;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    
+    /* Syntax highlighting colors */
+    .keyword {
+      color: #0066cc;
+      font-weight: bold;
+    }
+    
+    .string {
+      color: #008800;
+    }
+    
+    .comment {
+      color: #888888;
+      font-style: italic;
+    }
+    
+    .function {
+      color: #9900cc;
+    }
+    
+    .method {
+      color: #0066aa;
+    }
+    
+    .test-method {
+      color: #cc6600;
+      font-weight: bold;
     }
     
     /* Test navigation */
@@ -164,13 +171,6 @@
       background-color: rgba(255, 235, 59, 0.2);
       border-left: 3px solid #f1c40f;
     }
-    
-    /* Syntax highlighting */
-    .keyword { color: #0033b3; font-weight: 600; }
-    .string { color: #067d17; }
-    .comment { color: #8e908c; font-style: italic; }
-    .method { color: #6f42c1; }
-    .function { color: #e36209; }
     
     /* Recommendations */
     .recommendations {
@@ -289,10 +289,11 @@
     
     // Syntax highlight code
     function applySyntaxHighlighting() {
-      document.querySelectorAll('.code-container pre code').forEach(function(block) {
+      // Target both source code and test file code containers
+      document.querySelectorAll('.code-container .line-content, .test-file .line-content').forEach(function(block) {
         if (block && block.textContent) {
           // Keywords
-          block.innerHTML = block.innerHTML.replace(/(function|const|let|var|return|if|else|for|while|do|switch|case|break|continue|new|try|catch|finally|throw|typeof|instanceof|in|of|class|extends|super|import|export|from|as|async|await|yield|this|true|false|null|undefined)/g, '<span class="keyword">$1</span>');
+          block.innerHTML = block.innerHTML.replace(/\b(function|const|let|var|return|if|else|for|while|do|switch|case|break|continue|new|try|catch|finally|throw|typeof|instanceof|in|of|class|extends|super|import|export|from|as|async|await|yield|this|true|false|null|undefined)\b/g, '<span class="keyword">$1</span>');
           
           // Strings
           block.innerHTML = block.innerHTML.replace(/(['"])(.*?)(['"])/g, '<span class="string">$1$2$3</span>');
@@ -308,7 +309,7 @@
           block.innerHTML = block.innerHTML.replace(/\.([a-zA-Z0-9_]+)\(/g, '.<span class="method">$1</span>(');
           
           // Testing library methods
-          block.innerHTML = block.innerHTML.replace(/(describe|it|test|expect|beforeEach|afterEach|beforeAll|afterAll|mock|jest|render|screen|fireEvent|waitFor)/g, '<span class="method">$1</span>');
+          block.innerHTML = block.innerHTML.replace(/\b(describe|it|test|expect|beforeEach|afterEach|beforeAll|afterAll|mock|jest|render|screen|fireEvent|waitFor)\b/g, '<span class="test-method">$1</span>');
         }
       });
     }
@@ -339,7 +340,7 @@
 </head>
 <body>
   <h1>Enhanced Coverage Report</h1>
-  <p>Generated on 3/12/2025, 9:32:36 PM</p>
+  <p>Generated on 3/12/2025, 9:53:30 PM</p>
   
   <div id="summary">
     <h2>Coverage Summary</h2>
@@ -524,46 +525,126 @@
             
     <div class="test-file">
       <h4>App.test.tsx</h4>
-      <pre><code class="language-typescript">/**
- * @format
- */
-
-import &#039;react-native&#039;;
-import React from &#039;react&#039;;
-import App from &#039;../App&#039;;
-
-// Note: import explicitly to use the types shiped with jest.
-import {it} from &#039;@jest/globals&#039;;
-
-// Note: test renderer must be required after react-native.
-import renderer from &#039;react-test-renderer&#039;;
-
-it(&#039;renders correctly&#039;, () =&gt; {
-  renderer.create(&lt;App /&gt;);
-});
-</code></pre>
+      <div class="source-path">/Users/tylerhenry/Documents/GitHub/testApp/node_modules/react-native/template/__tests__/App.test.tsx</div>
+      <div class="code-container" id="test-file-0-0">
+        <div class="code-line " id="line-1">
+      <div class="line-number">1</div>
+      <div class="line-content">/**</div>
+    </div><div class="code-line " id="line-2">
+      <div class="line-number">2</div>
+      <div class="line-content"> * @format</div>
+    </div><div class="code-line " id="line-3">
+      <div class="line-number">3</div>
+      <div class="line-content"> */</div>
+    </div><div class="code-line " id="line-4">
+      <div class="line-number">4</div>
+      <div class="line-content"> </div>
+    </div><div class="code-line " id="line-5">
+      <div class="line-number">5</div>
+      <div class="line-content">import &#039;react-native&#039;;</div>
+    </div><div class="code-line " id="line-6">
+      <div class="line-number">6</div>
+      <div class="line-content">import React from &#039;react&#039;;</div>
+    </div><div class="code-line " id="line-7">
+      <div class="line-number">7</div>
+      <div class="line-content">import App from &#039;../App&#039;;</div>
+    </div><div class="code-line " id="line-8">
+      <div class="line-number">8</div>
+      <div class="line-content"> </div>
+    </div><div class="code-line " id="line-9">
+      <div class="line-number">9</div>
+      <div class="line-content">// Note: import explicitly to use the types shiped with jest.</div>
+    </div><div class="code-line " id="line-10">
+      <div class="line-number">10</div>
+      <div class="line-content">import {it} from &#039;@jest/globals&#039;;</div>
+    </div><div class="code-line " id="line-11">
+      <div class="line-number">11</div>
+      <div class="line-content"> </div>
+    </div><div class="code-line " id="line-12">
+      <div class="line-number">12</div>
+      <div class="line-content">// Note: test renderer must be required after react-native.</div>
+    </div><div class="code-line " id="line-13">
+      <div class="line-number">13</div>
+      <div class="line-content">import renderer from &#039;react-test-renderer&#039;;</div>
+    </div><div class="code-line " id="line-14">
+      <div class="line-number">14</div>
+      <div class="line-content"> </div>
+    </div><div class="code-line " id="line-15">
+      <div class="line-number">15</div>
+      <div class="line-content">it(&#039;renders correctly&#039;, () =&gt; {</div>
+    </div><div class="code-line " id="line-16">
+      <div class="line-number">16</div>
+      <div class="line-content">  renderer.create(&lt;App /&gt;);</div>
+    </div><div class="code-line " id="line-17">
+      <div class="line-number">17</div>
+      <div class="line-content">});</div>
+    </div><div class="code-line " id="line-18">
+      <div class="line-number">18</div>
+      <div class="line-content"> </div>
+    </div>
+      </div>
     </div>
   
     <div class="test-file">
       <h4>App.test.tsx</h4>
-      <pre><code class="language-typescript">/**
- * @format
- */
-
-import &#039;react-native&#039;;
-import React from &#039;react&#039;;
-import App from &#039;../App&#039;;
-
-// Note: import explicitly to use the types shiped with jest.
-import {it} from &#039;@jest/globals&#039;;
-
-// Note: test renderer must be required after react-native.
-import renderer from &#039;react-test-renderer&#039;;
-
-it(&#039;renders correctly&#039;, () =&gt; {
-  renderer.create(&lt;App /&gt;);
-});
-</code></pre>
+      <div class="source-path">/Users/tylerhenry/Documents/GitHub/testApp/node_modules/react-native/template/__tests__/App.test.tsx</div>
+      <div class="code-container" id="test-file-0-1">
+        <div class="code-line " id="line-1">
+      <div class="line-number">1</div>
+      <div class="line-content">/**</div>
+    </div><div class="code-line " id="line-2">
+      <div class="line-number">2</div>
+      <div class="line-content"> * @format</div>
+    </div><div class="code-line " id="line-3">
+      <div class="line-number">3</div>
+      <div class="line-content"> */</div>
+    </div><div class="code-line " id="line-4">
+      <div class="line-number">4</div>
+      <div class="line-content"> </div>
+    </div><div class="code-line " id="line-5">
+      <div class="line-number">5</div>
+      <div class="line-content">import &#039;react-native&#039;;</div>
+    </div><div class="code-line " id="line-6">
+      <div class="line-number">6</div>
+      <div class="line-content">import React from &#039;react&#039;;</div>
+    </div><div class="code-line " id="line-7">
+      <div class="line-number">7</div>
+      <div class="line-content">import App from &#039;../App&#039;;</div>
+    </div><div class="code-line " id="line-8">
+      <div class="line-number">8</div>
+      <div class="line-content"> </div>
+    </div><div class="code-line " id="line-9">
+      <div class="line-number">9</div>
+      <div class="line-content">// Note: import explicitly to use the types shiped with jest.</div>
+    </div><div class="code-line " id="line-10">
+      <div class="line-number">10</div>
+      <div class="line-content">import {it} from &#039;@jest/globals&#039;;</div>
+    </div><div class="code-line " id="line-11">
+      <div class="line-number">11</div>
+      <div class="line-content"> </div>
+    </div><div class="code-line " id="line-12">
+      <div class="line-number">12</div>
+      <div class="line-content">// Note: test renderer must be required after react-native.</div>
+    </div><div class="code-line " id="line-13">
+      <div class="line-number">13</div>
+      <div class="line-content">import renderer from &#039;react-test-renderer&#039;;</div>
+    </div><div class="code-line " id="line-14">
+      <div class="line-number">14</div>
+      <div class="line-content"> </div>
+    </div><div class="code-line " id="line-15">
+      <div class="line-number">15</div>
+      <div class="line-content">it(&#039;renders correctly&#039;, () =&gt; {</div>
+    </div><div class="code-line " id="line-16">
+      <div class="line-number">16</div>
+      <div class="line-content">  renderer.create(&lt;App /&gt;);</div>
+    </div><div class="code-line " id="line-17">
+      <div class="line-number">17</div>
+      <div class="line-content">});</div>
+    </div><div class="code-line " id="line-18">
+      <div class="line-number">18</div>
+      <div class="line-content"> </div>
+    </div>
+      </div>
     </div>
   
           </div>
@@ -1369,226 +1450,654 @@ it(&#039;renders correctly&#039;, () =&gt; {
             
     <div class="test-file">
       <h4>Counter.test.tsx</h4>
-      <pre><code class="language-typescript">import React from &#039;react&#039;;
-import { render, fireEvent } from &#039;@testing-library/react-native&#039;;
-import Counter from &#039;../components/Counter&#039;;
-
-describe(&#039;Counter Component&#039;, () =&gt; {
-  it(&#039;renders correctly with default value&#039;, () =&gt; {
-    const { getByTestId, getByText } = render(&lt;Counter /&gt;);
-    
-    expect(getByText(&#039;Counter Component&#039;)).toBeTruthy();
-    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(0);
-  });
-
-  it(&#039;renders with initial value when provided&#039;, () =&gt; {
-    const { getByTestId } = render(&lt;Counter initialValue={5} /&gt;);
-    
-    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(5);
-  });
-
-  it(&#039;increments the counter when increment button is pressed&#039;, () =&gt; {
-    const { getByTestId } = render(&lt;Counter initialValue={0} /&gt;);
-    
-    const incrementButton = getByTestId(&#039;increment-button&#039;);
-    fireEvent.press(incrementButton);
-    
-    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(1);
-  });
-
-  it(&#039;decrements the counter when decrement button is pressed&#039;, () =&gt; {
-    const { getByTestId } = render(&lt;Counter initialValue={5} /&gt;);
-    
-    const decrementButton = getByTestId(&#039;decrement-button&#039;);
-    fireEvent.press(decrementButton);
-    
-    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(4);
-  });
-
-  it(&#039;does not decrement below zero&#039;, () =&gt; {
-    const { getByTestId } = render(&lt;Counter initialValue={0} /&gt;);
-    
-    const decrementButton = getByTestId(&#039;decrement-button&#039;);
-    fireEvent.press(decrementButton);
-    
-    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(0);
-  });
-}); </code></pre>
+      <div class="source-path">/Users/tylerhenry/Documents/GitHub/testApp/src/__tests__/Counter.test.tsx</div>
+      <div class="code-container" id="test-file-1-0">
+        <div class="code-line " id="line-1">
+      <div class="line-number">1</div>
+      <div class="line-content">import React from &#039;react&#039;;</div>
+    </div><div class="code-line " id="line-2">
+      <div class="line-number">2</div>
+      <div class="line-content">import { render, fireEvent } from &#039;@testing-library/react-native&#039;;</div>
+    </div><div class="code-line " id="line-3">
+      <div class="line-number">3</div>
+      <div class="line-content">import Counter from &#039;../components/Counter&#039;;</div>
+    </div><div class="code-line " id="line-4">
+      <div class="line-number">4</div>
+      <div class="line-content"> </div>
+    </div><div class="code-line " id="line-5">
+      <div class="line-number">5</div>
+      <div class="line-content">describe(&#039;Counter Component&#039;, () =&gt; {</div>
+    </div><div class="code-line " id="line-6">
+      <div class="line-number">6</div>
+      <div class="line-content">  it(&#039;renders correctly with default value&#039;, () =&gt; {</div>
+    </div><div class="code-line " id="line-7">
+      <div class="line-number">7</div>
+      <div class="line-content">    const { getByTestId, getByText } = render(&lt;Counter /&gt;);</div>
+    </div><div class="code-line " id="line-8">
+      <div class="line-number">8</div>
+      <div class="line-content">    </div>
+    </div><div class="code-line " id="line-9">
+      <div class="line-number">9</div>
+      <div class="line-content">    expect(getByText(&#039;Counter Component&#039;)).toBeTruthy();</div>
+    </div><div class="code-line " id="line-10">
+      <div class="line-number">10</div>
+      <div class="line-content">    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(0);</div>
+    </div><div class="code-line " id="line-11">
+      <div class="line-number">11</div>
+      <div class="line-content">  });</div>
+    </div><div class="code-line " id="line-12">
+      <div class="line-number">12</div>
+      <div class="line-content"> </div>
+    </div><div class="code-line " id="line-13">
+      <div class="line-number">13</div>
+      <div class="line-content">  it(&#039;renders with initial value when provided&#039;, () =&gt; {</div>
+    </div><div class="code-line " id="line-14">
+      <div class="line-number">14</div>
+      <div class="line-content">    const { getByTestId } = render(&lt;Counter initialValue={5} /&gt;);</div>
+    </div><div class="code-line " id="line-15">
+      <div class="line-number">15</div>
+      <div class="line-content">    </div>
+    </div><div class="code-line " id="line-16">
+      <div class="line-number">16</div>
+      <div class="line-content">    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(5);</div>
+    </div><div class="code-line " id="line-17">
+      <div class="line-number">17</div>
+      <div class="line-content">  });</div>
+    </div><div class="code-line " id="line-18">
+      <div class="line-number">18</div>
+      <div class="line-content"> </div>
+    </div><div class="code-line " id="line-19">
+      <div class="line-number">19</div>
+      <div class="line-content">  it(&#039;increments the counter when increment button is pressed&#039;, () =&gt; {</div>
+    </div><div class="code-line " id="line-20">
+      <div class="line-number">20</div>
+      <div class="line-content">    const { getByTestId } = render(&lt;Counter initialValue={0} /&gt;);</div>
+    </div><div class="code-line " id="line-21">
+      <div class="line-number">21</div>
+      <div class="line-content">    </div>
+    </div><div class="code-line " id="line-22">
+      <div class="line-number">22</div>
+      <div class="line-content">    const incrementButton = getByTestId(&#039;increment-button&#039;);</div>
+    </div><div class="code-line " id="line-23">
+      <div class="line-number">23</div>
+      <div class="line-content">    fireEvent.press(incrementButton);</div>
+    </div><div class="code-line " id="line-24">
+      <div class="line-number">24</div>
+      <div class="line-content">    </div>
+    </div><div class="code-line " id="line-25">
+      <div class="line-number">25</div>
+      <div class="line-content">    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(1);</div>
+    </div><div class="code-line " id="line-26">
+      <div class="line-number">26</div>
+      <div class="line-content">  });</div>
+    </div><div class="code-line " id="line-27">
+      <div class="line-number">27</div>
+      <div class="line-content"> </div>
+    </div><div class="code-line " id="line-28">
+      <div class="line-number">28</div>
+      <div class="line-content">  it(&#039;decrements the counter when decrement button is pressed&#039;, () =&gt; {</div>
+    </div><div class="code-line " id="line-29">
+      <div class="line-number">29</div>
+      <div class="line-content">    const { getByTestId } = render(&lt;Counter initialValue={5} /&gt;);</div>
+    </div><div class="code-line " id="line-30">
+      <div class="line-number">30</div>
+      <div class="line-content">    </div>
+    </div><div class="code-line " id="line-31">
+      <div class="line-number">31</div>
+      <div class="line-content">    const decrementButton = getByTestId(&#039;decrement-button&#039;);</div>
+    </div><div class="code-line " id="line-32">
+      <div class="line-number">32</div>
+      <div class="line-content">    fireEvent.press(decrementButton);</div>
+    </div><div class="code-line " id="line-33">
+      <div class="line-number">33</div>
+      <div class="line-content">    </div>
+    </div><div class="code-line " id="line-34">
+      <div class="line-number">34</div>
+      <div class="line-content">    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(4);</div>
+    </div><div class="code-line " id="line-35">
+      <div class="line-number">35</div>
+      <div class="line-content">  });</div>
+    </div><div class="code-line " id="line-36">
+      <div class="line-number">36</div>
+      <div class="line-content"> </div>
+    </div><div class="code-line " id="line-37">
+      <div class="line-number">37</div>
+      <div class="line-content">  it(&#039;does not decrement below zero&#039;, () =&gt; {</div>
+    </div><div class="code-line " id="line-38">
+      <div class="line-number">38</div>
+      <div class="line-content">    const { getByTestId } = render(&lt;Counter initialValue={0} /&gt;);</div>
+    </div><div class="code-line " id="line-39">
+      <div class="line-number">39</div>
+      <div class="line-content">    </div>
+    </div><div class="code-line " id="line-40">
+      <div class="line-number">40</div>
+      <div class="line-content">    const decrementButton = getByTestId(&#039;decrement-button&#039;);</div>
+    </div><div class="code-line " id="line-41">
+      <div class="line-number">41</div>
+      <div class="line-content">    fireEvent.press(decrementButton);</div>
+    </div><div class="code-line " id="line-42">
+      <div class="line-number">42</div>
+      <div class="line-content">    </div>
+    </div><div class="code-line " id="line-43">
+      <div class="line-number">43</div>
+      <div class="line-content">    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(0);</div>
+    </div><div class="code-line " id="line-44">
+      <div class="line-number">44</div>
+      <div class="line-content">  });</div>
+    </div><div class="code-line " id="line-45">
+      <div class="line-number">45</div>
+      <div class="line-content">}); </div>
+    </div>
+      </div>
     </div>
   
     <div class="test-file">
       <h4>Counter.test.tsx</h4>
-      <pre><code class="language-typescript">import React from &#039;react&#039;;
-import { render, fireEvent } from &#039;@testing-library/react-native&#039;;
-import Counter from &#039;../components/Counter&#039;;
-
-describe(&#039;Counter Component&#039;, () =&gt; {
-  it(&#039;renders correctly with default value&#039;, () =&gt; {
-    const { getByTestId, getByText } = render(&lt;Counter /&gt;);
-    
-    expect(getByText(&#039;Counter Component&#039;)).toBeTruthy();
-    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(0);
-  });
-
-  it(&#039;renders with initial value when provided&#039;, () =&gt; {
-    const { getByTestId } = render(&lt;Counter initialValue={5} /&gt;);
-    
-    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(5);
-  });
-
-  it(&#039;increments the counter when increment button is pressed&#039;, () =&gt; {
-    const { getByTestId } = render(&lt;Counter initialValue={0} /&gt;);
-    
-    const incrementButton = getByTestId(&#039;increment-button&#039;);
-    fireEvent.press(incrementButton);
-    
-    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(1);
-  });
-
-  it(&#039;decrements the counter when decrement button is pressed&#039;, () =&gt; {
-    const { getByTestId } = render(&lt;Counter initialValue={5} /&gt;);
-    
-    const decrementButton = getByTestId(&#039;decrement-button&#039;);
-    fireEvent.press(decrementButton);
-    
-    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(4);
-  });
-
-  it(&#039;does not decrement below zero&#039;, () =&gt; {
-    const { getByTestId } = render(&lt;Counter initialValue={0} /&gt;);
-    
-    const decrementButton = getByTestId(&#039;decrement-button&#039;);
-    fireEvent.press(decrementButton);
-    
-    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(0);
-  });
-}); </code></pre>
+      <div class="source-path">/Users/tylerhenry/Documents/GitHub/testApp/src/__tests__/Counter.test.tsx</div>
+      <div class="code-container" id="test-file-1-1">
+        <div class="code-line " id="line-1">
+      <div class="line-number">1</div>
+      <div class="line-content">import React from &#039;react&#039;;</div>
+    </div><div class="code-line " id="line-2">
+      <div class="line-number">2</div>
+      <div class="line-content">import { render, fireEvent } from &#039;@testing-library/react-native&#039;;</div>
+    </div><div class="code-line " id="line-3">
+      <div class="line-number">3</div>
+      <div class="line-content">import Counter from &#039;../components/Counter&#039;;</div>
+    </div><div class="code-line " id="line-4">
+      <div class="line-number">4</div>
+      <div class="line-content"> </div>
+    </div><div class="code-line " id="line-5">
+      <div class="line-number">5</div>
+      <div class="line-content">describe(&#039;Counter Component&#039;, () =&gt; {</div>
+    </div><div class="code-line " id="line-6">
+      <div class="line-number">6</div>
+      <div class="line-content">  it(&#039;renders correctly with default value&#039;, () =&gt; {</div>
+    </div><div class="code-line " id="line-7">
+      <div class="line-number">7</div>
+      <div class="line-content">    const { getByTestId, getByText } = render(&lt;Counter /&gt;);</div>
+    </div><div class="code-line " id="line-8">
+      <div class="line-number">8</div>
+      <div class="line-content">    </div>
+    </div><div class="code-line " id="line-9">
+      <div class="line-number">9</div>
+      <div class="line-content">    expect(getByText(&#039;Counter Component&#039;)).toBeTruthy();</div>
+    </div><div class="code-line " id="line-10">
+      <div class="line-number">10</div>
+      <div class="line-content">    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(0);</div>
+    </div><div class="code-line " id="line-11">
+      <div class="line-number">11</div>
+      <div class="line-content">  });</div>
+    </div><div class="code-line " id="line-12">
+      <div class="line-number">12</div>
+      <div class="line-content"> </div>
+    </div><div class="code-line " id="line-13">
+      <div class="line-number">13</div>
+      <div class="line-content">  it(&#039;renders with initial value when provided&#039;, () =&gt; {</div>
+    </div><div class="code-line " id="line-14">
+      <div class="line-number">14</div>
+      <div class="line-content">    const { getByTestId } = render(&lt;Counter initialValue={5} /&gt;);</div>
+    </div><div class="code-line " id="line-15">
+      <div class="line-number">15</div>
+      <div class="line-content">    </div>
+    </div><div class="code-line " id="line-16">
+      <div class="line-number">16</div>
+      <div class="line-content">    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(5);</div>
+    </div><div class="code-line " id="line-17">
+      <div class="line-number">17</div>
+      <div class="line-content">  });</div>
+    </div><div class="code-line " id="line-18">
+      <div class="line-number">18</div>
+      <div class="line-content"> </div>
+    </div><div class="code-line " id="line-19">
+      <div class="line-number">19</div>
+      <div class="line-content">  it(&#039;increments the counter when increment button is pressed&#039;, () =&gt; {</div>
+    </div><div class="code-line " id="line-20">
+      <div class="line-number">20</div>
+      <div class="line-content">    const { getByTestId } = render(&lt;Counter initialValue={0} /&gt;);</div>
+    </div><div class="code-line " id="line-21">
+      <div class="line-number">21</div>
+      <div class="line-content">    </div>
+    </div><div class="code-line " id="line-22">
+      <div class="line-number">22</div>
+      <div class="line-content">    const incrementButton = getByTestId(&#039;increment-button&#039;);</div>
+    </div><div class="code-line " id="line-23">
+      <div class="line-number">23</div>
+      <div class="line-content">    fireEvent.press(incrementButton);</div>
+    </div><div class="code-line " id="line-24">
+      <div class="line-number">24</div>
+      <div class="line-content">    </div>
+    </div><div class="code-line " id="line-25">
+      <div class="line-number">25</div>
+      <div class="line-content">    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(1);</div>
+    </div><div class="code-line " id="line-26">
+      <div class="line-number">26</div>
+      <div class="line-content">  });</div>
+    </div><div class="code-line " id="line-27">
+      <div class="line-number">27</div>
+      <div class="line-content"> </div>
+    </div><div class="code-line " id="line-28">
+      <div class="line-number">28</div>
+      <div class="line-content">  it(&#039;decrements the counter when decrement button is pressed&#039;, () =&gt; {</div>
+    </div><div class="code-line " id="line-29">
+      <div class="line-number">29</div>
+      <div class="line-content">    const { getByTestId } = render(&lt;Counter initialValue={5} /&gt;);</div>
+    </div><div class="code-line " id="line-30">
+      <div class="line-number">30</div>
+      <div class="line-content">    </div>
+    </div><div class="code-line " id="line-31">
+      <div class="line-number">31</div>
+      <div class="line-content">    const decrementButton = getByTestId(&#039;decrement-button&#039;);</div>
+    </div><div class="code-line " id="line-32">
+      <div class="line-number">32</div>
+      <div class="line-content">    fireEvent.press(decrementButton);</div>
+    </div><div class="code-line " id="line-33">
+      <div class="line-number">33</div>
+      <div class="line-content">    </div>
+    </div><div class="code-line " id="line-34">
+      <div class="line-number">34</div>
+      <div class="line-content">    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(4);</div>
+    </div><div class="code-line " id="line-35">
+      <div class="line-number">35</div>
+      <div class="line-content">  });</div>
+    </div><div class="code-line " id="line-36">
+      <div class="line-number">36</div>
+      <div class="line-content"> </div>
+    </div><div class="code-line " id="line-37">
+      <div class="line-number">37</div>
+      <div class="line-content">  it(&#039;does not decrement below zero&#039;, () =&gt; {</div>
+    </div><div class="code-line " id="line-38">
+      <div class="line-number">38</div>
+      <div class="line-content">    const { getByTestId } = render(&lt;Counter initialValue={0} /&gt;);</div>
+    </div><div class="code-line " id="line-39">
+      <div class="line-number">39</div>
+      <div class="line-content">    </div>
+    </div><div class="code-line " id="line-40">
+      <div class="line-number">40</div>
+      <div class="line-content">    const decrementButton = getByTestId(&#039;decrement-button&#039;);</div>
+    </div><div class="code-line " id="line-41">
+      <div class="line-number">41</div>
+      <div class="line-content">    fireEvent.press(decrementButton);</div>
+    </div><div class="code-line " id="line-42">
+      <div class="line-number">42</div>
+      <div class="line-content">    </div>
+    </div><div class="code-line " id="line-43">
+      <div class="line-number">43</div>
+      <div class="line-content">    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(0);</div>
+    </div><div class="code-line " id="line-44">
+      <div class="line-number">44</div>
+      <div class="line-content">  });</div>
+    </div><div class="code-line " id="line-45">
+      <div class="line-number">45</div>
+      <div class="line-content">}); </div>
+    </div>
+      </div>
     </div>
   
     <div class="test-file">
       <h4>Counter.test.tsx</h4>
-      <pre><code class="language-typescript">import React from &#039;react&#039;;
-import { render, fireEvent } from &#039;@testing-library/react-native&#039;;
-import Counter from &#039;../components/Counter&#039;;
-
-describe(&#039;Counter Component&#039;, () =&gt; {
-  it(&#039;renders correctly with default value&#039;, () =&gt; {
-    const { getByTestId, getByText } = render(&lt;Counter /&gt;);
-    
-    expect(getByText(&#039;Counter Component&#039;)).toBeTruthy();
-    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(0);
-  });
-
-  it(&#039;renders with initial value when provided&#039;, () =&gt; {
-    const { getByTestId } = render(&lt;Counter initialValue={5} /&gt;);
-    
-    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(5);
-  });
-
-  it(&#039;increments the counter when increment button is pressed&#039;, () =&gt; {
-    const { getByTestId } = render(&lt;Counter initialValue={0} /&gt;);
-    
-    const incrementButton = getByTestId(&#039;increment-button&#039;);
-    fireEvent.press(incrementButton);
-    
-    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(1);
-  });
-
-  it(&#039;decrements the counter when decrement button is pressed&#039;, () =&gt; {
-    const { getByTestId } = render(&lt;Counter initialValue={5} /&gt;);
-    
-    const decrementButton = getByTestId(&#039;decrement-button&#039;);
-    fireEvent.press(decrementButton);
-    
-    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(4);
-  });
-
-  it(&#039;does not decrement below zero&#039;, () =&gt; {
-    const { getByTestId } = render(&lt;Counter initialValue={0} /&gt;);
-    
-    const decrementButton = getByTestId(&#039;decrement-button&#039;);
-    fireEvent.press(decrementButton);
-    
-    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(0);
-  });
-}); </code></pre>
+      <div class="source-path">/Users/tylerhenry/Documents/GitHub/testApp/src/__tests__/Counter.test.tsx</div>
+      <div class="code-container" id="test-file-1-2">
+        <div class="code-line " id="line-1">
+      <div class="line-number">1</div>
+      <div class="line-content">import React from &#039;react&#039;;</div>
+    </div><div class="code-line " id="line-2">
+      <div class="line-number">2</div>
+      <div class="line-content">import { render, fireEvent } from &#039;@testing-library/react-native&#039;;</div>
+    </div><div class="code-line " id="line-3">
+      <div class="line-number">3</div>
+      <div class="line-content">import Counter from &#039;../components/Counter&#039;;</div>
+    </div><div class="code-line " id="line-4">
+      <div class="line-number">4</div>
+      <div class="line-content"> </div>
+    </div><div class="code-line " id="line-5">
+      <div class="line-number">5</div>
+      <div class="line-content">describe(&#039;Counter Component&#039;, () =&gt; {</div>
+    </div><div class="code-line " id="line-6">
+      <div class="line-number">6</div>
+      <div class="line-content">  it(&#039;renders correctly with default value&#039;, () =&gt; {</div>
+    </div><div class="code-line " id="line-7">
+      <div class="line-number">7</div>
+      <div class="line-content">    const { getByTestId, getByText } = render(&lt;Counter /&gt;);</div>
+    </div><div class="code-line " id="line-8">
+      <div class="line-number">8</div>
+      <div class="line-content">    </div>
+    </div><div class="code-line " id="line-9">
+      <div class="line-number">9</div>
+      <div class="line-content">    expect(getByText(&#039;Counter Component&#039;)).toBeTruthy();</div>
+    </div><div class="code-line " id="line-10">
+      <div class="line-number">10</div>
+      <div class="line-content">    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(0);</div>
+    </div><div class="code-line " id="line-11">
+      <div class="line-number">11</div>
+      <div class="line-content">  });</div>
+    </div><div class="code-line " id="line-12">
+      <div class="line-number">12</div>
+      <div class="line-content"> </div>
+    </div><div class="code-line " id="line-13">
+      <div class="line-number">13</div>
+      <div class="line-content">  it(&#039;renders with initial value when provided&#039;, () =&gt; {</div>
+    </div><div class="code-line " id="line-14">
+      <div class="line-number">14</div>
+      <div class="line-content">    const { getByTestId } = render(&lt;Counter initialValue={5} /&gt;);</div>
+    </div><div class="code-line " id="line-15">
+      <div class="line-number">15</div>
+      <div class="line-content">    </div>
+    </div><div class="code-line " id="line-16">
+      <div class="line-number">16</div>
+      <div class="line-content">    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(5);</div>
+    </div><div class="code-line " id="line-17">
+      <div class="line-number">17</div>
+      <div class="line-content">  });</div>
+    </div><div class="code-line " id="line-18">
+      <div class="line-number">18</div>
+      <div class="line-content"> </div>
+    </div><div class="code-line " id="line-19">
+      <div class="line-number">19</div>
+      <div class="line-content">  it(&#039;increments the counter when increment button is pressed&#039;, () =&gt; {</div>
+    </div><div class="code-line " id="line-20">
+      <div class="line-number">20</div>
+      <div class="line-content">    const { getByTestId } = render(&lt;Counter initialValue={0} /&gt;);</div>
+    </div><div class="code-line " id="line-21">
+      <div class="line-number">21</div>
+      <div class="line-content">    </div>
+    </div><div class="code-line " id="line-22">
+      <div class="line-number">22</div>
+      <div class="line-content">    const incrementButton = getByTestId(&#039;increment-button&#039;);</div>
+    </div><div class="code-line " id="line-23">
+      <div class="line-number">23</div>
+      <div class="line-content">    fireEvent.press(incrementButton);</div>
+    </div><div class="code-line " id="line-24">
+      <div class="line-number">24</div>
+      <div class="line-content">    </div>
+    </div><div class="code-line " id="line-25">
+      <div class="line-number">25</div>
+      <div class="line-content">    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(1);</div>
+    </div><div class="code-line " id="line-26">
+      <div class="line-number">26</div>
+      <div class="line-content">  });</div>
+    </div><div class="code-line " id="line-27">
+      <div class="line-number">27</div>
+      <div class="line-content"> </div>
+    </div><div class="code-line " id="line-28">
+      <div class="line-number">28</div>
+      <div class="line-content">  it(&#039;decrements the counter when decrement button is pressed&#039;, () =&gt; {</div>
+    </div><div class="code-line " id="line-29">
+      <div class="line-number">29</div>
+      <div class="line-content">    const { getByTestId } = render(&lt;Counter initialValue={5} /&gt;);</div>
+    </div><div class="code-line " id="line-30">
+      <div class="line-number">30</div>
+      <div class="line-content">    </div>
+    </div><div class="code-line " id="line-31">
+      <div class="line-number">31</div>
+      <div class="line-content">    const decrementButton = getByTestId(&#039;decrement-button&#039;);</div>
+    </div><div class="code-line " id="line-32">
+      <div class="line-number">32</div>
+      <div class="line-content">    fireEvent.press(decrementButton);</div>
+    </div><div class="code-line " id="line-33">
+      <div class="line-number">33</div>
+      <div class="line-content">    </div>
+    </div><div class="code-line " id="line-34">
+      <div class="line-number">34</div>
+      <div class="line-content">    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(4);</div>
+    </div><div class="code-line " id="line-35">
+      <div class="line-number">35</div>
+      <div class="line-content">  });</div>
+    </div><div class="code-line " id="line-36">
+      <div class="line-number">36</div>
+      <div class="line-content"> </div>
+    </div><div class="code-line " id="line-37">
+      <div class="line-number">37</div>
+      <div class="line-content">  it(&#039;does not decrement below zero&#039;, () =&gt; {</div>
+    </div><div class="code-line " id="line-38">
+      <div class="line-number">38</div>
+      <div class="line-content">    const { getByTestId } = render(&lt;Counter initialValue={0} /&gt;);</div>
+    </div><div class="code-line " id="line-39">
+      <div class="line-number">39</div>
+      <div class="line-content">    </div>
+    </div><div class="code-line " id="line-40">
+      <div class="line-number">40</div>
+      <div class="line-content">    const decrementButton = getByTestId(&#039;decrement-button&#039;);</div>
+    </div><div class="code-line " id="line-41">
+      <div class="line-number">41</div>
+      <div class="line-content">    fireEvent.press(decrementButton);</div>
+    </div><div class="code-line " id="line-42">
+      <div class="line-number">42</div>
+      <div class="line-content">    </div>
+    </div><div class="code-line " id="line-43">
+      <div class="line-number">43</div>
+      <div class="line-content">    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(0);</div>
+    </div><div class="code-line " id="line-44">
+      <div class="line-number">44</div>
+      <div class="line-content">  });</div>
+    </div><div class="code-line " id="line-45">
+      <div class="line-number">45</div>
+      <div class="line-content">}); </div>
+    </div>
+      </div>
     </div>
   
     <div class="test-file">
       <h4>Counter.test.tsx</h4>
-      <pre><code class="language-typescript">import React from &#039;react&#039;;
-import { render, fireEvent } from &#039;@testing-library/react-native&#039;;
-import Counter from &#039;../components/Counter&#039;;
-
-describe(&#039;Counter Component&#039;, () =&gt; {
-  it(&#039;renders correctly with default value&#039;, () =&gt; {
-    const { getByTestId, getByText } = render(&lt;Counter /&gt;);
-    
-    expect(getByText(&#039;Counter Component&#039;)).toBeTruthy();
-    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(0);
-  });
-
-  it(&#039;renders with initial value when provided&#039;, () =&gt; {
-    const { getByTestId } = render(&lt;Counter initialValue={5} /&gt;);
-    
-    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(5);
-  });
-
-  it(&#039;increments the counter when increment button is pressed&#039;, () =&gt; {
-    const { getByTestId } = render(&lt;Counter initialValue={0} /&gt;);
-    
-    const incrementButton = getByTestId(&#039;increment-button&#039;);
-    fireEvent.press(incrementButton);
-    
-    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(1);
-  });
-
-  it(&#039;decrements the counter when decrement button is pressed&#039;, () =&gt; {
-    const { getByTestId } = render(&lt;Counter initialValue={5} /&gt;);
-    
-    const decrementButton = getByTestId(&#039;decrement-button&#039;);
-    fireEvent.press(decrementButton);
-    
-    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(4);
-  });
-
-  it(&#039;does not decrement below zero&#039;, () =&gt; {
-    const { getByTestId } = render(&lt;Counter initialValue={0} /&gt;);
-    
-    const decrementButton = getByTestId(&#039;decrement-button&#039;);
-    fireEvent.press(decrementButton);
-    
-    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(0);
-  });
-}); </code></pre>
+      <div class="source-path">/Users/tylerhenry/Documents/GitHub/testApp/src/__tests__/Counter.test.tsx</div>
+      <div class="code-container" id="test-file-1-3">
+        <div class="code-line " id="line-1">
+      <div class="line-number">1</div>
+      <div class="line-content">import React from &#039;react&#039;;</div>
+    </div><div class="code-line " id="line-2">
+      <div class="line-number">2</div>
+      <div class="line-content">import { render, fireEvent } from &#039;@testing-library/react-native&#039;;</div>
+    </div><div class="code-line " id="line-3">
+      <div class="line-number">3</div>
+      <div class="line-content">import Counter from &#039;../components/Counter&#039;;</div>
+    </div><div class="code-line " id="line-4">
+      <div class="line-number">4</div>
+      <div class="line-content"> </div>
+    </div><div class="code-line " id="line-5">
+      <div class="line-number">5</div>
+      <div class="line-content">describe(&#039;Counter Component&#039;, () =&gt; {</div>
+    </div><div class="code-line " id="line-6">
+      <div class="line-number">6</div>
+      <div class="line-content">  it(&#039;renders correctly with default value&#039;, () =&gt; {</div>
+    </div><div class="code-line " id="line-7">
+      <div class="line-number">7</div>
+      <div class="line-content">    const { getByTestId, getByText } = render(&lt;Counter /&gt;);</div>
+    </div><div class="code-line " id="line-8">
+      <div class="line-number">8</div>
+      <div class="line-content">    </div>
+    </div><div class="code-line " id="line-9">
+      <div class="line-number">9</div>
+      <div class="line-content">    expect(getByText(&#039;Counter Component&#039;)).toBeTruthy();</div>
+    </div><div class="code-line " id="line-10">
+      <div class="line-number">10</div>
+      <div class="line-content">    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(0);</div>
+    </div><div class="code-line " id="line-11">
+      <div class="line-number">11</div>
+      <div class="line-content">  });</div>
+    </div><div class="code-line " id="line-12">
+      <div class="line-number">12</div>
+      <div class="line-content"> </div>
+    </div><div class="code-line " id="line-13">
+      <div class="line-number">13</div>
+      <div class="line-content">  it(&#039;renders with initial value when provided&#039;, () =&gt; {</div>
+    </div><div class="code-line " id="line-14">
+      <div class="line-number">14</div>
+      <div class="line-content">    const { getByTestId } = render(&lt;Counter initialValue={5} /&gt;);</div>
+    </div><div class="code-line " id="line-15">
+      <div class="line-number">15</div>
+      <div class="line-content">    </div>
+    </div><div class="code-line " id="line-16">
+      <div class="line-number">16</div>
+      <div class="line-content">    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(5);</div>
+    </div><div class="code-line " id="line-17">
+      <div class="line-number">17</div>
+      <div class="line-content">  });</div>
+    </div><div class="code-line " id="line-18">
+      <div class="line-number">18</div>
+      <div class="line-content"> </div>
+    </div><div class="code-line " id="line-19">
+      <div class="line-number">19</div>
+      <div class="line-content">  it(&#039;increments the counter when increment button is pressed&#039;, () =&gt; {</div>
+    </div><div class="code-line " id="line-20">
+      <div class="line-number">20</div>
+      <div class="line-content">    const { getByTestId } = render(&lt;Counter initialValue={0} /&gt;);</div>
+    </div><div class="code-line " id="line-21">
+      <div class="line-number">21</div>
+      <div class="line-content">    </div>
+    </div><div class="code-line " id="line-22">
+      <div class="line-number">22</div>
+      <div class="line-content">    const incrementButton = getByTestId(&#039;increment-button&#039;);</div>
+    </div><div class="code-line " id="line-23">
+      <div class="line-number">23</div>
+      <div class="line-content">    fireEvent.press(incrementButton);</div>
+    </div><div class="code-line " id="line-24">
+      <div class="line-number">24</div>
+      <div class="line-content">    </div>
+    </div><div class="code-line " id="line-25">
+      <div class="line-number">25</div>
+      <div class="line-content">    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(1);</div>
+    </div><div class="code-line " id="line-26">
+      <div class="line-number">26</div>
+      <div class="line-content">  });</div>
+    </div><div class="code-line " id="line-27">
+      <div class="line-number">27</div>
+      <div class="line-content"> </div>
+    </div><div class="code-line " id="line-28">
+      <div class="line-number">28</div>
+      <div class="line-content">  it(&#039;decrements the counter when decrement button is pressed&#039;, () =&gt; {</div>
+    </div><div class="code-line " id="line-29">
+      <div class="line-number">29</div>
+      <div class="line-content">    const { getByTestId } = render(&lt;Counter initialValue={5} /&gt;);</div>
+    </div><div class="code-line " id="line-30">
+      <div class="line-number">30</div>
+      <div class="line-content">    </div>
+    </div><div class="code-line " id="line-31">
+      <div class="line-number">31</div>
+      <div class="line-content">    const decrementButton = getByTestId(&#039;decrement-button&#039;);</div>
+    </div><div class="code-line " id="line-32">
+      <div class="line-number">32</div>
+      <div class="line-content">    fireEvent.press(decrementButton);</div>
+    </div><div class="code-line " id="line-33">
+      <div class="line-number">33</div>
+      <div class="line-content">    </div>
+    </div><div class="code-line " id="line-34">
+      <div class="line-number">34</div>
+      <div class="line-content">    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(4);</div>
+    </div><div class="code-line " id="line-35">
+      <div class="line-number">35</div>
+      <div class="line-content">  });</div>
+    </div><div class="code-line " id="line-36">
+      <div class="line-number">36</div>
+      <div class="line-content"> </div>
+    </div><div class="code-line " id="line-37">
+      <div class="line-number">37</div>
+      <div class="line-content">  it(&#039;does not decrement below zero&#039;, () =&gt; {</div>
+    </div><div class="code-line " id="line-38">
+      <div class="line-number">38</div>
+      <div class="line-content">    const { getByTestId } = render(&lt;Counter initialValue={0} /&gt;);</div>
+    </div><div class="code-line " id="line-39">
+      <div class="line-number">39</div>
+      <div class="line-content">    </div>
+    </div><div class="code-line " id="line-40">
+      <div class="line-number">40</div>
+      <div class="line-content">    const decrementButton = getByTestId(&#039;decrement-button&#039;);</div>
+    </div><div class="code-line " id="line-41">
+      <div class="line-number">41</div>
+      <div class="line-content">    fireEvent.press(decrementButton);</div>
+    </div><div class="code-line " id="line-42">
+      <div class="line-number">42</div>
+      <div class="line-content">    </div>
+    </div><div class="code-line " id="line-43">
+      <div class="line-number">43</div>
+      <div class="line-content">    expect(getByTestId(&#039;counter-value&#039;).props.children).toBe(0);</div>
+    </div><div class="code-line " id="line-44">
+      <div class="line-number">44</div>
+      <div class="line-content">  });</div>
+    </div><div class="code-line " id="line-45">
+      <div class="line-number">45</div>
+      <div class="line-content">}); </div>
+    </div>
+      </div>
     </div>
   
     <div class="test-file">
       <h4>counter.feature</h4>
-      <pre><code class="language-typescript">Feature: Counter Functionality
-  As a user
-  I want to use the counter
-  So that I can increment and decrement values
-
-  @counter-value
-  Scenario: User increments the counter
-    Given I am on the counter screen
-    When I tap the increment button
-    Then the counter should display &quot;1&quot;
-
-  @decrement-button
-  Scenario: User decrements the counter
-    Given I am on the counter screen
-    And the counter displays &quot;1&quot;
-    When I tap the decrement button
-    Then the counter should display &quot;0&quot;
-
-  @increment-button
-  Scenario: Counter should not go below zero
-    Given I am on the counter screen
-    And the counter displays &quot;0&quot;
-    When I tap the decrement button
-    Then the counter should display &quot;0&quot; </code></pre>
+      <div class="source-path">/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature</div>
+      <div class="code-container" id="test-file-1-4">
+        <div class="code-line " id="line-1">
+      <div class="line-number">1</div>
+      <div class="line-content">Feature: Counter Functionality</div>
+    </div><div class="code-line " id="line-2">
+      <div class="line-number">2</div>
+      <div class="line-content">  As a user</div>
+    </div><div class="code-line " id="line-3">
+      <div class="line-number">3</div>
+      <div class="line-content">  I want to use the counter</div>
+    </div><div class="code-line " id="line-4">
+      <div class="line-number">4</div>
+      <div class="line-content">  So that I can increment and decrement values</div>
+    </div><div class="code-line " id="line-5">
+      <div class="line-number">5</div>
+      <div class="line-content"> </div>
+    </div><div class="code-line " id="line-6">
+      <div class="line-number">6</div>
+      <div class="line-content">  @counter-value</div>
+    </div><div class="code-line " id="line-7">
+      <div class="line-number">7</div>
+      <div class="line-content">  Scenario: User increments the counter</div>
+    </div><div class="code-line " id="line-8">
+      <div class="line-number">8</div>
+      <div class="line-content">    Given I am on the counter screen</div>
+    </div><div class="code-line " id="line-9">
+      <div class="line-number">9</div>
+      <div class="line-content">    When I tap the increment button</div>
+    </div><div class="code-line " id="line-10">
+      <div class="line-number">10</div>
+      <div class="line-content">    Then the counter should display &quot;1&quot;</div>
+    </div><div class="code-line " id="line-11">
+      <div class="line-number">11</div>
+      <div class="line-content"> </div>
+    </div><div class="code-line " id="line-12">
+      <div class="line-number">12</div>
+      <div class="line-content">  @decrement-button</div>
+    </div><div class="code-line " id="line-13">
+      <div class="line-number">13</div>
+      <div class="line-content">  Scenario: User decrements the counter</div>
+    </div><div class="code-line " id="line-14">
+      <div class="line-number">14</div>
+      <div class="line-content">    Given I am on the counter screen</div>
+    </div><div class="code-line " id="line-15">
+      <div class="line-number">15</div>
+      <div class="line-content">    And the counter displays &quot;1&quot;</div>
+    </div><div class="code-line " id="line-16">
+      <div class="line-number">16</div>
+      <div class="line-content">    When I tap the decrement button</div>
+    </div><div class="code-line " id="line-17">
+      <div class="line-number">17</div>
+      <div class="line-content">    Then the counter should display &quot;0&quot;</div>
+    </div><div class="code-line " id="line-18">
+      <div class="line-number">18</div>
+      <div class="line-content"> </div>
+    </div><div class="code-line " id="line-19">
+      <div class="line-number">19</div>
+      <div class="line-content">  @increment-button</div>
+    </div><div class="code-line " id="line-20">
+      <div class="line-number">20</div>
+      <div class="line-content">  Scenario: Counter should not go below zero</div>
+    </div><div class="code-line " id="line-21">
+      <div class="line-number">21</div>
+      <div class="line-content">    Given I am on the counter screen</div>
+    </div><div class="code-line " id="line-22">
+      <div class="line-number">22</div>
+      <div class="line-content">    And the counter displays &quot;0&quot;</div>
+    </div><div class="code-line " id="line-23">
+      <div class="line-number">23</div>
+      <div class="line-content">    When I tap the decrement button</div>
+    </div><div class="code-line " id="line-24">
+      <div class="line-number">24</div>
+      <div class="line-content">    Then the counter should display &quot;0&quot; </div>
+    </div>
+      </div>
     </div>
   
           </div>
