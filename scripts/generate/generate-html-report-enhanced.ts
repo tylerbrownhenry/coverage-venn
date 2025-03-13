@@ -23,6 +23,8 @@ interface CorrelatedTest {
   step: string;
   confidence: number;
   isE2E?: boolean; // Add this to identify E2E tests
+  filePath?: string; // Add file path info for the test
+  fileName?: string; // Add file name for easier reference
 }
 
 interface SourceInfo {
@@ -1142,6 +1144,8 @@ function generateComponentDetailTemplate(component: ComponentWithTests, index: n
             <th>Feature</th>
             <th>Scenario</th>
             <th>Step</th>
+            <th>File Name</th>
+            <th>File Path</th>
             <th>Confidence</th>
           </tr>
         </thead>
@@ -1151,6 +1155,8 @@ function generateComponentDetailTemplate(component: ComponentWithTests, index: n
               <td>${escapeHtml(test.feature)}</td>
               <td>${escapeHtml(test.scenario)}</td>
               <td>${escapeHtml(test.step)}</td>
+              <td>${test.fileName ? escapeHtml(test.fileName) : 'N/A'}</td>
+              <td title="${test.filePath || ''}">${test.filePath ? escapeHtml(path.basename(path.dirname(test.filePath))) + '/' + escapeHtml(path.basename(test.filePath)) : 'N/A'}</td>
               <td>${(test.confidence * 100).toFixed(1)}%</td>
             </tr>
           `).join('')}
@@ -1168,6 +1174,8 @@ function generateComponentDetailTemplate(component: ComponentWithTests, index: n
             <th>Feature</th>
             <th>Scenario</th>
             <th>Step</th>
+            <th>File Name</th>
+            <th>File Path</th>
             <th>Confidence</th>
           </tr>
         </thead>
@@ -1177,6 +1185,8 @@ function generateComponentDetailTemplate(component: ComponentWithTests, index: n
               <td>${escapeHtml(test.feature)}</td>
               <td>${escapeHtml(test.scenario)}</td>
               <td>${escapeHtml(test.step)}</td>
+              <td>${test.fileName ? escapeHtml(test.fileName) : 'N/A'}</td>
+              <td title="${test.filePath || ''}">${test.filePath ? escapeHtml(path.basename(path.dirname(test.filePath))) + '/' + escapeHtml(path.basename(test.filePath)) : 'N/A'}</td>
               <td>${(test.confidence * 100).toFixed(1)}%</td>
             </tr>
           `).join('')}

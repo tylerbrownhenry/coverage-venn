@@ -61,6 +61,8 @@ interface ComponentWithTests {
     step: string;
     confidence: number;
     isE2E?: boolean;
+    filePath?: string;
+    fileName?: string;
   }[];
   gapAnalysis?: {
     testingPriority: 'high' | 'medium' | 'low';
@@ -321,6 +323,8 @@ function correlateTestsWithComponents(
         step: string;
         confidence: number;
         isE2E?: boolean;
+        filePath?: string;
+        fileName?: string;
       }[] = [];
       
       // Add component with its custom correlated tests to the result
@@ -357,6 +361,8 @@ function correlateTestsWithComponents(
       step: string;
       confidence: number;
       isE2E?: boolean;
+      filePath?: string;
+      fileName?: string;
     }[] = [];
     
     // Get component imports to help with correlation
@@ -507,7 +513,9 @@ function correlateTestsWithComponents(
               scenario: scenario.name,
               step: step.text,
               confidence: parseFloat(confidence.toFixed(2)),
-              isE2E: isE2ETest
+              isE2E: isE2ETest,
+              filePath: feature.file,
+              fileName: path.basename(feature.file)
             };
             
             correlatedTests.push(correlatedTest);

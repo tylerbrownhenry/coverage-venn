@@ -415,6 +415,10 @@ function correlateTestsWithComponents(features, componentFiles, componentContent
                     // Only add test correlations with confidence above threshold
                     if (confidence > confidenceThreshold) {
                         const correlatedTest = {
+                            component: {
+                                name: componentName,
+                                path: componentPath
+                            },
                             feature: feature.name,
                             scenario: scenario.name,
                             step: step.text,
