@@ -38,6 +38,19 @@
     .component-path { color: #7f8c8d; font-family: monospace; margin-bottom: 10px; word-break: break-all; }
     .component-coverage { font-size: 1.2em; margin-bottom: 20px; }
     
+    /* Tag styles */
+    .tag {
+      display: inline-block;
+      padding: 3px 8px;
+      margin: 2px;
+      border-radius: 12px;
+      background-color: #e1f5fe;
+      color: #0288d1;
+      font-size: 12px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    
     /* Tabs */
     .tab-container { margin-top: 20px; }
     .tabs { display: flex; border-bottom: 1px solid #ddd; margin-bottom: 15px; flex-wrap: wrap; }
@@ -340,7 +353,7 @@
 </head>
 <body>
   <h1>Enhanced Coverage Report</h1>
-  <p>Generated on 3/13/2025, 1:38:24 PM</p>
+  <p>Generated on 3/13/2025, 1:41:35 PM</p>
   
   <div id="summary">
     <h2>Coverage Summary</h2>
@@ -664,6 +677,7 @@
             <th>Step</th>
             <th>File Name</th>
             <th>File Path</th>
+            <th>Tags</th>
             <th>Confidence</th>
           </tr>
         </thead>
@@ -675,6 +689,7 @@
               <td>Given I am on the counter screen</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -684,6 +699,7 @@
               <td>When I tap the increment button</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -693,6 +709,7 @@
               <td>Then the counter should display &quot;1&quot;</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -702,6 +719,7 @@
               <td>Given I am on the counter screen</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -711,6 +729,7 @@
               <td>And the counter displays &quot;1&quot;</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -720,6 +739,7 @@
               <td>When I tap the decrement button</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -729,6 +749,7 @@
               <td>Then the counter should display &quot;0&quot;</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -738,6 +759,7 @@
               <td>Given I am on the counter screen</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -747,6 +769,7 @@
               <td>And the counter displays &quot;0&quot;</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -756,6 +779,7 @@
               <td>When I tap the decrement button</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -765,6 +789,7 @@
               <td>Then the counter should display &quot;0&quot;</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -774,6 +799,7 @@
               <td>Given I am on the counter screen</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -783,6 +809,7 @@
               <td>When I tap the increment button</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -792,6 +819,7 @@
               <td>Then the counter should display &quot;1&quot;</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -801,6 +829,7 @@
               <td>Given I am on the counter screen</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -810,6 +839,7 @@
               <td>And the counter displays &quot;1&quot;</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -819,6 +849,7 @@
               <td>When I tap the decrement button</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -828,6 +859,7 @@
               <td>Then the counter should display &quot;0&quot;</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -837,6 +869,7 @@
               <td>Given I am on the counter screen</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -846,6 +879,7 @@
               <td>And the counter displays &quot;0&quot;</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -855,6 +889,7 @@
               <td>When I tap the decrement button</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -864,6 +899,7 @@
               <td>Then the counter should display &quot;0&quot;</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -873,6 +909,7 @@
               <td>Given I am on the counter screen</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -882,6 +919,7 @@
               <td>When I tap the increment button</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -891,6 +929,7 @@
               <td>Then the counter should display &quot;1&quot;</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -900,6 +939,7 @@
               <td>Given I am on the counter screen</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -909,6 +949,7 @@
               <td>And the counter displays &quot;1&quot;</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -918,6 +959,7 @@
               <td>When I tap the decrement button</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -927,6 +969,7 @@
               <td>Then the counter should display &quot;0&quot;</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -936,6 +979,7 @@
               <td>Given I am on the counter screen</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -945,6 +989,7 @@
               <td>And the counter displays &quot;0&quot;</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -954,6 +999,7 @@
               <td>When I tap the decrement button</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -963,6 +1009,7 @@
               <td>Then the counter should display &quot;0&quot;</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -972,6 +1019,7 @@
               <td>Given I am on the counter screen</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -981,6 +1029,7 @@
               <td>When I tap the increment button</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -990,6 +1039,7 @@
               <td>Then the counter should display &quot;1&quot;</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -999,6 +1049,7 @@
               <td>Given I am on the counter screen</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -1008,6 +1059,7 @@
               <td>And the counter displays &quot;1&quot;</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -1017,6 +1069,7 @@
               <td>When I tap the decrement button</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -1026,6 +1079,7 @@
               <td>Then the counter should display &quot;0&quot;</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -1035,6 +1089,7 @@
               <td>Given I am on the counter screen</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -1044,6 +1099,7 @@
               <td>And the counter displays &quot;0&quot;</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -1053,6 +1109,7 @@
               <td>When I tap the decrement button</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -1062,6 +1119,7 @@
               <td>Then the counter should display &quot;0&quot;</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -1071,6 +1129,7 @@
               <td>Given the minimalism</td>
               <td>minimal.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/node_modules/@cucumber/gherkin-streams/testdata/good/minimal.feature">good/minimal.feature</td>
+              <td>None</td>
               <td>60.0%</td>
             </tr>
           
@@ -1080,6 +1139,7 @@
               <td>Given a step</td>
               <td>test.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/node_modules/gherkin/test/stream/test.feature">stream/test.feature</td>
+              <td>None</td>
               <td>60.0%</td>
             </tr>
           
@@ -1089,6 +1149,7 @@
               <td>Given a data table with inconsistent cell count</td>
               <td>inconsistent_cell_count.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/node_modules/gherkin/testdata/bad/inconsistent_cell_count.feature">bad/inconsistent_cell_count.feature</td>
+              <td>None</td>
               <td>60.0%</td>
             </tr>
           
@@ -1098,6 +1159,7 @@
               <td>Given the &lt;what&gt;</td>
               <td>inconsistent_cell_count.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/node_modules/gherkin/testdata/bad/inconsistent_cell_count.feature">bad/inconsistent_cell_count.feature</td>
+              <td>None</td>
               <td>60.0%</td>
             </tr>
           
@@ -1107,6 +1169,7 @@
               <td>Given the minimalism</td>
               <td>invalid_language.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/node_modules/gherkin/testdata/bad/invalid_language.feature">bad/invalid_language.feature</td>
+              <td>None</td>
               <td>60.0%</td>
             </tr>
           
@@ -1116,6 +1179,7 @@
               <td>Given the minimalism</td>
               <td>multiple_parser_errors.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/node_modules/gherkin/testdata/bad/multiple_parser_errors.feature">bad/multiple_parser_errors.feature</td>
+              <td>None</td>
               <td>60.0%</td>
             </tr>
           
@@ -1125,6 +1189,7 @@
               <td>Given the minimalism</td>
               <td>single_parser_error.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/node_modules/gherkin/testdata/bad/single_parser_error.feature">bad/single_parser_error.feature</td>
+              <td>None</td>
               <td>60.0%</td>
             </tr>
           
@@ -1134,6 +1199,7 @@
               <td>Given the minimalism</td>
               <td>background.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/node_modules/gherkin/testdata/good/background.feature">good/background.feature</td>
+              <td>None</td>
               <td>60.0%</td>
             </tr>
           
@@ -1143,6 +1209,7 @@
               <td>Given a simple data table</td>
               <td>datatables.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/node_modules/gherkin/testdata/good/datatables.feature">good/datatables.feature</td>
+              <td>None</td>
               <td>60.0%</td>
             </tr>
           
@@ -1152,6 +1219,7 @@
               <td>And a data table with a single cell</td>
               <td>datatables.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/node_modules/gherkin/testdata/good/datatables.feature">good/datatables.feature</td>
+              <td>None</td>
               <td>60.0%</td>
             </tr>
           
@@ -1161,6 +1229,7 @@
               <td>And a data table with different fromatting</td>
               <td>datatables.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/node_modules/gherkin/testdata/good/datatables.feature">good/datatables.feature</td>
+              <td>None</td>
               <td>60.0%</td>
             </tr>
           
@@ -1170,6 +1239,7 @@
               <td>And a data table with an empty cell</td>
               <td>datatables.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/node_modules/gherkin/testdata/good/datatables.feature">good/datatables.feature</td>
+              <td>None</td>
               <td>60.0%</td>
             </tr>
           
@@ -1179,6 +1249,7 @@
               <td>And a data table with comments and newlines inside</td>
               <td>datatables.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/node_modules/gherkin/testdata/good/datatables.feature">good/datatables.feature</td>
+              <td>None</td>
               <td>60.0%</td>
             </tr>
           
@@ -1188,6 +1259,7 @@
               <td>Given the minimalism</td>
               <td>descriptions.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/node_modules/gherkin/testdata/good/descriptions.feature">good/descriptions.feature</td>
+              <td>None</td>
               <td>60.0%</td>
             </tr>
           
@@ -1197,6 +1269,7 @@
               <td>Given the minimalism</td>
               <td>descriptions.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/node_modules/gherkin/testdata/good/descriptions.feature">good/descriptions.feature</td>
+              <td>None</td>
               <td>60.0%</td>
             </tr>
           
@@ -1206,6 +1279,7 @@
               <td>Given the minimalism</td>
               <td>descriptions.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/node_modules/gherkin/testdata/good/descriptions.feature">good/descriptions.feature</td>
+              <td>None</td>
               <td>60.0%</td>
             </tr>
           
@@ -1215,6 +1289,7 @@
               <td>Given the minimalism</td>
               <td>descriptions.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/node_modules/gherkin/testdata/good/descriptions.feature">good/descriptions.feature</td>
+              <td>None</td>
               <td>60.0%</td>
             </tr>
           
@@ -1224,6 +1299,7 @@
               <td>Given the minimalism</td>
               <td>descriptions.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/node_modules/gherkin/testdata/good/descriptions.feature">good/descriptions.feature</td>
+              <td>None</td>
               <td>60.0%</td>
             </tr>
           
@@ -1233,6 +1309,7 @@
               <td>Given the minimalism</td>
               <td>descriptions.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/node_modules/gherkin/testdata/good/descriptions.feature">good/descriptions.feature</td>
+              <td>None</td>
               <td>60.0%</td>
             </tr>
           
@@ -1242,6 +1319,7 @@
               <td>Given the minimalism</td>
               <td>descriptions.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/node_modules/gherkin/testdata/good/descriptions.feature">good/descriptions.feature</td>
+              <td>None</td>
               <td>60.0%</td>
             </tr>
           
@@ -1251,6 +1329,7 @@
               <td>Given the minimalism</td>
               <td>descriptions.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/node_modules/gherkin/testdata/good/descriptions.feature">good/descriptions.feature</td>
+              <td>None</td>
               <td>60.0%</td>
             </tr>
           
@@ -1260,6 +1339,7 @@
               <td>Given a simple DocString</td>
               <td>docstrings.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/node_modules/gherkin/testdata/good/docstrings.feature">good/docstrings.feature</td>
+              <td>None</td>
               <td>60.0%</td>
             </tr>
           
@@ -1269,6 +1349,7 @@
               <td>Given a DocString with content type</td>
               <td>docstrings.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/node_modules/gherkin/testdata/good/docstrings.feature">good/docstrings.feature</td>
+              <td>None</td>
               <td>60.0%</td>
             </tr>
           
@@ -1278,6 +1359,7 @@
               <td>And a DocString with wrong indentation</td>
               <td>docstrings.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/node_modules/gherkin/testdata/good/docstrings.feature">good/docstrings.feature</td>
+              <td>None</td>
               <td>60.0%</td>
             </tr>
           
@@ -1287,6 +1369,7 @@
               <td>And a DocString with alternative separator</td>
               <td>docstrings.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/node_modules/gherkin/testdata/good/docstrings.feature">good/docstrings.feature</td>
+              <td>None</td>
               <td>60.0%</td>
             </tr>
           
@@ -1296,6 +1379,7 @@
               <td>And a DocString with normal separator inside</td>
               <td>docstrings.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/node_modules/gherkin/testdata/good/docstrings.feature">good/docstrings.feature</td>
+              <td>None</td>
               <td>60.0%</td>
             </tr>
           
@@ -1305,6 +1389,7 @@
               <td>And a DocString with alternative separator inside</td>
               <td>docstrings.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/node_modules/gherkin/testdata/good/docstrings.feature">good/docstrings.feature</td>
+              <td>None</td>
               <td>60.0%</td>
             </tr>
           
@@ -1314,6 +1399,7 @@
               <td>And a DocString with escaped separator inside</td>
               <td>docstrings.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/node_modules/gherkin/testdata/good/docstrings.feature">good/docstrings.feature</td>
+              <td>None</td>
               <td>60.0%</td>
             </tr>
           
@@ -1323,6 +1409,7 @@
               <td>Given they have arrived</td>
               <td>escaped_pipes.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/node_modules/gherkin/testdata/good/escaped_pipes.feature">good/escaped_pipes.feature</td>
+              <td>None</td>
               <td>60.0%</td>
             </tr>
           
@@ -1332,6 +1419,7 @@
               <td>Given they have arrived</td>
               <td>escaped_pipes.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/node_modules/gherkin/testdata/good/escaped_pipes.feature">good/escaped_pipes.feature</td>
+              <td>None</td>
               <td>60.0%</td>
             </tr>
           
@@ -1341,6 +1429,7 @@
               <td>Given the minimalism</td>
               <td>language.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/node_modules/gherkin/testdata/good/language.feature">good/language.feature</td>
+              <td>None</td>
               <td>60.0%</td>
             </tr>
           
@@ -1350,6 +1439,7 @@
               <td>Given the minimalism</td>
               <td>minimal.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/node_modules/gherkin/testdata/good/minimal.feature">good/minimal.feature</td>
+              <td>None</td>
               <td>60.0%</td>
             </tr>
           
@@ -1359,6 +1449,7 @@
               <td>Given the minimalism</td>
               <td>tags.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/node_modules/gherkin/testdata/good/tags.feature">good/tags.feature</td>
+              <td><span class="tag">@feature_tag1</span> <span class="tag">@feature_tag2</span> <span class="tag">@feature_tag3</span> <span class="tag">@scenario_tag1</span> <span class="tag">@scenario_tag2</span> <span class="tag">@scenario_tag3</span> <span class="tag">@so_tag1</span> <span class="tag">@so_tag2</span> <span class="tag">@so_tag3</span> <span class="tag">@ex_tag1</span> <span class="tag">@ex_tag2</span> <span class="tag">@ex_tag3</span> <span class="tag">@ex_tag4</span> <span class="tag">@ex_tag5</span> <span class="tag">@ex_tag6</span></td>
               <td>60.0%</td>
             </tr>
           
@@ -1368,6 +1459,7 @@
               <td>Given the &lt;what&gt;</td>
               <td>tags.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/node_modules/gherkin/testdata/good/tags.feature">good/tags.feature</td>
+              <td><span class="tag">@feature_tag1</span> <span class="tag">@feature_tag2</span> <span class="tag">@feature_tag3</span> <span class="tag">@scenario_tag1</span> <span class="tag">@scenario_tag2</span> <span class="tag">@scenario_tag3</span> <span class="tag">@so_tag1</span> <span class="tag">@so_tag2</span> <span class="tag">@so_tag3</span> <span class="tag">@ex_tag1</span> <span class="tag">@ex_tag2</span> <span class="tag">@ex_tag3</span> <span class="tag">@ex_tag4</span> <span class="tag">@ex_tag5</span> <span class="tag">@ex_tag6</span></td>
               <td>60.0%</td>
             </tr>
           
@@ -2474,6 +2566,7 @@
             <th>Step</th>
             <th>File Name</th>
             <th>File Path</th>
+            <th>Tags</th>
             <th>Confidence</th>
           </tr>
         </thead>
@@ -2485,6 +2578,7 @@
               <td>Given I am on the counter screen</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -2494,6 +2588,7 @@
               <td>When I tap the increment button</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -2503,6 +2598,7 @@
               <td>Then the counter should display &quot;1&quot;</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -2512,6 +2608,7 @@
               <td>Given I am on the counter screen</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -2521,6 +2618,7 @@
               <td>And the counter displays &quot;1&quot;</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -2530,6 +2628,7 @@
               <td>When I tap the decrement button</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -2539,6 +2638,7 @@
               <td>Then the counter should display &quot;0&quot;</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -2548,6 +2648,7 @@
               <td>Given I am on the counter screen</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -2557,6 +2658,7 @@
               <td>And the counter displays &quot;0&quot;</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -2566,6 +2668,7 @@
               <td>When I tap the decrement button</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -2575,6 +2678,7 @@
               <td>Then the counter should display &quot;0&quot;</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -2584,6 +2688,7 @@
               <td>Given I am on the counter screen</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -2593,6 +2698,7 @@
               <td>When I tap the increment button</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -2602,6 +2708,7 @@
               <td>Then the counter should display &quot;1&quot;</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -2611,6 +2718,7 @@
               <td>Given I am on the counter screen</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -2620,6 +2728,7 @@
               <td>And the counter displays &quot;1&quot;</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -2629,6 +2738,7 @@
               <td>When I tap the decrement button</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -2638,6 +2748,7 @@
               <td>Then the counter should display &quot;0&quot;</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -2647,6 +2758,7 @@
               <td>Given I am on the counter screen</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -2656,6 +2768,7 @@
               <td>And the counter displays &quot;0&quot;</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -2665,6 +2778,7 @@
               <td>When I tap the decrement button</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -2674,6 +2788,7 @@
               <td>Then the counter should display &quot;0&quot;</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -2683,6 +2798,7 @@
               <td>Given I am on the counter screen</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -2692,6 +2808,7 @@
               <td>When I tap the increment button</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -2701,6 +2818,7 @@
               <td>Then the counter should display &quot;1&quot;</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -2710,6 +2828,7 @@
               <td>Given I am on the counter screen</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -2719,6 +2838,7 @@
               <td>And the counter displays &quot;1&quot;</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -2728,6 +2848,7 @@
               <td>When I tap the decrement button</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -2737,6 +2858,7 @@
               <td>Then the counter should display &quot;0&quot;</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -2746,6 +2868,7 @@
               <td>Given I am on the counter screen</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -2755,6 +2878,7 @@
               <td>And the counter displays &quot;0&quot;</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -2764,6 +2888,7 @@
               <td>When I tap the decrement button</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -2773,6 +2898,7 @@
               <td>Then the counter should display &quot;0&quot;</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -2782,6 +2908,7 @@
               <td>Given I am on the counter screen</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -2791,6 +2918,7 @@
               <td>When I tap the increment button</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -2800,6 +2928,7 @@
               <td>Then the counter should display &quot;1&quot;</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -2809,6 +2938,7 @@
               <td>Given I am on the counter screen</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -2818,6 +2948,7 @@
               <td>And the counter displays &quot;1&quot;</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -2827,6 +2958,7 @@
               <td>When I tap the decrement button</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -2836,6 +2968,7 @@
               <td>Then the counter should display &quot;0&quot;</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -2845,6 +2978,7 @@
               <td>Given I am on the counter screen</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -2854,6 +2988,7 @@
               <td>And the counter displays &quot;0&quot;</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -2863,6 +2998,7 @@
               <td>When I tap the decrement button</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           
@@ -2872,6 +3008,7 @@
               <td>Then the counter should display &quot;0&quot;</td>
               <td>counter.feature</td>
               <td title="/Users/tylerhenry/Documents/GitHub/testApp/e2e/features/counter.feature">features/counter.feature</td>
+              <td><span class="tag">@root_app</span> <span class="tag">@counter-value</span> <span class="tag">@decrement-button</span> <span class="tag">@increment-button</span></td>
               <td>100.0%</td>
             </tr>
           

@@ -25,6 +25,7 @@ interface CorrelatedTest {
   isE2E?: boolean; // Add this to identify E2E tests
   filePath?: string; // Add file path info for the test
   fileName?: string; // Add file name for easier reference
+  tags?: string[]; // Tags from feature files (especially important for E2E tests)
 }
 
 interface SourceInfo {
@@ -688,6 +689,19 @@ function generateHTML(components: ComponentWithTests[]): string {
     .component-path { color: #7f8c8d; font-family: monospace; margin-bottom: 10px; word-break: break-all; }
     .component-coverage { font-size: 1.2em; margin-bottom: 20px; }
     
+    /* Tag styles */
+    .tag {
+      display: inline-block;
+      padding: 3px 8px;
+      margin: 2px;
+      border-radius: 12px;
+      background-color: #e1f5fe;
+      color: #0288d1;
+      font-size: 12px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    
     /* Tabs */
     .tab-container { margin-top: 20px; }
     .tabs { display: flex; border-bottom: 1px solid #ddd; margin-bottom: 15px; flex-wrap: wrap; }
@@ -1176,6 +1190,7 @@ function generateComponentDetailTemplate(component: ComponentWithTests, index: n
             <th>Step</th>
             <th>File Name</th>
             <th>File Path</th>
+            <th>Tags</th>
             <th>Confidence</th>
           </tr>
         </thead>
@@ -1187,6 +1202,7 @@ function generateComponentDetailTemplate(component: ComponentWithTests, index: n
               <td>${escapeHtml(test.step)}</td>
               <td>${test.fileName ? escapeHtml(test.fileName) : 'N/A'}</td>
               <td title="${test.filePath || ''}">${test.filePath ? escapeHtml(path.basename(path.dirname(test.filePath))) + '/' + escapeHtml(path.basename(test.filePath)) : 'N/A'}</td>
+              <td>${test.tags && test.tags.length > 0 ? test.tags.map(tag => `<span class="tag">@${escapeHtml(tag)}</span>`).join(' ') : 'None'}</td>
               <td>${(test.confidence * 100).toFixed(1)}%</td>
             </tr>
           `).join('')}
