@@ -5,17 +5,16 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "bin": {
-    "coverage-venn": "./dist/cli.js"
+    "coverage-venn": "./bin/coverage-venn"
   },
   "files": [
-    "dist",
+    "bin",
     "README.md"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "node scripts/build.js",
     "prepare": "npm run build",
-    "prepublishOnly": "npm run build",
-    "scan": "ts-node src/cli.ts",
+    "scan": "./bin/coverage-venn scan",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "lint": "eslint . --ext .ts,.tsx"
@@ -39,9 +38,7 @@
     "commander": "^11.0.0",
     "node-fetch": "^2.6.7",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "ts-node": "^10.x",
-    "typescript": "^5.8.2"
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.4.2",
@@ -49,9 +46,12 @@
     "@types/jest": "^29.5.14",
     "@typescript-eslint/eslint-plugin": "^5.x",
     "@typescript-eslint/parser": "^5.x",
+    "esbuild": "^0.20.0",
     "eslint": "^8.x",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.x",
-    "ts-jest": "^29.2.6"
+    "ts-jest": "^29.2.6",
+    "ts-node": "^10.x",
+    "typescript": "^5.8.2"
   }
 }
