@@ -1,86 +1,57 @@
-[
-  {
-    "name": "App",
-    "path": "__mocks__/src/App.tsx",
-    "coverage": 85.2,
-    "tests": 5,
-    "metrics": {
-      "statements": 82.3,
-      "branches": 75.0,
-      "functions": 87.5,
-      "lines": 84.1
+{
+  "timestamp": "2025-04-03T00:44:15.761Z",
+  "components": [
+    {
+      "name": "App",
+      "path": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/App.tsx",
+      "children": [
+        "Button",
+        "Form",
+        "Dashboard"
+      ],
+      "testIds": [
+        "root_app",
+        "toggle_theme_button",
+        "toggle_dashboard_button",
+        "toggle_form_button",
+        "error_message",
+        "action_button"
+      ]
+    },
+    {
+      "name": "Dashboard",
+      "path": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/components/Dashboard.tsx",
+      "children": [
+        "Form"
+      ],
+      "testIds": [
+        "dashboard_loading",
+        "dashboard_error",
+        "dashboard_container",
+        "dashboard_tab_all",
+        "dashboard_tab_recent",
+        "dashboard_tab_favorites",
+        "dashboard_search",
+        "dashboard_sort",
+        "dashboard_empty",
+        "dashboard_list"
+      ]
+    },
+    {
+      "name": "Form",
+      "path": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/components/Form.tsx",
+      "children": [],
+      "testIds": [
+        "form_preview",
+        "form_edit_button",
+        "form_submit_button",
+        "form_container",
+        "form_name_input",
+        "form_email_input",
+        "form_message_input",
+        "form_preview_button",
+        "form_submit_button"
+      ]
     }
-  },
-  {
-    "name": "Dashboard",
-    "path": "__mocks__/src/components/Dashboard.tsx",
-    "coverage": 92.8,
-    "tests": 7,
-    "metrics": {
-      "statements": 94.1,
-      "branches": 89.2,
-      "functions": 95.0,
-      "lines": 93.2
-    }
-  },
-  {
-    "name": "Form",
-    "path": "__mocks__/src/components/Form.tsx",
-    "coverage": 68.9,
-    "tests": 3,
-    "metrics": {
-      "statements": 70.2,
-      "branches": 62.5,
-      "functions": 68.0,
-      "lines": 69.3
-    }
-  },
-  {
-    "name": "Navigation",
-    "path": "__mocks__/src/components/Navigation.tsx",
-    "coverage": 78.5,
-    "tests": 4,
-    "metrics": {
-      "statements": 80.1,
-      "branches": 70.0,
-      "functions": 82.3,
-      "lines": 77.8
-    }
-  },
-  {
-    "name": "Button",
-    "path": "__mocks__/src/components/Button.tsx",
-    "coverage": 95.2,
-    "tests": 6,
-    "metrics": {
-      "statements": 97.3,
-      "branches": 90.0,
-      "functions": 96.8,
-      "lines": 94.9
-    }
-  },
-  {
-    "name": "Card",
-    "path": "__mocks__/src/components/Card.tsx",
-    "coverage": 65.3,
-    "tests": 2,
-    "metrics": {
-      "statements": 68.2,
-      "branches": 55.0,
-      "functions": 70.0,
-      "lines": 66.7
-    }
-  },
-  {
-    "name": "Utils",
-    "path": "__mocks__/src/utils/utils.ts",
-    "coverage": 89.7,
-    "tests": 8,
-    "metrics": {
-      "statements": 91.2,
-      "branches": 85.0,
-      "functions": 93.4,
-      "lines": 90.5
-    }
-  }
-]
+  ]
+}

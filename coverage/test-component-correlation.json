@@ -8,61 +8,91 @@
         "feature": "App",
         "scenario": "root_app",
         "step": "should render with the correct title",
-        "confidence": 1
+        "confidence": 1,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/__tests__/App.test.tsx",
+        "fileName": "App.test.tsx"
       },
       {
         "feature": "App",
         "scenario": "root_app",
         "step": "render(<App />);",
-        "confidence": 1
+        "confidence": 1,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/__tests__/App.test.tsx",
+        "fileName": "App.test.tsx"
       },
       {
         "feature": "App",
         "scenario": "root_app",
         "step": "expect(screen.getByText('Mocked Title')).toBeInTheDocument();",
-        "confidence": 1
+        "confidence": 1,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/__tests__/App.test.tsx",
+        "fileName": "App.test.tsx"
       },
       {
         "feature": "App",
         "scenario": "root_app",
         "step": "expect(getThis).toHaveBeenCalledWith('Interactive Dashboard');",
-        "confidence": 1
+        "confidence": 1,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/__tests__/App.test.tsx",
+        "fileName": "App.test.tsx"
       },
       {
         "feature": "App",
         "scenario": "root_app",
         "step": "should render the button component",
-        "confidence": 1
+        "confidence": 1,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/__tests__/App.test.tsx",
+        "fileName": "App.test.tsx"
       },
       {
         "feature": "App",
         "scenario": "root_app",
         "step": "render(<App />);",
-        "confidence": 1
+        "confidence": 1,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/__tests__/App.test.tsx",
+        "fileName": "App.test.tsx"
       },
       {
         "feature": "App",
         "scenario": "root_app",
         "step": "expect(screen.getByTestId('mocked-button')).toBeInTheDocument();",
-        "confidence": 1
+        "confidence": 1,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/__tests__/App.test.tsx",
+        "fileName": "App.test.tsx"
       },
       {
         "feature": "App",
         "scenario": "root_app",
         "step": "should have the correct test ID",
-        "confidence": 1
+        "confidence": 1,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/__tests__/App.test.tsx",
+        "fileName": "App.test.tsx"
       },
       {
         "feature": "App",
         "scenario": "root_app",
         "step": "render(<App />);",
-        "confidence": 1
+        "confidence": 1,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/__tests__/App.test.tsx",
+        "fileName": "App.test.tsx"
       },
       {
         "feature": "App",
         "scenario": "root_app",
         "step": "expect(screen.getByTestId('root_app')).toBeInTheDocument();",
-        "confidence": 1
+        "confidence": 1,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/__tests__/App.test.tsx",
+        "fileName": "App.test.tsx"
       }
     ],
     "gapAnalysis": {
@@ -89,7 +119,10 @@
         "feature": "App",
         "scenario": "root_app",
         "step": "expect(getThis).toHaveBeenCalledWith('Interactive Dashboard');",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/__tests__/App.test.tsx",
+        "fileName": "App.test.tsx"
       }
     ],
     "gapAnalysis": {
@@ -118,211 +151,316 @@
         "feature": "Form",
         "scenario": "Form Component",
         "step": "renders the form correctly",
-        "confidence": 1
+        "confidence": 1,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/__tests__/Form.test.tsx",
+        "fileName": "Form.test.tsx"
       },
       {
         "feature": "Form",
         "scenario": "Form Component",
         "step": "render(<Form />);",
-        "confidence": 1
+        "confidence": 1,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/__tests__/Form.test.tsx",
+        "fileName": "Form.test.tsx"
       },
       {
         "feature": "Form",
         "scenario": "Form Component",
         "step": "expect(screen.getByTestId('form_container')).toBeInTheDocument();",
-        "confidence": 1
+        "confidence": 1,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/__tests__/Form.test.tsx",
+        "fileName": "Form.test.tsx"
       },
       {
         "feature": "Form",
         "scenario": "Form Component",
         "step": "expect(screen.getByTestId('form_name_input')).toBeInTheDocument();",
-        "confidence": 1
+        "confidence": 1,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/__tests__/Form.test.tsx",
+        "fileName": "Form.test.tsx"
       },
       {
         "feature": "Form",
         "scenario": "Form Component",
         "step": "expect(screen.getByTestId('form_email_input')).toBeInTheDocument();",
-        "confidence": 1
+        "confidence": 1,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/__tests__/Form.test.tsx",
+        "fileName": "Form.test.tsx"
       },
       {
         "feature": "Form",
         "scenario": "Form Component",
         "step": "expect(screen.getByTestId('form_message_input')).toBeInTheDocument();",
-        "confidence": 1
+        "confidence": 1,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/__tests__/Form.test.tsx",
+        "fileName": "Form.test.tsx"
       },
       {
         "feature": "Form",
         "scenario": "Form Component",
         "step": "expect(screen.getByTestId('form_preview_button')).toBeInTheDocument();",
-        "confidence": 1
+        "confidence": 1,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/__tests__/Form.test.tsx",
+        "fileName": "Form.test.tsx"
       },
       {
         "feature": "Form",
         "scenario": "Form Component",
         "step": "expect(screen.getByTestId('form_submit_button')).toBeInTheDocument();",
-        "confidence": 1
+        "confidence": 1,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/__tests__/Form.test.tsx",
+        "fileName": "Form.test.tsx"
       },
       {
         "feature": "Form",
         "scenario": "Form Component",
         "step": "updates input values when typing",
-        "confidence": 1
+        "confidence": 1,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/__tests__/Form.test.tsx",
+        "fileName": "Form.test.tsx"
       },
       {
         "feature": "Form",
         "scenario": "Form Component",
         "step": "render(<Form />);",
-        "confidence": 1
+        "confidence": 1,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/__tests__/Form.test.tsx",
+        "fileName": "Form.test.tsx"
       },
       {
         "feature": "Form",
         "scenario": "Form Component",
         "step": "const nameInput = screen.getByTestId('form_name_input');",
-        "confidence": 1
+        "confidence": 1,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/__tests__/Form.test.tsx",
+        "fileName": "Form.test.tsx"
       },
       {
         "feature": "Form",
         "scenario": "Form Component",
         "step": "const emailInput = screen.getByTestId('form_email_input');",
-        "confidence": 1
+        "confidence": 1,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/__tests__/Form.test.tsx",
+        "fileName": "Form.test.tsx"
       },
       {
         "feature": "Form",
         "scenario": "Form Component",
         "step": "const messageInput = screen.getByTestId('form_message_input');",
-        "confidence": 1
+        "confidence": 1,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/__tests__/Form.test.tsx",
+        "fileName": "Form.test.tsx"
       },
       {
         "feature": "Form",
         "scenario": "Form Component",
         "step": "fireEvent.change(nameInput, { target: { value: 'John Doe' } });",
-        "confidence": 1
+        "confidence": 1,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/__tests__/Form.test.tsx",
+        "fileName": "Form.test.tsx"
       },
       {
         "feature": "Form",
         "scenario": "Form Component",
         "step": "fireEvent.change(emailInput, { target: { value: 'john@example.com' } });",
-        "confidence": 1
+        "confidence": 1,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/__tests__/Form.test.tsx",
+        "fileName": "Form.test.tsx"
       },
       {
         "feature": "Form",
         "scenario": "Form Component",
         "step": "fireEvent.change(messageInput, { target: { value: 'This is a test message' } });",
-        "confidence": 1
+        "confidence": 1,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/__tests__/Form.test.tsx",
+        "fileName": "Form.test.tsx"
       },
       {
         "feature": "Form",
         "scenario": "Form Component",
         "step": "expect(nameInput).toHaveValue('John Doe');",
-        "confidence": 1
+        "confidence": 1,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/__tests__/Form.test.tsx",
+        "fileName": "Form.test.tsx"
       },
       {
         "feature": "Form",
         "scenario": "Form Component",
         "step": "expect(emailInput).toHaveValue('john@example.com');",
-        "confidence": 1
+        "confidence": 1,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/__tests__/Form.test.tsx",
+        "fileName": "Form.test.tsx"
       },
       {
         "feature": "Form",
         "scenario": "Form Component",
         "step": "expect(messageInput).toHaveValue('This is a test message');",
-        "confidence": 1
+        "confidence": 1,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/__tests__/Form.test.tsx",
+        "fileName": "Form.test.tsx"
       },
       {
         "feature": "Form",
         "scenario": "Form Component",
         "step": "hides the name field when showNameField is false",
-        "confidence": 1
+        "confidence": 1,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/__tests__/Form.test.tsx",
+        "fileName": "Form.test.tsx"
       },
       {
         "feature": "Form",
         "scenario": "Form Component",
         "step": "render(<Form showNameField={false} />);",
-        "confidence": 1
+        "confidence": 1,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/__tests__/Form.test.tsx",
+        "fileName": "Form.test.tsx"
       },
       {
         "feature": "Form",
         "scenario": "Form Component",
         "step": "expect(screen.queryByTestId('form_name_input')).not.toBeInTheDocument();",
-        "confidence": 1
+        "confidence": 1,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/__tests__/Form.test.tsx",
+        "fileName": "Form.test.tsx"
       },
       {
         "feature": "Form",
         "scenario": "Form Component",
         "step": "expect(screen.getByTestId('form_email_input')).toBeInTheDocument();",
-        "confidence": 1
+        "confidence": 1,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/__tests__/Form.test.tsx",
+        "fileName": "Form.test.tsx"
       },
       {
         "feature": "Form",
         "scenario": "Form Component",
         "step": "expect(screen.getByTestId('form_message_input')).toBeInTheDocument();",
-        "confidence": 1
+        "confidence": 1,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/__tests__/Form.test.tsx",
+        "fileName": "Form.test.tsx"
       },
       {
         "feature": "Form",
         "scenario": "Form Component",
         "step": "calls onSubmit when the form is submitted with valid data",
-        "confidence": 1
+        "confidence": 1,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/__tests__/Form.test.tsx",
+        "fileName": "Form.test.tsx"
       },
       {
         "feature": "Form",
         "scenario": "Form Component",
         "step": "render(",
-        "confidence": 1
+        "confidence": 1,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/__tests__/Form.test.tsx",
+        "fileName": "Form.test.tsx"
       },
       {
         "feature": "Form",
         "scenario": "Form Component",
         "step": "const submitButton = screen.getByTestId('form_submit_button');",
-        "confidence": 1
+        "confidence": 1,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/__tests__/Form.test.tsx",
+        "fileName": "Form.test.tsx"
       },
       {
         "feature": "Form",
         "scenario": "Form Component",
         "step": "fireEvent.click(submitButton);",
-        "confidence": 1
+        "confidence": 1,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/__tests__/Form.test.tsx",
+        "fileName": "Form.test.tsx"
       },
       {
         "feature": "Form",
         "scenario": "Form Component",
         "step": "expect(handleSubmit).toHaveBeenCalled();",
-        "confidence": 1
+        "confidence": 1,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/__tests__/Form.test.tsx",
+        "fileName": "Form.test.tsx"
       },
       {
         "feature": "stringUtils",
         "scenario": "stringUtils",
         "step": "expect(formatString(null)).toBe('');",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/__tests__/stringUtils.test.ts",
+        "fileName": "stringUtils.test.ts"
       },
       {
         "feature": "stringUtils",
         "scenario": "stringUtils",
         "step": "expect(formatString(undefined)).toBe('');",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/__tests__/stringUtils.test.ts",
+        "fileName": "stringUtils.test.ts"
       },
       {
         "feature": "stringUtils",
         "scenario": "stringUtils",
         "step": "expect(formatString('abc')).toBe('ABC');",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/__tests__/stringUtils.test.ts",
+        "fileName": "stringUtils.test.ts"
       },
       {
         "feature": "stringUtils",
         "scenario": "stringUtils",
         "step": "expect(formatString('hi')).toBe('HI');",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/__tests__/stringUtils.test.ts",
+        "fileName": "stringUtils.test.ts"
       },
       {
         "feature": "stringUtils",
         "scenario": "stringUtils",
         "step": "expect(formatString('hello')).toBe('Hello');",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/__tests__/stringUtils.test.ts",
+        "fileName": "stringUtils.test.ts"
       },
       {
         "feature": "stringUtils",
         "scenario": "stringUtils",
         "step": "expect(formatString('hello you')).toBe('Hello You');",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/__tests__/stringUtils.test.ts",
+        "fileName": "stringUtils.test.ts"
       }
     ],
     "gapAnalysis": {
@@ -351,37 +489,55 @@
         "feature": "App",
         "scenario": "root_app",
         "step": "should render the button component",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/__tests__/App.test.tsx",
+        "fileName": "App.test.tsx"
       },
       {
         "feature": "App",
         "scenario": "root_app",
         "step": "expect(screen.getByTestId('mocked-button')).toBeInTheDocument();",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/__tests__/App.test.tsx",
+        "fileName": "App.test.tsx"
       },
       {
         "feature": "Form",
         "scenario": "Form Component",
         "step": "expect(screen.getByTestId('form_preview_button')).toBeInTheDocument();",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/__tests__/Form.test.tsx",
+        "fileName": "Form.test.tsx"
       },
       {
         "feature": "Form",
         "scenario": "Form Component",
         "step": "expect(screen.getByTestId('form_submit_button')).toBeInTheDocument();",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/__tests__/Form.test.tsx",
+        "fileName": "Form.test.tsx"
       },
       {
         "feature": "Form",
         "scenario": "Form Component",
         "step": "const submitButton = screen.getByTestId('form_submit_button');",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/__tests__/Form.test.tsx",
+        "fileName": "Form.test.tsx"
       },
       {
         "feature": "Form",
         "scenario": "Form Component",
         "step": "fireEvent.click(submitButton);",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/__tests__/Form.test.tsx",
+        "fileName": "Form.test.tsx"
       }
     ],
     "gapAnalysis": {
@@ -423,145 +579,217 @@
         "feature": "stringUtils",
         "scenario": "stringUtils",
         "step": "returns empty string for null or undefined input",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/__tests__/stringUtils.test.ts",
+        "fileName": "stringUtils.test.ts"
       },
       {
         "feature": "stringUtils",
         "scenario": "stringUtils",
         "step": "expect(formatString(null)).toBe('');",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/__tests__/stringUtils.test.ts",
+        "fileName": "stringUtils.test.ts"
       },
       {
         "feature": "stringUtils",
         "scenario": "stringUtils",
         "step": "expect(formatString(undefined)).toBe('');",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/__tests__/stringUtils.test.ts",
+        "fileName": "stringUtils.test.ts"
       },
       {
         "feature": "stringUtils",
         "scenario": "stringUtils",
         "step": "returns uppercase for strings less than 5 characters",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/__tests__/stringUtils.test.ts",
+        "fileName": "stringUtils.test.ts"
       },
       {
         "feature": "stringUtils",
         "scenario": "stringUtils",
         "step": "expect(formatString('abc')).toBe('ABC');",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/__tests__/stringUtils.test.ts",
+        "fileName": "stringUtils.test.ts"
       },
       {
         "feature": "stringUtils",
         "scenario": "stringUtils",
         "step": "expect(formatString('hi')).toBe('HI');",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/__tests__/stringUtils.test.ts",
+        "fileName": "stringUtils.test.ts"
       },
       {
         "feature": "stringUtils",
         "scenario": "stringUtils",
         "step": "returns title case for strings between 5-10 characters",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/__tests__/stringUtils.test.ts",
+        "fileName": "stringUtils.test.ts"
       },
       {
         "feature": "stringUtils",
         "scenario": "stringUtils",
         "step": "expect(formatString('hello')).toBe('Hello');",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/__tests__/stringUtils.test.ts",
+        "fileName": "stringUtils.test.ts"
       },
       {
         "feature": "stringUtils",
         "scenario": "stringUtils",
         "step": "expect(formatString('hello you')).toBe('Hello You');",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/__tests__/stringUtils.test.ts",
+        "fileName": "stringUtils.test.ts"
       },
       {
         "feature": "stringUtils",
         "scenario": "stringUtils",
         "step": "capitalizes the first letter of each word",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/__tests__/stringUtils.test.ts",
+        "fileName": "stringUtils.test.ts"
       },
       {
         "feature": "stringUtils",
         "scenario": "stringUtils",
         "step": "expect(titleCase('hello world')).toBe('Hello World');",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/__tests__/stringUtils.test.ts",
+        "fileName": "stringUtils.test.ts"
       },
       {
         "feature": "stringUtils",
         "scenario": "stringUtils",
         "step": "expect(titleCase('test string')).toBe('Test String');",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/__tests__/stringUtils.test.ts",
+        "fileName": "stringUtils.test.ts"
       },
       {
         "feature": "stringUtils",
         "scenario": "stringUtils",
         "step": "returns empty string for empty input",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/__tests__/stringUtils.test.ts",
+        "fileName": "stringUtils.test.ts"
       },
       {
         "feature": "stringUtils",
         "scenario": "stringUtils",
         "step": "expect(titleCase('')).toBe('');",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/__tests__/stringUtils.test.ts",
+        "fileName": "stringUtils.test.ts"
       },
       {
         "feature": "stringUtils",
         "scenario": "stringUtils",
         "step": "returns validation results for a simple string",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/__tests__/stringUtils.test.ts",
+        "fileName": "stringUtils.test.ts"
       },
       {
         "feature": "stringUtils",
         "scenario": "stringUtils",
         "step": "expect(result.isValid).toBe(true);",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/__tests__/stringUtils.test.ts",
+        "fileName": "stringUtils.test.ts"
       },
       {
         "feature": "stringUtils",
         "scenario": "stringUtils",
         "step": "expect(result.hasNumbers).toBe(true);",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/__tests__/stringUtils.test.ts",
+        "fileName": "stringUtils.test.ts"
       },
       {
         "feature": "stringUtils",
         "scenario": "stringUtils",
         "step": "expect(result.hasUpperCase).toBe(true);",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/__tests__/stringUtils.test.ts",
+        "fileName": "stringUtils.test.ts"
       },
       {
         "feature": "stringUtils",
         "scenario": "stringUtils",
         "step": "expect(result.hasLowerCase).toBe(true);",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/__tests__/stringUtils.test.ts",
+        "fileName": "stringUtils.test.ts"
       },
       {
         "feature": "stringUtils",
         "scenario": "stringUtils",
         "step": "expect(result.hasSpecialChars).toBe(false);",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/__tests__/stringUtils.test.ts",
+        "fileName": "stringUtils.test.ts"
       },
       {
         "feature": "stringUtils",
         "scenario": "stringUtils",
         "step": "expect(result.errors).toHaveLength(0);",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/__tests__/stringUtils.test.ts",
+        "fileName": "stringUtils.test.ts"
       },
       {
         "feature": "stringUtils",
         "scenario": "stringUtils",
         "step": "identifies invalid empty strings",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/__tests__/stringUtils.test.ts",
+        "fileName": "stringUtils.test.ts"
       },
       {
         "feature": "stringUtils",
         "scenario": "stringUtils",
         "step": "expect(result.isValid).toBe(false);",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/__tests__/stringUtils.test.ts",
+        "fileName": "stringUtils.test.ts"
       },
       {
         "feature": "stringUtils",
         "scenario": "stringUtils",
         "step": "expect(result.errors).toContain('String cannot be empty');",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/__tests__/stringUtils.test.ts",
+        "fileName": "stringUtils.test.ts"
       }
     ],
     "gapAnalysis": {
@@ -587,241 +815,361 @@
         "feature": "utils",
         "scenario": "Utils",
         "step": "should return the input text",
-        "confidence": 1
+        "confidence": 1,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/__tests__/utils.test.ts",
+        "fileName": "utils.test.ts"
       },
       {
         "feature": "utils",
         "scenario": "Utils",
         "step": "expect(result).toBe(input);",
-        "confidence": 1
+        "confidence": 1,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/__tests__/utils.test.ts",
+        "fileName": "utils.test.ts"
       },
       {
         "feature": "utils",
         "scenario": "Utils",
         "step": "should handle empty string",
-        "confidence": 1
+        "confidence": 1,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/__tests__/utils.test.ts",
+        "fileName": "utils.test.ts"
       },
       {
         "feature": "utils",
         "scenario": "Utils",
         "step": "expect(result).toBe('');",
-        "confidence": 1
+        "confidence": 1,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/__tests__/utils.test.ts",
+        "fileName": "utils.test.ts"
       },
       {
         "feature": "utils",
         "scenario": "Utils",
         "step": "should handle special characters",
-        "confidence": 1
+        "confidence": 1,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/__tests__/utils.test.ts",
+        "fileName": "utils.test.ts"
       },
       {
         "feature": "utils",
         "scenario": "Utils",
         "step": "expect(result).toBe(input);",
-        "confidence": 1
+        "confidence": 1,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/__tests__/utils.test.ts",
+        "fileName": "utils.test.ts"
       },
       {
         "feature": "App",
         "scenario": "root_app",
         "step": "should render with the correct title",
-        "confidence": 0.9
+        "confidence": 0.9,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/__tests__/App.test.tsx",
+        "fileName": "App.test.tsx"
       },
       {
         "feature": "App",
         "scenario": "root_app",
         "step": "render(<App />);",
-        "confidence": 0.9
+        "confidence": 0.9,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/__tests__/App.test.tsx",
+        "fileName": "App.test.tsx"
       },
       {
         "feature": "App",
         "scenario": "root_app",
         "step": "expect(screen.getByText('Mocked Title')).toBeInTheDocument();",
-        "confidence": 0.9
+        "confidence": 0.9,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/__tests__/App.test.tsx",
+        "fileName": "App.test.tsx"
       },
       {
         "feature": "App",
         "scenario": "root_app",
         "step": "expect(getThis).toHaveBeenCalledWith('Interactive Dashboard');",
-        "confidence": 0.9
+        "confidence": 0.9,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/__tests__/App.test.tsx",
+        "fileName": "App.test.tsx"
       },
       {
         "feature": "App",
         "scenario": "root_app",
         "step": "should render the button component",
-        "confidence": 0.9
+        "confidence": 0.9,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/__tests__/App.test.tsx",
+        "fileName": "App.test.tsx"
       },
       {
         "feature": "App",
         "scenario": "root_app",
         "step": "render(<App />);",
-        "confidence": 0.9
+        "confidence": 0.9,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/__tests__/App.test.tsx",
+        "fileName": "App.test.tsx"
       },
       {
         "feature": "App",
         "scenario": "root_app",
         "step": "expect(screen.getByTestId('mocked-button')).toBeInTheDocument();",
-        "confidence": 0.9
+        "confidence": 0.9,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/__tests__/App.test.tsx",
+        "fileName": "App.test.tsx"
       },
       {
         "feature": "App",
         "scenario": "root_app",
         "step": "should have the correct test ID",
-        "confidence": 0.9
+        "confidence": 0.9,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/__tests__/App.test.tsx",
+        "fileName": "App.test.tsx"
       },
       {
         "feature": "App",
         "scenario": "root_app",
         "step": "render(<App />);",
-        "confidence": 0.9
+        "confidence": 0.9,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/__tests__/App.test.tsx",
+        "fileName": "App.test.tsx"
       },
       {
         "feature": "App",
         "scenario": "root_app",
         "step": "expect(screen.getByTestId('root_app')).toBeInTheDocument();",
-        "confidence": 0.9
+        "confidence": 0.9,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/__tests__/App.test.tsx",
+        "fileName": "App.test.tsx"
       },
       {
         "feature": "stringUtils",
         "scenario": "stringUtils",
         "step": "returns empty string for null or undefined input",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/__tests__/stringUtils.test.ts",
+        "fileName": "stringUtils.test.ts"
       },
       {
         "feature": "stringUtils",
         "scenario": "stringUtils",
         "step": "expect(formatString(null)).toBe('');",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/__tests__/stringUtils.test.ts",
+        "fileName": "stringUtils.test.ts"
       },
       {
         "feature": "stringUtils",
         "scenario": "stringUtils",
         "step": "expect(formatString(undefined)).toBe('');",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/__tests__/stringUtils.test.ts",
+        "fileName": "stringUtils.test.ts"
       },
       {
         "feature": "stringUtils",
         "scenario": "stringUtils",
         "step": "returns uppercase for strings less than 5 characters",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/__tests__/stringUtils.test.ts",
+        "fileName": "stringUtils.test.ts"
       },
       {
         "feature": "stringUtils",
         "scenario": "stringUtils",
         "step": "expect(formatString('abc')).toBe('ABC');",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/__tests__/stringUtils.test.ts",
+        "fileName": "stringUtils.test.ts"
       },
       {
         "feature": "stringUtils",
         "scenario": "stringUtils",
         "step": "expect(formatString('hi')).toBe('HI');",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/__tests__/stringUtils.test.ts",
+        "fileName": "stringUtils.test.ts"
       },
       {
         "feature": "stringUtils",
         "scenario": "stringUtils",
         "step": "returns title case for strings between 5-10 characters",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/__tests__/stringUtils.test.ts",
+        "fileName": "stringUtils.test.ts"
       },
       {
         "feature": "stringUtils",
         "scenario": "stringUtils",
         "step": "expect(formatString('hello')).toBe('Hello');",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/__tests__/stringUtils.test.ts",
+        "fileName": "stringUtils.test.ts"
       },
       {
         "feature": "stringUtils",
         "scenario": "stringUtils",
         "step": "expect(formatString('hello you')).toBe('Hello You');",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/__tests__/stringUtils.test.ts",
+        "fileName": "stringUtils.test.ts"
       },
       {
         "feature": "stringUtils",
         "scenario": "stringUtils",
         "step": "capitalizes the first letter of each word",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/__tests__/stringUtils.test.ts",
+        "fileName": "stringUtils.test.ts"
       },
       {
         "feature": "stringUtils",
         "scenario": "stringUtils",
         "step": "expect(titleCase('hello world')).toBe('Hello World');",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/__tests__/stringUtils.test.ts",
+        "fileName": "stringUtils.test.ts"
       },
       {
         "feature": "stringUtils",
         "scenario": "stringUtils",
         "step": "expect(titleCase('test string')).toBe('Test String');",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/__tests__/stringUtils.test.ts",
+        "fileName": "stringUtils.test.ts"
       },
       {
         "feature": "stringUtils",
         "scenario": "stringUtils",
         "step": "returns empty string for empty input",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/__tests__/stringUtils.test.ts",
+        "fileName": "stringUtils.test.ts"
       },
       {
         "feature": "stringUtils",
         "scenario": "stringUtils",
         "step": "expect(titleCase('')).toBe('');",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/__tests__/stringUtils.test.ts",
+        "fileName": "stringUtils.test.ts"
       },
       {
         "feature": "stringUtils",
         "scenario": "stringUtils",
         "step": "returns validation results for a simple string",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/__tests__/stringUtils.test.ts",
+        "fileName": "stringUtils.test.ts"
       },
       {
         "feature": "stringUtils",
         "scenario": "stringUtils",
         "step": "expect(result.isValid).toBe(true);",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/__tests__/stringUtils.test.ts",
+        "fileName": "stringUtils.test.ts"
       },
       {
         "feature": "stringUtils",
         "scenario": "stringUtils",
         "step": "expect(result.hasNumbers).toBe(true);",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/__tests__/stringUtils.test.ts",
+        "fileName": "stringUtils.test.ts"
       },
       {
         "feature": "stringUtils",
         "scenario": "stringUtils",
         "step": "expect(result.hasUpperCase).toBe(true);",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/__tests__/stringUtils.test.ts",
+        "fileName": "stringUtils.test.ts"
       },
       {
         "feature": "stringUtils",
         "scenario": "stringUtils",
         "step": "expect(result.hasLowerCase).toBe(true);",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/__tests__/stringUtils.test.ts",
+        "fileName": "stringUtils.test.ts"
       },
       {
         "feature": "stringUtils",
         "scenario": "stringUtils",
         "step": "expect(result.hasSpecialChars).toBe(false);",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/__tests__/stringUtils.test.ts",
+        "fileName": "stringUtils.test.ts"
       },
       {
         "feature": "stringUtils",
         "scenario": "stringUtils",
         "step": "expect(result.errors).toHaveLength(0);",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/__tests__/stringUtils.test.ts",
+        "fileName": "stringUtils.test.ts"
       },
       {
         "feature": "stringUtils",
         "scenario": "stringUtils",
         "step": "identifies invalid empty strings",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/__tests__/stringUtils.test.ts",
+        "fileName": "stringUtils.test.ts"
       },
       {
         "feature": "stringUtils",
         "scenario": "stringUtils",
         "step": "expect(result.isValid).toBe(false);",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/__tests__/stringUtils.test.ts",
+        "fileName": "stringUtils.test.ts"
       },
       {
         "feature": "stringUtils",
         "scenario": "stringUtils",
         "step": "expect(result.errors).toContain('String cannot be empty');",
-        "confidence": 0.7
+        "confidence": 0.7,
+        "isE2E": false,
+        "filePath": "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/utils/__tests__/stringUtils.test.ts",
+        "fileName": "stringUtils.test.ts"
       }
     ],
     "gapAnalysis": {

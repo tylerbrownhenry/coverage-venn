@@ -1,0 +1,53 @@
+[
+  [
+    "@root_app",
+    {
+      "name": "@root_app",
+      "components": [
+        "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/App.tsx"
+      ],
+      "relationships": [
+        "@root_button",
+        "@root_form",
+        "@root_dashboard"
+      ],
+      "category": "component",
+      "metadata": {
+        "createdAt": "2025-04-03T00:44:15.747Z",
+        "updatedAt": "2025-04-03T00:44:15.747Z"
+      }
+    }
+  ],
+  [
+    "@root_dashboard",
+    {
+      "name": "@root_dashboard",
+      "components": [
+        "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/components/Dashboard.tsx"
+      ],
+      "relationships": [
+        "@root_form"
+      ],
+      "category": "component",
+      "metadata": {
+        "createdAt": "2025-04-03T00:44:15.748Z",
+        "updatedAt": "2025-04-03T00:44:15.748Z"
+      }
+    }
+  ],
+  [
+    "@root_form",
+    {
+      "name": "@root_form",
+      "components": [
+        "/Users/tylerhenry/Documents/GitHub/coverage-venn/__mocks__/src/components/Form.tsx"
+      ],
+      "relationships": [],
+      "category": "component",
+      "metadata": {
+        "createdAt": "2025-04-03T00:44:15.748Z",
+        "updatedAt": "2025-04-03T00:44:15.748Z"
+      }
+    }
+  ]
+]
