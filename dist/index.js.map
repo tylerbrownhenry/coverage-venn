@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../src/index.ts"],
+  "sourcesContent": ["// Managers\nexport { ComponentHierarchyManager } from './component-management/managers/component-manager';\nexport { BrowserStackManager } from './coverage/services/BrowserStackManager';\nexport { CoverageReportGenerator } from './coverage/reporters/coverage';\nexport { TagManager } from './shared/tags/TagManager';\n\n// Types\nexport { ComponentNode } from './component-management/managers/component-manager';\nexport { BrowserStackConfig } from './coverage/services/BrowserStackManager';\nexport { CoverageReport } from './coverage/reporters/coverage';\nexport { ComponentCoverage } from './types'; "],
+  "mappings": ";;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AACA,+BAA0C;AAC1C,iCAAoC;AACpC,sBAAwC;AACxC,wBAA2B;AAG3B,IAAAA,4BAA8B;AAC9B,IAAAC,8BAAmC;AACnC,IAAAC,mBAA+B;AAC/B,mBAAkC;",
+  "names": ["import_component_manager", "import_BrowserStackManager", "import_coverage"]
+}

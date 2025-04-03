@@ -3,6 +3,7 @@ import { Command } from 'commander';
 import { ComponentHierarchyManager } from './component-management/managers/component-manager';
 import { CoverageReportGenerator } from './coverage/reporters/coverage';
 import path from 'path';
+import fs from 'fs';
 
 const program = new Command();
 
@@ -16,19 +17,32 @@ program
   .description('Scan a directory for component coverage analysis')
   .argument('<directory>', 'Directory to scan')
   .option('-o, --output <path>', 'Output path for coverage report', './coverage-report.json')
-  .option('-c, --config <path>', 'Path to config file')
-  .action(async (directory: string, options) => {
+  .option('-c, --config <path>', 'Path to config file', './default-config.json')
+  .action(async (directory: string, options: { output: string; config: string }) => {
     try {
-      // Set environment variables if config provided
-      if (options.config) {
-        process.env.MANAGER_CONFIG_PATH = options.config;
+      // Load config
+      let config;
+      try {
+        const configPath = path.resolve(process.cwd(), options.config);
+        config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+        console.log('Using config from:', configPath);
+      } catch (error) {
+        console.warn('Failed to load config, using defaults:', error.message);
+        const defaultConfigPath = path.join(__dirname, 'default-config.json');
+        config = JSON.parse(fs.readFileSync(defaultConfigPath, 'utf8'));
       }
+
+      // Set environment variables
+      process.env.MANAGER_CONFIG_PATH = options.config;
 
       console.log(`Scanning directory: ${directory}`);
       
-      // Initialize managers
+      // Initialize managers with config
       const hierarchyManager = new ComponentHierarchyManager();
       const reportGenerator = new CoverageReportGenerator(options.output);
+
+      // Override rootDir from command line argument
+      config.manager.rootDir = directory;
 
       // Scan hierarchy
       const hierarchy = await hierarchyManager.scanHierarchy();

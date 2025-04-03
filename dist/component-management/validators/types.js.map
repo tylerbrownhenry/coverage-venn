@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../src/component-management/validators/types.ts"],
+  "sourcesContent": ["import { ComponentNode } from '../scanners/ComponentHierarchyScanner';\n\nexport interface TestIdRule {\n  name: string;\n  pattern: RegExp;\n  message: string;\n  severity: 'error' | 'warning';\n  validate: (testId: string, component: ComponentNode) => boolean;\n}\n\nexport interface ValidationResult {\n  isValid: boolean;\n  errors: ValidationError[];\n  warnings: ValidationError[];\n}\n\nexport interface ValidationError {\n  rule: string;\n  message: string;\n  testId: string;\n  component: string;\n  suggestion?: string;\n} "],
+  "mappings": ";;;;;;;;;;;;;;AAAA;AAAA;",
+  "names": []
+}

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../src/types.ts"],
+  "sourcesContent": ["export interface FeatureFile {\n  path: string;\n  content: string;\n  tags: string[];\n  scenarios: Scenario[];\n}\n\nexport interface Scenario {\n  name: string;\n  tags: string[];\n  steps: string[];\n}\n\nexport interface ComponentCoverage {\n  path: string;\n  coverage: {\n    unit: number;\n    e2e: number;\n    visual: number;\n    runtime: number;\n  };\n  testIds: string[];\n  tags: string[];\n}\n"],
+  "mappings": ";;;;;;;;;;;;;;AAAA;AAAA;",
+  "names": []
+}

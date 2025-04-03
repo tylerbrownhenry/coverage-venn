@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../src/shared/utils/FileHasher.ts"],
+  "sourcesContent": ["import * as crypto from 'crypto';\nimport * as fs from 'fs/promises';\n\nexport class FileHasher {\n  static async hashFile(filePath: string): Promise<string> {\n    const content = await fs.readFile(filePath);\n    return crypto\n      .createHash('sha256')\n      .update(content)\n      .digest('hex');\n  }\n\n  static async hashContent(content: string): Promise<string> {\n    return crypto\n      .createHash('sha256')\n      .update(content)\n      .digest('hex');\n  }\n}\n"],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,aAAwB;AACxB,SAAoB;AAEb,MAAM,WAAW;AAAA,EACtB,aAAa,SAAS,UAAmC;AACvD,UAAM,UAAU,MAAM,GAAG,SAAS,QAAQ;AAC1C,WAAO,OACJ,WAAW,QAAQ,EACnB,OAAO,OAAO,EACd,OAAO,KAAK;AAAA,EACjB;AAAA,EAEA,aAAa,YAAY,SAAkC;AACzD,WAAO,OACJ,WAAW,QAAQ,EACnB,OAAO,OAAO,EACd,OAAO,KAAK;AAAA,EACjB;AACF;",
+  "names": []
+}

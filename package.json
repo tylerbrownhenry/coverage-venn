@@ -5,16 +5,16 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "bin": {
-    "coverage-venn": "./bin/coverage-venn"
+    "coverage-venn": "./dist/coverage-venn"
   },
   "files": [
-    "bin",
+    "dist",
     "README.md"
   ],
   "scripts": {
     "build": "node scripts/build.js",
     "prepare": "npm run build",
-    "scan": "./bin/coverage-venn scan",
+    "scan": "./dist/coverage-venn scan",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "lint": "eslint . --ext .ts,.tsx"
