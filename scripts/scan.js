@@ -59,7 +59,7 @@ async function scanComponents() {
   try {
     // Use the analyze-mock-app.ts script for all scan types
     // This script has been fixed to work with the new structure
-    const scriptPath = 'scripts/analysis/analyze/analyze-mock-app.ts';
+    const scriptPath = 'scripts/analyze-mock-app.ts';
     
     if (scriptExists(scriptPath)) {
       await runCommand('ts-node', [scriptPath, ...remainingArgs]);

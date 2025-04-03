@@ -1,1 +1,0 @@
-{"scripts": {"test:instrumentation-unit": "jest -c scripts/instrumentation/jest.config.js"}}

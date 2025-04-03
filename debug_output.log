@@ -1,6 +1,0 @@
-
-> coverage-venn@1.0.0 report:correlated:project
-> PROJECT_ROOT=$PROJECT_ROOT COVERAGE_SOURCE=project ts-node scripts/generate/generate-html-report-enhanced.ts
-
-Using PROJECT_ROOT: /Users/tylerhenry/Documents/GitHub/testApp
-PROJECT_ROOT is explicitly set in environment to: /Users/tylerhenry/Documents/GitHub/testApp

@@ -8,8 +8,8 @@ import { getConfig } from '../utils/config';  // Fix import path
 
 export interface ComponentManager {
   scanHierarchy(): Promise<Map<string, ComponentNode>>;
-  trackChanges(): Promise<void>;
-  validateTags(): Promise<void>;
+  // trackChanges(): Promise<void>;
+  // validateTags(): Promise<void>;
 }
 
 export interface ComponentNode {

@@ -1,1 +1,0 @@
-console.log("Test script"); const fs = require("fs"); const path = require("path"); const html = `<!DOCTYPE html><html><head><title>Test</title></head><body><h1>Test</h1></body></html>`; fs.writeFileSync(path.resolve(process.cwd(), "coverage-project/test.html"), html); console.log("Done");

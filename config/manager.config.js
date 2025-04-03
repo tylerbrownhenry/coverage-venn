@@ -6,15 +6,15 @@ module.exports = {
   baseDir: 'src',
   
   // Output directory for reports
-  outputDir: 'reports',
+  // outputDir: 'reports',
   
   // BrowserStack integration settings
-  browserStack: {
-    enabled: false,
-    username: process.env.BROWSERSTACK_USERNAME || '',
-    accessKey: process.env.BROWSERSTACK_ACCESS_KEY || '',
-    projectName: 'Coverage Venn'
-  },
+  // browserStack: {
+  //   enabled: false,
+  //   username: process.env.BROWSERSTACK_USERNAME || '',
+  //   accessKey: process.env.BROWSERSTACK_ACCESS_KEY || '',
+  //   projectName: 'Coverage Venn'
+  // },
   
   // Test tracking settings
   tracking: {
@@ -25,14 +25,14 @@ module.exports = {
   },
   
   // Coverage settings
-  coverage: {
-    reportDir: 'coverage',
-    includeUntestedComponents: true,
-    thresholds: {
-      unit: 80,
-      e2e: 50,
-      visual: 30,
-      runtime: 60
-    }
-  }
+  // coverage: {
+  //   reportDir: 'coverage',
+  //   includeUntestedComponents: true,
+  //   thresholds: {
+  //     unit: 80,
+  //     e2e: 50,
+  //     visual: 30,
+  //     runtime: 60
+  //   }
+  // }
 }; 

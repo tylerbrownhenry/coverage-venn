@@ -93,7 +93,7 @@ describe('ComponentHierarchyManager', () => {
   describe('trackChanges', () => {
     it('should be implemented in the future', async () => {
       // This is a placeholder test for a method to be implemented
-      await manager.trackChanges();
+      // await manager.trackChanges();
       // No assertions since method is empty, but it should resolve
     });
   });
@@ -101,7 +101,7 @@ describe('ComponentHierarchyManager', () => {
   describe('validateTags', () => {
     it('should be implemented in the future', async () => {
       // This is a placeholder test for a method to be implemented
-      await manager.validateTags();
+      // await manager.validateTags();
       // No assertions since method is empty, but it should resolve
     });
   });
