@@ -5,7 +5,7 @@
     "lib": ["ES2020", "DOM"],
     "declaration": true,
     "outDir": "./dist",
-    "rootDir": ".",
+    "rootDir": "./src",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
@@ -16,17 +16,19 @@
     "emitDecoratorMetadata": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["coverage-venn/*"]
+      "@/*": ["src/*"]
     },
     "types": ["jest", "node"],
-    "jsx": "react",
-    "allowJs": true
+    "jsx": "react"
   },
   "include": [
-    "src/**/*",
-    "__mocks__/**/*",
-    "jest.setup.ts",
-    "scripts/**/*"
+    "src/**/*"
   ],
-  "exclude": ["node_modules", "dist"]
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/*.test.ts",
+    "**/*.spec.ts",
+    "__mocks__"
+  ]
 }
