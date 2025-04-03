@@ -4,14 +4,26 @@ A component coverage analysis and visualization tool that helps you understand a
 
 ## Installation
 
+### From npm registry:
 ```bash
 npm install -g coverage-venn
 ```
 
 Or install locally in your project:
-
 ```bash
 npm install --save-dev coverage-venn
+```
+
+### From GitHub repository:
+```bash
+# Install latest version
+npm install github:tylerhenry/coverage-venn
+
+# Install from specific branch
+npm install github:tylerhenry/coverage-venn#main
+
+# Install from full URL
+npm install https://github.com/tylerhenry/coverage-venn.git
 ```
 
 ## Usage
@@ -97,6 +109,28 @@ module.exports = {
 - Component tagging system
 - BrowserStack integration
 - Customizable reporting
+
+## Development
+
+To contribute or run locally:
+
+```bash
+# Clone the repository
+git clone https://github.com/tylerhenry/coverage-venn.git
+cd coverage-venn
+
+# Install dependencies
+npm install
+
+# Build the package
+npm run build
+
+# Run tests
+npm test
+
+# Try it out
+npm run scan src/components
+```
 
 ## License
 

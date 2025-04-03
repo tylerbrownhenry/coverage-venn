@@ -13,6 +13,7 @@
   ],
   "scripts": {
     "build": "tsc",
+    "prepare": "npm run build",
     "prepublishOnly": "npm run build",
     "scan": "ts-node src/cli.ts",
     "test": "jest",
@@ -39,7 +40,8 @@
     "node-fetch": "^2.6.7",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "ts-node": "^10.x"
+    "ts-node": "^10.x",
+    "typescript": "^5.8.2"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.4.2",
@@ -50,7 +52,6 @@
     "eslint": "^8.x",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.x",
-    "ts-jest": "^29.2.6",
-    "typescript": "^5.8.2"
+    "ts-jest": "^29.2.6"
   }
 }
